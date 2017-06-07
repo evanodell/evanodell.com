@@ -1,0 +1,101 @@
+<div class = "asterism">
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+</div>
+<footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          {% if site.author.github and site.footer-links-active.github %}
+          <li>
+            <a href="https://github.com/{{ site.author.github }}" title="GitHub" target="_blank">
+              <span class="fa-stack fa-inverse">
+               <i class="fa fa-github fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          {% endif %}
+		  {% if site.author.twitter and site.footer-links-active.twitter %}
+          <li>
+            <a href="https://twitter.com/{{ site.author.twitter }}" title="Twitter" target="_blank">
+              <span class="fa-stack fa-inverse">
+          <!--      <i class="fa fa-circle fa-stack-2x"></i> -->
+                <i class="fa fa-twitter fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          {% endif %}
+		  {% if site.author.email and site.footer-links-active.email %}
+          <li>
+            <a href="mailto:{{ site.author.email }}" title="Email me" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-envelope fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          {% endif %}
+		  {% if site.author.linkedin and site.footer-links-active.linkedin %}
+          <li>
+            <a href="https://linkedin.com/in/{{ site.author.linkedin }}" title="LinkedIn" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-linkedin fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          {% endif %}
+      {% if site.author.orcid and site.footer-links-active.orcid %}
+              <li>
+                <a href="https://orcid.org/{{ site.author.orcid }}" title="ORCiD" target="_blank">
+                  <span class="fa-stack fa-inverse">
+                    <i class="ai ai-orcid ai-2x"></i>
+                  </span>
+                </a>
+              </li>
+              {% endif %}
+		  {% if site.author.stackoverflow and site.footer-links-active.stackoverflow %}
+          <li>
+            <a href="https://stackoverflow.com/users/{{ site.author.stackoverflow }}" title="StackOverflow" target="_blank">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-2x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          {% endif %}
+		  {% if site.footer-links-active.rss %}
+		  <li>
+			<a href="{{ '/feed.xml' | prepend: site.baseurl }}" title="RSS">
+			  <span class="fa-stack">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-rss fa-stack-2x fa-inverse"></i>
+			  </span>
+			</a>
+		  </li>
+          {% endif %}
+        </ul>
+	   <br>
+        <div class="copyright text-muted">
+          <div class="creative-commons">
+          {% if site.creative-commons %}
+          <p>
+          Except where otherwise indicated, the content of this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+          </p>
+          {% endif %}
+          <p>Any opinions expressed on this site are not those of any organisation or group I am associated with, and are not necessarily even my own opinions.</p>
+          </div>
+      <p>
+        {% if site.url-pretty %}
+      <a href="{{ site.url }}"> {{ site.author.name }}</a>
+		  &nbsp;&bull;&nbsp;
+		  {{ site.time | date: '%Y' }}
+      &nbsp;&bull;&nbsp;
+      Website theme is a modified version of <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+		  {% endif %}
+    </div>
+      </div>
+    </div>
+  </div>
+</footer>
