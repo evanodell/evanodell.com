@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Evan Odell</title>
+    <description>Various Things</description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+
+      <item>
+        <title>On the 'progressive' alliance</title>
+        <description>
+
+          Earlier today it was reported that the Labour party expelled three long time members over their plans to ‘vote against Labour’ in order to unseat deeply unpopular health secretary Jeremy Hunt, by backing a local doctor running for the National Health Action party, who got 8% of the vote in...
+        </description>
+        <pubDate>Tue, 09 May 2017 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/blog/2017/05/09/progressive-alliance/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/05/09/progressive-alliance/</guid>
+      </item>
+
+      <item>
+        <title>When politicians discuss disability</title>
+        <description>
+
+          How do politicians discuss disability issues? Has this changed over time? When do particular ways of speaking about disability come become popular, or fall out of favour? In an attempt to answer these questions I downloaded everything that has ever been said in the House of Commons from 1936 to...
+        </description>
+        <pubDate>Fri, 24 Mar 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/blog/2017/03/24/when-politicians-discuss-disability/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/03/24/when-politicians-discuss-disability/</guid>
+      </item>
+
+      <item>
+        <title>Cycling vs Public Transit</title>
+        <description>
+
+          In June, after changing to a new job with an office not too far from my house, I bought a bike and started riding to work. Part of my motivation for buying a bike to ride to work was to save money, but over my first seven months of riding...
+        </description>
+        <pubDate>Mon, 06 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/blog/2017/02/06/cycling-vs-oyster/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/06/cycling-vs-oyster/</guid>
+      </item>
+
+      <item>
+        <title>England Delenda Est</title>
+        <description>
+
+          England’s continued existence as a pseudo-country within the UK is a massive existential political threat to the future of the UK. If the United Kingdom is to remain a united, functional nation-state, England needs to break up. The United Kingdom’s devolution process is probably the most confused federalist project in...
+        </description>
+        <pubDate>Wed, 02 Nov 2016 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/blog/2016/11/02/england-delenda-est/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/11/02/england-delenda-est/</guid>
+      </item>
+
+      <item>
+        <title>On Boundaries</title>
+        <description>
+
+          The UK government is considering proposals to redraw Westminster constituency boundaries and reduce the size of parliament by 50 MPs. This has been condemned as gerrymandering by many from the Labour party, who will see a disproportionate number of their current seats eliminated in this review. In the strictest sense...
+        </description>
+        <pubDate>Fri, 07 Oct 2016 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/blog/2016/10/07/on-boundaries/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/10/07/on-boundaries/</guid>
+      </item>
+
+      <item>
+        <title>Hepling</title>
+        <description>
+
+          Yesterday Iain Duncan Smith announced plans to examine the UK’s disability benefits system, claiming he wants to get beyond the current system of claimants being labelled either completely fit or completely unfit for work. This is welcome news, and if these reforms were being conducted by almost anyone else I...
+        </description>
+        <pubDate>Tue, 25 Aug 2015 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/blog/2015/08/25/hepling/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/08/25/hepling/</guid>
+      </item>
+
+  </channel>
+</rss>

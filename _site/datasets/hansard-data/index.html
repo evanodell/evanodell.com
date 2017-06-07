@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+
+  
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Hansard Speeches and Sentiment</title>
+
+  <meta name="author" content="Evan Odell" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Evan Odell - Various Things" href="/feed.xml" />
+
+  
+
+  <link rel="stylesheet" href="/academicons/css/academicons.css"/>
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Hansard Speeches and Sentiment" />
+  
+
+   
+  <meta property="og:description" content="A public dataset of speeches in the Hansard. The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender and...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/datasets/hansard-data/" />
+  <link rel="canonical" href="http://localhost:4000/datasets/hansard-data/" />
+  
+
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@evanodell" />
+  <meta name="twitter:creator" content="@evanodell" />
+
+  
+  <meta name="twitter:title" content="Hansard Speeches and Sentiment" />
+  
+
+  
+  <meta name="twitter:description" content="A public dataset of speeches in the Hansard. The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender and...">
+  
+
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png?">
+  <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png?" sizes="32x32">
+  <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png?" sizes="16x16">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Hansard Speeches and Sentiment - Evan Odell</title>
+<meta property="og:title" content="Hansard Speeches and Sentiment" />
+<meta name="description" content="Various Things" />
+<meta property="og:description" content="Various Things" />
+<link rel="canonical" href="http://localhost:4000/datasets/hansard-data/" />
+<meta property="og:url" content="http://localhost:4000/datasets/hansard-data/" />
+<meta property="og:site_name" content="Evan Odell" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "WebPage",
+"headline": "Hansard Speeches and Sentiment",
+"description": "Various Things",
+"url": "http://localhost:4000/datasets/hansard-data/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+<div id="main-wrapper">
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+          </button>
+          
+            <a class="navbar-brand" href="http://localhost:4000">Evan Odell</a>
+          
+        </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://evanodell.com">Home</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/cv">CV</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/projects">Projects</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/blog">Blog</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+
+
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+<!--to run: bundle exec jekyll serve -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-heading">
+          <h1>Hansard Speeches and Sentiment</h1>
+		  
+
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <p>A public dataset of speeches in the Hansard. The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled <code class="highlighter-rouge">senti_post_v2</code> and the pre-1979 election dataset is labelled <code class="highlighter-rouge">senti_pre_v2</code>.</p>
+
+<p>The <code class="highlighter-rouge">senti_post_v2</code> dataset contains 2,234,229 speeches and 404,589,163 words. The <code class="highlighter-rouge">senti_pre_v2</code> dataset contains 2,977,498 speeches and 413,046,298 words. It can be accessed through <a href="https://zenodo.org/record/579712">Zenodo</a>, and is distributed under a Creative Commons 4.0 BY-SA licence. It is currently available as a CSV file, if you would like other formats please <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#101;&#118;&#097;&#110;&#111;&#100;&#101;&#108;&#108;&#057;&#049;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">get in touch</a>. The latest version, V2.0, includes improved consistency in sentiment calculations, with five different libraries and the same methods of calculation used for each library and corrects several misidentified speeches. It also includes all speeches up to the dissolution of parliament for the 2017 General Election.</p>
+
+<h2 id="sentiment-classification-methods">Sentiment Classification Methods</h2>
+
+<p>The speeches have been classified for sentiment using a total of four libraries from the R package <a href="https://cran.r-project.org/package=lexicon"><code class="highlighter-rouge">lexicon</code></a> by Tyler Rinker, and one from the <a href="https://cran.r-project.org/package=syuzhet"><code class="highlighter-rouge">syuzhet</code></a> package by Michael Jockers. All classification has used the method in Tyler Rinker’s <a href="https://cran.r-project.org/package=sentimentr"><code class="highlighter-rouge">sentimentr</code></a> package. The libraries are:</p>
+
+<ol>
+  <li>
+    <p>The <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN</a> library by Finn Årup Nielsen, labelled <code class="highlighter-rouge">afinn</code>. The AFINN library was accessed through Tyler Rinker’s <a href="https://cran.r-project.org/package=syuzhet"><code class="highlighter-rouge">syuzhet</code></a> package.</p>
+  </li>
+  <li>
+    <p>A variant of the <a href="https://cran.r-project.org/package=syuzhet">syuzhet</a> library by Matthew Jockers, included in the <a href="https://cran.r-project.org/package=lexicon"><code class="highlighter-rouge">lexicon</code></a> package, labelled <code class="highlighter-rouge">jockers</code>.</p>
+  </li>
+  <li>
+    <p>The <a href="http://saifmohammad.com/WebPages/lexicons.html">NRC Word-Emotion Association Lexicon</a>, library by Saif M. Mohammad and Peter D. Turney, labelled <code class="highlighter-rouge">nrc</code>. The NRC library was access through the <a href="https://cran.r-project.org/package=lexicon"><code class="highlighter-rouge">lexicon</code></a> package.</p>
+  </li>
+  <li>
+    <p>The <a href="http://sentiwordnet.isti.cnr.it/">Sentiwords</a> library, created by Stefano Baccianella, Andrea Esuli, and Fabrizio Sebastiani, labelled <code class="highlighter-rouge">sentiwords</code>. The library was accessed through the <a href="https://cran.r-project.org/package=lexicon"><code class="highlighter-rouge">lexicon</code></a> package.</p>
+  </li>
+  <li>
+    <p>The <a href="https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html">Opinion Mining, Sentiment Analysis and Opinion Spam Detection</a> dataset by Bing Liu, Minqing Hu and Junsheng Cheng, labelled <code class="highlighter-rouge">hu</code>. The library was access through the <a href="https://cran.r-project.org/package=lexicon"><code class="highlighter-rouge">lexicon</code></a> package.</p>
+  </li>
+</ol>
+
+<h2 id="summary-statistics">Summary Statistics</h2>
+
+<p>I have produced <a href="./hansard_summary_stats.xlsx">summary statistics</a> of mean sentiment and speech length, for each <a href="./mp_senti_mean.csv">MP</a>, and by <a href="./party_senti_mean.csv">party</a>, <a href="./party_group_senti_mean.csv">party group</a>, <a href="./gov_senti_mean.csv">government or opposition status</a> and <a href="./gender_senti_mean.csv">gender</a>. Download all five tables in one <a href="./hansard_summary_stats.xlsx">XLSX workbook</a>.</p>
+
+<h2 id="dataset-variables">Dataset Variables</h2>
+
+<p>The <code class="highlighter-rouge">senti_post_v2</code> and <code class="highlighter-rouge">senti_pre_v2</code> datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in <code class="highlighter-rouge">senti_post_v2</code>.</p>
+
+<h3 id="sentipostv2-dataset-variables"><code class="highlighter-rouge">senti_post_v2</code> Dataset Variables</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Data Type (R)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>ID for each speech, corresponding to the parlparse ID</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">speech</code></td>
+      <td>The actual text of the speech</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">afinn_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">afinn</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">afinn_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">afinn</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">jockers_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">jockers</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">jockers_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">jockers</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">nrc_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">nrc</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">nrc_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">nrc</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sentiword_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">sentiword</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sentiword_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">sentiword</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hu_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">hu</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hu_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">hu</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">word_count</code></td>
+      <td>The word count of the speech</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">speech_date</code></td>
+      <td>The date the speech was made</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">time</code></td>
+      <td>The time the speech was made (not consistently available), stored as a character vector</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">url</code></td>
+      <td>The URL of the speech</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">as_speaker</code></td>
+      <td>If the speaker is the Speaker of the house</td>
+      <td>Logical</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">speakerid</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">person_id</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hansard_membership_id</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mnis_id</code></td>
+      <td>The ID used by the Member’s Names Information Service</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">age</code></td>
+      <td>Age at time of speech</td>
+      <td>integer</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">party_group</code></td>
+      <td>Grouping of political parties</td>
+      <td>factor</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ministry</code></td>
+      <td>Identifier for the government at time of speech</td>
+      <td>factor</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">government</code></td>
+      <td>An indicator if the the MP is a member of the governing party (or parties), or in the opposition</td>
+      <td>factor</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">proper_name</code></td>
+      <td>The MP’s name</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">house_start_date</code></td>
+      <td>The date the MP was first elected to the House of Commons</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">date_of_birth</code></td>
+      <td>MP’s date of birth</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">house_end_date</code></td>
+      <td>The date the MP left the House of Commons</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">gender</code></td>
+      <td>One of Male or Female</td>
+      <td>factor</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">party</code></td>
+      <td>The political party the MP belonged to at time of speech</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dods_id</code></td>
+      <td>Dods Monitoring ID</td>
+      <td>integer</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">pims_id</code></td>
+      <td>Parliamentary Information Management Services ID</td>
+      <td>integer</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="sentipostv2-dataset-variables-1"><code class="highlighter-rouge">senti_post_v2</code> Dataset Variables</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Data Type (R)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">speech</code></td>
+      <td>The actual text of the speech</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>ID for each speech, corresponding to the parlparse ID</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hansard_membership_id</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">speech_date</code></td>
+      <td>The date the speech was made</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">year</code></td>
+      <td>The year a speech was made</td>
+      <td>integer</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">speakerid</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">person_id</code></td>
+      <td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code class="highlighter-rouge">parlparse</code></a> scraper</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">colnum</code></td>
+      <td>The column number the speech appears in Hansard publications</td>
+      <td>integer</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">time</code></td>
+      <td>The time the speech was made (not consistently available), stored as a character vector</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">url</code></td>
+      <td>The URL of the speech</td>
+      <td>character</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">as_speaker</code></td>
+      <td>If the speaker is the Speaker of the house</td>
+      <td>Logical</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">afinn_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">afinn</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">afinn_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">afinn</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">jockers_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">jockers</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">jockers_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">jockers</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">nrc_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">nrc</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">nrc_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">nrc</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sentiword_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">sentiword</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sentiword_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">sentiword</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hu_sentiment</code></td>
+      <td>The <code class="highlighter-rouge">hu</code> sentiment score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hu_sd</code></td>
+      <td>The standard deviation of the <code class="highlighter-rouge">hu</code> score</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">word_count</code></td>
+      <td>The word count of the speech</td>
+      <td>numeric</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="methodology">Methodology</h2>
+
+<p>The <a href="https://github.com/mysociety/parlparse">parlparse</a> project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as ‘unknown’. I created a table with every possible combination of name and ID, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, approximate string and manual matching. The information in this table was then matched to the complete list of speech IDs. In the case of commonly used names (e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992) I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.</p>
+
+<p>The code and matching data used to generate this dataset is available on <a href="https://github.com/EvanOdell/hansard-data">Github</a>.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day when her biography is updated.</p>
+
+<p>The data used to create this dataset was taken from the <a href="https://github.com/mysociety/parlparse">parlparse</a> project operated by <a href="https://www.theyworkforyou.com/">They Work For You</a> and supported by <a href="https://www.mysociety.org/">mySociety</a>.</p>
+
+<p>The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a></p>
+
+<p>The code included in this repository is licensed under an <a href="https://github.com/EvanOdell/hansard-speeches-and-sentiment/blob/master/LICENSE">MIT license</a>.</p>
+
+<p>Please contact me if you find any errors in the dataset. The integrity of the public Hansard record is questionable at times, and while I have improved it, the data is presented ‘as is’.</p>
+
+<h2 id="citing-this-dataset">Citing this dataset</h2>
+
+<p>Please cite this dataset as:</p>
+
+<p>Odell, Evan. (2017). ‘Hansard Speeches and Sentiment V2.0 [Data set].’ <a href="http://doi.org/10.5281/zenodo.579712">http://doi.org/10.5281/zenodo.579712</a>.</p>
+
+<p>The DOI is <em>10.5281/zenodo.579712</em></p>
+
+<h2 id="references">References</h2>
+
+<p>Baccianella, Stefano, Andrea Esuli, and Fabrizio Sebastiani. ‘SentiWordNet 3.0: An Enhanced Lexical Resource for Sentiment Analysis and Opinion Mining.’ In LREC, 10:2200–2204, 2010. <a href="http://nmis.isti.cnr.it/sebastiani/Publications/LREC10.pdf">http://nmis.isti.cnr.it/sebastiani/Publications/LREC10.pdf</a>.</p>
+
+<p>Hu, Minqing, and Bing Liu. ‘Mining and Summarizing Customer Reviews’. In Proceedings of the Tenth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 168–77. ACM, 2004. <a href="http://dl.acm.org/citation.cfm?id=1014073">http://dl.acm.org/citation.cfm?id=1014073</a>.</p>
+
+<p>Jockers, Matthew L. Syuzhet: Extract Sentiment and Plot Arcs from Text, 2015. <a href="https://github.com/mjockers/syuzhet">https://github.com/mjockers/syuzhet</a>.</p>
+
+<p>Mohammad, Saif M., and Peter D. Turney. ‘Crowdsourcing a Word–emotion Association Lexicon. Computational Intelligence 29, no. 3 (2013): 436–65.</p>
+
+<p>Nielsen, Finn Årup. ‘A New ANEW: Evaluation of a Word List for Sentiment Analysis in Microblogs’. CoRR abs/1103.2903 (2011). <a href="http://arxiv.org/abs/1103.2903">http://arxiv.org/abs/1103.2903</a>.</p>
+
+<p>Rinker, Tyler W. Lexicon: Lexicon Data. Buffalo, New York: University at Buffalo/SUNY, 2017. <a href="http://github.com/trinker/lexicon">http://github.com/trinker/lexicon</a>.</p>
+
+<p>———. Sentimentr: Calculate Text Polarity Sentiment. Buffalo, New York: University at Buffalo/SUNY, 2017. <a href="http://github.com/trinker/sentimentr">http://github.com/trinker/sentimentr</a>.</p>
+
+	    
+        <div class="disqus-comments">
+	        
+<script id="dsq-count-scr" src="//http-evanodell-com.disqus.com/count.js" async></script>
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'evanodell';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+	    
+    </div>
+  </div>
+</div>
+
+  </div>
+    <div class = "asterism">
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+</div>
+<footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://github.com/EvanOdell" title="GitHub" target="_blank">
+              <span class="fa-stack fa-inverse">
+               <i class="fa fa-github fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="https://twitter.com/evanodell" title="Twitter" target="_blank">
+              <span class="fa-stack fa-inverse">
+          <!--      <i class="fa fa-circle fa-stack-2x"></i> -->
+                <i class="fa fa-twitter fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:evanodell91@gmail.com" title="Email me" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-envelope fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="https://linkedin.com/in/evanodell" title="LinkedIn" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-linkedin fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+              <li>
+                <a href="https://orcid.org/0000-0003-1845-808X" title="ORCiD" target="_blank">
+                  <span class="fa-stack fa-inverse">
+                    <i class="ai ai-orcid ai-2x"></i>
+                  </span>
+                </a>
+              </li>
+              
+		  
+		  
+        </ul>
+	   <br>
+        <div class="copyright text-muted">
+          <div class="creative-commons">
+          
+          <p>
+          Except where otherwise indicated, the content of this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+          </p>
+          
+          <p>Any opinions expressed on this site are not those of any organisation or group I am associated with, and are not necessarily even my own opinions.</p>
+          </div>
+      <p>
+        
+      <a href="http://localhost:4000"> Evan Odell</a>
+		  &nbsp;&bull;&nbsp;
+		  2017
+      &nbsp;&bull;&nbsp;
+      Website theme is a modified version of <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+		  
+    </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-90706059-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<!-- End Google Analytics -->
+
+
+
+
+  </body>
+</html>
