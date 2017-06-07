@@ -126,6 +126,7 @@ exclude:
   - README.md
   - CNAME
   - Vagrantfile
+  - rakefile
 
 # prose.io config
 prose:
@@ -184,6 +185,7 @@ gems:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-redirect-from
+  - jekyll/scholar
 
 whitelist:
   - jekyll-redirect-from
