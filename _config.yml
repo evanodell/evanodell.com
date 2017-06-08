@@ -59,6 +59,12 @@ share-links-active:
 url-pretty: "evanodell.com"
 
 
+# scholar settings
+
+scholar:
+  style: taylor-and-francis-harvard-x
+
+
 # --- Misc --- #
 disqus: "evanodell"
 creative-commons: true

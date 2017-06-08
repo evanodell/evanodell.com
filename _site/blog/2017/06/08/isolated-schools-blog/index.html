@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+
+  
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Isolated Schools Follow-Up</title>
+
+  <meta name="author" content="Evan Odell" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Evan Odell - Various Things" href="/feed.xml" />
+
+  
+
+  <link rel="stylesheet" href="/academicons/css/academicons.css"/>
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Isolated Schools Follow-Up" />
+  
+
+   
+  <meta property="og:description" content="I recently published a paper called Lonely Schools in Educational Research on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can download here, with a copy of the submitted manuscript available here) used the percentage of all students and disadvantaged students...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2017/06/08/isolated-schools-blog/" />
+  <link rel="canonical" href="http://localhost:4000/blog/2017/06/08/isolated-schools-blog/" />
+  
+
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@evanodell" />
+  <meta name="twitter:creator" content="@evanodell" />
+
+  
+  <meta name="twitter:title" content="Isolated Schools Follow-Up" />
+  
+
+  
+  <meta name="twitter:description" content="I recently published a paper called Lonely Schools in Educational Research on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can download here, with a copy of the submitted manuscript available here) used the percentage of all students and disadvantaged students...">
+  
+
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png?">
+  <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png?" sizes="32x32">
+  <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png?" sizes="16x16">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Isolated Schools Follow-Up - Evan Odell</title>
+<meta property="og:title" content="Isolated Schools Follow-Up" />
+<meta name="description" content="I recently published a paper called Lonely Schools in Educational Research on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can download here, with a copy of the submitted manuscript available here) used the percentage of all students and disadvantaged students achieving 5+ GCSEs at KS4, including English and maths, from 2013-2015 as its dependent variable. That analysis identifed a correlation between lower GCSE attainment rates by disadvantaged pupils at secondary schools in more geographically isolated areas, when controlling for other school demographic, previous attainment and location variables. This post uses the same methodology as in that paper, but with the 2016 KS4 results. The results are not directly comparable, as the headline accountability measure changed in 2016, to the ‘Attainment 8’ point score, the student’s average grade across a range of subjects. Using 2016 data, the relationship between geographic isolation and academic attainment is muddled, if it is there at all. As in the published paper, there is a substantial correlation between lower disadvantaged pupil attainment and increased geographic isolation, while there is little to suggest a relationship between overall Attainment 8 scores and isolation. This is demonstrated in Table 1, and Figures 1 and 2. In Figure 1 there is a slight drop in Attainment 8 scores in slightly isolated schools, compared to the least isolated schools, but overall the relationship is very weak, as demonstrated by the correlation’s proximity to 0. Disadvantaged Attainment 8 scores , meanwhile, sees a substantial drop, losing about 8 points between the least isolated schools and schools just 8 minutes driving time from their 5 nearest neighbours. Figure 1 - Whole-school Attainment 8 score by Index of Isolation Figure 2 - Disadvantaged pupil Attainment 8 score by Index of Isolation Table 1 - Correlation between Index of Isolation and Attainment 8 score, all pupils and disadvantaged pupils All Pupils Disadvantaged Pupils -0.02186148 -0.1827152 However, when controlling for school demographics, there does not appear to be any statistically significant relationship between geographic isolation and the average Attainment 8 point scores of disadvantaged pupils, as seen in Table 2. Models 3 and 5, using covariate balancing propensity scores (CBPS)(Fong et al. 2015) and in the case of Model 5 standardised coefficients, demonstrate some statistically significant relationship (p&lt;0.05) between overall average Attainment 8 scores and geographic isolation, but given the the small size of the coefficients (-0.007 in Model 3, -0.022 in Model 5) I am skeptical to assign that finding any importance. None of Models 2, 4 and 6, which use disadvantaged Attainment 8 scores as their dependent variable return statistically significant relationships with geographical isolation. Table 2 - Academic Attainment 8 score by All Pupils and Disadvantaged (Ever6FSM) Pupils   All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils Model Model 1 Model 2 Model 3 Model 4 Model 5 Model 6 (Intercept) -42.613*** -49.061*** -47.172*** -59.864*** -0.011 0.025 se -1.756 -2.606 -1.482 -2.178 -0.01 -0.014 IsoIndex 0.022 -0.026 0.091*** 0.009 0.064*** 0.076*** se -0.014 -0.023 -0.015 -0.022 -0.011 -0.014 EVER6FSM -8.115*** 3.036*** -5.395*** 1.403 -0.131*** 0.100*** se -0.634 -0.814 -0.628 -0.923 -0.015 -0.022 EAL 6.400*** 8.768*** 8.241*** 11.555*** 0.249*** 0.303*** se -0.38 -0.464 -0.429 -0.631 -0.013 -0.02 SEN 6.749* 2.954 8.104* -4.477 0.023* -0.028* se -3.363 -4.62 -3.329 -4.893 -0.009 -0.014 GIRLS 2.161*** 1.909*** 1.493*** -1.406** 0.039*** 0.017 se -0.337 -0.503 -0.325 -0.477 -0.009 -0.012 TOTPUPS 0.001*** 0 0.002*** 0 0.098*** -0.016 se 0 0 0 0 -0.01 -0.013 KS2APS 3.359*** 3.240*** 3.458*** 3.705*** 0.764*** 0.928*** se -0.058 -0.089 -0.052 -0.077 -0.012 -0.013 IDACI -0.951 0.972 -3.002*** 3.982*** -0.057*** 0.113*** se -0.545 -0.735 -0.572 -0.84 -0.011 -0.015 London 1.340*** 2.238*** 1.416*** 2.114*** 0.212*** 0.176*** se -0.195 -0.256 -0.244 -0.359 -0.037 -0.053 R2 0.769 0.503 0.792 0.609 0.792 0.853 adj. R2 0.768 0.502 0.792 0.607 0.792 0.852 sigma 39.461 29.955 0.057 0.083 0.008 0.01 F 1092.827 332.939 1253.485 511.149 1253.485 1905.335 p 0 0 0 0 0 0 Log-likelihood -7566.581 -8849.763 -7910.473 -9054.101 -2273.357 -3222.723 Deviance 4606185.869 2654253.346 9.528 20.592 0.213 0.318 AIC 15155.163 17721.526 15842.947 18130.202 4568.715 6467.446 BIC 15221.115 17787.478 15908.899 18196.154 4634.667 6533.398 N 2968 2968 2968 2968 2968 2968 *p &lt;0.05; **p &lt;0.01 ***p&lt;0.001 What’s changed? There are several possible reasons why the findings of Lonely Schools could not be reproduced with 2016 data. Lonely Schools used 2,577 secondary schools, and included three years of data, while this analysis used 2,968 schools (391 more than in Lonely Schools, and 508 schools not included in Lonely Schools1), and those newly included schools could have influenced the result. The other reason is the difference in dependent variabls. Both analyses used the headline accountability measure used by the DfE, but that measure changed for 2016. The 5+A*-C GCSE(EM) measure represents the percent of pupils to get above a given threshold; a pupil with 5 C grades is worth the same as a pupil with 10 As. The Attainment 8 measure, meanwhile, means that the pupil with 10 As will have a substantial positive effect on their school’s score, much greater than that of the pupil with 5 Cs. Figure 3 - Whole-school Attainment 8 score compared to whole-school 5+ A*-C GCSE(EM) Figure 4 - Disadvantaged Attainment 8 score compared to disadvantaged 5+ A*-C GCSE(EM) As seen in Figures 3 and 4 above, there is a much stronger relationship between Attainment 8 scores and 5+ A*-C GCSE(EM) rates for all pupils than for disadvantaged pupils. This is hardly surprising, given the smaller number of disadvantaged pupils in the education system and the greater degree of possible variations amongst that group. References Fong, C., Hazlett, C., and Imai, K., 2015. Covariate Balancing Propensity Score for General Treatment Regimes. Notes Some schools closed or converted into academies and thus changed their URNs. This analysis does not include those schools. &#8617;" />
+<meta property="og:description" content="I recently published a paper called Lonely Schools in Educational Research on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can download here, with a copy of the submitted manuscript available here) used the percentage of all students and disadvantaged students achieving 5+ GCSEs at KS4, including English and maths, from 2013-2015 as its dependent variable. That analysis identifed a correlation between lower GCSE attainment rates by disadvantaged pupils at secondary schools in more geographically isolated areas, when controlling for other school demographic, previous attainment and location variables. This post uses the same methodology as in that paper, but with the 2016 KS4 results. The results are not directly comparable, as the headline accountability measure changed in 2016, to the ‘Attainment 8’ point score, the student’s average grade across a range of subjects. Using 2016 data, the relationship between geographic isolation and academic attainment is muddled, if it is there at all. As in the published paper, there is a substantial correlation between lower disadvantaged pupil attainment and increased geographic isolation, while there is little to suggest a relationship between overall Attainment 8 scores and isolation. This is demonstrated in Table 1, and Figures 1 and 2. In Figure 1 there is a slight drop in Attainment 8 scores in slightly isolated schools, compared to the least isolated schools, but overall the relationship is very weak, as demonstrated by the correlation’s proximity to 0. Disadvantaged Attainment 8 scores , meanwhile, sees a substantial drop, losing about 8 points between the least isolated schools and schools just 8 minutes driving time from their 5 nearest neighbours. Figure 1 - Whole-school Attainment 8 score by Index of Isolation Figure 2 - Disadvantaged pupil Attainment 8 score by Index of Isolation Table 1 - Correlation between Index of Isolation and Attainment 8 score, all pupils and disadvantaged pupils All Pupils Disadvantaged Pupils -0.02186148 -0.1827152 However, when controlling for school demographics, there does not appear to be any statistically significant relationship between geographic isolation and the average Attainment 8 point scores of disadvantaged pupils, as seen in Table 2. Models 3 and 5, using covariate balancing propensity scores (CBPS)(Fong et al. 2015) and in the case of Model 5 standardised coefficients, demonstrate some statistically significant relationship (p&lt;0.05) between overall average Attainment 8 scores and geographic isolation, but given the the small size of the coefficients (-0.007 in Model 3, -0.022 in Model 5) I am skeptical to assign that finding any importance. None of Models 2, 4 and 6, which use disadvantaged Attainment 8 scores as their dependent variable return statistically significant relationships with geographical isolation. Table 2 - Academic Attainment 8 score by All Pupils and Disadvantaged (Ever6FSM) Pupils   All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils Model Model 1 Model 2 Model 3 Model 4 Model 5 Model 6 (Intercept) -42.613*** -49.061*** -47.172*** -59.864*** -0.011 0.025 se -1.756 -2.606 -1.482 -2.178 -0.01 -0.014 IsoIndex 0.022 -0.026 0.091*** 0.009 0.064*** 0.076*** se -0.014 -0.023 -0.015 -0.022 -0.011 -0.014 EVER6FSM -8.115*** 3.036*** -5.395*** 1.403 -0.131*** 0.100*** se -0.634 -0.814 -0.628 -0.923 -0.015 -0.022 EAL 6.400*** 8.768*** 8.241*** 11.555*** 0.249*** 0.303*** se -0.38 -0.464 -0.429 -0.631 -0.013 -0.02 SEN 6.749* 2.954 8.104* -4.477 0.023* -0.028* se -3.363 -4.62 -3.329 -4.893 -0.009 -0.014 GIRLS 2.161*** 1.909*** 1.493*** -1.406** 0.039*** 0.017 se -0.337 -0.503 -0.325 -0.477 -0.009 -0.012 TOTPUPS 0.001*** 0 0.002*** 0 0.098*** -0.016 se 0 0 0 0 -0.01 -0.013 KS2APS 3.359*** 3.240*** 3.458*** 3.705*** 0.764*** 0.928*** se -0.058 -0.089 -0.052 -0.077 -0.012 -0.013 IDACI -0.951 0.972 -3.002*** 3.982*** -0.057*** 0.113*** se -0.545 -0.735 -0.572 -0.84 -0.011 -0.015 London 1.340*** 2.238*** 1.416*** 2.114*** 0.212*** 0.176*** se -0.195 -0.256 -0.244 -0.359 -0.037 -0.053 R2 0.769 0.503 0.792 0.609 0.792 0.853 adj. R2 0.768 0.502 0.792 0.607 0.792 0.852 sigma 39.461 29.955 0.057 0.083 0.008 0.01 F 1092.827 332.939 1253.485 511.149 1253.485 1905.335 p 0 0 0 0 0 0 Log-likelihood -7566.581 -8849.763 -7910.473 -9054.101 -2273.357 -3222.723 Deviance 4606185.869 2654253.346 9.528 20.592 0.213 0.318 AIC 15155.163 17721.526 15842.947 18130.202 4568.715 6467.446 BIC 15221.115 17787.478 15908.899 18196.154 4634.667 6533.398 N 2968 2968 2968 2968 2968 2968 *p &lt;0.05; **p &lt;0.01 ***p&lt;0.001 What’s changed? There are several possible reasons why the findings of Lonely Schools could not be reproduced with 2016 data. Lonely Schools used 2,577 secondary schools, and included three years of data, while this analysis used 2,968 schools (391 more than in Lonely Schools, and 508 schools not included in Lonely Schools1), and those newly included schools could have influenced the result. The other reason is the difference in dependent variabls. Both analyses used the headline accountability measure used by the DfE, but that measure changed for 2016. The 5+A*-C GCSE(EM) measure represents the percent of pupils to get above a given threshold; a pupil with 5 C grades is worth the same as a pupil with 10 As. The Attainment 8 measure, meanwhile, means that the pupil with 10 As will have a substantial positive effect on their school’s score, much greater than that of the pupil with 5 Cs. Figure 3 - Whole-school Attainment 8 score compared to whole-school 5+ A*-C GCSE(EM) Figure 4 - Disadvantaged Attainment 8 score compared to disadvantaged 5+ A*-C GCSE(EM) As seen in Figures 3 and 4 above, there is a much stronger relationship between Attainment 8 scores and 5+ A*-C GCSE(EM) rates for all pupils than for disadvantaged pupils. This is hardly surprising, given the smaller number of disadvantaged pupils in the education system and the greater degree of possible variations amongst that group. References Fong, C., Hazlett, C., and Imai, K., 2015. Covariate Balancing Propensity Score for General Treatment Regimes. Notes Some schools closed or converted into academies and thus changed their URNs. This analysis does not include those schools. &#8617;" />
+<link rel="canonical" href="http://localhost:4000/blog/2017/06/08/isolated-schools-blog/" />
+<meta property="og:url" content="http://localhost:4000/blog/2017/06/08/isolated-schools-blog/" />
+<meta property="og:site_name" content="Evan Odell" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-06-08T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Isolated Schools Follow-Up",
+"datePublished": "2017-06-08T00:00:00+01:00",
+"description": "I recently published a paper called Lonely Schools in Educational Research on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can download here, with a copy of the submitted manuscript available here) used the percentage of all students and disadvantaged students achieving 5+ GCSEs at KS4, including English and maths, from 2013-2015 as its dependent variable. That analysis identifed a correlation between lower GCSE attainment rates by disadvantaged pupils at secondary schools in more geographically isolated areas, when controlling for other school demographic, previous attainment and location variables. This post uses the same methodology as in that paper, but with the 2016 KS4 results. The results are not directly comparable, as the headline accountability measure changed in 2016, to the ‘Attainment 8’ point score, the student’s average grade across a range of subjects. Using 2016 data, the relationship between geographic isolation and academic attainment is muddled, if it is there at all. As in the published paper, there is a substantial correlation between lower disadvantaged pupil attainment and increased geographic isolation, while there is little to suggest a relationship between overall Attainment 8 scores and isolation. This is demonstrated in Table 1, and Figures 1 and 2. In Figure 1 there is a slight drop in Attainment 8 scores in slightly isolated schools, compared to the least isolated schools, but overall the relationship is very weak, as demonstrated by the correlation’s proximity to 0. Disadvantaged Attainment 8 scores , meanwhile, sees a substantial drop, losing about 8 points between the least isolated schools and schools just 8 minutes driving time from their 5 nearest neighbours. Figure 1 - Whole-school Attainment 8 score by Index of Isolation Figure 2 - Disadvantaged pupil Attainment 8 score by Index of Isolation Table 1 - Correlation between Index of Isolation and Attainment 8 score, all pupils and disadvantaged pupils All Pupils Disadvantaged Pupils -0.02186148 -0.1827152 However, when controlling for school demographics, there does not appear to be any statistically significant relationship between geographic isolation and the average Attainment 8 point scores of disadvantaged pupils, as seen in Table 2. Models 3 and 5, using covariate balancing propensity scores (CBPS)(Fong et al. 2015) and in the case of Model 5 standardised coefficients, demonstrate some statistically significant relationship (p&lt;0.05) between overall average Attainment 8 scores and geographic isolation, but given the the small size of the coefficients (-0.007 in Model 3, -0.022 in Model 5) I am skeptical to assign that finding any importance. None of Models 2, 4 and 6, which use disadvantaged Attainment 8 scores as their dependent variable return statistically significant relationships with geographical isolation. Table 2 - Academic Attainment 8 score by All Pupils and Disadvantaged (Ever6FSM) Pupils   All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils All Pupils Ever6FSM Pupils Model Model 1 Model 2 Model 3 Model 4 Model 5 Model 6 (Intercept) -42.613*** -49.061*** -47.172*** -59.864*** -0.011 0.025 se -1.756 -2.606 -1.482 -2.178 -0.01 -0.014 IsoIndex 0.022 -0.026 0.091*** 0.009 0.064*** 0.076*** se -0.014 -0.023 -0.015 -0.022 -0.011 -0.014 EVER6FSM -8.115*** 3.036*** -5.395*** 1.403 -0.131*** 0.100*** se -0.634 -0.814 -0.628 -0.923 -0.015 -0.022 EAL 6.400*** 8.768*** 8.241*** 11.555*** 0.249*** 0.303*** se -0.38 -0.464 -0.429 -0.631 -0.013 -0.02 SEN 6.749* 2.954 8.104* -4.477 0.023* -0.028* se -3.363 -4.62 -3.329 -4.893 -0.009 -0.014 GIRLS 2.161*** 1.909*** 1.493*** -1.406** 0.039*** 0.017 se -0.337 -0.503 -0.325 -0.477 -0.009 -0.012 TOTPUPS 0.001*** 0 0.002*** 0 0.098*** -0.016 se 0 0 0 0 -0.01 -0.013 KS2APS 3.359*** 3.240*** 3.458*** 3.705*** 0.764*** 0.928*** se -0.058 -0.089 -0.052 -0.077 -0.012 -0.013 IDACI -0.951 0.972 -3.002*** 3.982*** -0.057*** 0.113*** se -0.545 -0.735 -0.572 -0.84 -0.011 -0.015 London 1.340*** 2.238*** 1.416*** 2.114*** 0.212*** 0.176*** se -0.195 -0.256 -0.244 -0.359 -0.037 -0.053 R2 0.769 0.503 0.792 0.609 0.792 0.853 adj. R2 0.768 0.502 0.792 0.607 0.792 0.852 sigma 39.461 29.955 0.057 0.083 0.008 0.01 F 1092.827 332.939 1253.485 511.149 1253.485 1905.335 p 0 0 0 0 0 0 Log-likelihood -7566.581 -8849.763 -7910.473 -9054.101 -2273.357 -3222.723 Deviance 4606185.869 2654253.346 9.528 20.592 0.213 0.318 AIC 15155.163 17721.526 15842.947 18130.202 4568.715 6467.446 BIC 15221.115 17787.478 15908.899 18196.154 4634.667 6533.398 N 2968 2968 2968 2968 2968 2968 *p &lt;0.05; **p &lt;0.01 ***p&lt;0.001 What’s changed? There are several possible reasons why the findings of Lonely Schools could not be reproduced with 2016 data. Lonely Schools used 2,577 secondary schools, and included three years of data, while this analysis used 2,968 schools (391 more than in Lonely Schools, and 508 schools not included in Lonely Schools1), and those newly included schools could have influenced the result. The other reason is the difference in dependent variabls. Both analyses used the headline accountability measure used by the DfE, but that measure changed for 2016. The 5+A*-C GCSE(EM) measure represents the percent of pupils to get above a given threshold; a pupil with 5 C grades is worth the same as a pupil with 10 As. The Attainment 8 measure, meanwhile, means that the pupil with 10 As will have a substantial positive effect on their school’s score, much greater than that of the pupil with 5 Cs. Figure 3 - Whole-school Attainment 8 score compared to whole-school 5+ A*-C GCSE(EM) Figure 4 - Disadvantaged Attainment 8 score compared to disadvantaged 5+ A*-C GCSE(EM) As seen in Figures 3 and 4 above, there is a much stronger relationship between Attainment 8 scores and 5+ A*-C GCSE(EM) rates for all pupils than for disadvantaged pupils. This is hardly surprising, given the smaller number of disadvantaged pupils in the education system and the greater degree of possible variations amongst that group. References Fong, C., Hazlett, C., and Imai, K., 2015. Covariate Balancing Propensity Score for General Treatment Regimes. Notes Some schools closed or converted into academies and thus changed their URNs. This analysis does not include those schools. &#8617;",
+"url": "http://localhost:4000/blog/2017/06/08/isolated-schools-blog/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+<div id="main-wrapper">
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+          </button>
+          
+            <a class="navbar-brand" href="http://localhost:4000">Evan Odell</a>
+          
+        </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="http://evanodell.com">Home</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/about">About</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/cv">CV</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/projects">Projects</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/blog">Blog</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+
+
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+<!--to run: bundle exec jekyll serve -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Isolated Schools Follow-Up</h1>
+		  
+
+		  
+		  <span class="post-meta">Posted on June 8, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="post">
+        <p>I recently published a paper called <em>Lonely Schools</em> in <em>Educational Research</em> on the relationship between geographic isolation and pupil’s academic attainment in English secondary schools. That paper (which you can <a href="http">download here</a>, with a copy of the submitted manuscript <a href="http">available here</a>) used the percentage of all students and disadvantaged students achieving 5+ GCSEs at KS4, including English and maths, from 2013-2015 as its dependent variable. That analysis identifed a correlation between lower GCSE attainment rates by disadvantaged pupils at secondary schools in more geographically isolated areas, when controlling for other school demographic, previous attainment and location variables.</p>
+
+<p>This post uses the same methodology as in that paper, but with the 2016 KS4 results. The results are not directly comparable, as the headline accountability measure changed in 2016, to the <a href="https://www.gov.uk/government/publications/progress-8-school-performance-measure">‘Attainment 8’ point score</a>, the student’s average grade across a range of subjects.</p>
+
+<p>Using 2016 data, the relationship between geographic isolation and academic attainment is muddled, if it is there at all. As in the published paper, there is a substantial correlation between lower disadvantaged pupil attainment and increased geographic isolation, while there is little to suggest a relationship between overall Attainment 8 scores and isolation. This is demonstrated in Table 1, and Figures 1 and 2.</p>
+
+<p>In Figure 1 there is a slight drop in Attainment 8 scores in slightly isolated schools, compared to the least isolated schools, but overall the relationship is very weak, as demonstrated by the correlation’s proximity to 0. Disadvantaged Attainment 8 scores , meanwhile, sees a substantial drop, losing about 8 points between the least isolated schools and schools just 8 minutes driving time from their 5 nearest neighbours.</p>
+
+<p><em>Figure 1 - Whole-school Attainment 8 score by Index of Isolation</em></p>
+
+<p><img src="/img/lonely-schools/all.tt5.plot2016.png" alt="Figure 1 - Whole-school attainment by Index of Isolation" /></p>
+
+<p><em>Figure 2 - Disadvantaged pupil Attainment 8 score by Index of Isolation</em></p>
+
+<p><img src="/img/lonely-schools/fsm.tt5.plot2016.png" alt="Figure 2 - Disadvantaged pupil attainment by Index of Isolation" /></p>
+
+<p><em>Table 1 - Correlation between Index of Isolation and Attainment 8 score, all pupils and disadvantaged pupils</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">All Pupils</th>
+      <th style="text-align: center">Disadvantaged Pupils</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">-0.02186148</td>
+      <td style="text-align: center">-0.1827152</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>However, when controlling for school demographics, there does not appear to be any statistically significant relationship between geographic isolation and the average Attainment 8 point scores of disadvantaged pupils, as seen in Table 2. Models 3 and 5, using covariate balancing propensity scores (CBPS)<a href="#fong2015">(Fong <i>et al.</i> 2015)</a> and in the case of Model 5 standardised coefficients, demonstrate some statistically significant relationship (p&lt;0.05) between overall average Attainment 8 scores and geographic isolation, but given the the small size of the coefficients (-0.007 in Model 3, -0.022 in Model 5) I am skeptical to assign that finding any importance.</p>
+
+<p>None of Models 2, 4 and 6, which use disadvantaged Attainment 8 scores as their dependent variable return statistically significant relationships with geographical isolation.</p>
+
+<p><em>Table 2 - Academic Attainment 8 score by All Pupils and Disadvantaged (Ever6FSM) Pupils</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>All Pupils</th>
+      <th>Ever6FSM Pupils</th>
+      <th>All Pupils</th>
+      <th>Ever6FSM Pupils</th>
+      <th>All Pupils</th>
+      <th>Ever6FSM Pupils</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Model</strong></td>
+      <td><em>Model 1</em></td>
+      <td><em>Model 2</em></td>
+      <td><em>Model 3</em></td>
+      <td><em>Model 4</em></td>
+      <td><em>Model 5</em></td>
+      <td><em>Model 6</em></td>
+    </tr>
+    <tr>
+      <td>(Intercept)</td>
+      <td>-42.613***</td>
+      <td>-49.061***</td>
+      <td>-47.172***</td>
+      <td>-59.864***</td>
+      <td>-0.011</td>
+      <td>0.025</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-1.756</td>
+      <td>-2.606</td>
+      <td>-1.482</td>
+      <td>-2.178</td>
+      <td>-0.01</td>
+      <td>-0.014</td>
+    </tr>
+    <tr>
+      <td>IsoIndex</td>
+      <td>0.022</td>
+      <td>-0.026</td>
+      <td>0.091***</td>
+      <td>0.009</td>
+      <td>0.064***</td>
+      <td>0.076***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.014</td>
+      <td>-0.023</td>
+      <td>-0.015</td>
+      <td>-0.022</td>
+      <td>-0.011</td>
+      <td>-0.014</td>
+    </tr>
+    <tr>
+      <td>EVER6FSM</td>
+      <td>-8.115***</td>
+      <td>3.036***</td>
+      <td>-5.395***</td>
+      <td>1.403</td>
+      <td>-0.131***</td>
+      <td>0.100***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.634</td>
+      <td>-0.814</td>
+      <td>-0.628</td>
+      <td>-0.923</td>
+      <td>-0.015</td>
+      <td>-0.022</td>
+    </tr>
+    <tr>
+      <td>EAL</td>
+      <td>6.400***</td>
+      <td>8.768***</td>
+      <td>8.241***</td>
+      <td>11.555***</td>
+      <td>0.249***</td>
+      <td>0.303***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.38</td>
+      <td>-0.464</td>
+      <td>-0.429</td>
+      <td>-0.631</td>
+      <td>-0.013</td>
+      <td>-0.02</td>
+    </tr>
+    <tr>
+      <td>SEN</td>
+      <td>6.749*</td>
+      <td>2.954</td>
+      <td>8.104*</td>
+      <td>-4.477</td>
+      <td>0.023*</td>
+      <td>-0.028*</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-3.363</td>
+      <td>-4.62</td>
+      <td>-3.329</td>
+      <td>-4.893</td>
+      <td>-0.009</td>
+      <td>-0.014</td>
+    </tr>
+    <tr>
+      <td>GIRLS</td>
+      <td>2.161***</td>
+      <td>1.909***</td>
+      <td>1.493***</td>
+      <td>-1.406**</td>
+      <td>0.039***</td>
+      <td>0.017</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.337</td>
+      <td>-0.503</td>
+      <td>-0.325</td>
+      <td>-0.477</td>
+      <td>-0.009</td>
+      <td>-0.012</td>
+    </tr>
+    <tr>
+      <td>TOTPUPS</td>
+      <td>0.001***</td>
+      <td>0</td>
+      <td>0.002***</td>
+      <td>0</td>
+      <td>0.098***</td>
+      <td>-0.016</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.01</td>
+      <td>-0.013</td>
+    </tr>
+    <tr>
+      <td>KS2APS</td>
+      <td>3.359***</td>
+      <td>3.240***</td>
+      <td>3.458***</td>
+      <td>3.705***</td>
+      <td>0.764***</td>
+      <td>0.928***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.058</td>
+      <td>-0.089</td>
+      <td>-0.052</td>
+      <td>-0.077</td>
+      <td>-0.012</td>
+      <td>-0.013</td>
+    </tr>
+    <tr>
+      <td>IDACI</td>
+      <td>-0.951</td>
+      <td>0.972</td>
+      <td>-3.002***</td>
+      <td>3.982***</td>
+      <td>-0.057***</td>
+      <td>0.113***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.545</td>
+      <td>-0.735</td>
+      <td>-0.572</td>
+      <td>-0.84</td>
+      <td>-0.011</td>
+      <td>-0.015</td>
+    </tr>
+    <tr>
+      <td>London</td>
+      <td>1.340***</td>
+      <td>2.238***</td>
+      <td>1.416***</td>
+      <td>2.114***</td>
+      <td>0.212***</td>
+      <td>0.176***</td>
+    </tr>
+    <tr>
+      <td><em>se</em></td>
+      <td>-0.195</td>
+      <td>-0.256</td>
+      <td>-0.244</td>
+      <td>-0.359</td>
+      <td>-0.037</td>
+      <td>-0.053</td>
+    </tr>
+    <tr>
+      <td>R<sup>2</sup></td>
+      <td>0.769</td>
+      <td>0.503</td>
+      <td>0.792</td>
+      <td>0.609</td>
+      <td>0.792</td>
+      <td>0.853</td>
+    </tr>
+    <tr>
+      <td>adj. R<sup>2</sup></td>
+      <td>0.768</td>
+      <td>0.502</td>
+      <td>0.792</td>
+      <td>0.607</td>
+      <td>0.792</td>
+      <td>0.852</td>
+    </tr>
+    <tr>
+      <td>sigma</td>
+      <td>39.461</td>
+      <td>29.955</td>
+      <td>0.057</td>
+      <td>0.083</td>
+      <td>0.008</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>1092.827</td>
+      <td>332.939</td>
+      <td>1253.485</td>
+      <td>511.149</td>
+      <td>1253.485</td>
+      <td>1905.335</td>
+    </tr>
+    <tr>
+      <td>p</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Log-likelihood</td>
+      <td>-7566.581</td>
+      <td>-8849.763</td>
+      <td>-7910.473</td>
+      <td>-9054.101</td>
+      <td>-2273.357</td>
+      <td>-3222.723</td>
+    </tr>
+    <tr>
+      <td>Deviance</td>
+      <td>4606185.869</td>
+      <td>2654253.346</td>
+      <td>9.528</td>
+      <td>20.592</td>
+      <td>0.213</td>
+      <td>0.318</td>
+    </tr>
+    <tr>
+      <td>AIC</td>
+      <td>15155.163</td>
+      <td>17721.526</td>
+      <td>15842.947</td>
+      <td>18130.202</td>
+      <td>4568.715</td>
+      <td>6467.446</td>
+    </tr>
+    <tr>
+      <td>BIC</td>
+      <td>15221.115</td>
+      <td>17787.478</td>
+      <td>15908.899</td>
+      <td>18196.154</td>
+      <td>4634.667</td>
+      <td>6533.398</td>
+    </tr>
+    <tr>
+      <td>N</td>
+      <td>2968</td>
+      <td>2968</td>
+      <td>2968</td>
+      <td>2968</td>
+      <td>2968</td>
+      <td>2968</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>*p &lt;0.05;  **p &lt;0.01  ***p&lt;0.001</em></p>
+
+<h2 id="whats-changed">What’s changed?</h2>
+
+<p>There are several possible reasons why the findings of <a href="http"><em>Lonely Schools</em></a> could not be reproduced with 2016 data. <em>Lonely Schools</em> used 2,577 secondary schools, and included three years of data, while this analysis used 2,968 schools (391 more than in <em>Lonely Schools</em>, and 508 schools not included in <em>Lonely Schools</em><sup id="fnref:kkk"><a href="#fn:kkk" class="footnote">1</a></sup>), and those newly included schools could have influenced the result. The other reason is the difference in dependent variabls. Both analyses used the headline accountability measure used by the DfE, but that measure changed for 2016. The 5+A*-C GCSE(EM) measure represents the percent of pupils to get above a given threshold; a pupil with 5 C grades is worth the same as a pupil with 10 As. The Attainment 8 measure, meanwhile, means that the pupil with 10 As will have a substantial positive effect on their school’s score, much greater than that of the pupil with 5 Cs.</p>
+
+<p><em>Figure 3 - Whole-school Attainment 8 score compared to whole-school 5+ A*-C GCSE(EM)</em></p>
+
+<p><img src="/img/lonely-schools/att8_gcse_all_plot.png" alt="Figure 3 - Whole-school Attainment 8 score compared to whole-school 5+ A*-C GCSE(EM)" /></p>
+
+<p><em>Figure 4 - Disadvantaged Attainment 8 score compared to disadvantaged 5+ A*-C GCSE(EM)</em></p>
+
+<p><img src="/img/lonely-schools/att8_gcse_fsm_plot.png" alt="Figure 4 - Disadvantaged Attainment 8 score compared to disadvantaged 5+ A*-C GCSE(EM)" /></p>
+
+<p>As seen in Figures 3 and 4 above, there is a much stronger relationship between Attainment 8 scores and 5+ A*-C GCSE(EM) rates for all pupils than for disadvantaged pupils. This is hardly surprising, given the smaller number of disadvantaged pupils in the education system and the greater degree of possible variations amongst that group.</p>
+
+<h2 id="references">References</h2>
+
+<ol class="bibliography"><li><span id="fong2015">Fong, C., Hazlett, C., and Imai, K., 2015. Covariate Balancing Propensity Score for General Treatment Regimes.</span></li></ol>
+
+<h2 id="notes">Notes</h2>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:kkk">
+      <p>Some schools closed or converted into academies and thus changed their URNs. This analysis does not include those schools. <a href="#fnref:kkk" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </article>
+      <div class = "asterism">
+      &nbsp;&bull;&nbsp;
+      &nbsp;&bull;&nbsp;
+      &nbsp;&bull;&nbsp;
+      </div>
+      
+      <div class="theme-by text-muted">
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=Isolated+Schools+Follow-Up+http://localhost:4000/blog/2017/06/08/isolated-schools-blog/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on reddit -->
+  
+  <a href="http://reddit.com/submit?url=http://localhost:4000/blog/2017/06/08/isolated-schools-blog/" class="btn btn-social-icon btn-default" title="Share on reddit">
+  <span class="fa fa-fw fa-reddit-alien fa-lg" aria-hidden="true"></span></a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2017/06/08/isolated-schools-blog/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2017/06/08/isolated-schools-blog/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+
+
+
+
+
+</section>
+
+
+
+      
+</div>
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2017/05/09/progressive-alliance/" data-toggle="tooltip" data-placement="top" title="On the 'progressive' alliance">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      <div class = "asterism">
+      &nbsp;&bull;&nbsp;
+      &nbsp;&bull;&nbsp;
+      &nbsp;&bull;&nbsp;
+      </div>
+      
+        <div class="disqus-comments">
+          
+<script id="dsq-count-scr" src="//http-evanodell-com.disqus.com/count.js" async></script>
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'evanodell';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+  </div>
+    <div class = "asterism">
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+&nbsp;&bull;&nbsp;
+</div>
+<footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://github.com/EvanOdell" title="GitHub" target="_blank">
+              <span class="fa-stack fa-inverse">
+               <i class="fa fa-github fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="https://twitter.com/evanodell" title="Twitter" target="_blank">
+              <span class="fa-stack fa-inverse">
+          <!--      <i class="fa fa-circle fa-stack-2x"></i> -->
+                <i class="fa fa-twitter fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="mailto:evanodell91@gmail.com" title="Email me" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-envelope fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+          <li>
+            <a href="https://linkedin.com/in/evanodell" title="LinkedIn" target="_blank">
+              <span class="fa-stack fa-inverse">
+                <i class="fa fa-linkedin fa-stack-2x"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+              <li>
+                <a href="https://orcid.org/0000-0003-1845-808X" title="ORCiD" target="_blank">
+                  <span class="fa-stack fa-inverse">
+                    <i class="ai ai-orcid ai-2x"></i>
+                  </span>
+                </a>
+              </li>
+              
+		  
+		  
+        </ul>
+	   <br>
+        <div class="copyright text-muted">
+          <div class="creative-commons">
+          
+          <p>
+          Except where otherwise indicated, the content of this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+          </p>
+          
+          <p>Any opinions expressed on this site are not those of any organisation or group I am associated with, and are not necessarily even my own opinions.</p>
+          </div>
+      <p>
+        
+      <a href="http://localhost:4000"> Evan Odell</a>
+		  &nbsp;&bull;&nbsp;
+		  2017
+      &nbsp;&bull;&nbsp;
+      Website theme is a modified version of <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+		  
+    </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-90706059-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<!-- End Google Analytics -->
+
+
+
+
+  </body>
+</html>
