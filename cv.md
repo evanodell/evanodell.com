@@ -95,7 +95,9 @@ Fellows, T., & **Odell, E.** (2016). *Executive Headteachers: What’s in a Name
 
 Theobald, K., & **Odell, E.** (2015). *Isolated schools: Out on a limb.* [Available here]({{ site.url }}/files/Theobald and Odell - 2015 - Isolated schools Out on a limb.pdf)
 
-### Panel Appearances
+### Speaking Appearances
+
+**Odell, Evan.** (2017, May 12) Guest Lecturer. Disability in Interdisciplinary Studies in Global Health and Disability. London.
 
 **Odell, E.**, Cooke, J. & Atherton, G. (2017, January 26). *Priorities for increasing disabled student participation in Higher Education*. Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.
 
