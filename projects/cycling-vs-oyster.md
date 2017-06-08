@@ -12,6 +12,6 @@ I include all spending directly on my bike, including the cost of the bike, acce
 
 You can see in the second time series plot that since writing the blog post in February my Oyster spending has dropped off somewhat. Since analysing how much I was cycling, and how much I was spending on transit, I've become much more dedicated to riding places, no longer taking the bus or the tube if I'm feeling a little bit lazy.
 
-<iframe src="https://evanodell.shinyapps.io/cycling-v-oyster/" style="border: none; width: 100%; height: 2270px;"></iframe>
+<iframe src="https://evanodell.shinyapps.io/cycling-v-oyster/" style="border: none; width: 100%; height: 2285px;"></iframe>
 
 There are a number of obstacles to an exact cost comparison of cycling and public transit. For example, if I go on holiday for a couple weeks, I might time my oyster card renewal so I'm not paying anything while not in London. Moreover, there are the intangible benefits of exercise and shorter commutes from cycling, compared to the convenience and low required effort of public transit, and any purely financial comparison would have to take that into account.
