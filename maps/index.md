@@ -5,4 +5,4 @@ body: Roboto
 ---
 
 
-##[Funded DRILL Projects](funded_map.html)
+[##Funded DRILL Projects](funded_map.html)
