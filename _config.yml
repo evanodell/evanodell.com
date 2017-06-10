@@ -58,12 +58,10 @@ share-links-active:
 # footer link
 url-pretty: "evanodell.com"
 
-
 # scholar settings
 
 scholar:
   style: taylor-and-francis-harvard-x
-
 
 # --- Misc --- #
 disqus: "evanodell"
