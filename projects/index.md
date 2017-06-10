@@ -43,7 +43,7 @@ A model for exploring what impact different electoral turnout scenarios would ha
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/hansard/blob/master/LICENSE)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
 
 An ironically named R package to automatically fetch data from the UK Parliament API. Available on [CRAN](https://cran.r-project.org/package=hansard) and [GitHub](https://github.com/EvanOdell/hansard).
@@ -53,7 +53,7 @@ An ironically named R package to automatically fetch data from the UK Parliament
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/mnis/blob/master/LICENSE)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/mnis)](https://cran.r-project.org/package=mnis)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/mnis.svg)](https://github.com/evanodell/mnis)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/mnis)](https://dgrtwo.shinyapps.io/cranview/)  
+[![](https://cranlogs.r-pkg.org/badges/grand-total/mnis)](https://dgrtwo.shinyapps.io/cranview/)  
 [![DOI](https://zenodo.org/badge/76553907.svg)](https://zenodo.org/badge/latestdoi/76553907)
 
 An R package for downloading data from the Members' Names Information Service API operated by the UK Parliament. Available on [CRAN](https://cran.r-project.org/package=mnis) and [GitHub](https://github.com/EvanOdell/mnis).
@@ -61,9 +61,9 @@ An R package for downloading data from the Members' Names Information Service AP
 ### [`parlitools`](http://docs.evanodell.com/parlitools)
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/parlitools/blob/master/LICENSE)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/parlitools)](https://cran.r-project.org/package=parlitools)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/parlitools)](https://cran.r-project.org/package=parlitools)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/parlitools.svg)](https://github.com/evanodell/parlitools)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/parlitools)](https://dgrtwo.shinyapps.io/cranview/)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/parlitools)](https://dgrtwo.shinyapps.io/cranview/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.802938.svg)](https://doi.org/10.5281/zenodo.802938)
 
 A collection of tools, datasets and maps for analysing UK politics, including a hexagonal cartogram of Westminster constituencies. Available on [CRAN](https://cran.r-project.org/package=parlitools) and [GitHub](https://github.com/EvanOdell/parlitools).
@@ -75,12 +75,12 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 ### [Hansard Speeches and Sentiment]({{ site.url }}/datasets/hansard-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg)](http://creativecommons.org/licenses/by-sa/4.0/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.579712.svg)](https://doi.org/10.5281/zenodo.579712)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.579712.svg)](https://doi.org/10.5281/zenodo.579712)
 
 Two datasets of speeches in the Hansard, along with summary information on speech sentiments. Both datasets contain sentiment analysis from five different libraries, details of which are [here]({{ site.url }}/datasets/hansard-data/#sentiment-classification-methods). The first dataset, `senti_post_v2`, provides information on every speech made in the House of Commons between the 1979 General Election and the 2017 General Election, with information on the speaking MP, their party, gender and age at the time of the speech. It contains 2,234,229 speeches and 404,589,163 words. The second dataset, `senti_pre_v2`, includes all speeches made from 1936 to the 1979 General Election, but without information on party affiliation, etc. The `senti_pre_v2` dataset contains 2,977,498 speeches and 413,046,298 words. [Click here]({{ site.url }}/datasets/hansard-data) for more details, or download the data from [Zenodo](https://zenodo.org/record/579712).
 
 ### [Charity Commission Data of All Registered Charities in England]({{ site.url }}/datasets/charity-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](http://creativecommons.org/licenses/by/4.0/)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 A dataset of information on all registered charities in the England, taken from the Charity Commission monthly release and translated into a more accessible format. [Click here]({{ site.url }}/datasets/charity-data) for more details and to download individual files, or [download the most recent complete release](https://shiny.evanodell.com/charity-data/charity_register-2017-05.zip).
