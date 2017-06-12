@@ -14,12 +14,6 @@ At the moment I'm living London, having come to the UK from Canada in 2014 to do
 
 If you're interested, check out my [CV](http://evanodell.com/cv/), or [drop me an email](mailto:evanodell91@gmail.com).
 
-<div class = "asterism">
-&nbsp;&bull;&nbsp;
-&nbsp;&bull;&nbsp;
-&nbsp;&bull;&nbsp;
-</div>
-
 <p><img src="/img/evan-and-coco.png" class="centre-image" alt="I have wild hair; my girlfriend has a very cute cat"/></p>
 <p align="center">
 <em>I have wild hair; my girlfriend has a very cute cat</em>
