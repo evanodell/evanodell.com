@@ -13,7 +13,7 @@ That's where [Netlify](https://www.netlify.com/) comes in, specifically the free
 
 Update the settings with your DNS provider [as shown here](https://www.netlify.com/docs/custom-domains/#dns-configuration), and once that has updated (it can take anything from a couple minutes to 3-4 hours, depending on your provider) you can enable HTTPS on your site with a security certificate from [Let's Encrypt](https://letsencrypt.org/) with just a couple of clicks.
 
-That's it. That's all there is to it. The whole process takes less than five minutes, and you end up with a free hosting service that lets you use your own domain with HTTPS, and accepts a whole additional range of Jekyll plugins. For example, here I'm citing Marx's _Capital Volume I_ {% cite marx1990 %} with [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar), the full citation of which you can see below.
+That's it. That's all there is to it. The whole process takes less than five minutes, and you end up with a free hosting service that lets you use your own domain with HTTPS, and accepts a whole additional range of Jekyll plugins. For example, here I'm citing the Penguin Classics edition of Marx's _Capital Volume I_ {% cite marx1990 %} with [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar), the full citation of which you can see below.
 
 
 {% bibliography --cited %}
