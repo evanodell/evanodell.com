@@ -15,7 +15,8 @@ Update the settings with your DNS provider [as shown here](https://www.netlify.c
 
 That's it. That's all there is to it. The whole process takes less than five minutes, and you end up with a free hosting service that lets you use your own domain with HTTPS, and accepts a whole additional range of Jekyll plugins. For example, here I'm citing the Penguin Classics edition of Marx's _Capital Volume I_ {% cite marx1990 %} with [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar), the full citation of which you can see below.
 
-_Note: I am not affiliated with Netlify in any way. Other Jekyll hosting services are available._
+_Note: I am not affiliated with Netlify or Jekyll in any way. Other blogging platforms and hosting services are available._
 
+## References
 
 {% bibliography --cited %}
