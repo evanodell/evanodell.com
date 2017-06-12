@@ -14,4 +14,4 @@ You can see in the second time series plot that since writing the blog post in F
 
 <iframe src="https://evanodell.shinyapps.io/cycling-v-oyster/" style="border: none; width: 100%; height: 2280px;"></iframe>
 
-There are a number of obstacles to an exact cost comparison of cycling and public transit. For example, if I go on holiday for a couple weeks, I might time my oyster card renewal so I'm not paying anything while not in London. Moreover, there are the intangible benefits of exercise and shorter commutes from cycling, compared to the convenience and low required effort of public transit, and any purely financial comparison would have to take that into account.
+There are a number of obstacles to an exact cost comparison of cycling and public transit. For example, if I go on holiday for a couple weeks, I might time my travelcard renewal so I'm not paying anything while not in London. Moreover, there are the intangible benefits of exercise and shorter commutes from cycling, compared to the convenience and low effort required of public transit, and any purely financial comparison misses those factors.
