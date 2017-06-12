@@ -429,6 +429,7 @@ footer .theme-by {
 @media only screen and (min-width: 768px) {
   footer .footer-links {
     font-size: 18px;
+    margin-bottom: 2px;
   }
   footer .copyright {
     font-size: 10px;
