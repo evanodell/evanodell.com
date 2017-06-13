@@ -61,7 +61,13 @@ url-pretty: "evanodell.com"
 # scholar settings
 
 scholar:
-  style: taylor-and-francis-harvard-x
+  style: apa
+  order: descending
+  bibtex_filters:
+  - latex
+  #- markdown
+
+
 
 # --- Misc --- #
 disqus: "evanodell"

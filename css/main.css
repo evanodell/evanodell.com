@@ -826,6 +826,13 @@ td.gutter {
     margin-top: -100px;
 }
 
+.chart {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+
 /* --- Social media sharing section --- */
 
 #social-share-section {
