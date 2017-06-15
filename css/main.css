@@ -45,6 +45,10 @@ p {
   font-size:11px;
 }
 
+.bibliography a {
+color: #008AFF;
+}
+
 p a {
   /* text-decoration: underline */
   color: #008AFF;

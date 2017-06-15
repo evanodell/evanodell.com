@@ -61,10 +61,10 @@ url-pretty: "evanodell.com"
 # scholar settings
 
 scholar:
-  style: assets/bibliography/modern-language-association-with-url.csl
+  style: taylor-and-francis-harvard-x
   locale: en
 
-  sort_by: year
+  sort_by: author
   order: descending
   bibliography_list_tag: ul
 
