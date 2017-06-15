@@ -61,11 +61,25 @@ url-pretty: "evanodell.com"
 # scholar settings
 
 scholar:
-  style: apa
+  style: assets/bibliography/modern-language-association-with-url.csl
+  locale: en
+
+  sort_by: year
   order: descending
-  bibtex_filters:
-  - latex
-  #- markdown
+  bibliography_list_tag: ul
+
+  source: _bibliography
+  repository: pdf
+  bibliography: references
+  bibliography_template: bibliography
+
+  replace_strings: true
+
+  details_dir:    bibliography
+  details_layout: bibtex.html
+  details_link:   Details
+
+  query: "@*"
 
 
 
