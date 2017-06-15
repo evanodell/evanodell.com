@@ -45,9 +45,25 @@ p {
   font-size:11px;
 }
 
-.bibliography a {
-color: #008AFF;
+.bibliography {
+  list-style:none;
+  padding-left:0;
+  line-height: 1.5;
+  padding-left: 22px ;
+  text-indent: -22px ;
 }
+
+.bibliography a {
+  color: #008AFF;
+  list-style: none; /* Remove list bullets */
+}
+
+.abstract {
+  padding-left: 30px;
+  padding-right: 30px;
+  text-indent: 0px ;
+}
+
 
 p a {
   /* text-decoration: underline */

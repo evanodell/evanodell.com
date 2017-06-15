@@ -61,8 +61,8 @@ url-pretty: "evanodell.com"
 # scholar settings
 
 scholar:
-  style: taylor-and-francis-harvard-x
-  locale: en
+  #style: assets/bibliography/evan.csl
+  style: assets/bibliography/taylor-and-francis-harvard-x.csl
 
   sort_by: author
   order: descending
