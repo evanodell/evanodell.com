@@ -93,8 +93,8 @@ Fellows, T. and **Odell, E.**, 2016\. _Executive Headteachers: What’s in a Nam
 
 ### Speaking Appearances
 
-**Odell, E.**, Holmes, C., Huma, M., Hirst, N., and Foster, D., 2016\. The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being.
+Guest Lecturer, Disability in Interdisciplinary Studies in Global Health and Disability, Queen's University. 2017\. London.
 
-**Odell, E.**, Cooke, J., and Atherton, G., 2017\. Priorities for Increasing Disabled Student Participation in Higher Education.
+Panel appearance with Joanne Cooke, and Graeme Atherton, moderated by Lisa Cameron. 2017\. _Priorities for Increasing Disabled Student Participation in Higher Education._ Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.
 
-**Odell, E.**, 2017\. Guest Lecturer. Disability in Interdisciplinary Studies in Global Health and Disability
+Panel appearance with Chris Holmes, Huma Munshi and Natasha Hirst, moderated by Debbie Foster. 2016\. _The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being._ Closing Disability Gaps at Work. London.
