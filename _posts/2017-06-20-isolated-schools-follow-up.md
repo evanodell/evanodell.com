@@ -112,7 +112,7 @@ So is there any relationship between geographic isolation and pupil attainment, 
 
 ## Notes
 
-The code used in this blog and in [_Lonely Schools_]({{site.url}}/files/Lonely_Schools_Odell_2017_AM.pdf) is available on [GitHub](https://github.com/evanodell/lonely-schools).<i class="fa fa-github" aria-hidden="true"></i><i class="ai ai-open-access"></i>
+The code used in this blog and in [_Lonely Schools_]({{site.url}}/files/Lonely_Schools_Odell_2017_AM.pdf) is available on [GitHub](https://github.com/evanodell/lonely-schools).<a href="https://github.com/evanodell/lonely-schools" target="_blank"> <i class="fa fa-github" aria-hidden="true"></i><i class="ai ai-open-access"></i></a>
 
 [^3]: _Lonely schools: the relationship between geographic isolation and academic attainment_ can be [accessed here](http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285) if you have a subscription or institutional access. If not, you can access a copy of the submitted manuscript [here]({{site.url}}/files/Lonely_Schools_Odell_2017_AM.pdf). <!--, or try this [eprint link](http://www.tandfonline.com/eprint/HnJkGKpBiRGsHtVQRaMd/full).-->
 
