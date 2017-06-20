@@ -87,13 +87,13 @@ November 2014 - September 2015
 
 ### Reports
 
-Theobald, K. and **Odell, E.**, 2015\. _Isolated Schools: Out on a Limb_. Future Leaders Trust. [http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf](http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf)
-
 Fellows, T. and **Odell, E.**, 2016\. _Executive Headteachers: What’s in a Name? A Review of the Literature_. NGA and TFLT. [http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf](http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf)
+
+Theobald, K. and **Odell, E.**, 2015\. _Isolated Schools: Out on a Limb_. Future Leaders Trust. [http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf](http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf)
 
 ### Speaking Appearances
 
-Guest Lecturer, Disability in Interdisciplinary Studies in Global Health and Disability, Queen's University. 2017\. London.
+Guest Lecturer. _Disability in Interdisciplinary Studies in Global Health and Disability._ Queen's University. 2017\. London.
 
 Panel appearance with Joanne Cooke, and Graeme Atherton, moderated by Lisa Cameron. 2017\. _Priorities for Increasing Disabled Student Participation in Higher Education._ Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.
 
