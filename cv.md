@@ -95,6 +95,6 @@ Theobald, K. and **Odell, E.**, 2015\. _Isolated Schools: Out on a Limb_. Future
 
 Guest Lecturer. _Disability in Interdisciplinary Studies in Global Health and Disability._ Queen's University. 2017\. London.
 
-Panel appearance with Joanne Cooke, and Graeme Atherton, moderated by Lisa Cameron. 2017\. _Priorities for Increasing Disabled Student Participation in Higher Education._ Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.
+Panel appearance with Joanne Cooke and Graeme Atherton, moderated by Lisa Cameron. 2017\. _Priorities for Increasing Disabled Student Participation in Higher Education._ Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.
 
 Panel appearance with Chris Holmes, Huma Munshi and Natasha Hirst, moderated by Debbie Foster. 2016\. _The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being._ Closing Disability Gaps at Work. London.
