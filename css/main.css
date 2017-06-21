@@ -66,7 +66,7 @@ p {
 
 
 .jobwrapper {
-  margin-left: 200px;
+  margin-left: 300px;
 }
 .jobcontent {
   float: right;
@@ -75,8 +75,8 @@ p {
 .jobsidebar {
   text-align: left;
   float: left;
-  width: 200px;
-  margin-left: -200px;
+  width: 300px;
+  margin-left: -300px;
 }
 .jobcleared {
   clear: both;
