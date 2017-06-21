@@ -54,6 +54,7 @@ p {
   width: 100%;
 }
 .cvsidebar {
+  text-align: left;
   float: left;
   width: 60px;
   margin-left: -60px;
