@@ -58,14 +58,14 @@ November 2014 - September 2015
 
 #### Technical Skills
 
-*   High proficiency with collecting and collating statistical data from a wide variety of sources, and analysing data with Stata, R and Microsoft Excel, including using macros and VBA in Excel.
-*   Experience of quantitative spatial analysis using GIS software and R.
-*   Experience with interviewing, process tracing, discourse analysis and policy analysis.
+* High proficiency with collecting and collating statistical data from a wide variety of sources, and analysing data with Stata, R and Microsoft Excel, including using macros and VBA in Excel.
+* Experience of quantitative spatial analysis using GIS software and R.
+* Experience with interviewing, process tracing, discourse analysis and policy analysis.
 
 #### Communication Skills
 
-*   Exceptional communication talents in writing and public speaking, creating presentations and reports that are precise, meticulous and easily understandable, even under time constraints.
-*   Extensive experience and proficiency with the full Microsoft Office suite, project management software, Salesforce, web content management systems and LaTeX.
+* Exceptional communication talents in writing and public speaking, creating presentations and reports that are precise, meticulous and easily understandable, even under time constraints.
+* Extensive experience and proficiency with the full Microsoft Office suite, project management software, Salesforce, web content management systems and LaTeX.
 
 ## PUBLICATIONS
 
@@ -76,9 +76,6 @@ November 2014 - September 2015
     <div class="cvcontent"><p><strong>Odell, E.</strong> Lonely Schools: The Relationship between Geographic Isolation and Academic Attainment. <em>Educational Research</em>. <a href="http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285">http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285</a> DOI: <a href="https://dx.doi.org/10.1080/00131881.2017.1339285">10.1080/00131881.2017.1339285</a> Accepted Manuscript: <a href="https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf">https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf</a></p></div>
   <div class="cvcleared"></div>
 </div>
-
-
-
 
 ### [R Packages](/packages)
 
@@ -106,10 +103,10 @@ November 2014 - September 2015
 
 <div class="cvwrapper">
   <div class="cvsidebar">2016</div>
-    <div class="cvcontent"><p>Fellows, T. and <strong>Odell, E.</strong>, 2016. <em>Executive Headteachers: What’s in a Name? A Review of the Literature</em>. NGA and TFLT. <a href="http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf">http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf</a></p></div>
+    <div class="cvcontent"><p>Fellows, T. and <strong>Odell, E.</strong> <em>Executive Headteachers: What’s in a Name? A Review of the Literature</em>. NGA and TFLT. <a href="http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf">http://www.nfer.ac.uk/publications/EXEC01/reviewofliterature.pdf</a></p></div>
   <div class="cvcleared"></div>
   <div class="cvsidebar">2015</div>
-    <div class="cvcontent"><p>Theobald, K. and <strong>Odell, E.</strong>, 2015. <em>Isolated Schools: Out on a Limb</em>. Future Leaders Trust. <a href="http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf">http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf</a></p></div>
+    <div class="cvcontent"><p>Theobald, K. and <strong>Odell, E.</strong> <em>Isolated Schools: Out on a Limb</em>. Future Leaders Trust. <a href="http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf">http://www.future-leaders.org.uk/documents/195/Isolated_schools_Out_on_a_limb.pdf</a></p></div>
   <div class="cvcleared"></div>
 </div>
 
@@ -122,7 +119,6 @@ November 2014 - September 2015
   <div class="cvcleared"></div>
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Joanne Cooke and Graeme Atherton, moderated by Lisa Cameron. 2017. <em>Priorities for Increasing Disabled Student Participation in Higher Education.</em> Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.</p></div>
-  <div class="cvcleared"></div>
   <div class="cvsidebar">2016</div>
     <div class="cvcontent"><p>Panel appearance with Chris Holmes, Huma Munshi and Natasha Hirst, moderated by Debbie Foster. 2016. <em>The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being.</em> Closing Disability Gaps at Work. London.</p></div>
   <div class="cvcleared"></div>
