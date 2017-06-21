@@ -75,11 +75,11 @@ November 2014 - September 2015
 
 ### [R Packages](/packages)
 
-**Odell, E.**, 2017\. `parlitools`: Tools for Analysing UK Politics. [http://docs.evanodell.com/parlitools](http://docs.evanodell.com/parlitools) DOI: [10.5281/zenodo.591586](https://dx.doi.org/10.5281/zenodo.591586)[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/parlitools)](https://cran.r-project.org/package=parlitools)
+**Odell, E.**, 2017\. `parlitools`: Tools for Analysing UK Politics. [http://docs.evanodell.com/parlitools](http://docs.evanodell.com/parlitools) DOI: [10.5281/zenodo.591586](https://dx.doi.org/10.5281/zenodo.591586) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/parlitools)](https://cran.r-project.org/package=parlitools)
 
-**Odell, E.**, 2017\. `mnis`: Easy Downloading Capabilities for the Members’ Name Information Service. [http://docs.evanodell.com/mnis](http://docs.evanodell.com/mnis) DOI: [10.5281/zenodo.591287](https://dx.doi.org/10.5281/zenodo.591287)[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mnis)](https://cran.r-project.org/package=mnis)
+**Odell, E.**, 2017\. `mnis`: Easy Downloading Capabilities for the Members’ Name Information Service. [http://docs.evanodell.com/mnis](http://docs.evanodell.com/mnis) DOI: [10.5281/zenodo.591287](https://dx.doi.org/10.5281/zenodo.591287) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mnis)](https://cran.r-project.org/package=mnis)
 
-**Odell, E.**, 2016\. `hansard`: Accessing Westminster Parliament Data. [http://docs.evanodell.com/hansard](http://docs.evanodell.com/hansard) DOI: [10.5281/zenodo.591264](https://dx.doi.org/10.5281/zenodo.591264)[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
+**Odell, E.**, 2016\. `hansard`: Accessing Westminster Parliament Data. [http://docs.evanodell.com/hansard](http://docs.evanodell.com/hansard) DOI: [10.5281/zenodo.591264](https://dx.doi.org/10.5281/zenodo.591264) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
 
 ### Datasets
 
