@@ -126,10 +126,11 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p>Guest Lecturer. <em>Disability in Interdisciplinary Studies in Global Health and Disability.</em> Queen's University. 2017. London.</p></div>
+    <div class="cvcontent"><p>Guest Lecturer on the <em>Disability in Interdisciplinary Studies in Global Health and Disability</em> summer course. Queen's University (Canada). London.</p></div>
   <div class="cvcleared"></div>
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Joanne Cooke and Graeme Atherton, moderated by Lisa Cameron. 2017. <em>Priorities for Increasing Disabled Student Participation in Higher Education.</em> Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.</p></div>
+  <div class="cvcleared"></div>
   <div class="cvsidebar">2016</div>
     <div class="cvcontent"><p>Panel appearance with Chris Holmes, Huma Munshi and Natasha Hirst, moderated by Debbie Foster. 2016. <em>The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being.</em> Closing Disability Gaps at Work. London.</p></div>
   <div class="cvcleared"></div>
