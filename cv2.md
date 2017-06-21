@@ -13,5 +13,4 @@ title: CV2
   <div class="cvsidebar">2016</div>
     <div class="cvcontent"><p><strong>Odell, E.</strong> <code>hansard</code>: Accessing Westminster Parliament Data. <a href="http://docs.evanodell.com/hansard">http://docs.evanodell.com/hansard</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591264">10.5281/zenodo.591264</a> <a href="https://cran.r-project.org/package=hansard"><img src="http://www.r-pkg.org/badges/version/hansard" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
-
 </div>
