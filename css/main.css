@@ -52,13 +52,11 @@ p {
 .cvcontent {
   float: right;
   width: 100%;
-  background-color: #CCF;
 }
 .cvsidebar {
   float: left;
-  width: 200px;
-  margin-left: -200px;
-  background-color: #FFA;
+  width: 100px;
+  margin-left: -100px;
 }
 .cvcleared {
   clear: both;
