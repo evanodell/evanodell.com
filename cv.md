@@ -10,49 +10,61 @@ image: /img/EvanOdell.jpg
 
 ### University of Oxford
 
-_MSc in Comparative Social Policy_
-
-October 2014 - September 2015
-
-**Thesis:** _Inclusive education to inclusive employment: The impact of inclusive education on economic outcomes in Ontario and Alberta_
+<div class="jobwrapper">
+<div class="jobsidebar">October 2014 - September 2015</div>
+  <div class="jobcontent"><p><em>MSc in Comparative Social Policy</em></p><p><strong>Thesis: </strong><em>Inclusive education to inclusive employment: The impact of inclusive education on economic outcomes in Ontario and Alberta</em></p></div>
+    <div class="jobcleared"></div>
+</div>
 
 ### University of British Columbia
 
-_Visiting Student_
-
-September 2013 - April 2014
+<div class="jobwrapper">
+<div class="jobsidebar">September 2013 - April 2014</div>
+  <div class="jobcontent"><em>Visiting Student</em></div>
+    <div class="jobcleared"></div>
+</div>
 
 ### Laurentian University
 
- _BA(Honours) in Political Science_
-
- September 2009 - April 2014
+<div class="jobwrapper">
+<div class="jobsidebar">September 2009 - April 2014</div>
+  <div class="jobcontent"><em>BA(Hons) in Political Science</em></div>
+    <div class="jobcleared"></div>
+</div>
 
 ## RELEVANT EXPERIENCE
 
 ### Disability Rights UK
 
-_DRILL Research Programme Officer_
-
-June 2016 - Present
+<div class="jobwrapper">
+<div class="jobsidebar">June 2016 - Present</div>
+  <div class="jobcontent"><em>DRILL Research Programme Officer</em></div>
+    <div class="jobcleared"></div>
+</div>
 
 ### The Future Leaders Trust
 
-_Performance and Impact Officer_
-
-October 2015 - June 2016
+<div class="jobwrapper">
+<div class="jobsidebar">October 2015 - June 2016</div>
+  <div class="jobcontent"><em>Performance and Impact Officer</em></div>
+    <div class="jobcleared"></div>
+</div>
 
 ### Oxford Students’ Disability Community (OSDC)
 
-_Disability Advisory Service Liaison, Founding Committee Member_
-
-November 2014 - September 2015
+<div class="jobwrapper">
+<div class="jobsidebar">November 2014 - September 2015</div>
+  <div class="jobcontent"><em>Disability Advisory Service Liaison, Founding Committee Member</em></div>
+    <div class="jobcleared"></div>
+</div>
 
 ### Laurentian University
 
- _Research Assistant_
-
- September 2012 - April 2013
+<div class="jobwrapper">
+  <div class="jobsidebar">September 2012 - April 2013</div>
+    <div class="jobcontent"><em>Research Assistant</em></div>
+  <div class="jobcleared"></div>
+</div>
 
 ## RELEVANT SKILLS
 
