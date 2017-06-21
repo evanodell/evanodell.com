@@ -110,7 +110,6 @@ November 2014 - September 2015
   <div class="cvcleared"></div>
 </div>
 
-
 ### Speaking Appearances
 
 <div class="cvwrapper">

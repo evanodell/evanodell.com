@@ -63,6 +63,25 @@ p {
   clear: both;
 }
 
+
+
+.jobwrapper {
+  margin-left: 200px;
+}
+.jobcontent {
+  float: right;
+  width: 100%;
+}
+.jobsidebar {
+  text-align: left;
+  float: left;
+  width: 200px;
+  margin-left: -200px;
+}
+.jobcleared {
+  clear: both;
+}
+
 .bibliography {
   list-style:none;
   padding-left:0;
