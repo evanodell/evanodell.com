@@ -68,13 +68,13 @@ image: /img/EvanOdell.jpg
 
 ## RELEVANT SKILLS
 
-#### Technical Skills
+### Technical Skills
 
 * High proficiency with collecting and collating statistical data from a wide variety of sources, and analysing data with Stata, R and Microsoft Excel, including using macros and VBA in Excel.
 * Experience of quantitative spatial analysis using GIS software and R.
 * Experience with interviewing, process tracing, discourse analysis and policy analysis.
 
-#### Communication Skills
+### Communication Skills
 
 * Exceptional communication talents in writing and public speaking, creating presentations and reports that are precise, meticulous and easily understandable, even under time constraints.
 * Extensive experience and proficiency with the full Microsoft Office suite, project management software, Salesforce, web content management systems and LaTeX.
