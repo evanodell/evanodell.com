@@ -47,7 +47,7 @@ p {
 
 
 .cvwrapper {
-  margin-left: 200px;
+  margin-left: 100px;
 }
 .cvcontent {
   float: right;
@@ -55,8 +55,8 @@ p {
 }
 .cvsidebar {
   float: left;
-  width: 100px;
-  margin-left: -100px;
+  width: 60px;
+  margin-left: -60px;
 }
 .cvcleared {
   clear: both;
