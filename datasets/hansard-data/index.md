@@ -7,6 +7,8 @@ A public dataset of speeches in the Hansard. The dataset provides information on
 
 The `senti_post_v2` dataset contains 2,234,229 speeches and 404,589,163 words. The `senti_pre_v2` dataset contains 2,977,498 speeches and 413,046,298 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. It is currently available as a CSV file, if you would like other formats please [get in touch](mailto:evanodell91@gmail.com). The latest version, V2.0, includes improved consistency in sentiment calculations, with five different libraries and the same methods of calculation used for each library and corrects several misidentified speeches. It also includes all speeches up to the dissolution of parliament for the 2017 General Election.
 
+Note that these files are UTF-8 encoded, and when I've opened them on a Windows computer there have been problems with characters not rendering correctly.
+
 ## Sentiment Classification Methods
 
 The speeches have been classified for sentiment using a total of four libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, and one from the [`syuzhet`](https://cran.r-project.org/package=syuzhet) package by Michael Jockers. All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package. The libraries are:
