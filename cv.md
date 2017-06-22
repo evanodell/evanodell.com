@@ -126,7 +126,7 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p>Guest Lecturer on the <em>Disability in Interdisciplinary Studies in Global Health and Disability</em> summer course. Queen's University (Canada). London.</p></div>
+    <div class="cvcontent"><p>Guest Lecturer on the <em>Disability in Interdisciplinary Studies in Global Health and Disability</em> programme. Bader International Study Centre, Queen's University (Canada). London.</p></div>
   <div class="cvcleared"></div>
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Joanne Cooke and Graeme Atherton, moderated by Lisa Cameron. 2017. <em>Priorities for Increasing Disabled Student Participation in Higher Education.</em> Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.</p></div>
