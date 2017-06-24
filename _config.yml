@@ -65,7 +65,7 @@ scholar:
   style: assets/bibliography/taylor-and-francis-harvard-x.csl
 
   sort_by: author
-  order: descending
+  order: ascending
   bibliography_list_tag: ul
 
   source: _bibliography

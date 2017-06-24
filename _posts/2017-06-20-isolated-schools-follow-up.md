@@ -104,7 +104,7 @@ Moreover, geographic isolation is not really a solvable problem. There are polic
 
 What does this analysis reveal about the findings of [_Lonely Schools_]({{site.url}}/files/Lonely-Schools-Odell-2017-AM.pdf)? It certainly does not invalidate them, seeing as it only uses a single year of data, and a new method of measuring pupil achievement. What it does show is the importance of having substantial amounts of evidence before making policy. Although there has not been any policy formulated or changed because of the findings of [_Lonely Schools_]({{site.url}}/files/Lonely-Schools-Odell-2017-AM.pdf),[^4] making any policy decisions on the basis of a single study would be an incredibly poor decision. Any relationships and correlations identified by a single study should be taken with a grain of salt, and not form the basis of any major policy decision.
 
-So is there any relationship between geographic isolation and pupil attainment, disadvantaged or otherwise? Probably not. Rather, schools in isolated areas have differences in pupil demographics – socio-economic, ethnic, cultural, etc – that contribute to their lower disadvantaged pupil attainment, compared to pupils in more school-dense areas. It is demographics,not location, that matters.
+So is there any relationship between geographic isolation and pupil attainment, disadvantaged or otherwise? Probably not. Rather, schools in isolated areas have differences in pupil demographics – socio-economic, ethnic, cultural, etc – that contribute to their lower disadvantaged pupil attainment, compared to pupils in more school-dense areas. It is demographics, not location, that matters.
 
 ## References
 

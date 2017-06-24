@@ -75,12 +75,12 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 ### [Hansard Speeches and Sentiment]({{ site.url }}/datasets/hansard-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.579712.svg)](https://doi.org/10.5281/zenodo.579712)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.579712.svg)](https://doi.org/10.5281/zenodo.579712)
 
 Two datasets of speeches in the Hansard, along with summary information on speech sentiments. Both datasets contain sentiment analysis from five different libraries, details of which are [here]({{ site.url }}/datasets/hansard-data/#sentiment-classification-methods). The first dataset, `senti_post_v2`, provides information on every speech made in the House of Commons between the 1979 General Election and the 2017 General Election, with information on the speaking MP, their party, gender and age at the time of the speech. It contains 2,234,229 speeches and 404,589,163 words. The second dataset, `senti_pre_v2`, includes all speeches made from 1936 to the 1979 General Election, but without information on party affiliation, etc. The `senti_pre_v2` dataset contains 2,977,498 speeches and 413,046,298 words. [Click here]({{ site.url }}/datasets/hansard-data) for more details, or download the data from [Zenodo](https://zenodo.org/record/579712).
 
 ### [Charity Commission Data of All Registered Charities in England]({{ site.url }}/datasets/charity-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](https://creativecommons.org/licenses/by/4.0/)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
 
 A dataset of information on all registered charities in the England, taken from the Charity Commission monthly release and translated into a more accessible format. [Click here]({{ site.url }}/datasets/charity-data) for more details and to download individual files, or [download the most recent complete release](https://shiny.evanodell.com/charity-data/charity_register-2017-05.zip).

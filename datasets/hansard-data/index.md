@@ -124,17 +124,4 @@ Odell, Evan. (2017). 'Hansard Speeches and Sentiment V2.0 [Data set].' [http://d
 The DOI is *10.5281/zenodo.579712*
 
 ## References
-
-Baccianella, Stefano, Andrea Esuli, and Fabrizio Sebastiani. 'SentiWordNet 3.0: An Enhanced Lexical Resource for Sentiment Analysis and Opinion Mining.' In LREC, 10:2200–2204, 2010. [http://nmis.isti.cnr.it/sebastiani/Publications/LREC10.pdf](http://nmis.isti.cnr.it/sebastiani/Publications/LREC10.pdf).
-
-Hu, Minqing, and Bing Liu. 'Mining and Summarizing Customer Reviews'. In Proceedings of the Tenth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 168–77. ACM, 2004. [http://dl.acm.org/citation.cfm?id=1014073](http://dl.acm.org/citation.cfm?id=1014073).
-
-Jockers, Matthew L. Syuzhet: Extract Sentiment and Plot Arcs from Text, 2015. [https://github.com/mjockers/syuzhet](https://github.com/mjockers/syuzhet).
-
-Mohammad, Saif M., and Peter D. Turney. 'Crowdsourcing a Word–emotion Association Lexicon. Computational Intelligence 29, no. 3 (2013): 436–65.
-
-Nielsen, Finn Årup. 'A New ANEW: Evaluation of a Word List for Sentiment Analysis in Microblogs'. CoRR abs/1103.2903 (2011). [http://arxiv.org/abs/1103.2903](http://arxiv.org/abs/1103.2903).
-
-Rinker, Tyler W. Lexicon: Lexicon Data. Buffalo, New York: University at Buffalo/SUNY, 2017. [http://github.com/trinker/lexicon](http://github.com/trinker/lexicon).
-
-———. Sentimentr: Calculate Text Polarity Sentiment. Buffalo, New York: University at Buffalo/SUNY, 2017. [http://github.com/trinker/sentimentr](http://github.com/trinker/sentimentr).
+{% bibliography --file hansard-data %}
