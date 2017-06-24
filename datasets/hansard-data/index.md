@@ -119,7 +119,7 @@ Please contact me if you find any errors in the dataset. The integrity of the pu
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). 'Hansard Speeches and Sentiment V2.0 [Data set].' [http://doi.org/10.5281/zenodo.579712](http://doi.org/10.5281/zenodo.579712).
+Odell, Evan. (2017). 'Hansard Speeches and Sentiment V2.0 [Dataset].' [http://doi.org/10.5281/zenodo.579712](http://doi.org/10.5281/zenodo.579712).
 
 The DOI is *10.5281/zenodo.579712*
 
