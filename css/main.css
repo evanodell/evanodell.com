@@ -379,7 +379,7 @@ img {
   }
 }
 
-/* --- Footer --- */
+/* --- bike iframe --- */
 
 .bikeframe{
   border: none;
@@ -387,6 +387,24 @@ img {
   height: 2950px;
 }
 
+@media only screen and (max-width: 1300px) {
+  .bikeframe{
+    border: none;
+    width: 100%;
+    height: 3050px;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .bikeframe{
+    border: none;
+    width: 100%;
+    height: 3330px;
+  }
+}
+
+
+/* --- Footer --- */
 
 
 footer {
