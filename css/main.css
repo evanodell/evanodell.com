@@ -384,7 +384,7 @@ img {
 .bikeframe{
   border: none;
   width: 100%;
-  height: 2870px;
+  height: 2950px;
 }
 
 
@@ -428,11 +428,7 @@ footer {
       padding-right: 0px;
   }
 
-  .bikeframe{
-    border: none;
-    width: 100%;
-    height: 2950px;
-  }
+
 
 }
 
