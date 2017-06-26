@@ -4,4 +4,4 @@ title: Cycling vs Public Transit - Live!*
 comments: true
 ---
 
-<iframe src="https://evanodell.shinyapps.io/cycling-v-oyster/" style="border: none; width: 100%; height: 2950px;"></iframe>
+<iframe class="bikeframe" src="https://evanodell.shinyapps.io/cycling-v-oyster/" ></iframe>
