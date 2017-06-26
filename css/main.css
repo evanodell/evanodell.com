@@ -381,17 +381,19 @@ img {
 
 /* --- bike iframe --- */
 
+
+
 .bikeframe{
   border: none;
   width: 100%;
-  height: 2950px;
+/*  height: 2950px; */
 }
 
 @media only screen and (max-width: 1300px) {
   .bikeframe{
     border: none;
     width: 100%;
-    height: 3050px;
+/*    height: 3050px; */
   }
 }
 
@@ -399,7 +401,7 @@ img {
   .bikeframe{
     border: none;
     width: 100%;
-    height: 3100px;
+/*    height: 3100px; */
   }
 }
 
@@ -407,7 +409,7 @@ img {
   .bikeframe{
     border: none;
     width: 100%;
-    height: 3610px;
+/*    height: 3610px; */
   }
 }
 
