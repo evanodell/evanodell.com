@@ -52,8 +52,8 @@ The `hansard_senti_post_V21` and `hansard_senti_pre_V21` datasets have slightly 
 
 ### `hansard_senti_post_V21` Dataset Variables
 
-| Variable | Description | Data Type (R) |
-|------------------|--------------|----------------|
+| Variable | Description | Data Type |
+|------------------|--------------|------------------|
  `pp_id` | ID for each speech, corresponding to the parlparse ID | character |
  `eo_id` | ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches | character |
  `speech` | The actual text of the speech | character |
@@ -94,8 +94,8 @@ The `hansard_senti_post_V21` and `hansard_senti_pre_V21` datasets have slightly 
 
 ### `hansard_senti_pre_V21` Dataset Variables
 
-| Variable | Description | Data Type (R) |
-|------------------|--------------|----------------|
+| Variable | Description | Data Type |
+|------------------|--------------|------------------|
 `pp_id` | ID for each speech, corresponding to the parlparse ID | character |
 `eo_id` | ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches | character |
 `speech` | The actual text of the speech | character |
@@ -126,6 +126,8 @@ The `hansard_senti_post_V21` and `hansard_senti_pre_V21` datasets have slightly 
 
 The [parlparse](https://github.com/mysociety/parlparse) project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as 'unknown'. I created a table with every possible combination of name and ID, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, approximate string and manual matching. The information in this table was then matched to the complete list of speech IDs. In the case of commonly used names (e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992) I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.
 
+### Licences and Code
+
 The code and matching data used to generate this dataset is available on [Github](https://github.com/EvanOdell/hansard-data).
 
 The data used to create this dataset was taken from the [parlparse](https://github.com/mysociety/parlparse) project operated by [They Work For You](https://www.theyworkforyou.com/) and supported by [mySociety](https://www.mysociety.org/).
@@ -142,7 +144,7 @@ Please cite this dataset as:
 
 Odell, Evan. (2017). 'Hansard Speeches and Sentiment V2.1 [Dataset].' [http://doi.org/10.5281/zenodo.820163](http://doi.org/10.5281/zenodo.820163).
 
-The DOI of V2.1 is *10.5281/zenodo.820163* The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version.
+The DOI of V2.1 is *10.5281/zenodo.820163*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version.
 
 ## References
 {% bibliography --file hansard-data %}
