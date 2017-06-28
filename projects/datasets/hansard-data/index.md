@@ -6,11 +6,11 @@ comments: true
 
 ## [Download from Zenodo](https://doi.org/10.5281/zenodo.780985)
 
-A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/), and also available as CSV files. If you would like other formats please [get in touch](mailto:evanodell91@gmail.com). The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender, birthdate[^1], starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `hansard_senti_post_V21` and the pre-1979 election dataset is labelled `hansard_senti_pre_V21`.
+A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/), and also available in CSV format.[^1] The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender, birthdate[^2], starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `hansard_senti_post_V21` and the pre-1979 election dataset is labelled `hansard_senti_pre_V21`.
 
 Documentation on previous versions of this dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/v2)
 
-The `hansard_senti_post_V21` dataset contains 2,234,059 speeches and 404,581,972 words. The `hansard_senti_pre_V21` dataset contains 2,977,461 speeches and 413,044,716 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. The latest version, V2.1, includes includes an additional sentiment library ([see below](/datasets/hansard-data/#sentiment-classification-methods)) with six different libraries and the same methods of calculation used for each library and corrects several misidentified speeches. It also includes all speeches up to the dissolution of parliament for the 2017 General Election.
+The `hansard_senti_post_V21` dataset contains 2,234,059 speeches and 404,581,972 words. The `hansard_senti_pre_V21` dataset contains 2,977,461 speeches and 413,044,716 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. The latest version, V2.1, includes includes an additional sentiment library, resulting in six different lexical libraries ([see below](/datasets/hansard-data/#sentiment-classification-methods), all using the same methods of calculation. Several duplicate speeches were also identified and removed.
 
 ## Changes in V2.1
 
@@ -40,7 +40,7 @@ The speeches have been classified for sentiment using a total of four libraries 
 
 5. The [Opinion Mining, Sentiment Analysis and Opinion Spam Detection](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) library, labelled `hu`. The library was access through the [`lexicon`](https://cran.r-project.org/package=lexicon) package. {% cite hu2004 --file hansard-data %}.
 
-6. A modified version of the [unnamed lexicon](https://github.com/lrheault/emotion) from {% cite rheault2016 --file hansard-data %}, labelled `rheault`. As the method in `sentimentr` does not use distinguish between the same word that can occupy multiple lexical categories,[^2] I used the average polarity score assigned to such words.[^3]
+6. A modified version of the [unnamed lexicon](https://github.com/lrheault/emotion) from {% cite rheault2016 --file hansard-data %}, labelled `rheault`. As the method in `sentimentr` does not use distinguish between the same word that can occupy multiple lexical categories,[^3] I used the average polarity score assigned to such words.[^4]
 
 ## Summary Statistics
 
@@ -82,7 +82,7 @@ The `hansard_senti_post_V21` and `hansard_senti_pre_V21` datasets have slightly 
  `dods_id` | Dods Monitoring ID| integer |
  `pims_id` | Parliamentary Information Management Services ID |integer |
  `proper_name` | The MP's name | character |
- `party_group` | Grouping of political parties| factor |
+ `party_group` | Grouping of political parties. Labour and Labour Co-op MPs are listed as 'Labour', Conservative MPs as 'Conservative', Liberal Democrats, Social Democrats and Liberals are all listed as 'Liberal Democrat', and all other MPs are listed as 'Other'. | factor |
  `party` | The political party the MP belonged to at time of speech | character |
  `government` | An indicator if the the MP is a member of the governing party (or parties), or in the opposition | factor |
  `age` | Age at time of speech | integer |
@@ -149,8 +149,10 @@ The DOI of V2.1 is *10.5281/zenodo.820163* The DOI for all versions is [*10.5281
 
 ## Notes
 
-[^1]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated.
+[^1]: If you would like other formats please [get in touch](mailto:evanodell91@gmail.com).
 
-[^2]: e.g. 'bid' can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction
+[^2]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated.
 
-[^3]: <a href="#rheault2016">Rheault <i>et al.</i> (2016)</a> have a more complex method of calculating polarity that accounts for lexical types. See their paper and the [related repository](https://github.com/lrheault/emotion) for details.
+[^3]: e.g. 'bid' can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction
+
+[^4]: <a href="#rheault2016">Rheault <i>et al.</i> (2016)</a> have a more complex method of calculating polarity that accounts for lexical types. See their paper and the [related repository](https://github.com/lrheault/emotion) for details.

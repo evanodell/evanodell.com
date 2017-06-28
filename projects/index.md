@@ -73,11 +73,11 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 ## Datasets
 
-### [Hansard Speeches and Sentiment]({{ site.url }}/datasets/hansard-data)
+### [Hansard Speeches and Sentiment]({{ site.url }}/projects/datasets/hansard-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.579712.svg)](https://doi.org/10.5281/zenodo.579712)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.820163.svg)](https://doi.org/10.5281/zenodo.820163)
 
-Two datasets of speeches in the Hansard, along with summary information on speech sentiments. Both datasets contain sentiment analysis from five different libraries, details of which are [here]({{ site.url }}/datasets/hansard-data/#sentiment-classification-methods). The first dataset, `senti_post_v2`, provides information on every speech made in the House of Commons between the 1979 General Election and the 2017 General Election, with information on the speaking MP, their party, gender and age at the time of the speech. It contains 2,234,229 speeches and 404,589,163 words. The second dataset, `senti_pre_v2`, includes all speeches made from 1936 to the 1979 General Election, but without information on party affiliation, etc. The `senti_pre_v2` dataset contains 2,977,498 speeches and 413,046,298 words. [Click here]({{ site.url }}/datasets/hansard-data) for more details, or download the data from [Zenodo](https://zenodo.org/record/579712).
+Two datasets of speeches in the Hansard, along with summary information on speech sentiments. The `hansard_senti_post_V21` dataset contains 2,234,059 speeches and 404,581,972 words. The `hansard_senti_pre_V21` dataset contains 2,977,461 speeches and 413,044,716 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. The latest version, V2.1, includes includes an additional sentiment library, resulting in six different libraries, all using the same methods of calculation. Several duplicate speeches were also identified and removed. It also includes all speeches up to the dissolution of parliament for the 2017 General Election. [Click here]({{ site.url }}/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
 
 ### [Charity Commission Data of All Registered Charities in England]({{ site.url }}/datasets/charity-data)
 
