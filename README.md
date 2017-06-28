@@ -8,7 +8,3 @@ My modifications include, but are not limited to:
  * Changing the navbar and the footer to a darker colour.
  * Moving the location of the blog to a separate page, rather than the homepage.
  * Changing the default header font to Roboto and the default body font to Lusitana.
-
-```
-bundle exec jekyll serve
-```
