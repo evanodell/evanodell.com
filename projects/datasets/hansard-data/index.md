@@ -142,7 +142,7 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). 'Hansard Speeches and Sentiment V2.1 [Dataset].' [http://doi.org/10.5281/zenodo.820163](http://doi.org/10.5281/zenodo.820163).
+Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.1 [Dataset]." [http://doi.org/10.5281/zenodo.820163](http://doi.org/10.5281/zenodo.820163).
 
 The DOI of V2.1 is *10.5281/zenodo.820163*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version.
 
