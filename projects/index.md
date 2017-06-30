@@ -20,7 +20,7 @@ Live (as in updated every few days) data on the cost of my bike and a pay-as-you
 
 An interactive blog post, originally written for [Disability Rights UK's blog](https://disabilityrightsuk.blogspot.co.uk/2017/03/how-do-politicians-discuss-disability.html), tracking the frequency that words and phrases related to disability issues are discussed in the UK parliament from 1936-2016.
 
-### [Map of Disability Sport Providers](https://evanodell.shinyapps.io/dis-sport/)
+<h3><a href="https://disabilityrightsuk.shinyapps.io/dis-sport/" target="_blank">Map of Disability Sport Providers</a></h3>
 
 <div class="post-heading">
 <div class="post-meta">10 November 2016</div>
