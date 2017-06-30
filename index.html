@@ -19,4 +19,15 @@ image: /img/EvanOdell.jpg
 <h3>Most recent post:</h3>
 {% for post in site.posts limit:1 %}
   <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+  {% if post.subtitle %}
+  <h3 class="post-subtitle">
+    {{ post.subtitle }}
+  </h3>
+  {% endif %}
+
+  <p class="post-meta">
+    Posted on {{ post.date | date: "%B %-d, %Y" }}
+  </p>
+
+  
 {% endfor %}
