@@ -16,13 +16,14 @@ image: /img/EvanOdell.jpg
 
 <p>Besides all this technical stuff, I enjoy running, worrying that my musical tastes make me look like a pretentious snob, trying to read more fiction and enjoying living in a flat in London, rather than in a tent in northern British Columbia, like I used to.</p>
 
-<h1>Most recent blog post:</h1>
+<h2>Most recent blog post:</h2>
+<article class="post-preview">
 {% for post in site.posts limit:1 %}
-  <h2><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
+  <h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h3>
   {% if post.subtitle %}
-  <h3 class="post-subtitle">
+  <h3 class="post-subtitle"><em>
     {{ post.subtitle }}
-  </h3>
+  </em></h3>
   {% endif %}
 
   <p class="post-meta">
@@ -45,4 +46,5 @@ image: /img/EvanOdell.jpg
       {% endif %}
     </div>
   </div>
+</article>
 {% endfor %}
