@@ -1,0 +1,68 @@
+---
+layout: page
+title: Evan Odell
+subtitle: Research | Data Analysis | Communications
+use-site-title: true
+meta-title: "Evan Odell - Social Policy Professional"
+meta-description: Evan Odell is a data geek, social researcher and campaigner based in London.
+image: /img/EvanOdell.jpg
+---
+
+<p>Hi, I'm Evan. I'm a social researcher and campaigner, originally from Canada and currently living in London, working for Disability Rights UK. I'm particularly interested in quantitative research and data analysis, and my main areas of interest are health, disabilities, education and social policies. My favourite programming language is R, but I also work with Python, SQL and enjoy finding new ways to solve problems. I'm very fond of mapping things, because maps are cool, although the amount of insight you can actually get from a map is often overstated.</p>
+
+<p>I host two datasets that are free for public use, one on <a href="/projects/datasets/charity-data">registered charities in England</a> and one on <a href="/projects/datasets/hansard-data">speeches made in the UK House of Commons</a>, combined with sentiment analysis.</p>
+
+<p>I have a semi-frequently used <a href="https://twitter.com/evanodell">Twitter</a> feed, and have a bunch of completed and ongoing projects on <a href="https://github.com/EvanOdell">GitHub</a>. I've started building <a href="/projects/#shiny-applications">Shiny apps</a>, and use Shiny to power my ongoing comparison of the <a href="/projects/cycling-vs-oyster">financial advantages (or disadvantages) of cycling to work instead of taking public transit</a>. I've also written three R packages: <a href="http://docs.evanodell.com/hansard"><code>hansard</code></a> and <a href="http://docs.evanodell.com/mnis"><code>mnis</code></a> for accessing and UK parliamentary data, and <a href="http://docs.evanodell.com/parlitools"><code>parlitools</code></a>, which provides electoral datasets, cartogram shapefiles and some custom data retrieval tools. I also occasionally write stuff on my <a href="/blog">blog</a> and have published a few <a href="/cv/#publications">reports and papers</a>.</p>
+
+<p>Besides all this technical stuff, I enjoy running, worrying that my musical tastes make me look like a pretentious snob, trying to read more fiction and enjoying living in a flat in London, rather than in a tent in northern British Columbia, like I used to.</p>
+
+<div class="posts-list">
+  {% for post in paginator.posts limit:1 %}
+  <article class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+	  <h2 class="post-title">{{ post.title }}</h2>
+
+	  {% if post.subtitle %}
+	  <h3 class="post-subtitle">
+	    {{ post.subtitle }}
+	  </h3>
+	  {% endif %}
+    </a>
+
+    <p class="post-meta">
+      Posted on {{ post.date | date: "%B %-d, %Y" }}
+    </p>
+
+    <div class="post-entry-container">
+      {% if post.bigimg %}
+      <div class="post-image">
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <img src="{{ post.bigimg }}">
+        </a>
+      </div>
+      {% endif %}
+      <div class="post-entry">
+        {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
+        {% assign excerpt_word_count = post.excerpt | number_of_words %}
+        {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if post.tags.size > 0 %}
+    <div class="blog-tags">
+      Tags:
+      {% if site.link-tags %}
+      {% for tag in post.tags %}
+      <a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
+      {% endfor %}
+      {% else %}
+        {{ post.tags | join: ", " }}
+      {% endif %}
+    </div>
+    {% endif %}
+
+   </article>
+  {% endfor %}
+</div>
