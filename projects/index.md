@@ -64,18 +64,17 @@ An R package for downloading data from the Members' Names Information Service AP
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/parlitools)](https://cran.r-project.org/package=parlitools)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/parlitools.svg)](https://github.com/evanodell/parlitools)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/parlitools)](https://dgrtwo.shinyapps.io/cranview/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.802938.svg)](https://doi.org/10.5281/zenodo.802938)
+[![DOI](https://zenodo.org/badge/86801920.svg)](https://zenodo.org/badge/latestdoi/86801920)
 
 A collection of tools, datasets and maps for analysing UK politics, including a hexagonal cartogram of Westminster constituencies. Available on [CRAN](https://cran.r-project.org/package=parlitools) and [GitHub](https://github.com/EvanOdell/parlitools).
-
-
 
 
 ## Datasets
 
 ### [Hansard Speeches and Sentiment]({{ site.url }}/projects/datasets/hansard-data)
 
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.820163.svg)](https://doi.org/10.5281/zenodo.820163)
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+[![DOI](https://zenodo.org/badge/84583621.svg)](https://zenodo.org/badge/latestdoi/84583621)
 
 Two datasets of speeches in the Hansard, along with summary information on speech sentiments. The `hansard_senti_post_V21` dataset contains 2,234,059 speeches and 404,581,972 words. The `hansard_senti_pre_V21` dataset contains 2,977,461 speeches and 413,044,716 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. The latest version, V2.1, includes includes an additional sentiment library, resulting in six different libraries, all using the same methods of calculation. Several duplicate speeches were also identified and removed. It also includes all speeches up to the dissolution of parliament for the 2017 General Election. [Click here]({{ site.url }}/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
 
