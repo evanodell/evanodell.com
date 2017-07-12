@@ -82,4 +82,4 @@ Two datasets of speeches in the Hansard, along with summary information on speec
 
 <span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
 
-A dataset of information on all registered charities in the England, taken from the Charity Commission monthly release and translated into a more accessible format. [Click here]({{ site.url }}/projects/datasets/charity-data) for more details and to download individual files, or [download the most recent complete release](https://shiny.evanodell.com/charity-data/charity-register-2017-06.zip).
+A dataset of information on all registered charities in the England, taken from the Charity Commission monthly release and translated into a more accessible format. [Click here]({{ site.url }}/projects/datasets/charity-data) for more details and to download individual files, or [download the most recent complete release](https://shiny.evanodell.com/charity-data/charity-register-2017-07.zip).

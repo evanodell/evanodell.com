@@ -10,36 +10,36 @@ Note that `extract-proper-object`, marked with an asterix, has been concatenated
 
 For details on the data itself, please see [this table from the Charity Commission](http://data.charitycommission.gov.uk/data-definition.aspx). Do get in touch if you have any questions, comments or concerns about this data. This data is made available under the terms of the [Open Government Licence 3.0](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
-### [Download all 15 tables as a single ZIP file](https://shiny.evanodell.com/charity-data/charity-register-2017-06.zip)
+### [Download all 15 tables as a single ZIP file](https://shiny.evanodell.com/charity-data/charity-register-2017-07.zip)
 
-### Download individual CSV files from the May 2017 data release:
+### Download individual CSV files from the July 2017 data release:
 
-[extract-acct-submit](https://shiny.evanodell.com/charity-data/extract-acct-submit-2017-06.csv)
+[extract-acct-submit](https://shiny.evanodell.com/charity-data/extract-acct-submit-2017-07.csv)
 
-[extract-aoo-ref](https://shiny.evanodell.com/charity-data/extract-aoo-ref-2017-06.csv)
+[extract-aoo-ref](https://shiny.evanodell.com/charity-data/extract-aoo-ref-2017-07.csv)
 
-[extract-ar-submit](https://shiny.evanodell.com/charity-data/extract-ar-submit-2017-06.csv)
+[extract-ar-submit](https://shiny.evanodell.com/charity-data/extract-ar-submit-2017-07.csv)
 
-[extract-charity](https://shiny.evanodell.com/charity-data/extract-charity-2017-06.csv)
+[extract-charity](https://shiny.evanodell.com/charity-data/extract-charity-2017-07.csv)
 
-[extract-charity-aoo](https://shiny.evanodell.com/charity-data/extract-charity-aoo-2017-06.csv)
+[extract-charity-aoo](https://shiny.evanodell.com/charity-data/extract-charity-aoo-2017-07.csv)
 
-[extract-class](https://shiny.evanodell.com/charity-data/extract-class-2017-06.csv)
+[extract-class](https://shiny.evanodell.com/charity-data/extract-class-2017-07.csv)
 
-[extract-class-ref](https://shiny.evanodell.com/charity-data/extract-class-ref-2017-06.csv)
+[extract-class-ref](https://shiny.evanodell.com/charity-data/extract-class-ref-2017-07.csv)
 
-[extract-financial](https://shiny.evanodell.com/charity-data/extract-financial-2017-06.csv)
+[extract-financial](https://shiny.evanodell.com/charity-data/extract-financial-2017-07.csv)
 
-[extract-main-charity](https://shiny.evanodell.com/charity-data/extract-main-charity-2017-06.csv)
+[extract-main-charity](https://shiny.evanodell.com/charity-data/extract-main-charity-2017-07.csv)
 
-[extract-name](https://shiny.evanodell.com/charity-data/extract-name-2017-06.csv)
+[extract-name](https://shiny.evanodell.com/charity-data/extract-name-2017-07.csv)
 
-[extract-partb](https://shiny.evanodell.com/charity-data/extract-partb-2017-06.csv)
+[extract-partb](https://shiny.evanodell.com/charity-data/extract-partb-2017-07.csv)
 
-[extract-proper-object](https://shiny.evanodell.com/charity-data/extract-proper-object-2017-06.csv)*
+[extract-proper-object](https://shiny.evanodell.com/charity-data/extract-proper-object-2017-07.csv)*
 
-[extract-registration](https://shiny.evanodell.com/charity-data/extract-registration-2017-06.csv)
+[extract-registration](https://shiny.evanodell.com/charity-data/extract-registration-2017-07.csv)
 
-[extract-remove-ref](https://shiny.evanodell.com/charity-data/extract-remove-ref-2017-06.csv)
+[extract-remove-ref](https://shiny.evanodell.com/charity-data/extract-remove-ref-2017-07.csv)
 
-[extract-trustee](https://shiny.evanodell.com/charity-data/extract-trustee-2017-06.csv)
+[extract-trustee](https://shiny.evanodell.com/charity-data/extract-trustee-2017-07.csv)
