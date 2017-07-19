@@ -31,7 +31,7 @@ The `hansard_senti_post_V22` dataset contains 2,230,357 speeches and 398,815,027
 
 ## Sentiment Classification Methods
 
-The speeches have been classified for sentiment using a total of three libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, one from the [`syuzhet`](https://cran.r-project.org/package=syuzhet) package by Michael Jockers, and [one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst](https://github.com/lrheault/emotion). All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package. The libraries are:
+The speeches have been classified for sentiment using a total of three libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, one from the [`syuzhet`](https://cran.r-project.org/package=syuzhet) package by Michael Jockers, and [one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst](https://github.com/lrheault/emotion). All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package {% cite rinker2017 --file hansard-data %}. The libraries are:
 
 1. The [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) library, labelled `afinn`. The AFINN library was accessed through Matthew Jockers's [`syuzhet`](https://cran.r-project.org/package=syuzhet) package. {% cite nielsen2011 --file hansard-data %}.
 
