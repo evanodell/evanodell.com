@@ -1,7 +1,8 @@
 ---
 layout: page
 title: Hansard Speeches and Sentiment
-comments: true
+comments: false
+date: 2017-05-26
 ---
 A public dataset of speeches in the Hansard. The dataset provides information on every speech made in the House of Commons between the parliament returned from the 1979 general election and the dissolution of parliament for the 2017 general election, with information on the speaking MP, their party, gender and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `senti_post_v2` and the pre-1979 election dataset is labelled `senti_pre_v2`.
 
