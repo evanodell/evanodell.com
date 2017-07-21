@@ -11,7 +11,7 @@ A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r
 
 Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
-The `hansard_senti_post_V22` dataset contains 2,230,357 speeches and 398,815,027 words. The `hansard_senti_pre_V22` dataset contains 2,977,461 speeches and 406,103,015 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.2, drops one sentiment library ([`sentiwords`](http://sentiwordnet.isti.cnr.it/)), fixes some duplicates, and improves encoding issues in speeches. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
+The `hansard_senti_post_V22` dataset contains 2,230,357 speeches and 398,815,027 words. The `hansard_senti_pre_V22` dataset contains 2,977,461 speeches and 406,103,015 words. It can be accessed through [Zenodo](https://zenodo.org/record/832176), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.2, drops one sentiment library ([`sentiwords`](http://sentiwordnet.isti.cnr.it/)), fixes some duplicates, and improves encoding issues in speeches. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
 
 ## Changes in V2.2
 
