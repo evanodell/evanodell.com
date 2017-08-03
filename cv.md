@@ -107,7 +107,7 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> Hansard Speeches and Sentiment V2.1 [Dataset]. <a href="https://zenodo.org/record/780985">https://zenodo.org/record/780985</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.820163">10.5281/zenodo.820163</a> Docs: <a href="https://evanodell.com/projects/datasets/hansard-data">https://evanodell.com/projects/datasets/hansard-data</a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> Hansard Speeches and Sentiment V2.4 [Dataset]. DOI: <a href="https://dx.doi.org/10.5281/zenodo.838020">10.5281/zenodo.838020</a> Docs: <a href="https://evanodell.com/projects/datasets/hansard-data">https://evanodell.com/projects/datasets/hansard-data</a></p></div>
   <div class="cvcleared"></div>
 </div>
 
