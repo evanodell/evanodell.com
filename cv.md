@@ -85,7 +85,7 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> Lonely Schools: The Relationship between Geographic Isolation and Academic Attainment. <em>Educational Research</em>. <a href="http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285">http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285</a> DOI: <a href="https://dx.doi.org/10.1080/00131881.2017.1339285">10.1080/00131881.2017.1339285</a> Accepted Manuscript: <a href="https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf">https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf</a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> Lonely Schools: The Relationship between Geographic Isolation and Academic Attainment. <em>Educational Research</em>. Issue 59, no. 3. <a href="http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285">http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285</a> DOI: <a href="https://dx.doi.org/10.1080/00131881.2017.1339285">10.1080/00131881.2017.1339285</a> Accepted Manuscript: <a href="https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf">https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf</a></p></div>
   <div class="cvcleared"></div>
 </div>
 

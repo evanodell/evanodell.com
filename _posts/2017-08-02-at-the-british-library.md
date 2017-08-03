@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A the British Museum
+title: At the British Museum
 date: 2017-08-02
 comments: true
 img: /img/red_army_poster.jpg
