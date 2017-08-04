@@ -11,7 +11,7 @@ A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r
 
 Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
-The `hansard_senti_post_V24` dataset contains 2,169,348 speeches and 373,323,215 words. The `hansard_senti_pre_V24` dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes more identified duplicate speeches, and updates some MPs' names. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
+The `hansard_senti_post_V24` dataset contains 2,169,348 speeches and 373,323,215 words. The `hansard_senti_pre_V24` dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs' names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
 
 ## Changes in V2.4
 
@@ -35,38 +35,38 @@ The `hansard_senti_post_V24` dataset contains 2,169,348 speeches and 373,323,215
 
 * Correction of several identified spelling mistakes in the Hansard record
  - Double lines in the middle of speeches are corrected to spaces.
- - Changed " orginal " corrected to " original "
- - Changed " playa " corrected to " play a "
- - Changed " adminster " to  " administer ".
- - Changed " alowed " to  " allowed ".
- - Changed " assesment " to  "assessment ".
- - Changed " concensus " to  " consensus ".
- - Changed " damagiang " to  " damaging ".
- - Changed " dfficulty " to  "difficult".
- - Changed " enderly " to  " elderly ".
- - Changed " entited " to  " entitled ".
- - Changed " govenment " to  " government ".
- - Changed " housng " to  " housing ".
- - Changed " improvment " to  " improvement ".
- - Changed " introducting " to  " introducing ".
- - Changed " poli- cies " to  " policies ".
- - Changed " potentional " to  " potential ".
- - Changed " prefessional " to  " professional ".
- - Changed " reduncancy " to  " redundancy ".
- - Changed " rsources " to  " resources ".
- - Changed " Secretrary " to  " Secretary ".
- - Changed " somehing " to  " something ".
- - Changed " stateament " to  " statement ".
- - Changed " unlikey " to  " unlikely ".
- - Changed " unplublicised " to  " unpublicised ".
- - Changed " V. A. T. " to  " VAT ".
-  - Changed " O. A. P. s. " to  " OAPs ".
- - Changed " wil " to  " will ".
- - Changed "·" to  ".".
- - Changed "½" to  ".5".
- - Changed "¼" to  ".25".
- - Changed "¾" to  ".75".
- - Changed " inc rease " to  " increase ".
+ - Changed "orginal" to "original".
+ - Changed "playa" to " play a".
+ - Changed "adminster" to  "administer".
+ - Changed "alowed" to  "allowed".
+ - Changed "assesment " to  "assessment".
+ - Changed "concensus" to  "consensus".
+ - Changed "damagiang" to  "damaging".
+ - Changed "dfficulty " to  "difficult".
+ - Changed "enderly" to  "elderly".
+ - Changed "entited" to  "entitled".
+ - Changed "govenment" to  "government".
+ - Changed "housng" to  "housing".
+ - Changed "improvment" to  "improvement".
+ - Changed "introducting" to  "introducing".
+ - Changed "poli- cies" to  "policies".
+ - Changed "potentional" to  "potential".
+ - Changed "prefessional" to  "professional".
+ - Changed "reduncancy" to  "redundancy".
+ - Changed "rsources" to  "resources".
+ - Changed "Secretrary" to  "Secretary".
+ - Changed "somehing" to  "something".
+ - Changed "stateament" to  "statement".
+ - Changed "unlikey" to  "unlikely".
+ - Changed "unplublicised" to  "unpublicised".
+ - Changed "V. A. T." to  "VAT".
+  - Changed "O. A. P. s." to  "OAPs".
+ - Changed "wil" to  "will".
+ - Changed "·" to ".".
+ - Changed "½" to ".5".
+ - Changed "¼" to ".25".
+ - Changed "¾" to ".75".
+ - Changed "inc rease" to  "increase".
 
 ## Sentiment Classification Methods
 
@@ -221,9 +221,9 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.4 [Dataset]." [http://doi.org/10.5281/zenodo.834390](http:doi.org/10.5281/zenodo.834390).
+Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.4 [Dataset]." [10.5281/zenodo.838020](http:doi.org/10.5281/zenodo.838020).
 
-The DOI of V2.4 is *10.5281/zenodo.834390*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version.
+The DOI of V2.4 is *10.5281/zenodo.838020*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
 
 ## References
 {% bibliography --cited --file hansard-data %}
