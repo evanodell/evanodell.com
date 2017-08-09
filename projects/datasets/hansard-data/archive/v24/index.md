@@ -1,21 +1,72 @@
 ---
 layout: page
-title: Hansard Speeches and Sentiment V2.4.1
+title: Hansard Speeches and Sentiment V2.4
 comments: true
-date: 2017-08-10
+date: 2017-07-18
 ---
 
 ## [Download from Zenodo](http:doi.org/10.5281/zenodo.838020)
 
-A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] House of Commons between the parliament returned from the 1979 general election and the parliamentary summer recess starting on 2017-07-20, with information on the speaking MP, their party, gender, birth date[^2], starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `hansard_senti_post_V241` and the pre-1979 election dataset is labelled `hansard_senti_pre_V241`. Both datasets are encoded as UTF-8.
+A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] House of Commons between the parliament returned from the 1979 general election and the parliamentary summer recess starting on 2017-07-20, with information on the speaking MP, their party, gender, birth date[^2], starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `hansard_senti_post_V24` and the pre-1979 election dataset is labelled `hansard_senti_pre_V24`. Both datasets are encoded as UTF-8.
 
 Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
-The `hansard_senti_post_V241` dataset contains 2,169,348 speeches and 373,323,215 words. The `hansard_senti_pre_V241` dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4.1 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs' names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
+The `hansard_senti_post_V24` dataset contains 2,169,348 speeches and 373,323,215 words. The `hansard_senti_pre_V24` dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs' names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
 
-## Changes in V2.4.1
+## Changes in V2.4
 
-- Henry McLeish was listed as a member of the Conservative party, instead of Labour. This has been corrected.
+* There is now coverage from the 1979 general election until the summer recess starting on 2017-07-20.
+
+* The error correcting script used in V2.2 was producing errors of its own. This has now been fixed.
+
+* Duplicate speeches identified and removed, by only using the latest version of ParlParse scrapes. Previous versions of this dataset used multiple parlparse versions and then removed duplicates based on similarity, but this did not remove all duplicate speeches.
+
+* Changing several MPs names from their legal name to the name they are commonly known by.
+ - "J. Enoch Powell" to "Enoch Powell"
+ - "W. R. Rees-Davies" to "William Rees-Davies"
+ - "J. Dickson Mabon" to "Dickson Mabon"
+ - "J. D. Concannon" to "Don Concannon"
+ - "R. B. Cant" to "Robert Cant"
+ - "R. C. Mitchell" to "Bob Mitchell"
+ - "Thomas Simpson" to "David Simpson"
+ - "Edward Balls" to "Ed Balls"
+
+* Changed the names of Siôn Simon and Siân James to "Sion Simon" and "Sian James" to prevent encoding errors
+
+* Correction of several identified spelling mistakes in the Hansard record
+ - Double lines in the middle of speeches are corrected to spaces.
+ - Changed "orginal" to "original".
+ - Changed "playa" to " play a".
+ - Changed "adminster" to  "administer".
+ - Changed "alowed" to  "allowed".
+ - Changed "assesment " to  "assessment".
+ - Changed "concensus" to  "consensus".
+ - Changed "damagiang" to  "damaging".
+ - Changed "dfficulty " to  "difficult".
+ - Changed "enderly" to  "elderly".
+ - Changed "entited" to  "entitled".
+ - Changed "govenment" to  "government".
+ - Changed "housng" to  "housing".
+ - Changed "improvment" to  "improvement".
+ - Changed "introducting" to  "introducing".
+ - Changed "poli- cies" to  "policies".
+ - Changed "potentional" to  "potential".
+ - Changed "prefessional" to  "professional".
+ - Changed "reduncancy" to  "redundancy".
+ - Changed "rsources" to  "resources".
+ - Changed "Secretrary" to  "Secretary".
+ - Changed "somehing" to  "something".
+ - Changed "stateament" to  "statement".
+ - Changed "unlikey" to  "unlikely".
+ - Changed "unplublicised" to  "unpublicised".
+ - Changed "V. A. T." to  "VAT".
+  - Changed "O. A. P. s." to  "OAPs".
+ - Changed "wil" to  "will".
+ - Changed "·" to ".".
+ - Changed "½" to ".5".
+ - Changed "¼" to ".25".
+ - Changed "¾" to ".75".
+ - Changed "inc rease" to  "increase".
 
 ## Sentiment Classification Methods
 
@@ -33,18 +84,18 @@ The speeches have been classified for sentiment using a total of three libraries
 
 ## Summary Statistics
 
-I have produced [summary statistics of the `hansard_senti_post_V241`](./hansard-summary-stats-V241.xlsx) with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:
-* [MP](./mp-senti-mean-V241.csv)
-* [party](./party-senti-mean-V241.csv)
-* [party group](./party-group-senti-mean-V241.csv)
-* [government or opposition status](./gov-senti-mean-V241.csv)
-* [gender](./gender-senti-mean-V241.csv)
-* [month](./month-senti-mean-V241.csv)
-* [quarter](./quarter-senti-mean-V241.csv)
-* [year](./year-senti-mean-V241.csv)
-* [ministry](./ministry-senti-mean-V241.csv)[^5]
+I have produced [summary statistics of the `hansard_senti_post_V24`](./hansard-summary-stats-V24.xlsx) with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:
+* [MP](./mp-senti-mean-V24.csv)
+* [party](./party-senti-mean-V24.csv)
+* [party group](./party-group-senti-mean-V24.csv)
+* [government or opposition status](./gov-senti-mean-V24.csv)
+* [gender](./gender-senti-mean-V24.csv)
+* [month](./month-senti-mean-V24.csv)
+* [quarter](./quarter-senti-mean-V24.csv)
+* [year](./year-senti-mean-V24.csv)
+* [ministry](./ministry-senti-mean-V24.csv)[^5]
 
-Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V241.xlsx). Each table contains the following variables:
+Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V24.xlsx). Each table contains the following variables:
 
 | Variable | Description |
 |-----------------------|---------------------------------|
@@ -74,9 +125,9 @@ Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V241.xls
 
 ## Dataset Variables
 
-The `hansard_senti_post_V241` and `hansard_senti_pre_V241` datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in `hansard_senti_post_V241`.
+The `hansard_senti_post_V24` and `hansard_senti_pre_V24` datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in `hansard_senti_post_V24`.
 
-### `hansard_senti_post_V241` Dataset Variables
+### `hansard_senti_post_V24` Dataset Variables
 
 | Variable | Description | Data Type |
 |------------------|--------------|------------------|
@@ -116,13 +167,13 @@ The `hansard_senti_post_V241` and `hansard_senti_pre_V241` datasets have slightl
  `house_end_date` | The date the MP left the House of Commons | date |
  `ministry` | Identifier for the government at time of speech | character |
 
-## Notes on the `hansard_senti_pre_V241` Dataset
+## Notes on the `hansard_senti_pre_V24` Dataset
 
 The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable. If you want to contribute to that project please [get in touch](mailto:evanodell91@gmail.com).
 
-MPs' MNIS IDs, names, birthdates, start and end dates as an MP is [available here](names-V241.csv).
+MPs' MNIS IDs, names, birthdates, start and end dates as an MP is [available here](names-V24.csv).
 
-### `hansard_senti_pre_V241` Dataset Variables
+### `hansard_senti_pre_V24` Dataset Variables
 
 | Variable | Description | Data Type |
 |------------------|--------------|------------------|
@@ -156,11 +207,13 @@ The [parlparse](https://github.com/mysociety/parlparse) project provides scraped
 
 ### Licences and Code
 
+The code and matching data used to generate this dataset is available on [Github](https://github.com/EvanOdell/hansard-data).
+
 The data used to create this dataset was taken from the [parlparse](https://github.com/mysociety/parlparse) project operated by [They Work For You](https://www.theyworkforyou.com/) and supported by [mySociety](https://www.mysociety.org/).
 
 The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"/></a>
 
-The code included in the GitHub repository used to create this dataset is licensed under an [MIT license](https://github.com/EvanOdell/hansard-speeches-and-sentiment/blob/master/LICENSE). The code used to generate this dataset is available on [Github](https://github.com/EvanOdell/hansard-data).
+The code included in the GitHub repository used to create this dataset is licensed under an [MIT license](https://github.com/EvanOdell/hansard-speeches-and-sentiment/blob/master/LICENSE).
 
 Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the dataset. The integrity of the public Hansard record is questionable at times, and while I have improved it, the data is presented 'as is'.
 
@@ -168,9 +221,9 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.4.1 [Dataset]." [110.5281/zenodo.841009](http:doi.org/10.5281/zenodo.841009).
+Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.4 [Dataset]." [10.5281/zenodo.838020](http:doi.org/10.5281/zenodo.838020).
 
-The DOI of V2.4.1 is *10.5281/zenodo.838020*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
+The DOI of V2.4 is *10.5281/zenodo.838020*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
 
 ## References
 {% bibliography --cited --file hansard-data %}
