@@ -85,7 +85,7 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> Lonely Schools: The Relationship between Geographic Isolation and Academic Attainment. <em>Educational Research</em>. Issue 59, no. 3. <a href="https://dx.doi.org/10.1080/00131881.2017.1339285">10.1080/00131881.2017.1339285</a> Accepted Manuscript: <a href="https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf">https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf</a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> Lonely Schools: The Relationship between Geographic Isolation and Academic Attainment. <em>Educational Research</em>. Issue 59, no. 3. <a href="http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285">http://www.tandfonline.com/doi/full/10.1080/00131881.2017.1339285</a> DOI: <a href="https://dx.doi.org/10.1080/00131881.2017.1339285">10.1080/00131881.2017.1339285</a> Accepted Manuscript: <a href="https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf">https://evanodell.com/files/Lonely-Schools-Odell-2017-AM.pdf</a></p></div>
   <div class="cvcleared"></div>
 </div>
 
@@ -107,7 +107,7 @@ image: /img/EvanOdell.jpg
 
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> Hansard Speeches and Sentiment V2.4 [Dataset]. DOI: <a href="https://dx.doi.org/10.5281/zenodo.838020">10.5281/zenodo.838020</a> Docs: <a href="https://evanodell.com/projects/datasets/hansard-data">https://evanodell.com/projects/datasets/hansard-data</a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> Hansard Speeches and Sentiment V2.1 [Dataset]. <a href="https://zenodo.org/record/780985">https://zenodo.org/record/780985</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.820163">10.5281/zenodo.820163</a> Docs: <a href="https://evanodell.com/projects/datasets/hansard-data">https://evanodell.com/projects/datasets/hansard-data</a></p></div>
   <div class="cvcleared"></div>
 </div>
 
@@ -135,3 +135,12 @@ image: /img/EvanOdell.jpg
     <div class="cvcontent"><p>Panel appearance with Chris Holmes, Huma Munshi and Natasha Hirst, moderated by Debbie Foster. 2016. <em>The Role of Worker Representatives and Disability Advocacy Organisations in Supporting Disabled Employees into the Labour Market and in Employment and Improving Workplace Well-Being.</em> Closing Disability Gaps at Work. London.</p></div>
   <div class="cvcleared"></div>
 </div>
+
+<!--
+## ONGOING PROJECTS
+
+### Disability and Vulnerability
+
+### Young Peoples Attitudes to Disability
+
+-->
