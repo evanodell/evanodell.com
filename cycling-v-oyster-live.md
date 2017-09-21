@@ -8,4 +8,4 @@ In a [blog post](/blog/2017/02/06/cycling-vs-oyster/) in February I analysed how
 
 You can see in the second time series plot that since writing the blog post in February my Oyster spending has dropped off somewhat. Since analysing how much I was cycling, and how much I was spending on transit, I've become much more dedicated to riding places, no longer taking the bus or the tube if I'm feeling a little bit lazy.
 
-<iframe src="https://shiny.evanodell.com/cycling-v-oyster/" style="border: none; width: 100%; height: 1110px;"></iframe>
+<iframe src="https://shiny.evanodell.com/cycling-v-oyster/" style="border: none; width: 100%; height: 1510px;"></iframe>
