@@ -1,0 +1,22 @@
+makeIcon(""AnythingFastTrack.png", 18, 18),
+makeIcon(""AnythingLarge.png", 18, 18),
+makeIcon(""AnythingPilot.png", 18, 18),
+makeIcon(""AnythingSmall.png", 18, 18),
+makeIcon(""CivicFastTrack.png", 18, 18),
+makeIcon(""CivicLarge.png", 18, 18),
+makeIcon(""CivicPilot.png", 18, 18),
+makeIcon(""CivicSmall.png", 18, 18),
+makeIcon(""CommunityFastTrack.png", 18, 18),
+makeIcon(""CommunityLarge.png", 18, 18),
+makeIcon(""CommunityPilot.png", 18, 18),
+makeIcon(""CommunitySmall.png", 18, 18),
+makeIcon(""EconomyFastTrack.png", 18, 18),
+makeIcon(""EconomyLarge.png", 18, 18),
+makeIcon(""EconomyPilot.png", 18, 18),
+makeIcon(""EconomySmall.png", 18, 18)
+filenames.txt
+
+
+"AnythingFastTrack","AnythingLarge","AnythingPilot","AnythingSmall","CivicFastTrack",
+"CivicLarge","CivicPilot","CivicSmall","CommunityFastTrack","CommunityLarge",
+"CommunityPilot","CommunitySmall","EconomyFastTrack","EconomyLarge","EconomyPilot","EconomySmall"
