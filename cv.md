@@ -50,7 +50,7 @@ image: /img/EvanOdell.jpg
     <div class="jobcleared"></div>
 </div>
 
-### Oxford Students’ Disability Community (OSDC)
+### Oxford Students' Disability Community (OSDC)
 
 <div class="jobwrapper">
 <div class="jobsidebar">November 2014 - September 2015</div>
@@ -78,6 +78,10 @@ image: /img/EvanOdell.jpg
 
 * Exceptional communication talents in writing and public speaking, creating presentations and reports that are precise, meticulous and easily understandable, even under time constraints.
 * Extensive experience and proficiency with the full Microsoft Office suite, project management software, Salesforce, web content management systems and LaTeX.
+
+## PROFESSIONAL MEMBERSHIPS
+
+* Fellow of the Royal Statistical Society (RSS)
 
 ## PUBLICATIONS
 
@@ -127,6 +131,9 @@ image: /img/EvanOdell.jpg
 <div class="cvwrapper">
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Guest Lecturer on the <em>Interdisciplinary Studies in Global Health and Disability</em> programme. Bader International Study Centre, Queen's University (Canada). London.</p></div>
+  <div class="cvcleared"></div>
+  <div class="cvsidebar">2017</div>
+    <div class="cvcontent"><p>Panel appearance. <em>What is the EU and should we be against it?</em> University of Chicago. Chicago.</p></div>
   <div class="cvcleared"></div>
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Joanne Cooke and Graeme Atherton, moderated by Lisa Cameron. 2017. <em>Priorities for Increasing Disabled Student Participation in Higher Education.</em> Westminster Higher Education Forum Keynote Seminar: Disabled students at university - facilities, support services and the impact of funding changes. London.</p></div>
