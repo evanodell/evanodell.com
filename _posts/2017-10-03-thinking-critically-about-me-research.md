@@ -27,4 +27,7 @@ The greatest contribution to science made by {% cite crawley2017 -A %} is how th
 
 [^1]: For example see the posts ["TRIAL BY ERROR: The Troubling Case of the PACE Chronic Fatigue Syndrome Study"](http://www.virology.ws/2015/10/21/trial-by-error-i/), ["Trial By Error, Continued: My Libelous Blogging on Virology Blog"](http://www.virology.ws/2017/05/03/trial-by-error-continued-my-libelous-blogging-on-virology-blog/), ["Trial By Error: MEGA’s Latest Failure"](http://www.virology.ws/2017/09/18/trial-by-error-megas-latest-failure/) and other related posts by David Tuller on the [Virology blog](http://www.virology.ws).
 
+
+
+
 [^2]: Not to mention that there is no evidence that ME is exclusively or even predominantly a psychological illness.
