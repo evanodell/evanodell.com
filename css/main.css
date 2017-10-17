@@ -200,6 +200,7 @@ img {
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   max-height: 40px;
+  top: 0px;
 }
 
 .navbar-custom .nav li a {
