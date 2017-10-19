@@ -1014,7 +1014,9 @@ td.gutter {
 .chart {
   display: block;
   margin: auto;
-  width: 80%;
+  max-width: 780px;
+  width: 90%;
+
 }
 
 

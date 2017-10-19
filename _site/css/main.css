@@ -200,6 +200,7 @@ img {
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   max-height: 40px;
+  top: 0px;
 }
 
 .navbar-custom .nav li a {
@@ -458,7 +459,7 @@ footer {
   #main-wrapper {
       min-height: 100%;
       position: relative;
-      padding-top: 40px;
+      padding-top: 20px;
       padding-left: 0px;
       padding-right: 0px;
   }
@@ -1013,7 +1014,9 @@ td.gutter {
 .chart {
   display: block;
   margin: auto;
-  width: 80%;
+  max-width: 780px;
+  width: 90%;
+
 }
 
 
