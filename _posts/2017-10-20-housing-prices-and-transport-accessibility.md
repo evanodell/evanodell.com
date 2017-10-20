@@ -48,7 +48,9 @@ I have not accounted for the size of houses in different areas, or the quality o
 
 After first writing this blog I got curious about how consistent over time the trend of higher transport accessibility equalling higher prices is. The chart below shows housing prices by PTAL from 1995--2017, and you can clearly see that now there is a much higher link between high accessibility and high prices. Of course, the transport network in London is very different now than it was in 1995, and so a place that is currently rated as having excellent transport links could have had very poor and infrequent services in the 1990s (as I've only used the most recently available PTAL data).
 
-It is also clearer in this graph that in almost every year the lowest prices (from which we can infer the least desirable place to live) is not the least accessible part of the city, but rather grades 1b and 2. Be sure to click through to the full image.
+It is also clearer in this graph that in almost every year the lowest prices (from which we can infer the least desirable place to live) is not the least accessible part of the city, but rather grades 1b and 2.
+
+Be sure to click through to the full image. I've also divided between freehold purchases (circles) and leaseholds (triangles). I haven't divided by housing type (yet).
 
 <div class= "chart">
   <a href="/img/ptal/p6-ptal-EO.png">
