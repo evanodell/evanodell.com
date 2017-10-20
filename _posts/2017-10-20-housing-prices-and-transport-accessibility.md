@@ -5,7 +5,7 @@ date: 2017-10-20
 comments: true
 bigimg: /img/ptal/p4-ptal-EO-small.png
 redirect_from:
-    - https://evanodell.com/blog/2017/10/19/housing-prices-and-transport-accessibility/
+    - /blog/2017/10/19/housing-prices-and-transport-accessibility/
 ---
 
 Transport for London has produced this brilliant [dataset on Public Transport Accessibility Levels](https://data.london.gov.uk/dataset/public-transport-accessibility-levels) (PTAL). It uses the walking time to transport services, the frequency of those transport services, the number of different servicse available, etc, to produce a score and a banding level for every part of London, including for every [Lower Layer Super Output Area](https://files.datapress.com/london/dataset/public-transport-accessibility-levels/2017-01-26T18:50:00/LSOA2011%20AvPTAI2015.xlsx) (LSOA) in London.
