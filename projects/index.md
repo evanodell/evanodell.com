@@ -8,7 +8,8 @@ body: Roboto
 
 
 <article class="front-post-preview">
-[London Housing Bang for your Buck](/projects/housing-bang-buck/)
+
+  <h3><a href="/projects/housing-bang-buck/">London Housing Bang for your Buck</a></h3>
 
   <div class="post-meta">
     06 November 2017
@@ -21,7 +22,7 @@ body: Roboto
       </a>
       </div>
     <div class="post-entry">
-    An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more!
+An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this <a href="/blog/2017/10/20/housing-prices-and-transport-accessibility/">blog post</a>, and prompted by a request from my former colleague <a href="https://www.linkedin.com/in/markbutcher91">Mark Butcher</a>.
     </div>
   </div>
  </article>
@@ -37,7 +38,7 @@ body: Roboto
 
 
 <article class="front-post-preview">
-### [Cycling vs Public Transit App](/projects/cycling-vs-oyster/)
+  <h3><a href="/projects/cycling-vs-oyster/">Cycling vs Public Transit App</a></h3>
 <div class="post-heading">
 <div class="post-meta">28 April 2017</div>
 </div>
@@ -45,14 +46,14 @@ body: Roboto
   <div class="post-entry-container">
       <div class="post-entry">
 
-Live (as in updated every few days) data on the cost of my bike and a pay-as-you-go Oyster card, vs a hypothetical monthly Oyster card. Inspired by this [blog post](/blog/2017/02/06/cycling-vs-oyster/).
+Live (as in updated every few days) data on the cost of my bike and a pay-as-you-go Oyster card, vs a hypothetical monthly Oyster card. Inspired by this <a href="/blog/2017/02/06/cycling-vs-oyster/">blog post</a>.
 
 </div>
 </div>
 </article>
 
 <article class="front-post-preview">
-### [When Politicians Discuss Disability]({{ site.url }}/blog/2017/03/24/when-politicians-discuss-disability/)
+  <h3><a href="{{ site.url }}/blog/2017/03/24/when-politicians-discuss-disability/">When Politicians Discuss Disability</a></h3>
 <div class="post-heading">
 <div class="post-meta">24 March 2017</div>
 </div>
@@ -60,7 +61,7 @@ Live (as in updated every few days) data on the cost of my bike and a pay-as-you
   <div class="post-entry-container">
       <div class="post-entry">
 
-An interactive blog post, originally written for [Disability Rights UK's blog](https://disabilityrightsuk.blogspot.co.uk/2017/03/how-do-politicians-discuss-disability.html), tracking the frequency that words and phrases related to disability issues are discussed in the UK parliament from 1936-2016.
+An interactive blog post, originally written for <a href="https://disabilityrightsuk.blogspot.co.uk/2017/03/how-do-politicians-discuss-disability.html">Disability Rights UK's blog</a>, tracking the frequency that words and phrases related to disability issues are discussed in the UK parliament from 1936-2016.
 </div>
 </div>
 </article>
@@ -77,15 +78,15 @@ An interactive blog post, originally written for [Disability Rights UK's blog](h
   <div class="post-entry-container">
       <div class="post-entry">
 
-An interactive map of all charities in the England and Wales charity commission that list both disabled people and amateur sport as areas of focus in their filings with the Charity Commission. This map was created to support the [Get Yourself Active](http://www.getyourselfactive.org/) programme at [Disability Rights UK](https://www.disabilityrightsuk.org/). Last updated March 2017.
+An interactive map of all charities in the England and Wales charity commission that list both disabled people and amateur sport as areas of focus in their filings with the Charity Commission. This map was created to support the <a href="http://www.getyourselfactive.org/">Get Yourself Active</a> programme at <a href="https://www.disabilityrightsuk.org/">Disability Rights UK</a>. Last updated March 2017.
+
 </div>
 </div>
 </article>
 
 
 <article class="front-post-preview">
-### [England Turnout](https://shiny.evanodell.com/england-turnout/)
-
+  <h3><a href="https://shiny.evanodell.com/england-turnout/"  target="\_blank">England Turnout</a></h3>
 <div class="post-heading">
 <div class="post-meta">25 October 2016</div>
 </div>
@@ -93,7 +94,7 @@ An interactive map of all charities in the England and Wales charity commission 
   <div class="post-entry-container">
       <div class="post-entry">
 
-A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout.
+A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout. The first proper Shiny app I made.
 </div>
 </div>
 </article>
