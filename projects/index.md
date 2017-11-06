@@ -8,9 +8,7 @@ body: Roboto
 
 
 <article class="front-post-preview">
-  <a href="{{ post.url | prepend: site.baseurl }}">
-  <h3>London Housing Bang for your Buck</h3>
-  </a>
+[London Housing Bang for your Buck](/projects/housing-bang-buck/)
 
   <div class="post-meta">
     06 November 2017
@@ -24,7 +22,6 @@ body: Roboto
       </div>
     <div class="post-entry">
     An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more!
-        <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
     </div>
   </div>
  </article>
@@ -39,36 +36,68 @@ body: Roboto
 -->
 
 
-
+<article class="front-post-preview">
 ### [Cycling vs Public Transit App](/projects/cycling-vs-oyster/)
 <div class="post-heading">
 <div class="post-meta">28 April 2017</div>
 </div>
 
+  <div class="post-entry-container">
+      <div class="post-entry">
+
 Live (as in updated every few days) data on the cost of my bike and a pay-as-you-go Oyster card, vs a hypothetical monthly Oyster card. Inspired by this [blog post](/blog/2017/02/06/cycling-vs-oyster/).
 
+</div>
+</div>
+</article>
+
+<article class="front-post-preview">
 ### [When Politicians Discuss Disability]({{ site.url }}/blog/2017/03/24/when-politicians-discuss-disability/)
 <div class="post-heading">
 <div class="post-meta">24 March 2017</div>
 </div>
 
-An interactive blog post, originally written for [Disability Rights UK's blog](https://disabilityrightsuk.blogspot.co.uk/2017/03/how-do-politicians-discuss-disability.html), tracking the frequency that words and phrases related to disability issues are discussed in the UK parliament from 1936-2016.
+  <div class="post-entry-container">
+      <div class="post-entry">
 
+An interactive blog post, originally written for [Disability Rights UK's blog](https://disabilityrightsuk.blogspot.co.uk/2017/03/how-do-politicians-discuss-disability.html), tracking the frequency that words and phrases related to disability issues are discussed in the UK parliament from 1936-2016.
+</div>
+</div>
+</article>
+
+
+
+<article class="front-post-preview">
 <h3><a href="https://disabilityrightsuk.shinyapps.io/dis-sport/" target="\_blank">Map of Disability Sport Providers</a></h3>
 
 <div class="post-heading">
 <div class="post-meta">10 November 2016</div>
 </div>
 
-An interactive map of all charities in the England and Wales charity commission that list both disabled people and amateur sport as areas of focus in their filings with the Charity Commission. This map was created to support the [Get Yourself Active](http://www.getyourselfactive.org/) programme at [Disability Rights UK](https://www.disabilityrightsuk.org/). Last updated March 2017.
+  <div class="post-entry-container">
+      <div class="post-entry">
 
+An interactive map of all charities in the England and Wales charity commission that list both disabled people and amateur sport as areas of focus in their filings with the Charity Commission. This map was created to support the [Get Yourself Active](http://www.getyourselfactive.org/) programme at [Disability Rights UK](https://www.disabilityrightsuk.org/). Last updated March 2017.
+</div>
+</div>
+</article>
+
+
+<article class="front-post-preview">
 ### [England Turnout](https://shiny.evanodell.com/england-turnout/)
 
 <div class="post-heading">
 <div class="post-meta">25 October 2016</div>
 </div>
 
+  <div class="post-entry-container">
+      <div class="post-entry">
+
 A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout.
+</div>
+</div>
+</article>
+
 
 ## R Packages
 
