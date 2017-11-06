@@ -6,71 +6,37 @@ body: Roboto
 
 ## Shiny Applications
 
-<!--
+
 <article class="front-post-preview">
   <a href="{{ post.url | prepend: site.baseurl }}">
-  <h2 class="post-title">{{ post.title }}</h2>
-
-  {% if post.subtitle %}
-  <h3 class="post-subtitle">
-    {{ post.subtitle }}
-  </h3>
-  {% endif %}
+  <h3 class="post-title">London Housing Bang for your Buck</h3>
   </a>
 
-  <p class="post-meta">
-    Posted on {{ post.date | date: "%B %-d, %Y" }}
-  </p>
+  <div class="post-meta">
+    06 November 2017
+  </div>
 
   <div class="post-entry-container">
-    {% if post.bigimg %}
-    <div class="post-image">
-      <a href="{{ post.url | prepend: site.baseurl }}">
-        <img src="{{ post.bigimg }}">
-      </a>
-    </div>
-    {% endif %}
-    <div class="post-entry">
-      {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
-      {% assign excerpt_word_count = post.excerpt | number_of_words %}
-      {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
-        <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
-      {% endif %}
-    </div>
-  </div>
-
-  {% if post.tags.size > 0 %}
-  <div class="blog-tags">
-    Tags:
-    {% if site.link-tags %}
-    {% for tag in post.tags %}
-    <a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
-    {% endfor %}
-    {% else %}
-      {{ post.tags | join: ", " }}
-    {% endif %}
-  </div>
-  {% endif %}
-
- </article> -->
-
-<div class="post-entry-container">
     <div class="post-image">
       <a href="/projects/housing-bang-buck/">
         <img src="img/ptal/bang-buck-image.png">
       </a>
       </div>
+    <div class="post-entry">
+    An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this [blog post](/blog/2017/10/20/housing-prices-and-transport-accessibility/), and prompted by a request from my former colleague [Mark Butcher](https://www.linkedin.com/in/markbutcher91).
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
+    </div>
+  </div>
+ </article>
 
-<div class="post-entry">
+<!--
 ### [London Housing Bang for your Buck](/projects/housing-bang-buck/)
     <div class="post-heading">
     <div class="post-meta">06 November 2017</div>
 </div>
     An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this [blog post](/blog/2017/10/20/housing-prices-and-transport-accessibility/), and prompted by a request from my former colleague [Mark Butcher](https://www.linkedin.com/in/markbutcher91).
-    </div>
-</div>
 
-
+-->
 
 
 
