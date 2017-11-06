@@ -9,7 +9,7 @@ body: Roboto
 
 <article class="front-post-preview">
   <a href="{{ post.url | prepend: site.baseurl }}">
-  <h3 class="post-title">London Housing Bang for your Buck</h3>
+  <h3>London Housing Bang for your Buck</h3>
   </a>
 
   <div class="post-meta">
