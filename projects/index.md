@@ -6,6 +6,14 @@ body: Roboto
 
 ## Shiny Applications
 
+### [London Housing Bang for your Buck](/projects/housing-bang-buck/)
+<div class="post-heading">
+<div class="post-meta">06 November 2017</div>
+</div>
+
+An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this [blog post](/blog/2017/10/20/housing-prices-and-transport-accessibility/), and prompted by a request from my former colleague [Mark Butcher](https://www.linkedin.com/in/markbutcher91).
+
+
 ### [Cycling vs Public Transit App](/projects/cycling-vs-oyster/)
 <div class="post-heading">
 <div class="post-meta">28 April 2017</div>
@@ -67,6 +75,14 @@ An R package for downloading data from the Members' Names Information Service AP
 [![DOI](https://zenodo.org/badge/86801920.svg)](https://zenodo.org/badge/latestdoi/86801920)
 
 A collection of tools, datasets and maps for analysing UK politics, including a hexagonal cartogram of Westminster constituencies. Available on [CRAN](https://cran.r-project.org/package=parlitools) and [GitHub](https://github.com/EvanOdell/parlitools).
+
+### [`emisc`](https://docs.evanodell.com/emisc)
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/emisc/blob/master/LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/evanodell/emisc.svg)](https://github.com/evanodell/emisc)
+[![DOI](https://zenodo.org/badge/96876145.svg)](https://zenodo.org/badge/latestdoi/96876145)
+
+`emisc` is a collection of miscellaneous functions I wrote that may or may not be useful, and that may or may not duplicate existing work. They include clearing byte order marks out of text data and writing R data to LaTeX line by line, rather than as a table. Currently only available on [GitHub](https://github.com/evanodell/emisc)
 
 
 ## Datasets
