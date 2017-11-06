@@ -19,7 +19,7 @@ body: Roboto
   <div class="post-entry-container">
     <div class="post-image">
       <a href="/projects/housing-bang-buck/">
-        <img src="img/ptal/bang-buck-image.png">
+        <img src="/img/ptal/bang-buck-image.png">
       </a>
       </div>
     <div class="post-entry">
