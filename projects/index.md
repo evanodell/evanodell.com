@@ -6,12 +6,23 @@ body: Roboto
 
 ## Shiny Applications
 
+
+<div class="post-entry-container">
+    <div class="post-image">
+      <a href="/projects/housing-bang-buck/">
+        <img src="img/ptal/bang-buck-image.png">
+      </a>
+
+<div class="post-entry">
 ### [London Housing Bang for your Buck](/projects/housing-bang-buck/)
-<div class="post-heading">
-<div class="post-meta">06 November 2017</div>
+    <div class="post-heading">
+    <div class="post-meta">06 November 2017</div>
+</div>
+    An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this [blog post](/blog/2017/10/20/housing-prices-and-transport-accessibility/), and prompted by a request from my former colleague [Mark Butcher](https://www.linkedin.com/in/markbutcher91).
+    </div>
 </div>
 
-An interactive map of the relative value-for-money of housing in London, based on the estimated cost-per-room in each property sold in the past five years and the level of public transport accessibility. Allows for subdividing by housing type, travel zone, transport accessibility level, local authority, and more! Builds on this [blog post](/blog/2017/10/20/housing-prices-and-transport-accessibility/), and prompted by a request from my former colleague [Mark Butcher](https://www.linkedin.com/in/markbutcher91).
+
 
 
 ### [Cycling vs Public Transit App](/projects/cycling-vs-oyster/)
