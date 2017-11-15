@@ -209,6 +209,7 @@ gems:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll/scholar
+  - jekyll-twitter-plugin
 
 whitelist:
   - jekyll-redirect-from
