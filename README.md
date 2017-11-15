@@ -1,7 +1,7 @@
-# evanodell.github.io
-Fork for github pages blog, available at evanodell.github.io
+# evanodell.com
+Fork for github pages blog, available at evanodell.com
 
-The theme is a modified version of Dean Attali's [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll), which is  under an MIT license, available [here](https://github.com/EvanOdell/evanodell.github.io/blob/master/theme/LICENSE).
+The theme is a modified version of Dean Attali's [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll), which is  under an MIT license, available [here](https://github.com/EvanOdell/evanodell.com/blob/master/LICENSE).
 
 My modifications include, but are not limited to:
  * Adding automatic Creative Commons licensing to blog posts.
