@@ -41,6 +41,7 @@ GEM
       jekyll (~> 3.3)
     jekyll-sitemap (0.12.0)
       jekyll (~> 3.3)
+    jekyll-twitter-plugin (2.0.0)
     jekyll-watch (1.5.0)
       listen (~> 3.0, < 3.1)
     kramdown (1.11.1)
@@ -71,6 +72,7 @@ DEPENDENCIES
   jekyll-scholar
   jekyll-seo-tag
   jekyll-sitemap
+  jekyll-twitter-plugin
 
 BUNDLED WITH
    1.16.0
