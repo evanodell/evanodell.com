@@ -3,7 +3,7 @@ layout: post
 title: Disabled people and voting trends
 date: 2017-11-15
 comments: true
-img: /img/disabled-people-eu-ref/p-eu-vote-disab.png
+bigimg: /img/disabled-people-eu-ref/p-vote-disab-2017.png
 ---
 
 I've been playing around with panel data from [the British Election Study](http://www.britishelectionstudy.com/data-object/british-election-study-combined-wave-1-13-internet-panel/) {% cite fieldhouse2017 %}, looking at how disabled people voted in the 2016 EU referendum and the 2017 General Election. I've previously posted the graphs on [Twitter](https://twitter.com/evanodell/status/928748930472513538), but these ones look a bit nicer, and I've included more independent variables in the regression table of disabled votes in the 2017 General Election.
