@@ -6,8 +6,6 @@ comments: true
 bigimg: /img/productivity/prod_trend.png
 ---
 
-_This blog was originally posted on
-
 Yesterday afternoon (December 6th, 2017), Finance Minister Philip Hammond sparked alarm and condemnation for suggesting that the UK's stubbornly low productivity rate was due to the [high employment rate and larger numbers of disabled workers](https://www.theguardian.com/politics/2017/dec/07/philip-hammond-causes-storm-with-remarks-about-disabled-workers). His exact quote was:
 
 > It is almost certainly the case that by increasing participation in the workforce, including far higher levels of participation by marginal groups and very high levels of engagement in the workforce, for example of disabled people – something we should be extremely proud of – may have had an impact on overall productivity measurements.
