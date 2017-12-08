@@ -49,4 +49,4 @@ What this all suggests is that Philip Hammond is incorrect that the cause of Bri
 
 As always, code and data is available on [GitHub](https://github.com/evanodell/productivity-trap), under an [MIT License](https://github.com/evanodell/productivity-trap/blob/master/LICENSE).
 
-*[This blog was originally written for and published by Disability Rights UK]( https://disabilityrightsuk.blogspot.com/2017/09/a-review-of-opportunity-for-all-essay.html)*
+*[This blog was originally written for and published by Disability Rights UK](https://disabilityrightsuk.blogspot.co.uk/2017/12/britains-low-productivity-rates-are-not.html)*
