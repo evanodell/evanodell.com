@@ -38,7 +38,7 @@ image: /img/EvanOdell.jpg
 
 <div class="jobwrapper">
 <div class="jobsidebar">June 2016 - Present</div>
-  <div class="jobcontent"><em>DRILL Research Programme Officer</em></div>
+  <div class="jobcontent"><em>Researcher</em></div>
     <div class="jobcleared"></div>
 </div>
 
