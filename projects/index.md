@@ -86,15 +86,14 @@ An interactive map of all charities in the England and Wales charity commission 
 
 
 <article class="front-post-preview">
-  <h3><a href="https://shiny.evanodell.com/england-turnout/"  target="\_blank">England Turnout</a></h3>
+  <h3><a href="https://github.com/evanodell/England-TurnOut"  target="\_blank">England Turnout</a></h3>
 <div class="post-heading">
 <div class="post-meta">25 October 2016</div>
 </div>
-
   <div class="post-entry-container">
       <div class="post-entry">
 
-A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout. The first proper Shiny app I made.
+A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout. The first proper Shiny app I made. To see this app, open R and run `shiny::runUrl("https://github.com/evanodell/England-TurnOut/archive/master.zip")`
 </div>
 </div>
 </article>
@@ -150,8 +149,11 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 Two datasets of speeches in the Hansard, along with summary information on speech sentiments. The `hansard_senti_post_V21` dataset contains 2,234,059 speeches and 404,581,972 words. The `hansard_senti_pre_V21` dataset contains 2,977,461 speeches and 413,044,716 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA licence. The latest version, V2.1, includes includes an additional sentiment library, resulting in six different libraries, all using the same methods of calculation. Several duplicate speeches were also identified and removed. It also includes all speeches up to the dissolution of parliament for the 2017 General Election. [Click here]({{ site.url }}/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
 
+<!--
+
 ### [Charity Commission Data of All Registered Charities in England]({{ site.url }}/projects/datasets/charity-data)
 
 <span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
 
 A dataset of information on all registered charities in the England, taken from the Charity Commission monthly release and translated into a more accessible format. [Click here]({{ site.url }}/projects/datasets/charity-data) for more details and to download individual files, or [download the most recent complete release](https://shiny.evanodell.com/charity-data/charity-register-2017-07.zip).
+-->

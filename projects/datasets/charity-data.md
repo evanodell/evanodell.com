@@ -2,6 +2,7 @@
 layout: page
 title: Charity Comission Data
 use-site-title: true
+redirect_to: https://evanodell.com/projects/#datasets
 ---
 
 Every month or so the Charity Commission publishes a [database](http://data.charitycommission.gov.uk/) with information on every registered charity in England. However, it is released as a series of BCP files, which are helpful if you're using a Microsoft database, but require some work if you're trying to access this information using other programs, such as Postgres or MYSQL. The NCVO [published a guide to converting this data into CSV files](https://data.ncvo.org.uk/a/almanac16/how-to-create-a-database-for-charity-commission-data/), but their conversion method leaves a bit to be desired, as it does not find and correct all escape characters in the BCP files, which can cause problems for some databases, including Postgres. So I've decided to distribute the CSV files myself, and I'll be keeping this page as up to date as possible, given the occasionally erratic release schedule and my own sometimes limited time.
