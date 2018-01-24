@@ -140,6 +140,15 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 `emisc` is a collection of miscellaneous functions I wrote that may or may not be useful, and that may or may not duplicate existing work. They include clearing byte order marks out of text data and writing R data to LaTeX line by line, rather than as a table. Currently only available on [GitHub](https://github.com/evanodell/emisc)
 
 
+### [`nomisr`](https://docs.evanodell.com/nomisr)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![GitHub tag](https://img.shields.io/github/tag/evanodell/nomisr.svg)](https://github.com/evanodell/nomisr)
+[![DOI](https://zenodo.org/badge/118144805.svg)](https://zenodo.org/badge/latestdoi/118144805)
+
+`nomisr` is for accessing [Nomis](https://www.nomisweb.co.uk/) data -- UK labour market statistics, census data and other populatlion data -- with R.
+
+
 ## Datasets
 
 ### [Hansard Speeches and Sentiment]({{ site.url }}/projects/datasets/hansard-data)
