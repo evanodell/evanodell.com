@@ -146,7 +146,7 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/nomisr.svg)](https://github.com/evanodell/nomisr)
 [![DOI](https://zenodo.org/badge/118144805.svg)](https://zenodo.org/badge/latestdoi/118144805)
 
-`nomisr` is for accessing [Nomis](https://www.nomisweb.co.uk/) data -- UK labour market statistics, census data and other populatlion data -- with R.
+`nomisr` is for accessing [Nomis](https://www.nomisweb.co.uk/) data -- UK labour market statistics, census data and other populatlion data -- with R. Currently only available on [GitHub](https://github.com/evanodell/nomisr)
 
 
 ## Datasets
