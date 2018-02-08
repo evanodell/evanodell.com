@@ -2,7 +2,6 @@
 ## TO RUN: `bundle exec jekyll serve`
 # --- General options --- #
 
-baseurl: "https://evanodell.com/"
 title: Evan Odell
 description: Various Things
 
