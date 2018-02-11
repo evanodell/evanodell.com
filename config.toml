@@ -1,0 +1,79 @@
+baseurl = "/"
+#DefaultContentLanguage = "en"
+title = "Evan Odell"
+theme = "beautifulhugo"
+metaDataFormat = "yaml"
+disqusShortname = "evanodell"
+google_analytics = "UA-90706059-1"
+
+[Params]
+  subtitle = "Research | Data Analysis | Campaigning"
+  logo = "img/EvanOdell.jpg"
+  favicon = "img/favicon.ico"
+  dateFormat = "2006-01-01"
+  commit = false
+  rss = false
+  comments = true
+  readingTime = false
+#  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
+
+[permalinks]
+    blog = "/blog/:year/:month/:day/:title/"
+    projects = "/:slug/"
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+#[[Params.bigimg]]
+#  src = "img/sphere.jpg"
+#  desc = "Sphere"
+#  # position: see values of CSS background-position.
+#  position = "center top"
+#[[Params.bigimg]]
+#  src = "img/hexagon.jpg"
+#  desc = "Hexagon"
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "\\.bib$"]
+footnotereturnlinkcontents = "<sup>^</sup>"
+
+fractions = false
+
+[author]
+  name = "Evan Odell"
+  website = "evanodell.com"
+  email = "evanodell91@gmail.com"
+  github = "evanodell"
+  #gitlab = "username"
+  twitter = "evanodell"
+  linkedin = "evanodell"
+
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 2
+    
+    
+[[menu.main]]
+    name = "CV"
+    url = "/cv"
+    weight = 3
+    
+    
+[[menu.main]]
+    name = "Projects"
+    url = "/projects"
+    weight = 4
+
+[[menu.main]]
+    name = "Blog"
+    url = "/blog"
+    weight = 5
+
+
+

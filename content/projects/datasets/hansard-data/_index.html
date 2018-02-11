@@ -1,0 +1,541 @@
+---
+title: Hansard Speeches and Sentiment V2.4.1
+bibliography: [references.bib]
+link-citations: true
+---
+
+
+
+<div id="download-from-zenodo" class="section level2">
+<h2><a href="http:doi.org/10.5281/zenodo.838020">Download from Zenodo</a></h2>
+<p>A public dataset of speeches in the Hansard, stored as a <a href="https://cran.r-project.org/package=tibble">tibble</a> class in RDS files, for the <a href="https://cran.r-project.org/">R programming language</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> House of Commons between the parliament returned from the 1979 general election and the parliamentary summer recess starting on 2017-07-20, with information on the speaking MP, their party, gender, birth date,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled <code>hansard_senti_post_V241</code> and the pre-1979 election dataset is labelled <code>hansard_senti_pre_V241</code>. Both datasets are encoded as UTF-8.</p>
+<p>Documentation for previous versions of the <em>Hansard Speeches and Sentiment</em> dataset can be found <a href="https://evanodell.com/projects/datasets/hansard-data/archive/">here</a></p>
+<p>The <code>hansard_senti_post_V241</code> dataset contains 2,169,348 speeches and 373,323,215 words. The <code>hansard_senti_pre_V241</code> dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through <a href="https://zenodo.org/record/579712">Zenodo</a>, and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4.1 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs’ names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, <a href="/datasets/hansard-data/#sentiment-classification-methods">see below</a>.</p>
+</div>
+<div id="changes-in-v2.4.1" class="section level2">
+<h2>Changes in V2.4.1</h2>
+<ul>
+<li>Henry McLeish was listed as a member of the Conservative party, instead of Labour. This has been corrected.</li>
+</ul>
+</div>
+<div id="sentiment-classification-methods" class="section level2">
+<h2>Sentiment Classification Methods</h2>
+<p>The speeches have been classified for sentiment using a total of three libraries from the R package <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> by Tyler Rinker, one from the <a href="https://cran.r-project.org/package=syuzhet"><code>syuzhet</code></a> package by Michael Jockers, and <a href="https://github.com/lrheault/emotion">one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst</a>. All classification has used the method in Tyler Rinker’s <a href="https://cran.r-project.org/package=sentimentr"><code>sentimentr</code></a> package <span class="citation">(Rinker <a href="#ref-rinker2017">2017</a>)</span>. The libraries are:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN</a> library, labelled <code>afinn</code>. The AFINN library was accessed through Matthew Jockers’s <a href="https://cran.r-project.org/package=syuzhet"><code>syuzhet</code></a> package <span class="citation">(Nielsen <a href="#ref-nielsen2011">2011</a>)</span>.</p></li>
+<li><p>A variant of the <a href="https://cran.r-project.org/package=syuzhet">syuzhet</a> library, included in the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package, labelled <code>jockers</code>. <span class="citation">(Jockers <a href="#ref-jockers2015">2015</a>)</span>.</p></li>
+<li><p>The <a href="http://saifmohammad.com/WebPages/lexicons.html">NRC Word-Emotion Association Lexicon</a>, labelled <code>nrc</code>. The NRC library was access through the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package. <span class="citation">(Mohammad and Turney <a href="#ref-mohammad2013">2013</a>)</span>.</p></li>
+<li><p>The <a href="https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html">Opinion Mining, Sentiment Analysis and Opinion Spam Detection</a> library, labelled <code>huliu</code>. The library was access through the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package. <span class="citation">(Hu and Liu <a href="#ref-hu2004">2004</a>)</span>.</p></li>
+<li><p>A modified version of the <a href="https://github.com/lrheault/emotion">unnamed lexicon</a> from <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843">this paper</a>, labelled <code>rheault</code>. As the method in <code>sentimentr</code> does not use distinguish between the same word that can occupy multiple lexical categories,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> I used the average polarity score assigned to such words.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> <span class="citation">(Rheault et al. <a href="#ref-rheault2016">2016</a>)</span>.</p></li>
+</ol>
+</div>
+<div id="summary-statistics" class="section level2">
+<h2>Summary Statistics</h2>
+<p>I have produced <a href="./hansard-summary-stats-V241.xlsx">summary statistics of the <code>hansard_senti_post_V241</code></a> with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:</p>
+<ul>
+<li><a href="./mp-senti-mean-V241.csv">MP</a></li>
+<li><a href="./party-senti-mean-V241.csv">party</a></li>
+<li><a href="./party-group-senti-mean-V241.csv">party group</a></li>
+<li><a href="./gov-senti-mean-V241.csv">government or opposition status</a></li>
+<li><a href="./gender-senti-mean-V241.csv">gender</a></li>
+<li><a href="./month-senti-mean-V241.csv">month</a></li>
+<li><a href="./quarter-senti-mean-V241.csv">quarter</a></li>
+<li><a href="./year-senti-mean-V241.csv">year</a></li>
+<li><a href="./ministry-senti-mean-V241.csv">ministry</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+</ul>
+<p>Download all nine tables in one <a href="./hansard-summary-stats-V241.xlsx">XLSX workbook</a>. Each table contains the following variables:</p>
+<table>
+<colgroup>
+<col width="41%" />
+<col width="58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>afinn_sentiment_avg</code></td>
+<td>Average sentiment, <code>afinn</code> library</td>
+</tr>
+<tr class="even">
+<td><code>afinn_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>afinn</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>afinn_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>afinn</code> library</td>
+</tr>
+<tr class="even">
+<td><code>afinn_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>afinn</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_sentiment_avg</code></td>
+<td>Average sentiment, <code>jockers</code> library</td>
+</tr>
+<tr class="even">
+<td><code>jockers_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>jockers</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>jockers</code> library</td>
+</tr>
+<tr class="even">
+<td><code>jockers_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>jockers</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>nrc_sentiment_avg</code></td>
+<td>Average sentiment, <code>nrc</code> library</td>
+</tr>
+<tr class="even">
+<td><code>nrc_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>nrc</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>nrc_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>nrc</code> library</td>
+</tr>
+<tr class="even">
+<td><code>nrc_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>nrc</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>huliu_sentiment_avg</code></td>
+<td>Average sentiment, <code>huliu</code> library</td>
+</tr>
+<tr class="even">
+<td><code>huliu_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>huliu</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>huliu_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>huliu</code> library</td>
+</tr>
+<tr class="even">
+<td><code>huliu_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>huliu</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>rheault_sentiment_avg</code></td>
+<td>Average sentiment, <code>rheault</code> library</td>
+</tr>
+<tr class="even">
+<td><code>rheault_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>rheault</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>rheault_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>rheault</code> library</td>
+</tr>
+<tr class="even">
+<td><code>rheault_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>rheault</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>tot_speeches</code></td>
+<td>Total number of speeches</td>
+</tr>
+<tr class="even">
+<td><code>tot_words</code></td>
+<td>Total number of words</td>
+</tr>
+<tr class="odd">
+<td><code>avg_speech_length</code></td>
+<td>Average number of words per speech</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dataset-variables" class="section level2">
+<h2>Dataset Variables</h2>
+<p>The <code>hansard_senti_post_V241</code> and <code>hansard_senti_pre_V241</code> datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in <code>hansard_senti_post_V241</code>.</p>
+<div id="hansard_senti_post_v241-dataset-variables" class="section level3">
+<h3><code>hansard_senti_post_V241</code> Dataset Variables</h3>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="28%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pp_id</code></td>
+<td>ID for each speech, corresponding to the parlparse ID</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>eo_id</code></td>
+<td>ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>speech</code></td>
+<td>The actual text of the speech</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>afinn_sentiment</code></td>
+<td>The <code>afinn</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>afinn_sd</code></td>
+<td>The standard deviation of the <code>afinn</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>jockers_sentiment</code></td>
+<td>The <code>jockers</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_sd</code></td>
+<td>The standard deviation of the <code>jockers</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>nrc_sentiment</code></td>
+<td>The <code>nrc</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>nrc_sd</code></td>
+<td>The standard deviation of the <code>nrc</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>huliu_sentiment</code></td>
+<td>The <code>huliu</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>huliu_sd</code></td>
+<td>The standard deviation of the <code>huliu</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>rheault_sentiment</code></td>
+<td>The <code>rheault</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>rheault_sd</code></td>
+<td>The standard deviation of the <code>rheault</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>word_count</code></td>
+<td>The word count of the speech</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>speech_date</code></td>
+<td>The date the speech was made</td>
+<td>date</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>The year the speech was made</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>time</code></td>
+<td>The time the speech was made (not consistently available), stored as a character vector; e.g. ‘16:24:00’</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>url</code></td>
+<td>The URL of the speech</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>as_speaker</code></td>
+<td>If the speaker is the Speaker of the house</td>
+<td>Logical</td>
+</tr>
+<tr class="even">
+<td><code>speaker_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>person_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>hansard_membership_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>mnis_id</code></td>
+<td>The ID used by the Member’s Names Information Service. This ID remains constant, even if an MP changes parties, seats, etc.</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>dods_id</code></td>
+<td>Dods Monitoring ID</td>
+<td>integer</td>
+</tr>
+<tr class="odd">
+<td><code>pims_id</code></td>
+<td>Parliamentary Information Management Services ID</td>
+<td>integer</td>
+</tr>
+<tr class="even">
+<td><code>proper_name</code></td>
+<td>The MP’s name</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>party_group</code></td>
+<td>Grouping of political parties. Labour and Labour Co-op MPs are listed as ‘Labour’, Conservative MPs as ‘Conservative’, Liberal Democrats, Social Democrats and Liberals are all listed as ‘Liberal Democrat’, and all other MPs are listed as ‘Other’.</td>
+<td>factor</td>
+</tr>
+<tr class="even">
+<td><code>party</code></td>
+<td>The political party the MP belonged to at time of speech</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>government</code></td>
+<td>An indicator if the the MP is a member of the governing party (or parties), or in the opposition</td>
+<td>factor</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age at time of speech</td>
+<td>integer</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>One of Male or Female</td>
+<td>factor</td>
+</tr>
+<tr class="even">
+<td><code>date_of_birth</code></td>
+<td>MP’s date of birth</td>
+<td>date</td>
+</tr>
+<tr class="odd">
+<td><code>house_start_date</code></td>
+<td>The date the MP was first elected to the House of Commons</td>
+<td>date</td>
+</tr>
+<tr class="even">
+<td><code>house_end_date</code></td>
+<td>The date the MP left the House of Commons</td>
+<td>date</td>
+</tr>
+<tr class="odd">
+<td><code>ministry</code></td>
+<td>Identifier for the government at time of speech</td>
+<td>character</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="notes-on-the-hansard_senti_pre_v241-dataset" class="section level2">
+<h2>Notes on the <code>hansard_senti_pre_V241</code> Dataset</h2>
+<p>The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable. If you want to contribute to that project please <a href="mailto:evanodell91@gmail.com">get in touch</a>.</p>
+<p>MPs’ MNIS IDs, names, birthdates, start and end dates as an MP is <a href="names-V241.csv">available here</a>.</p>
+<div id="hansard_senti_pre_v241-dataset-variables" class="section level3">
+<h3><code>hansard_senti_pre_V241</code> Dataset Variables</h3>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="28%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pp_id</code></td>
+<td>ID for each speech, corresponding to the parlparse ID</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>eo_id</code></td>
+<td>ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>speech</code></td>
+<td>The actual text of the speech</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>speaker_name</code></td>
+<td>The name of the speaker, as listed in the Hansard record</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>afinn_sentiment</code></td>
+<td>The <code>afinn</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>afinn_sd</code></td>
+<td>The standard deviation of the <code>afinn</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_sentiment</code></td>
+<td>The <code>jockers</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>jockers_sd</code></td>
+<td>The standard deviation of the <code>jockers</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>nrc_sentiment</code></td>
+<td>The <code>nrc</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>nrc_sd</code></td>
+<td>The standard deviation of the <code>nrc</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>huliu_sentiment</code></td>
+<td>The <code>huliu</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>huliu_sd</code></td>
+<td>The standard deviation of the <code>huliu</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>rheault_sentiment</code></td>
+<td>The <code>rheault</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>rheault_sd</code></td>
+<td>The standard deviation of the <code>rheault</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>word_count</code></td>
+<td>The word count of the speech</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>speech_date</code></td>
+<td>The date the speech was made</td>
+<td>date</td>
+</tr>
+<tr class="odd">
+<td><code>year</code></td>
+<td>The year the speech was made</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>time</code></td>
+<td>The time the speech was made (not consistently available), stored as a character vector; e.g. ‘16:24:00’</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>url</code></td>
+<td>The URL of the speech</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>as_speaker</code></td>
+<td>If the speaker is the Speaker of the house</td>
+<td>Logical</td>
+</tr>
+<tr class="odd">
+<td><code>speaker_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+<tr class="even">
+<td><code>person_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+<tr class="odd">
+<td><code>hansard_membership_id</code></td>
+<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
+<td>character</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="methodology" class="section level2">
+<h2>Methodology</h2>
+<p>The <a href="https://github.com/mysociety/parlparse">parlparse</a> project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as ‘unknown’. I created a table with every possible combination of name and <code>speaker_id</code>, <code>person_id</code> and <code>hansard_membership_id</code>, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, manually checked approximate strings and manual matching/hand coding. The information in this table was then matched to the complete list of speech IDs. In the case of common names,<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.</p>
+<div id="licences-and-code" class="section level3">
+<h3>Licences and Code</h3>
+<p>The data used to create this dataset was taken from the <a href="https://github.com/mysociety/parlparse">parlparse</a> project operated by <a href="https://www.theyworkforyou.com/">They Work For You</a> and supported by <a href="https://www.mysociety.org/">mySociety</a>.</p>
+<p>The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"/></a></p>
+<p>The code included in the GitHub repository used to create this dataset is licensed under an <a href="https://github.com/EvanOdell/hansard-speeches-and-sentiment/blob/master/LICENSE">MIT license</a>. The code used to generate this dataset is available on <a href="https://github.com/EvanOdell/hansard-data">Github</a>.</p>
+<p>Please <a href="mailto:evanodell91@gmail.com">contact me</a> if you find any errors in the dataset. The integrity of the public Hansard record is questionable at times, and while I have improved it, the data is presented ‘as is’.</p>
+</div>
+</div>
+<div id="citing-this-dataset" class="section level2">
+<h2>Citing this dataset</h2>
+<p>Please cite this dataset as:</p>
+<p>Odell, Evan. (2017). “Hansard Speeches and Sentiment V2.4.1 [Dataset].” <a href="https://doi.org/10.5281/zenodo.841009">110.5281/zenodo.841009</a>.</p>
+<p>The DOI of V2.4.1 is <em>10.5281/zenodo.841009</em>. The DOI for all versions is <a href="https://doi.org/10.5281/zenodo.780985"><em>10.5281/zenodo.780985</em></a>, and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-hu2004">
+<p>Hu, Minqing, and Bing Liu. 2004. “Mining and Summarizing Customer Reviews.” In <em>Proceedings of the Tenth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 168–77. ACM. <a href="http://dl.acm.org/citation.cfm?id=1014073" class="uri">http://dl.acm.org/citation.cfm?id=1014073</a>.</p>
+</div>
+<div id="ref-jockers2015">
+<p>Jockers, Matthew L. 2015. <em>Syuzhet: Extract Sentiment and Plot Arcs from Text</em>. <a href="https://github.com/mjockers/syuzhet" class="uri">https://github.com/mjockers/syuzhet</a>.</p>
+</div>
+<div id="ref-mohammad2013">
+<p>Mohammad, Saif M., and Peter D. Turney. 2013. “Crowdsourcing a Wordemotion Association Lexicon.” <em>Computational Intelligence</em> 29 (3):436–65. <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1467-8640.2012.00460.x/full" class="uri">http://onlinelibrary.wiley.com/doi/10.1111/j.1467-8640.2012.00460.x/full</a>.</p>
+</div>
+<div id="ref-nielsen2011">
+<p>Nielsen, Finn Årup. 2011. “A New ANEW: Evaluation of a Word List for Sentiment Analysis in Microblogs.” <em>CoRR</em> abs/1103.2903. <a href="http://arxiv.org/abs/1103.2903" class="uri">http://arxiv.org/abs/1103.2903</a>.</p>
+</div>
+<div id="ref-rheault2016">
+<p>Rheault, Ludovic, Kaspar Beelen, Christopher Cochrane, and Graeme Hirst. 2016. “Measuring Emotion in Parliamentary Debates with Automated Textual Analysis.” <em>PLOS ONE</em> 11 (12):e0168843. <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843" class="uri">http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843</a>.</p>
+</div>
+<div id="ref-rinker2017">
+<p>Rinker, Tyler W. 2017. <em>Sentimentr: Calculate Text Polarity Sentiment</em>. Buffalo, New York: University at Buffalo/SUNY. <a href="http://github.com/trinker/sentimentr" class="uri">http://github.com/trinker/sentimentr</a>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>If you would like other formats please <a href="mailto:evanodell91@gmail.com">get in touch</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Most of the 2017 general election intake do not have listed birthdates, and their age is not listed as a result. This will be updated in future versions of this data set.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>e.g. ‘bid’ can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="#rheault2016">Rheault <i>et al.</i> (2016)</a> have a more complex method of calculating polarity that accounts for lexical types. See their paper and the <a href="https://github.com/lrheault/emotion">related repository</a> for details.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>As in for each new Prime Minister and/or general election.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
