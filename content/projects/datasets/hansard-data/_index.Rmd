@@ -1,10 +1,10 @@
 ---
-title: Hansard Speeches and Sentiment V2.4.0
+title: Hansard Speeches and Sentiment V2.5.0
 bibliography: [references.bib]
 link-citations: true
 ---
 
-## [Download from Zenodo](http:doi.org/10.5281/zenodo.838020)
+## [Download from Zenodo](http:doi.org/10.5281/zenodo.780985)
 
 A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see [here](https://evanodell.com/projects/datasets/hansard-data/archive/V250). Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
