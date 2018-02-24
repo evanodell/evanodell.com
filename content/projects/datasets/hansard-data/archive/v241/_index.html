@@ -1,5 +1,5 @@
 ---
-title: Hansard Speeches and Sentiment V2.4.0
+title: Hansard Speeches and Sentiment V2.4.1
 bibliography: [references.bib]
 link-citations: true
 ---
@@ -8,38 +8,42 @@ link-citations: true
 
 <div id="download-from-zenodo" class="section level2">
 <h2><a href="http:doi.org/10.5281/zenodo.838020">Download from Zenodo</a></h2>
-<p>A public dataset of speeches in the Hansard, stored as a <a href="https://cran.r-project.org/package=tibble">tibble</a> class in RDS files, for the <a href="https://cran.r-project.org/">R programming language</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see <a href="https://evanodell.com/projects/datasets/hansard-data/archive/V250">here</a>. Documentation for previous versions of the <em>Hansard Speeches and Sentiment</em> dataset can be found <a href="https://evanodell.com/projects/datasets/hansard-data/archive/">here</a></p>
-<p>The <code>hansard_senti_post_V250</code> dataset contains 2,196,175 speeches and 382,484,493 words. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through <a href="https://zenodo.org/record/1183893">Zenodo</a>, and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods.</p>
-<p>For details on how speech sentiments were classified, <a href="/datasets/hansard-data/#sentiment-classification-methods">see below</a>.</p>
+<p>A public dataset of speeches in the Hansard, stored as a <a href="https://cran.r-project.org/package=tibble">tibble</a> class in RDS files, for the <a href="https://cran.r-project.org/">R programming language</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> House of Commons between the parliament returned from the 1979 general election and the parliamentary summer recess starting on 2017-07-20, with information on the speaking MP, their party, gender, birth date,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled <code>hansard_senti_post_V241</code> and the pre-1979 election dataset is labelled <code>hansard_senti_pre_V241</code>. Both datasets are encoded as UTF-8.</p>
+<p>Documentation for previous versions of the <em>Hansard Speeches and Sentiment</em> dataset can be found <a href="https://evanodell.com/projects/datasets/hansard-data/archive/">here</a></p>
+<p>The <code>hansard_senti_post_V241</code> dataset contains 2,169,348 speeches and 373,323,215 words. The <code>hansard_senti_pre_V241</code> dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through <a href="https://zenodo.org/record/579712">Zenodo</a>, and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4.1 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs’ names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, <a href="/datasets/hansard-data/#sentiment-classification-methods">see below</a>.</p>
+</div>
+<div id="changes-in-v2.4.1" class="section level2">
+<h2>Changes in V2.4.1</h2>
+<ul>
+<li>Henry McLeish was listed as a member of the Conservative party, instead of Labour. This has been corrected.</li>
+</ul>
 </div>
 <div id="sentiment-classification-methods" class="section level2">
 <h2>Sentiment Classification Methods</h2>
-<p>The speeches have been classified for sentiment using a total of six libraries from the R package <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> by Tyler Rinker, and <a href="https://github.com/lrheault/emotion">one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst</a>. All classification has used the method in Tyler Rinker’s <a href="https://cran.r-project.org/package=sentimentr"><code>sentimentr</code></a> package <span class="citation">(Rinker <a href="#ref-rinker2017">2017</a>)</span>. The libraries are:</p>
+<p>The speeches have been classified for sentiment using a total of three libraries from the R package <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> by Tyler Rinker, one from the <a href="https://cran.r-project.org/package=syuzhet"><code>syuzhet</code></a> package by Michael Jockers, and <a href="https://github.com/lrheault/emotion">one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst</a>. All classification has used the method in Tyler Rinker’s <a href="https://cran.r-project.org/package=sentimentr"><code>sentimentr</code></a> package <span class="citation">(Rinker <a href="#ref-rinker2017">2017</a>)</span>. The libraries are:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN</a> library, labelled <code>afinn</code>. The AFINN library was accessed through Matthew Jockers’s <a href="https://cran.r-project.org/package=syuzhet"><code>syuzhet</code></a> package <span class="citation">(Nielsen <a href="#ref-nielsen2011">2011</a>)</span>.</p></li>
 <li><p>A variant of the <a href="https://cran.r-project.org/package=syuzhet">syuzhet</a> library, included in the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package, labelled <code>jockers</code>. <span class="citation">(Jockers <a href="#ref-jockers2015">2015</a>)</span>.</p></li>
 <li><p>The <a href="http://saifmohammad.com/WebPages/lexicons.html">NRC Word-Emotion Association Lexicon</a>, labelled <code>nrc</code>. The NRC library was access through the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package. <span class="citation">(Mohammad and Turney <a href="#ref-mohammad2013">2013</a>)</span>.</p></li>
 <li><p>The <a href="https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html">Opinion Mining, Sentiment Analysis and Opinion Spam Detection</a> library, labelled <code>huliu</code>. The library was access through the <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a> package. <span class="citation">(Hu and Liu <a href="#ref-hu2004">2004</a>)</span>.</p></li>
 <li><p>A modified version of the <a href="https://github.com/lrheault/emotion">unnamed lexicon</a> from <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843">this paper</a>, labelled <code>rheault</code>. As the method in <code>sentimentr</code> does not use distinguish between the same word that can occupy multiple lexical categories,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> I used the average polarity score assigned to such words.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> <span class="citation">(Rheault et al. <a href="#ref-rheault2016">2016</a>)</span>.</p></li>
-<li><p>A combination of the <a href="https://cran.r-project.org/package=syuzhet">syuzhet</a> and <a href="https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html">Opinion Mining, Sentiment Analysis and Opinion Spam Detection</a> libraries created by Rinker, labelled <code>jockers_rinker</code>.</p></li>
-<li><p>The <a href="http://sentic.net/downloads/">Augmented SenticNet 4 Polarity Table</a> from <a href="https://cran.r-project.org/package=lexicon"><code>lexicon</code></a>, labelled <code>senticnet</code> <span class="citation">(Cambria et al. <a href="#ref-cambria2016">2016</a>)</span>.</p></li>
 </ol>
 </div>
 <div id="summary-statistics" class="section level2">
 <h2>Summary Statistics</h2>
-<p>I have produced <a href="./hansard-summary-stats-V250.xlsx">summary statistics of the <code>hansard_senti_post_V250</code></a> with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:</p>
+<p>I have produced <a href="./hansard-summary-stats-V241.xlsx">summary statistics of the <code>hansard_senti_post_V241</code></a> with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:</p>
 <ul>
-<li><a href="./mp-senti-mean-V250.csv">MP</a></li>
-<li><a href="./party-senti-mean-V250.csv">party</a></li>
-<li><a href="./party-group-senti-mean-V250.csv">party group</a></li>
-<li><a href="./gov-senti-mean-V250.csv">government or opposition status</a></li>
-<li><a href="./gender-senti-mean-V250.csv">gender</a></li>
-<li><a href="./month-senti-mean-V250.csv">month</a></li>
-<li><a href="./quarter-senti-mean-V250.csv">quarter</a></li>
-<li><a href="./year-senti-mean-V250.csv">year</a></li>
-<li><a href="./ministry-senti-mean-V250.csv">ministry</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+<li><a href="./mp-senti-mean-V241.csv">MP</a></li>
+<li><a href="./party-senti-mean-V241.csv">party</a></li>
+<li><a href="./party-group-senti-mean-V241.csv">party group</a></li>
+<li><a href="./gov-senti-mean-V241.csv">government or opposition status</a></li>
+<li><a href="./gender-senti-mean-V241.csv">gender</a></li>
+<li><a href="./month-senti-mean-V241.csv">month</a></li>
+<li><a href="./quarter-senti-mean-V241.csv">quarter</a></li>
+<li><a href="./year-senti-mean-V241.csv">year</a></li>
+<li><a href="./ministry-senti-mean-V241.csv">ministry</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
 </ul>
-<p>Download all nine tables in one <a href="./hansard-summary-stats-V250.xlsx">XLSX workbook</a>. Each table contains the following variables:</p>
+<p>Download all nine tables in one <a href="./hansard-summary-stats-V241.xlsx">XLSX workbook</a>. Each table contains the following variables:</p>
 <table>
 <colgroup>
 <col width="41%" />
@@ -149,9 +153,9 @@ link-citations: true
 </div>
 <div id="dataset-variables" class="section level2">
 <h2>Dataset Variables</h2>
-<p>The <code>hansard_senti_post_V250</code> and <code>hansard_senti_pre_V250</code> datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in <code>hansard_senti_post_V250</code>.</p>
-<div id="hansard_senti_post_v250-dataset-variables" class="section level3">
-<h3><code>hansard_senti_post_V250</code> Dataset Variables</h3>
+<p>The <code>hansard_senti_post_V241</code> and <code>hansard_senti_pre_V241</code> datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in <code>hansard_senti_post_V241</code>.</p>
+<div id="hansard_senti_post_v241-dataset-variables" class="section level3">
+<h3><code>hansard_senti_post_V241</code> Dataset Variables</h3>
 <table>
 <colgroup>
 <col width="36%" />
@@ -345,11 +349,12 @@ link-citations: true
 </table>
 </div>
 </div>
-<div id="notes-on-the-dataset" class="section level2">
-<h2>Notes on the dataset</h2>
-<p>The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable.</p>
-<div id="hansard_senti_pre_v250-dataset-variables" class="section level3">
-<h3><code>hansard_senti_pre_V250</code> Dataset Variables</h3>
+<div id="notes-on-the-hansard_senti_pre_v241-dataset" class="section level2">
+<h2>Notes on the <code>hansard_senti_pre_V241</code> Dataset</h2>
+<p>The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable. If you want to contribute to that project please <a href="mailto:evanodell91@gmail.com">get in touch</a>.</p>
+<p>MPs’ MNIS IDs, names, birthdates, start and end dates as an MP is <a href="names-V241.csv">available here</a>.</p>
+<div id="hansard_senti_pre_v241-dataset-variables" class="section level3">
+<h3><code>hansard_senti_pre_V241</code> Dataset Variables</h3>
 <table>
 <colgroup>
 <col width="36%" />
@@ -497,15 +502,12 @@ link-citations: true
 <div id="citing-this-dataset" class="section level2">
 <h2>Citing this dataset</h2>
 <p>Please cite this dataset as:</p>
-<p>Odell, Evan. (2017). “Hansard Speeches and Sentiment V2.5.0 [Dataset].” <a href="https://doi.org/10.5281/zenodo.1183893">10.5281/zenodo.1183893</a>.</p>
-<p>The DOI of V2.5.0 is <em>10.5281/zenodo.1183893</em>. The DOI for all versions is <a href="https://doi.org/10.5281/zenodo.780985"><em>10.5281/zenodo.780985</em></a>, and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.</p>
+<p>Odell, Evan. (2017). “Hansard Speeches and Sentiment V2.4.1 [Dataset].” <a href="https://doi.org/10.5281/zenodo.841009">110.5281/zenodo.841009</a>.</p>
+<p>The DOI of V2.4.1 is <em>10.5281/zenodo.841009</em>. The DOI for all versions is <a href="https://doi.org/10.5281/zenodo.780985"><em>10.5281/zenodo.780985</em></a>, and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.</p>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
 <div id="refs" class="references">
-<div id="ref-cambria2016">
-<p>Cambria, Erik, Soujanya Poria, Rajiv Bajpai, and Björn Schuller. 2016. “SenticNet 4: A Semantic Resource for Sentiment Analysis Based on Conceptual Primitives.” In, 2666–77.</p>
-</div>
 <div id="ref-hu2004">
 <p>Hu, Minqing, and Bing Liu. 2004. “Mining and Summarizing Customer Reviews.” In <em>Proceedings of the Tenth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 168–77. ACM. <a href="http://dl.acm.org/citation.cfm?id=1014073" class="uri">http://dl.acm.org/citation.cfm?id=1014073</a>.</p>
 </div>
@@ -530,7 +532,7 @@ link-citations: true
 <hr />
 <ol>
 <li id="fn1"><p>If you would like other formats please <a href="mailto:evanodell91@gmail.com">get in touch</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Several members (Gillian Keegan, Laura Smith, Mike Hill) still do not have birth dates listed at all, and I could not locate exact dates for Anna McMorrin, Bob Seely, Danielle Rowley, Fiona Onasanya, Kemi Badenoch, so listed their birthday as the first of the given year or month. This will be updated in future versions of this data set.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Most of the 2017 general election intake do not have listed birthdates, and their age is not listed as a result. This will be updated in future versions of this data set.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p>e.g. ‘bid’ can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction<a href="#fnref3" class="footnote-back">↩</a></p></li>
 <li id="fn4"><p><a href="#rheault2016">Rheault <i>et al.</i> (2016)</a> have a more complex method of calculating polarity that accounts for lexical types. See their paper and the <a href="https://github.com/lrheault/emotion">related repository</a> for details.<a href="#fnref4" class="footnote-back">↩</a></p></li>
 <li id="fn5"><p>As in for each new Prime Minister and/or general election.<a href="#fnref5" class="footnote-back">↩</a></p></li>

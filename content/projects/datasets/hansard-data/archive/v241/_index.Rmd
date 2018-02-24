@@ -1,21 +1,24 @@
 ---
-title: Hansard Speeches and Sentiment V2.4.0
+title: Hansard Speeches and Sentiment V2.4.1
 bibliography: [references.bib]
 link-citations: true
 ---
 
 ## [Download from Zenodo](http:doi.org/10.5281/zenodo.838020)
 
-A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see [here](https://evanodell.com/projects/datasets/hansard-data/archive/V250). Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
+A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] House of Commons between the parliament returned from the 1979 general election and the parliamentary summer recess starting on 2017-07-20, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates as an MP, and age at the time of the speech. The dataset also includes all speeches made from 1936 to the dissolution of parliament for the 1979 general election. The post-1979 election dataset is labelled `hansard_senti_post_V241` and the pre-1979 election dataset is labelled `hansard_senti_pre_V241`. Both datasets are encoded as UTF-8.
 
-The `hansard_senti_post_V250` dataset contains 2,196,175 speeches and 382,484,493 words. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods.
+Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
-For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
+The `hansard_senti_post_V241` dataset contains 2,169,348 speeches and 373,323,215 words. The `hansard_senti_pre_V241` dataset contains 2,977,461 speeches and 406,062,364 words. It can be accessed through [Zenodo](https://zenodo.org/record/579712), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version, V2.4.1 corrects errors introduced by Regex in V2.2, improves encoding issues in speeches, corrects several spelling mistakes in the hansard record, removes duplicate speeches, updates some MPs' names, and includes speeches up to the summer recess starting on 2017-07-20. For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
 
+## Changes in V2.4.1
+
+- Henry McLeish was listed as a member of the Conservative party, instead of Labour. This has been corrected.
 
 ## Sentiment Classification Methods
 
-The speeches have been classified for sentiment using a total of six libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, and [one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst](https://github.com/lrheault/emotion). All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package [@rinker2017]. The libraries are:
+The speeches have been classified for sentiment using a total of three libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, one from the [`syuzhet`](https://cran.r-project.org/package=syuzhet) package by Michael Jockers, and [one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst](https://github.com/lrheault/emotion). All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package [@rinker2017]. The libraries are:
 
 1. The [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) library, labelled `afinn`. The AFINN library was accessed through Matthew Jockers's [`syuzhet`](https://cran.r-project.org/package=syuzhet) package [@nielsen2011].
 
@@ -27,26 +30,21 @@ The speeches have been classified for sentiment using a total of six libraries f
 
 5. A modified version of the [unnamed lexicon](https://github.com/lrheault/emotion) from [this paper](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843), labelled `rheault`. As the method in `sentimentr` does not use distinguish between the same word that can occupy multiple lexical categories,[^3] I used the average polarity score assigned to such words.[^4] [@rheault2016].
 
-6. A combination of the [syuzhet](https://cran.r-project.org/package=syuzhet) and [Opinion Mining, Sentiment Analysis and Opinion Spam Detection](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) libraries created by Rinker, labelled `jockers_rinker`.
-
-7. The [Augmented SenticNet 4 Polarity Table](http://sentic.net/downloads/) from [`lexicon`](https://cran.r-project.org/package=lexicon), labelled `senticnet` [@cambria2016].
-
-
 ## Summary Statistics
 
-I have produced [summary statistics of the `hansard_senti_post_V250`](./hansard-summary-stats-V250.xlsx) with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:
+I have produced [summary statistics of the `hansard_senti_post_V241`](./hansard-summary-stats-V241.xlsx) with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:
 
-- [MP](./mp-senti-mean-V250.csv)
-- [party](./party-senti-mean-V250.csv)
-- [party group](./party-group-senti-mean-V250.csv)
-- [government or opposition status](./gov-senti-mean-V250.csv)
-- [gender](./gender-senti-mean-V250.csv)
-- [month](./month-senti-mean-V250.csv)
-- [quarter](./quarter-senti-mean-V250.csv)
-- [year](./year-senti-mean-V250.csv)
-- [ministry](./ministry-senti-mean-V250.csv)[^5]
+- [MP](./mp-senti-mean-V241.csv)
+- [party](./party-senti-mean-V241.csv)
+- [party group](./party-group-senti-mean-V241.csv)
+- [government or opposition status](./gov-senti-mean-V241.csv)
+- [gender](./gender-senti-mean-V241.csv)
+- [month](./month-senti-mean-V241.csv)
+- [quarter](./quarter-senti-mean-V241.csv)
+- [year](./year-senti-mean-V241.csv)
+- [ministry](./ministry-senti-mean-V241.csv)[^5]
 
-Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V250.xlsx). Each table contains the following variables:
+Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V241.xlsx). Each table contains the following variables:
 
 | Variable | Description |
 |-----------------------|---------------------------------|
@@ -76,9 +74,9 @@ Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V250.xls
 
 ## Dataset Variables
 
-The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in `hansard_senti_post_V250`.
+The `hansard_senti_post_V241` and `hansard_senti_pre_V241` datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in `hansard_senti_post_V241`.
 
-### `hansard_senti_post_V250` Dataset Variables
+### `hansard_senti_post_V241` Dataset Variables
 
 | Variable | Description | Data Type |
 |------------------|--------------|------------------|
@@ -118,11 +116,13 @@ The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightl
  `house_end_date` | The date the MP left the House of Commons | date |
  `ministry` | Identifier for the government at time of speech | character |
 
-## Notes on the dataset
+## Notes on the `hansard_senti_pre_V241` Dataset
 
-The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable.
+The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable. If you want to contribute to that project please [get in touch](mailto:evanodell91@gmail.com).
 
-### `hansard_senti_pre_V250` Dataset Variables
+MPs' MNIS IDs, names, birthdates, start and end dates as an MP is [available here](names-V241.csv).
+
+### `hansard_senti_pre_V241` Dataset Variables
 
 | Variable | Description | Data Type |
 |------------------|--------------|------------------|
@@ -168,15 +168,15 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.5.0 [Dataset]." [10.5281/zenodo.1183893](https://doi.org/10.5281/zenodo.1183893).
+Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.4.1 [Dataset]." [110.5281/zenodo.841009](https://doi.org/10.5281/zenodo.841009).
 
-The DOI of V2.5.0 is *10.5281/zenodo.1183893*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
+The DOI of V2.4.1 is *10.5281/zenodo.841009*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
 
 ## References
 
 [^1]: If you would like other formats please [get in touch](mailto:evanodell91@gmail.com).
 
-[^2]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Several members (Gillian Keegan, Laura Smith, Mike Hill) still do not have birth dates listed at all, and I could not locate exact dates for Anna McMorrin, Bob Seely, Danielle Rowley, Fiona Onasanya, Kemi Badenoch, so listed their birthday as the first of the given year or month. This will be updated in future versions of this data set. 
+[^2]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Most of the 2017 general election intake do not have listed birthdates, and their age is not listed as a result. This will be updated in future versions of this data set.
 
 [^3]: e.g. 'bid' can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction
 
