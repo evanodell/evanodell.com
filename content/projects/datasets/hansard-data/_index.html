@@ -11,7 +11,6 @@ link-citations: true
 <h2><a href="http:doi.org/10.5281/zenodo.780985">Download from Zenodo</a></h2>
 <p>A public dataset of speeches in the Hansard, stored as a <a href="https://cran.r-project.org/package=tibble">tibble</a> class in RDS files, for the <a href="https://cran.r-project.org/">R programming language</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see <a href="https://evanodell.com/projects/datasets/hansard-data/archive/V250">here</a>. Documentation for previous versions of the <em>Hansard Speeches and Sentiment</em> dataset can be found <a href="https://evanodell.com/projects/datasets/hansard-data/archive/">here</a></p>
 <p>The <code>hansard_senti_post_V250</code> dataset contains 2,196,175 speeches and 382,484,493 words. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through <a href="https://zenodo.org/record/1183893">Zenodo</a>, and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods.</p>
-<p>For details on how speech sentiments were classified, <a href="/datasets/hansard-data/#sentiment-classification-methods">see below</a>.</p>
 </div>
 <div id="sentiment-classification-methods" class="section level2">
 <h2>Sentiment Classification Methods</h2>
@@ -134,6 +133,38 @@ link-citations: true
 <td>Average sentiment standard deviation, weighted by speech length, <code>rheault</code> library</td>
 </tr>
 <tr class="odd">
+<td><code>jockers_rinker_sentiment_avg</code></td>
+<td>Average sentiment, <code>jockers_rinker</code> library</td>
+</tr>
+<tr class="even">
+<td><code>jockers_rinker_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>jockers_rinker</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_rinker_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>jockers_rinker</code> library</td>
+</tr>
+<tr class="even">
+<td><code>jockers_rinker_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>jockers_rinker</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>senticnet_sentiment_avg</code></td>
+<td>Average sentiment, <code>senticnet</code> library</td>
+</tr>
+<tr class="even">
+<td><code>senticnet_sd_avg</code></td>
+<td>Average sentiment standard deviation, <code>senticnet</code> library</td>
+</tr>
+<tr class="odd">
+<td><code>senticnet_sentiment_wtd</code></td>
+<td>Average sentiment, weighted by speech length, <code>senticnet</code> library</td>
+</tr>
+<tr class="even">
+<td><code>senticnet_sd_wtd</code></td>
+<td>Average sentiment standard deviation, weighted by speech length, <code>senticnet</code> library</td>
+</tr>
+<tr class="odd">
 <td><code>tot_speeches</code></td>
 <td>Total number of speeches</td>
 </tr>
@@ -230,6 +261,26 @@ link-citations: true
 <tr class="odd">
 <td><code>rheault_sd</code></td>
 <td>The standard deviation of the <code>rheault</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>jockers_rinker_sentiment</code></td>
+<td>The <code>jockers_rinker</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>jockers_rinker_sd</code></td>
+<td>The standard deviation of the <code>jockers_rinker</code> score</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td><code>senticnet_sentiment</code></td>
+<td>The <code>senticnet</code> sentiment score</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td><code>senticnet_sd</code></td>
+<td>The standard deviation of the <code>senticnet</code> score</td>
 <td>numeric</td>
 </tr>
 <tr class="even">
@@ -340,144 +391,6 @@ link-citations: true
 <tr class="odd">
 <td><code>ministry</code></td>
 <td>Identifier for the government at time of speech</td>
-<td>character</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="notes-on-the-dataset" class="section level2">
-<h2>Notes on the dataset</h2>
-<p>The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable.</p>
-<div id="hansard_senti_pre_v250-dataset-variables" class="section level3">
-<h3><code>hansard_senti_pre_V250</code> Dataset Variables</h3>
-<table>
-<colgroup>
-<col width="36%" />
-<col width="28%" />
-<col width="36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Description</th>
-<th>Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>pp_id</code></td>
-<td>ID for each speech, corresponding to the parlparse ID</td>
-<td>character</td>
-</tr>
-<tr class="even">
-<td><code>eo_id</code></td>
-<td>ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches</td>
-<td>character</td>
-</tr>
-<tr class="odd">
-<td><code>speech</code></td>
-<td>The actual text of the speech</td>
-<td>character</td>
-</tr>
-<tr class="even">
-<td><code>speaker_name</code></td>
-<td>The name of the speaker, as listed in the Hansard record</td>
-<td>character</td>
-</tr>
-<tr class="odd">
-<td><code>afinn_sentiment</code></td>
-<td>The <code>afinn</code> sentiment score</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>afinn_sd</code></td>
-<td>The standard deviation of the <code>afinn</code> score</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td><code>jockers_sentiment</code></td>
-<td>The <code>jockers</code> sentiment score</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>jockers_sd</code></td>
-<td>The standard deviation of the <code>jockers</code> score</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td><code>nrc_sentiment</code></td>
-<td>The <code>nrc</code> sentiment score</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>nrc_sd</code></td>
-<td>The standard deviation of the <code>nrc</code> score</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td><code>huliu_sentiment</code></td>
-<td>The <code>huliu</code> sentiment score</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>huliu_sd</code></td>
-<td>The standard deviation of the <code>huliu</code> score</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td><code>rheault_sentiment</code></td>
-<td>The <code>rheault</code> sentiment score</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>rheault_sd</code></td>
-<td>The standard deviation of the <code>rheault</code> score</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td><code>word_count</code></td>
-<td>The word count of the speech</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>speech_date</code></td>
-<td>The date the speech was made</td>
-<td>date</td>
-</tr>
-<tr class="odd">
-<td><code>year</code></td>
-<td>The year the speech was made</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td><code>time</code></td>
-<td>The time the speech was made (not consistently available), stored as a character vector; e.g. ‘16:24:00’</td>
-<td>character</td>
-</tr>
-<tr class="odd">
-<td><code>url</code></td>
-<td>The URL of the speech</td>
-<td>character</td>
-</tr>
-<tr class="even">
-<td><code>as_speaker</code></td>
-<td>If the speaker is the Speaker of the house</td>
-<td>Logical</td>
-</tr>
-<tr class="odd">
-<td><code>speaker_id</code></td>
-<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
-<td>character</td>
-</tr>
-<tr class="even">
-<td><code>person_id</code></td>
-<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
-<td>character</td>
-</tr>
-<tr class="odd">
-<td><code>hansard_membership_id</code></td>
-<td>One of three ID schemes used in the <a href="https://github.com/mysociety/parlparse"><code>parlparse</code></a> scraper</td>
 <td>character</td>
 </tr>
 </tbody>

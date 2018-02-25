@@ -11,7 +11,6 @@ A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r
 
 The `hansard_senti_post_V250` dataset contains 2,196,175 speeches and 382,484,493 words. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods.
 
-For details on how speech sentiments were classified, [see below](/datasets/hansard-data/#sentiment-classification-methods).
 
 
 ## Sentiment Classification Methods
@@ -71,6 +70,14 @@ Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V250.xls
 `rheault_sd_avg` | Average sentiment standard deviation, `rheault` library |
 `rheault_sentiment_wtd` | Average sentiment, weighted by speech length, `rheault` library |
 `rheault_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `rheault` library |
+`jockers_rinker_sentiment_avg` | Average sentiment, `jockers_rinker` library |
+`jockers_rinker_sd_avg` | Average sentiment standard deviation, `jockers_rinker` library |
+`jockers_rinker_sentiment_wtd` | Average sentiment, weighted by speech length, `jockers_rinker` library |
+`jockers_rinker_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `jockers_rinker` library |
+`senticnet_sentiment_avg` | Average sentiment, `senticnet` library |
+`senticnet_sd_avg` | Average sentiment standard deviation, `senticnet` library |
+`senticnet_sentiment_wtd` | Average sentiment, weighted by speech length, `senticnet` library |
+`senticnet_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `senticnet` library |
 `tot_speeches` | Total number of speeches |
 `tot_words` | Total number of words |
 `avg_speech_length` | Average number of words per speech |
@@ -96,6 +103,10 @@ The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightl
  `huliu_sd` | The standard deviation of the `huliu` score | numeric |
  `rheault_sentiment` | The `rheault` sentiment score | numeric |
  `rheault_sd` | The standard deviation of the `rheault` score | numeric |
+  `jockers_rinker_sentiment` | The `jockers_rinker` sentiment score | numeric |
+ `jockers_rinker_sd` | The standard deviation of the `jockers_rinker` score | numeric |
+ `senticnet_sentiment` | The `senticnet` sentiment score | numeric |
+ `senticnet_sd` | The standard deviation of the `senticnet` score | numeric |
  `word_count` | The word count of the speech | numeric |
  `speech_date` | The date the speech was made | date |
  `year` | The year the speech was made | numeric |
@@ -118,38 +129,6 @@ The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightl
  `house_start_date` | The date the MP was first elected to the House of Commons | date |
  `house_end_date` | The date the MP left the House of Commons | date |
  `ministry` | Identifier for the government at time of speech | character |
-
-## Notes on the dataset
-
-The historical Hansard record often uses inconsistent and confusing naming conventions for MPs. I have not matched pre-1979 election MPs to their MNIS IDs, as not all pre-1979 election MPs will have an MNIS ID to be matched to, and the naming conventions appear to be particularly confusing. Long term I hope to develop a convention for a unique ID code for MPs that can identify them, their party, their constituency and any office they held at the time, but that is a project without a timetable.
-
-### `hansard_senti_pre_V250` Dataset Variables
-
-| Variable | Description | Data Type |
-|------------------|--------------|------------------|
-`pp_id` | ID for each speech, corresponding to the parlparse ID | character |
-`eo_id` | ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches | character |
-`speech` | The actual text of the speech | character |
-`speaker_name` | The name of the speaker, as listed in the Hansard record | character |
-`afinn_sentiment` | The `afinn` sentiment score| numeric |
-`afinn_sd` | The standard deviation of the `afinn` score | numeric |
-`jockers_sentiment` | The `jockers` sentiment score | numeric |
-`jockers_sd` | The standard deviation of the `jockers` score | numeric |
-`nrc_sentiment` | The `nrc` sentiment score | numeric |
-`nrc_sd` | The standard deviation of the `nrc` score | numeric |
-`huliu_sentiment` | The `huliu` sentiment score | numeric |
-`huliu_sd` | The standard deviation of the `huliu` score | numeric |
-`rheault_sentiment` | The `rheault` sentiment score | numeric |
-`rheault_sd` | The standard deviation of the `rheault` score | numeric |
-`word_count` | The word count of the speech | numeric |
-`speech_date` | The date the speech was made | date |
-`year` | The year the speech was made | numeric |
-`time` | The time the speech was made (not consistently available), stored as a character vector; e.g. '16:24:00' | character |
-`url` | The URL of the speech | character |
-`as_speaker` | If the speaker is the Speaker of the house | Logical |
-`speaker_id` | One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
-`person_id` | One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
-`hansard_membership_id` |One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
 
 ## Methodology
 
