@@ -1,6 +1,5 @@
 ---
 title: Hansard Speeches and Sentiment V2.5.0
-date: "2018-02-24"
 bibliography: [references.bib]
 link-citations: true
 ---
@@ -149,6 +148,17 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 Please cite this dataset as:
 
 Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.5.0 [Dataset]." [10.5281/zenodo.1183893](https://doi.org/10.5281/zenodo.1183893).
+
+```
+@article{odell2018,
+  title = {Hansard {{Speeches}} and {{Sentiment V2}}.5.0 [Dataset]},
+  url = {https://evanodell.com/projects/datasets/hansard-data/},
+  doi = {10.5281/zenodo.1183893},
+  date = {2018-02-24},
+  keywords = {dataset},
+  author = {Odell, Evan}
+}
+```
 
 The DOI of V2.5.0 is *10.5281/zenodo.1183893*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
 
