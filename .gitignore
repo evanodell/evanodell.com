@@ -2,3 +2,5 @@ _site
 .Rproj.user
 .Rhistory
 public
+content/blog/UK stations.csv
+content/blog/golf_map.rds

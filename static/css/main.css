@@ -627,6 +627,16 @@ footer .theme-by {
   margin: 0 0 10px;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.post-preview .post-meta,
+.blog-heading .post-meta {
+  color: #808080;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0 0 10px;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
 .post-preview .post-entry {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -700,6 +710,15 @@ footer .theme-by {
     height: 100px;
     width: 100px;
   }
+
+.post-meta {
+  color: #808080;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0 0 10px;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 
   .post-image {
     width: 100%;
@@ -1102,3 +1121,4 @@ td.gutter {
     font: normal normal bold normal 24px / 26.4px Roboto, Helvetica, Arial, sans-serif;
     outline: rgb(0, 138, 255) none 0px;
 }/*#A_1*/
+

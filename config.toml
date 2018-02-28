@@ -17,6 +17,8 @@ google_analytics = "UA-90706059-1"
   readingTime = false
 #  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
 
+
+
 [permalinks]
     blog = "/blog/:year/:month/:day/:title/"
     projects = "/:slug/"
@@ -35,6 +37,13 @@ google_analytics = "UA-90706059-1"
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "\\.bib$"]
 footnotereturnlinkcontents = "<sup>^</sup>"
+
+
+# Set to true to disable code folding
+disable_codefolding = false
+# Set to "hide" or "show" all codes by default
+codefolding_show = "hide"
+
 
 fractions = false
 

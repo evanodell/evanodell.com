@@ -2,6 +2,7 @@
 title: Economic Participation and Productivity
 date: '2017-12-07'
 image: "/img/productivity/prod_trend.png"
+type: "blog"
 ---
 
 Yesterday afternoon (December 6th, 2017), Finance Minister Philip Hammond sparked alarm and condemnation for suggesting that the UK's stubbornly low productivity rate was due to the [high employment rate and larger numbers of disabled workers](https://www.theguardian.com/politics/2017/dec/07/philip-hammond-causes-storm-with-remarks-about-disabled-workers). His exact quote was:
