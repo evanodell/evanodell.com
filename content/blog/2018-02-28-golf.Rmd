@@ -99,7 +99,7 @@ golf_ints_summary_1000 <- group_by(golf_ints_1000, Station) %>%
 
 ## Golf Course Map
 
-The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1]
+The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1] You can see a full screen version [here](maps/golf-map.html)
 
 ```{r summary_and_map, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -203,7 +203,7 @@ p3 <- ggplot(aes(y=as.numeric(area), x=trips_2017), data=golf_ints_summary) +
   geom_point(alpha=0.8) + 
   scale_y_continuous(labels = scales::comma) + 
   scale_x_continuous(labels = scales::comma) + 
-  geom_point(data = highlight_df, colour = "#990000FF") +
+  geom_point(data = highlight_df, colour = "#FF1D8E") +
    geom_text(data = highlight_df, aes(label = Station), hjust=-0.1,  nudge_x = 0.05) + 
   xlab("Passengers in 2017") + ylab("Golf Course Areas within 2km\n(Metres Squared)") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
