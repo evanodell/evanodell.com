@@ -22,9 +22,9 @@ As Rae points out, the amount of space given over to golf courses has come up se
 
 My interest here is not in the environmental debate, but rather questions about the most appropriate land use. With that in mind, I'm taking a look at the amount of land given over to golf close to train stations in London, South East and East England, the three region of the UK with the highest house prices, reflecting the high demand for housing in the London commuter belt and other cities in these areas. I've arbitrarily selected a 2km radius from each train station, where it would take roughly 25 minutes of walking at a moderate pace to travel from the edge of the circle to its centre if travelling in a straight line.
 
-Overall, there is some 191,485,444 m^2^ of golf course land within 2km of a train station in London, the South East and East of England. That's some 47317 acres, or 19148.5 hectares. That's enough for 574,455 new homes at a very low density of just 30 homes per hectare. At a higher density, such as 80 dwellings per hectare terraced housing, that's some 1,531,880 homes.
+Overall, there is some 191,485,444 m^2^ of golf course land within 2km of a train station in London, the South East and East of England. That's some 47,317 acres, or 19,148.5 hectares. That's enough for 574,455 new homes at a very low density of just 30 homes per hectare. At a higher density, such as 80 dwellings per hectare terraced housing, that's some 1,531,880 homes.
 
-If we lower the radius to 1km, there is still 41,212,837 m^2^ (10184 acres, 4121.3 hectares) of golf course within a single kilometre of a train station, enough space to build 123,639 low density suburban houses, or 329,704 higher density houses. Certainly not enough to solve the UK's housing issues, but it could still make a big difference.
+If we lower the radius to 1km, there is still 41,212,837 m^2^ (10,184 acres, 4,121.3 hectares) of golf course within a single kilometre of a train station, enough space to build 123,639 low density suburban houses, or 329,704 higher density houses. Certainly not enough to solve the UK's housing issues, but it could still make a big difference.
 
 ```{r needed-packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(sf)
@@ -99,7 +99,7 @@ golf_ints_summary_1000 <- group_by(golf_ints_1000, Station) %>%
 
 ## Golf Course Map
 
-The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1] You can see a full screen version [here](maps/golf-map.html)
+The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1] You can see a full screen version [here](maps/golf-map.html).
 
 ```{r summary_and_map, echo=FALSE, message=FALSE, warning=FALSE}
 
