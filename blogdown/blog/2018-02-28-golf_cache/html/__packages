@@ -1,0 +1,10 @@
+base
+sf
+sp
+rgdal
+dplyr
+readr
+readxl
+leaflet
+ggplot2
+bindrcpp

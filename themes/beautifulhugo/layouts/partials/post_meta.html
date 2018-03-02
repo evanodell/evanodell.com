@@ -1,10 +1,10 @@
 <span class="post-meta">
-  {{ $lastmodstr := default (i18n "dateFormat") .Site.Params.dateformat | .Lastmod.Format }}
-  {{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format }}
-  <i class="fa fa-calendar-o"></i>&nbsp;{{ $datestr | i18n "postedOnDate"}}
-  {{ if ne $datestr $lastmodstr }}
+  <!--{{ $lastmodstr := default (i18n "dateFormat") .Site.Params.dateformat | .Lastmod.Format }}
+  {{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format }} -->
+&nbsp;Published on {{ .Date.Format "2006-01-02" }}
+ <!-- {{ if ne $datestr $lastmodstr }}
     &nbsp;{{ $lastmodstr | i18n "lastModified"  }}
-  {{ end }}
+  {{ end }} -->
   {{ if .Site.Params.readingTime }}
   &nbsp;|&nbsp;
   <i class="fa fa-clock-o"></i>{{ i18n "readingTime"}} {{ .ReadingTime }} {{ i18n "readTime" }} ({{ .WordCount }} {{ i18n "words" }})
@@ -31,4 +31,3 @@
     &nbsp;&bull;&nbsp; {{ i18n "translationsLabel" }}{{ $linksOutput }}
   {{- end }}
 </span>
-
