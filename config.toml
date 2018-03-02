@@ -49,7 +49,7 @@ fractions = false
 
 [author]
   name = "Evan Odell"
-  website = "evanodell.com"
+  website = "https://evanodell.com"
   email = "evanodell91@gmail.com"
   github = "evanodell"
   #gitlab = "username"

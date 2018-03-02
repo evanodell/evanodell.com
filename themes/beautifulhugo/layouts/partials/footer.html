@@ -53,14 +53,9 @@
 </div>
 <p class="credits theme-by text-muted">
   {{ i18n "poweredBy" . | safeHTML }}
-  {{ with .Site.Params.commit }}&nbsp;&bull;&nbsp;[<a href="{{.}}{{ getenv "GIT_COMMIT_SHA" }}">{{ getenv "GIT_COMMIT_SHA_SHORT" }}</a>]{{ end }} and further modified by <a href="https://evanodell.com">Evan Odell</a>
-{{ else }}
-{{ .Site.Author.name }}
-{{ end }}
-{{ end }}
-
+  {{ with .Site.Params.commit }}&nbsp;&bull;&nbsp;[<a href="{{.}}{{ getenv "GIT_COMMIT_SHA" }}">{{ getenv "GIT_COMMIT_SHA_SHORT" }}</a>]{{ end }} and further modified by <a href="https://evanodell.com">Evan Odell</a>.
 &nbsp;&bull;&nbsp;
-{{ .Site.LastChange.Format "2006" }}
+2015 -- {{ .Site.LastChange.Format "2006" }}
 <!--
 {{ if .Site.Title }}
 &nbsp;&bull;&nbsp;
