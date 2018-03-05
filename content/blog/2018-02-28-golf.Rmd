@@ -108,7 +108,7 @@ sum(stn_circles2$area)
 
 ## Golf Course Map
 
-The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1] You can see a full screen version [here](maps/golf-map.html).
+The following map highlights in bright pink all golf course land within 2km of a train station. If the radius of two or more train stations overlaps, the train station with more passengers takes precedence, to avoid double counting of space.[^1] You can see a full screen version [here](/maps/golf-map.html).
 
 ```{r summary_and_map, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 
