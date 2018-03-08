@@ -1,6 +1,5 @@
 ---
 title: CV
-image: /img/EvanOdell.jpg
 ---
 
 ### [Download as a PDF](/files/EvanOdellOnlineCV.pdf)
@@ -129,11 +128,11 @@ image: /img/EvanOdell.jpg
 
 ### Speaking Appearances
 
+<div class="cvwrapper">
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Melanie Wilkes and Andrew Rawson. <em>From Application to Graduation.</em> Policy UK Forum: Creating a Culture of Inclusivity for Disabled Students. London.</p></div>
   <div class="cvcleared"></div>
 
-<div class="cvwrapper">
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Guest Lecturer on the <em>Interdisciplinary Studies in Global Health and Disability</em> programme. Bader International Study Centre, Queen's University (Canada). London.</p></div>
   <div class="cvcleared"></div>
