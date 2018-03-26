@@ -313,18 +313,21 @@ moral_comp <- cfe_consumption[cfe_consumption$year=="2016",]  %>%
 top10_moral <- dplyr::top_n(moral_comp, 10, consumption_capita)
 
 top10_moral$hjust <- "right"
-top10_moral$hjust[top10_moral$country == "Denmark"] <- "left"
 top10_moral$hjust[top10_moral$country == "Germany"] <- "left"
 top10_moral$hjust[top10_moral$country == "Canada"] <- "left"
 top10_moral$hjust[top10_moral$country == "Austria"] <- "left"
+top10_moral$hjust[top10_moral$country == "Switzerland"] <- "left"
 top10_moral$vjust <- "top"
 top10_moral$nudge_x <- -1
-top10_moral$nudge_x[top10_moral$country == "Denmark"] <- 1
 top10_moral$nudge_x[top10_moral$country == "Germany"] <- 1
-top10_moral$nudge_x[top10_moral$country == "Canada"] <- 1
+top10_moral$nudge_x[top10_moral$country == "Canada"] <- 0.8
 top10_moral$nudge_x[top10_moral$country == "Austria"] <- 1
+top10_moral$nudge_x[top10_moral$country == "Switzerland"] <- 1
+top10_moral$nudge_x[top10_moral$country == "Denmark"] <- 0
 top10_moral$nudge_y <- 500
-top10_moral$nudge_y[top10_moral$country == "Denmark"] <- -320
+top10_moral$nudge_y[top10_moral$country == "Denmark"] <- 1380
+top10_moral$nudge_y[top10_moral$country == "Germany"] <- 480
+top10_moral$nudge_y[top10_moral$country == "Canada"] <- 850
 
 p_moral <- ggplot(aes(x = wimf_score, y = consumption_capita), 
              data = moral_comp) + 
