@@ -5,3 +5,7 @@ public
 content/blog/UK stations.csv
 content/blog/golf_map.rds
 content/blog/office-rail-road.csv
+content/cv/*.bib
+content/cv/*.Rmd
+content/cv/*.html
+content/cv/*.txt

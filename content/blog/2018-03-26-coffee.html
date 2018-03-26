@@ -1,0 +1,246 @@
+---
+title: "Coffee and Freedom"
+author: "Evan Odell"
+publishdate: 2018-03-26
+output:
+  blogdown::html_page
+bibliography: [coffee-data/coffee.bib]
+link-citations: yes
+image: "/img/coffee.jpg"
+---
+
+
+
+<p>Does coffee make us free? Do free people drink more coffee? The European enlightenment has been <a href="https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries">linked to the introduction of tea and coffee from Asia and the Middle East and the rise of coffeehouse culture</a>, as it displaced beer and wine as the daytime drink of choice, and as people were no longer slightly drunk all the time, they began to ask more critical questions about the societies they were living in.</p>
+<p>Most coffee consumption is by people living in advanced capitalist economies, and coffee producing states (who generally consume very little) tend to be part of the poorer global south. But is there a relationship between coffee and freedom, or coffee and democracy? There are <a href="https://en.wikipedia.org/wiki/List_of_freedom_indices">loads of different methods</a> political scientists have used to quantify freedom (or various components of freedom) around the world, and I’ve picked five different indices to compare to coffee consumption:</p>
+<ul>
+<li><p>The Economists Intelligence Unit’s <em>Democracy Index</em> <span class="citation">(<a href="#ref-economistintelligenceunit2017">2017</a>)</span>, focused on democratic institutions and government.</p></li>
+<li><p>The <em>World Index of Moral Freedom</em> by the Spanish libertarian think-tank Foundation for the Advancement of Liberty <span class="citation">(Kohl and Pina <a href="#ref-kohl2016">2016</a>)</span>, focused on state influence on personal moral decisions.</p></li>
+<li><p>The <em>Press Freedom Index</em> published by Reporters without Borders <span class="citation">(<a href="#ref-reporterswithoutborders2017">2017</a>)</span>, examining editorial independence, media plurality and violence against journalists.</p></li>
+<li><p>The <em>Freedom in the World</em> dataset from Freedom House <span class="citation">(<a href="#ref-freedomhouse2018">2018</a>)</span>.</p></li>
+<li><p>The <em>Polity IV</em> dataset produced by the Political Instability Task Force <span class="citation">(Marshall, Gurr, and Jaggers <a href="#ref-marshall2017">2017</a>)</span>.</p></li>
+</ul>
+<p>None of these indicators are perfect, as they provide numerical scores to give the illusion of objectivity, despite them necessarily requiring a high degree of subjective analysis, and are all produced by organisations that either have an explicit political and philosophical standpoint, or are funded by such an organisation, such as the CIA-funded Political Instability Task Force that produces <em>Polity IV</em>. The exact methodology and raw data used in these indices is often not readily available. Likewise, there is no widely agreed-upon definition of what freedom actually is and these indices only capture part of any definition of a free society; for example the <em>Democracy Index</em>’s focus on democracy and democratic institution would at best only capture part of what makes a free society. However imperfect, these indices do allow for some degree of useful comparative analysis; declaring Ireland and Canada to both be equally democratic, more democratic than Australia and Switzerland, but less democratic than Denmark and New Zealand, as the <em>Democracy Index</em> does, seems somewhat dubious, but describing all those countries as being far more democratic than, e.g., Iran, is effectively indisputable.</p>
+<p>I took coffee consumption data is from the US department of agriculture and the <a href="http://www.ico.org/new_historical.asp">International Coffee Organization</a> (ICO), and measured in grams per capita per year, using World Bank population estimates, accessed with the <a href="https://cran.r-project.org/package=wbstats"><code>wbstats</code></a> R package and from <a href="http://databank.worldbank.org/data/reports.aspx?source=Health%20Nutrition%20and%20Population%20Statistics:%20Population%20estimates%20and%20projections">here</a>. The consumption for EU countries for 2014–2016 is an estimate, based on their individual share of EU consumption in previous years. Note that Luxembourg is unusually high for coffee consumption per capita, drinking almost twice as much coffee per person as Finland, the second highest country.</p>
+<p>For each index I present a graph comparing its score to coffee consumption in 2016, highlighting the ten highest coffee drinking countries. I then use regression analysis to include the wealth of a country, using purchasing power parity (PPP) per capita data from the World Bank. For single year indices I use ordinary least squares regressions, for indices with multiple years I used fixed effect panel analyses.</p>
+<div id="single-year-indices" class="section level1">
+<h1>Single Year Indices</h1>
+<p>Both the EIU <em>Democracy Index</em> and the <em>World Index of Moral Freedom</em> dataset cover only one year, 2017 for the <em>Democracy Index</em> and 2016 for the WIMF. I’ve compared both to coffee consumption in 2016, the latest year available for EU countries from the ICO. The single year of data means that the statistical analyses presented are ordinary least squares regressions, rather than the multi-level panel analyses used in the multi-year indices below.</p>
+<div id="democracy-index" class="section level2">
+<h2><em>Democracy Index</em></h2>
+<p>The <a href="http://pages.eiu.com/rs/753-RIQ-438/images/Democracy_Index_2017.pdf"><em>Democracy Index</em></a> scores nations on a scale of 0-10 across five areas: Electoral process and pluralism, Functioning of government, Political participation, Political culture, and Civil liberties. The overall score, used in this analysis, is an average of those five scores.</p>
+<div id="democracy-index-plot" class="section level3">
+<h3><em>Democracy Index</em> plot</h3>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/eiu-index-comparison-1.png" width="960" /></p>
+</div>
+<div id="democracy-index-regression-analysis" class="section level3">
+<h3><em>Democracy Index</em> regression analysis</h3>
+<pre><code>## 
+## Call:
+## lm(formula = consumption_capita ~ eiu_score + ppp_capita, data = eiu_comp2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8260.7 -1228.6  -157.5   978.5 12302.8 
+## 
+## Coefficients:
+##               Estimate Std. Error t value       Pr(&gt;|t|)    
+## (Intercept) -1624.8135   747.3443  -2.174         0.0321 *  
+## eiu_score     321.6488   147.7875   2.176         0.0319 *  
+## ppp_capita      0.1148     0.0166   6.917 0.000000000443 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2284 on 100 degrees of freedom
+## Multiple R-squared:  0.5766, Adjusted R-squared:  0.5681 
+## F-statistic: 68.09 on 2 and 100 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>There is a significant positive relationship between higher <em>WIMF</em> scores and coffee consumption when controlling for purchasing power parity.</p>
+</div>
+</div>
+<div id="world-index-of-moral-freedom" class="section level2">
+<h2><em>World Index of Moral Freedom</em></h2>
+<p>The <a href="http://www.fundalib.org/wp-content/uploads/2016/04/World-Index-of-Moral-Freedom-web.pdf"><em>World Index of Moral Freedom</em></a> (<em>WIMF</em>) uses scores of 0–100 across five indicator areas: Religion, Bioethics, Drugs, Sexuality, and Gender and the Family, with the overall score being an average of those five indicators. It focuses on what the Foundation for the Advancement of Liberty calls “moral coercion” by the state, covering topics like censorship, religious freedom, state secularism and abortion rights, amongst others. This is the most dubious of the five indicators I’ve looked at – it does not appear to be widely used, the organisation that produced it has a very clear agenda, and many of the indicators would vary within some countries as much as between different countries. For example, in federal states like Canada or the USA, many decisions such as drug (de)criminalisation, alcohol sales, abortion access, same-sex marriage and the legal rights of non-married couples is determined as least partially by sub-national governments.</p>
+<div id="world-index-of-moral-freedom-plot" class="section level3">
+<h3><em>World Index of Moral Freedom</em> plot</h3>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/moral-index-comparison-1.png" width="960" /></p>
+<p>The <em>WIMF</em> is unusual in that it clearly shows six countries: the Netherlands, Portugal, the Czech Republic, Belgium, Spain, and the United States with high <em>WIMF</em> scores and low coffee consumption. Uruguay also scores highly – 2nd, behind the Netherlands – but I don’t have data on coffee consumption in Uruguay. The <em>WIMF</em> is the only indices where at least one of the five highest scoring countries is not also a top-ten coffee drinking country. Whereas six countries in the top ten of the EIU <em>Democracy Index</em> (Including the two highest scorers Norway and Sweden) are also in the top ten of coffee consumption per capita, only two countries are in the top ten of the <em>WIMF</em> and coffee consumption: Canada and Germany.</p>
+</div>
+<div id="world-index-of-moral-freedom-regression-analysis" class="section level3">
+<h3><em>World Index of Moral Freedom</em> regression analysis</h3>
+<p>Because I only have one year of moral data, I’m using an ordinary least squares regression.</p>
+<pre><code>## 
+## Call:
+## lm(formula = consumption_capita ~ wimf_score + ppp_capita, data = moral_comp2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8385.3 -1202.5  -176.7   990.7 11887.6 
+## 
+## Coefficients:
+##                Estimate  Std. Error t value         Pr(&gt;|t|)    
+## (Intercept) -1725.33461   823.79001  -2.094           0.0390 *  
+## wimf_score     37.98821    17.55522   2.164           0.0331 *  
+## ppp_capita      0.12104     0.01549   7.813 0.00000000000882 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2367 on 92 degrees of freedom
+## Multiple R-squared:  0.561,  Adjusted R-squared:  0.5515 
+## F-statistic: 58.78 on 2 and 92 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>There is a significant positive relationship between higher <em>WIMF</em> scores and coffee consumption when controlling for purchasing power parity. However, as seen in the plot above, the relation between coffee consumption and <em>WIMF</em> score is not necessarily very linear.</p>
+</div>
+</div>
+</div>
+<div id="multi-year-indices" class="section level1">
+<h1>Multi-Year Indices</h1>
+<p>For multi-year I used fixed effect panel analyses with scaled coefficients to test the relationship between coffee consumption and freedom while controlling for PPP per capita.</p>
+<div id="world-press-freedom-index" class="section level2">
+<h2><em>World Press Freedom Index</em></h2>
+<p>The <a href="https://rsf.org/en/ranking"><em>World Press Freedom Index</em></a> (<em>WPFI</em>) is released every year by Reporters Without Borders. It scores countries on a scale of 0-100, with 0 being the most free and 100 being the least free. It uses 7 indicators: Pluralism, Media independence, Environment and self-censorship, Legislative framework, Transparency, Infrastructure and Abuses. It then weights these indicators and produces two scores, one with abuses and one without, and the higher of the two scores is used, to account for countries where arrests, murders, etc, of journalists are rare, but journalism is tightly controlled.</p>
+<p>I’ve used <em>WPFI</em> data from 2002–2017. Due to various changes in the scoring system prior to 2013, I’ve scaled the scores within each year to provide some degree of comparison, and multiplied scores by -1, so higher scores indicate greater press freedom.</p>
+<div id="world-press-freedom-index-plot" class="section level3">
+<h3><em>World Press Freedom Index</em> plot</h3>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/press-comparison-consumption-1.png" width="960" /></p>
+<p>Five of the top ten coffee drinking countries are also in the top ten of press freedom in 2016, including Finland, which topped the press freedom index that year, its Nordic neighbours Sweden, Norway and Denmark, as well as Switzerland. Most surprising is Greece, who sits just below the median of scaled press scores (the median is greater than 0 because the <em>WPFI</em> covers more countries than I have coffee consumption data for, and the missing coffee countries have much lower press freedom than higher countries).</p>
+</div>
+<div id="world-press-freedom-index-panel-analysis" class="section level3">
+<h3><em>World Press Freedom Index</em> panel analysis</h3>
+<pre><code>## Twoways effects Within Model
+## 
+## Call:
+## plm(formula = scaled_consumption ~ scaled_press * ppp_capita_scaled, 
+##     data = press_comp2, effect = &quot;twoway&quot;, model = &quot;within&quot;, 
+##     index = c(&quot;country&quot;, &quot;year&quot;))
+## 
+## Unbalanced Panel: n = 105, T = 7-14, N = 1400
+## 
+## Residuals:
+##       Min.    1st Qu.     Median    3rd Qu.       Max. 
+## -1.1407234 -0.0476791  0.0044932  0.0491580  0.8332844 
+## 
+## Coefficients:
+##                                   Estimate  Std. Error t-value Pr(&gt;|t|)
+## scaled_press                   -0.00046176  0.01478193 -0.0312   0.9751
+## ppp_capita_scaled              -0.05377293  0.04565662 -1.1778   0.2391
+## scaled_press:ppp_capita_scaled  0.00123356  0.01875153  0.0658   0.9476
+## 
+## Total Sum of Squares:    26.397
+## Residual Sum of Squares: 26.369
+## R-Squared:      0.0010844
+## Adj. R-Squared: -0.092637
+## F-statistic: 0.462829 on 3 and 1279 DF, p-value: 0.70829</code></pre>
+<p>There does not appear to be any significant relationship between coffee consumption and press freedom when controlling for a country’s purchasing power parity per capita in a fixed effects model. I was surprised by this result, but it may partially stem from the <em>WPFI</em>’s methodology that includes measures of media diversity and corruption, which lowers the score of countries like <a href="https://rsf.org/en/greece">Greece</a>.</p>
+</div>
+</div>
+<div id="freedom-in-the-world" class="section level2">
+<h2><em>Freedom in the World</em></h2>
+<p>The <em>Freedom in the World</em> (<em>FIW</em>) index is published annually by Freedom House, an American NGO largelly supported by the US government. It uses a ranking of 1–7, with 1 being the most free and 7 being the least. For consistency and ease of comparison, I have reversed this, so that 1 is the least free and 7 is the most free. I have included <em>FIW</em> data from 1990–2017.</p>
+<div id="freedom-in-the-world-plot" class="section level3">
+<h3><em>Freedom in the World</em> plot</h3>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/fix-index-comparison-1.png" width="960" /></p>
+<p>All-but-one of the world’s top coffee drinking countries had the highest possible scores in 2016. In fact, with the exceptions of Greece and Germany (who have had the highest possible score every year from 2002 onwards), the top ten coffee drinking countries have enjoyed the highest scores in the <em>FIW</em> every year since at least 1990. With the <em>FIW</em>, it appears that a handful of high-scoring countries drink a lot of coffee, while other high scoring countries drink comparatively little.</p>
+</div>
+<div id="freedom-in-the-world-panel-analysis" class="section level3">
+<h3><em>Freedom in the World</em> panel analysis</h3>
+<pre><code>## Twoways effects Within Model
+## 
+## Call:
+## plm(formula = scaled_consumption ~ scaled_fiw * ppp_capita_scaled, 
+##     data = fiw_comp2, effect = &quot;twoway&quot;, model = &quot;within&quot;, index = c(&quot;country&quot;, 
+##         &quot;year&quot;))
+## 
+## Unbalanced Panel: n = 105, T = 9-27, N = 2486
+## 
+## Residuals:
+##         Min.      1st Qu.       Median      3rd Qu.         Max. 
+## -3.102989777 -0.070038515 -0.000083311  0.063998408  2.090484679 
+## 
+## Coefficients:
+##                              Estimate Std. Error t-value   Pr(&gt;|t|)    
+## scaled_fiw                   0.071499   0.022347  3.1995   0.001395 ** 
+## ppp_capita_scaled            0.197414   0.044603  4.4260 0.00001004 ***
+## scaled_fiw:ppp_capita_scaled 0.108927   0.026668  4.0845 0.00004565 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    179.84
+## Residual Sum of Squares: 177.31
+## R-Squared:      0.014078
+## Adj. R-Squared: -0.041673
+## F-statistic: 11.1951 on 3 and 2352 DF, p-value: 0.00000027107</code></pre>
+<p>The two-ways fixed effects model shows that there is a a positive relationship between higher <em>FIW</em> scores and coffee consumption, after controlling for purchasing power parity per capita.</p>
+</div>
+</div>
+<div id="polity-iv" class="section level2">
+<h2><em>Polity IV</em></h2>
+<div id="polity-iv-plot" class="section level3">
+<h3><em>Polity IV</em> plot</h3>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/polity-iv-comparison-1.png" width="960" /></p>
+</div>
+<div id="polity-iv-panel-analysis" class="section level3">
+<h3><em>Polity IV</em> panel analysis</h3>
+<pre><code>## Twoways effects Within Model
+## 
+## Call:
+## plm(formula = scaled_consumption ~ scaled_polity2 * ppp_capita_scaled, 
+##     data = polity_iv2, effect = &quot;twoway&quot;, model = &quot;within&quot;, index = c(&quot;scode&quot;, 
+##         &quot;year&quot;))
+## 
+## Unbalanced Panel: n = 104, T = 4-27, N = 2434
+## 
+## Residuals:
+##        Min.     1st Qu.      Median     3rd Qu.        Max. 
+## -3.07783436 -0.06847095  0.00038307  0.06191839  2.07019607 
+## 
+## Coefficients:
+##                                  Estimate Std. Error t-value     Pr(&gt;|t|)
+## scaled_polity2                   0.080460   0.019269  4.1755 0.0000308397
+## ppp_capita_scaled                0.235452   0.045811  5.1397 0.0000002984
+## scaled_polity2:ppp_capita_scaled 0.132103   0.026296  5.0237 0.0000005457
+##                                     
+## scaled_polity2                   ***
+## ppp_capita_scaled                ***
+## scaled_polity2:ppp_capita_scaled ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    174.22
+## Residual Sum of Squares: 171.03
+## R-Squared:      0.018294
+## Adj. R-Squared: -0.038023
+## F-statistic: 14.2931 on 3 and 2301 DF, p-value: 0.0000000031517</code></pre>
+<p>The <em>Polity IV</em> panel analysis includes data from 1960 (but only for the United States) to 2016. It does not show any significant relationship between coffee consumption and <em>Polity IV</em> score.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>By some measures, there is a positive relationship between coffee consumption and freedom, although it does not appear to be as important as other factors, including the wealth of that society. Of the indices used, only the <em>World Press Freedom Index</em> and <em>Polity IV</em> did not show a statistically significant positive relationship between coffee consumption and their definition of freedom.</p>
+<p>The relationship between coffee consumption and wealth is much clearer. Coffee is a luxury item, and it is little surprise that the world’s largest consumer of coffee per capita – Luxembourg – is also one of the worlds richest states per capita.</p>
+<p><img src="/blog/2018-03-26-coffee_files/figure-html/coffee-gdp-ppp-1.png" width="960" /></p>
+<p>Ultimate I think the positive relationships I’ve identified between coffee consumption and some measures of freedom are largely spurious. The relationship between wealth and coffee consumption is much clearer than any measure of freedom and coffee consumption.</p>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p>The code used in this blog is available on <a href="https://github.com/evanodell/coffee-freedom">GitHub</a> using a <a href="https://github.com/evanodell/coffee-freedom/blob/master/LICENSE">MIT license</a>.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-economistintelligenceunit2017">
+<p>Economist Intelligence Unit. 2017. “Democracy Index 2017: Free Speech Under Attack.” London: Economist Intelligence Unit. <a href="http://pages.eiu.com/rs/753-RIQ-438/images/Democracy_Index_2017.pdf" class="uri">http://pages.eiu.com/rs/753-RIQ-438/images/Democracy_Index_2017.pdf</a>.</p>
+</div>
+<div id="ref-freedomhouse2018">
+<p>Freedom House. 2018. “Freedom in the World 2018: Democracy in Crisis.” Washington, DC: Freedom House. <a href="https://freedomhouse.org/report/freedom-world/freedom-world-2018" class="uri">https://freedomhouse.org/report/freedom-world/freedom-world-2018</a>.</p>
+</div>
+<div id="ref-kohl2016">
+<p>Kohl, Andreas, and Juan Pina. 2016. “World Index of Moral Freedom 2016.” Madrid: Foundation for the Advancement of Liberty. <a href="http://www.fundalib.org/wp-content/uploads/2016/04/World-Index-of-Moral-Freedom-web.pdf" class="uri">http://www.fundalib.org/wp-content/uploads/2016/04/World-Index-of-Moral-Freedom-web.pdf</a>.</p>
+</div>
+<div id="ref-marshall2017">
+<p>Marshall, Monty G, Ted Robert Gurr, and Keith Jaggers. 2017. “Polity IV Annual Time-Series, 1800-2016.” Vienna, Virginia: Center for Systemic Peace.</p>
+</div>
+<div id="ref-reporterswithoutborders2017">
+<p>Reporters without Borders. 2017. “2017 World Press Freedom Index.” Paris: Reporters without Borders. <a href="https://rsf.org/en/world-press-freedom-index" class="uri">https://rsf.org/en/world-press-freedom-index</a>.</p>
+</div>
+</div>
+</div>
+</div>
