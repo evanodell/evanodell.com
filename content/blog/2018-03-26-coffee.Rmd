@@ -452,7 +452,7 @@ p_press <- ggplot(aes(x = scaled_press, y = consumption_capita),
             fontface = "bold", position = position_nudge(
               y = top10_2016_press$nudge_y, x = top10_2016_press$nudge_x)
             ) +
-  ggtitle("Coffee Consumption and World Press Freedom Index") + 
+  ggtitle("Coffee Consumption and World Press Freedom Index, 2016") + 
   labs(x = "Scaled World Press Freedom Index score", 
        y = "Coffee consumption per capita (grams)", 
        caption = "Evan Odell | 2018 | CC-BY")
@@ -567,7 +567,7 @@ p_fiw <- ggplot(aes(x = fiw_score, y = consumption_capita),
             fontface = "bold", position = position_nudge(
               y = top10_2016_fiw$nudge_y, x = top10_2016_fiw$nudge_x)
             ) +
-  ggtitle("Coffee Consumption and Freedom in the World") + 
+  ggtitle("Coffee Consumption and Freedom in the World, 2016") + 
   labs(x = "Freedom in the World score", 
        y = "Coffee consumption per capita (grams)", 
        caption = "Evan Odell | 2018 | CC-BY")
