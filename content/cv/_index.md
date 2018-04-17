@@ -96,6 +96,11 @@ title: CV
 ### [R Packages](/packages)
 
 <div class="cvwrapper">
+
+  <div class="cvsidebar">2018</div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>fixerapi</code>: An R Client for the "Fixer.io" Currency API <a href="http://docs.evanodell.com/fixerapi">http://docs.evanodell.com/fixerapi</a> DOI: <a href="10.5281/zenodo.1214391">10.5281/zenodo.1214391</a> <a href="https://cran.r-project.org/package=fixerapi"><img src="https://www.r-pkg.org/badges/version/fixerapi" alt="CRAN_Status_Badge" /></a></p></div>
+  <div class="cvcleared"></div>
+
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p><strong>Odell, E.</strong> <code>parlitools</code>: Tools for Analysing UK Politics. <a href="http://docs.evanodell.com/parlitools">http://docs.evanodell.com/parlitools</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591586">10.5281/zenodo.591586</a> <a href="https://cran.r-project.org/package=parlitools"><img src="https://www.r-pkg.org/badges/version/parlitools" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>

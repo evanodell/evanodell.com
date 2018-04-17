@@ -5,3 +5,6 @@
   to = "/maps/golf-map.html"
   status = 301
   force = false
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.38.2"
