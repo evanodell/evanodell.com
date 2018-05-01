@@ -98,7 +98,12 @@ title: CV
 <div class="cvwrapper">
 
   <div class="cvsidebar">2018</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>fixerapi</code>: An R Client for the "Fixer.io" Currency API <a href="http://docs.evanodell.com/fixerapi">http://docs.evanodell.com/fixerapi</a> DOI: <a href="10.5281/zenodo.1214391">10.5281/zenodo.1214391</a> <a href="https://cran.r-project.org/package=fixerapi"><img src="https://www.r-pkg.org/badges/version/fixerapi" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>nomisr</code>: Access 'Nomis' UK Labour Market Data <a href="http://docs.evanodell.com/nomisr">http://docs.evanodell.com/nomisr</a> DOI: <a href="https://doi.org/10.5281/zenodo.1162926">10.5281/zenodo.1162926</a> <a href="https://cran.r-project.org/package=nomisr"><img src="https://www.r-pkg.org/badges/version/nomisr" alt="CRAN_Status_Badge" /></a></p></div>
+  <div class="cvcleared"></div>
+
+
+  <div class="cvsidebar">2018</div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>fixerapi</code>: An R Client for the 'Fixer.io' Currency API <a href="http://docs.evanodell.com/fixerapi">http://docs.evanodell.com/fixerapi</a> DOI: <a href="https://doi.org/10.5281/zenodo.1214391">10.5281/zenodo.1214391</a> <a href="https://cran.r-project.org/package=fixerapi"><img src="https://www.r-pkg.org/badges/version/fixerapi" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
 
   <div class="cvsidebar">2017</div>
