@@ -408,14 +408,14 @@ img {
 .bikeframe{
   border: none;
   width: 100%;
- height: 3520px;
+ height: 3539px;
 }
 
 @media only screen and (max-width: 1300px) {
   .bikeframe{
     border: none;
     width: 100%;
- height: 3550px;
+ height: 3539px;
   }
 }
 
