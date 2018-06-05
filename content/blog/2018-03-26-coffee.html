@@ -41,19 +41,19 @@ image: "/img/coffee.jpg"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -8260.7 -1228.6  -157.5   978.5 12302.8 
+## -8272.5 -1228.3  -156.7   979.6 12330.4 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value       Pr(&gt;|t|)    
-## (Intercept) -1624.8135   747.3443  -2.174         0.0321 *  
-## eiu_score     321.6488   147.7875   2.176         0.0319 *  
-## ppp_capita      0.1148     0.0166   6.917 0.000000000443 ***
+## (Intercept) -1624.0991   747.6425  -2.172         0.0322 *  
+## eiu_score     320.8935   147.8337   2.171         0.0323 *  
+## ppp_capita      0.1150     0.0166   6.928 0.000000000421 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2284 on 100 degrees of freedom
-## Multiple R-squared:  0.5766, Adjusted R-squared:  0.5681 
-## F-statistic: 68.09 on 2 and 100 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 2285 on 100 degrees of freedom
+## Multiple R-squared:  0.5769, Adjusted R-squared:  0.5684 
+## F-statistic: 68.17 on 2 and 100 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 <p>There is a significant positive relationship between higher <em>WIMF</em> scores and coffee consumption when controlling for purchasing power parity.</p>
 </div>
 </div>
@@ -74,19 +74,19 @@ image: "/img/coffee.jpg"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -8385.3 -1202.5  -176.7   990.7 11887.6 
+## -8396.5 -1201.9  -174.0   992.9 11916.4 
 ## 
 ## Coefficients:
-##                Estimate  Std. Error t value         Pr(&gt;|t|)    
-## (Intercept) -1725.33461   823.79001  -2.094           0.0390 *  
-## wimf_score     37.98821    17.55522   2.164           0.0331 *  
-## ppp_capita      0.12104     0.01549   7.813 0.00000000000882 ***
+##               Estimate Std. Error t value         Pr(&gt;|t|)    
+## (Intercept) -1724.7705   824.2006  -2.093           0.0391 *  
+## wimf_score     37.9059    17.5654   2.158           0.0335 *  
+## ppp_capita      0.1212     0.0155   7.821 0.00000000000848 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2367 on 92 degrees of freedom
-## Multiple R-squared:  0.561,  Adjusted R-squared:  0.5515 
-## F-statistic: 58.78 on 2 and 92 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 2368 on 92 degrees of freedom
+## Multiple R-squared:  0.5613, Adjusted R-squared:  0.5518 
+## F-statistic: 58.86 on 2 and 92 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 <p>There is a significant positive relationship between higher <em>WIMF</em> scores and coffee consumption when controlling for purchasing power parity. However, as seen in the plot above, the relation between coffee consumption and <em>WIMF</em> score is not necessarily very linear.</p>
 </div>
 </div>
@@ -116,19 +116,19 @@ image: "/img/coffee.jpg"
 ## 
 ## Residuals:
 ##       Min.    1st Qu.     Median    3rd Qu.       Max. 
-## -1.1407234 -0.0476791  0.0044932  0.0491580  0.8332844 
+## -1.1407569 -0.0478411  0.0044739  0.0491473  0.8330897 
 ## 
 ## Coefficients:
 ##                                   Estimate  Std. Error t-value Pr(&gt;|t|)
-## scaled_press                   -0.00046176  0.01478193 -0.0312   0.9751
-## ppp_capita_scaled              -0.05377293  0.04565662 -1.1778   0.2391
-## scaled_press:ppp_capita_scaled  0.00123356  0.01875153  0.0658   0.9476
+## scaled_press                   -0.00038454  0.01477842 -0.0260   0.9792
+## ppp_capita_scaled              -0.05175230  0.04566128 -1.1334   0.2573
+## scaled_press:ppp_capita_scaled  0.00149864  0.01874887  0.0799   0.9363
 ## 
-## Total Sum of Squares:    26.397
-## Residual Sum of Squares: 26.369
-## R-Squared:      0.0010844
-## Adj. R-Squared: -0.092637
-## F-statistic: 0.462829 on 3 and 1279 DF, p-value: 0.70829</code></pre>
+## Total Sum of Squares:    26.377
+## Residual Sum of Squares: 26.351
+## R-Squared:      0.0010051
+## Adj. R-Squared: -0.092724
+## F-statistic: 0.428919 on 3 and 1279 DF, p-value: 0.73231</code></pre>
 <p>There does not appear to be any significant relationship between coffee consumption and press freedom when controlling for a country’s purchasing power parity per capita in a fixed effects model. I was surprised by this result, but it may partially stem from the <em>WPFI</em>’s methodology that includes measures of media diversity and corruption, which lowers the score of countries like <a href="https://rsf.org/en/greece">Greece</a>.</p>
 </div>
 </div>
@@ -153,21 +153,21 @@ image: "/img/coffee.jpg"
 ## 
 ## Residuals:
 ##         Min.      1st Qu.       Median      3rd Qu.         Max. 
-## -3.102989777 -0.070038515 -0.000083311  0.063998408  2.090484679 
+## -3.101829590 -0.069984905 -0.000045465  0.063993267  2.090463120 
 ## 
 ## Coefficients:
-##                              Estimate Std. Error t-value   Pr(&gt;|t|)    
-## scaled_fiw                   0.071499   0.022347  3.1995   0.001395 ** 
-## ppp_capita_scaled            0.197414   0.044603  4.4260 0.00001004 ***
-## scaled_fiw:ppp_capita_scaled 0.108927   0.026668  4.0845 0.00004565 ***
+##                              Estimate Std. Error t-value    Pr(&gt;|t|)    
+## scaled_fiw                   0.071525   0.022348  3.2006     0.00139 ** 
+## ppp_capita_scaled            0.197932   0.044608  4.4371 0.000009536 ***
+## scaled_fiw:ppp_capita_scaled 0.109048   0.026666  4.0894 0.000044696 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Total Sum of Squares:    179.84
-## Residual Sum of Squares: 177.31
-## R-Squared:      0.014078
-## Adj. R-Squared: -0.041673
-## F-statistic: 11.1951 on 3 and 2352 DF, p-value: 0.00000027107</code></pre>
+## Total Sum of Squares:    179.83
+## Residual Sum of Squares: 177.29
+## R-Squared:      0.014128
+## Adj. R-Squared: -0.041621
+## F-statistic: 11.2352 on 3 and 2352 DF, p-value: 0.00000025588</code></pre>
 <p>The two-ways fixed effects model shows that there is a a positive relationship between higher <em>FIW</em> scores and coffee consumption, after controlling for purchasing power parity per capita.</p>
 </div>
 </div>
@@ -190,13 +190,13 @@ image: "/img/coffee.jpg"
 ## 
 ## Residuals:
 ##        Min.     1st Qu.      Median     3rd Qu.        Max. 
-## -3.07783436 -0.06847095  0.00038307  0.06191839  2.07019607 
+## -3.07658363 -0.06835684  0.00056557  0.06198151  2.07016697 
 ## 
 ## Coefficients:
 ##                                  Estimate Std. Error t-value     Pr(&gt;|t|)
-## scaled_polity2                   0.080460   0.019269  4.1755 0.0000308397
-## ppp_capita_scaled                0.235452   0.045811  5.1397 0.0000002984
-## scaled_polity2:ppp_capita_scaled 0.132103   0.026296  5.0237 0.0000005457
+## scaled_polity2                   0.080544   0.019271  4.1796 0.0000302985
+## ppp_capita_scaled                0.236021   0.045816  5.1515 0.0000002803
+## scaled_polity2:ppp_capita_scaled 0.132177   0.026295  5.0267 0.0000005376
 ##                                     
 ## scaled_polity2                   ***
 ## ppp_capita_scaled                ***
@@ -204,11 +204,11 @@ image: "/img/coffee.jpg"
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Total Sum of Squares:    174.22
-## Residual Sum of Squares: 171.03
-## R-Squared:      0.018294
-## Adj. R-Squared: -0.038023
-## F-statistic: 14.2931 on 3 and 2301 DF, p-value: 0.0000000031517</code></pre>
+## Total Sum of Squares:    174.21
+## Residual Sum of Squares: 171.01
+## R-Squared:      0.018347
+## Adj. R-Squared: -0.037967
+## F-statistic: 14.3348 on 3 and 2301 DF, p-value: 0.000000002968</code></pre>
 <p>The <em>Polity IV</em> panel analysis includes data from 1960 (but only for the United States) to 2016. It does not show any significant relationship between coffee consumption and <em>Polity IV</em> score.</p>
 </div>
 </div>

@@ -446,9 +446,12 @@ p_press <- ggplot(aes(x = scaled_press, y = consumption_capita),
   geom_smooth(se = FALSE, alpha = 0.75) +
   scale_y_continuous(labels = scales::comma) + 
   scale_x_continuous(limits = c(-1,2)) + 
-  geom_point(data = top10_2016_press, colour = "#6f4e37") +
-  geom_text(data = top10_2016_press, aes(x = scaled_press, label = country, 
-                                         hjust = hjust, vjust = vjust),
+  geom_point(data = top10_2016_press, 
+             colour = "#6f4e37", inherit.aes = FALSE,
+             aes(x = scaled_press, y = consumption_capita)) +
+  geom_text(data = top10_2016_press, inherit.aes = FALSE,
+            aes(x = scaled_press, label = country, y = consumption_capita,
+                hjust = hjust, vjust = vjust),
             fontface = "bold", position = position_nudge(
               y = top10_2016_press$nudge_y, x = top10_2016_press$nudge_x)
             ) +
@@ -561,9 +564,11 @@ p_fiw <- ggplot(aes(x = fiw_score, y = consumption_capita),
   geom_smooth(se = FALSE, alpha = 0.75) +
   scale_y_continuous(labels = scales::comma) + 
   scale_x_continuous(limits=c(0,8), breaks = c(1,3,5,7)) +
-  geom_point(data = top10_2016_fiw, colour = "#6f4e37") +
-  geom_text(data = top10_2016_fiw, aes(x = fiw_score, label = country, 
-                                       hjust = hjust, vjust = vjust), 
+  geom_point(data = top10_2016_fiw, colour = "#6f4e37", inherit.aes = FALSE,
+             aes(x = fiw_score, y = consumption_capita)) +
+  geom_text(data = top10_2016_fiw, inherit.aes = FALSE,
+            aes(x = fiw_score, y = consumption_capita, 
+                label = country, hjust = hjust, vjust = vjust), 
             fontface = "bold", position = position_nudge(
               y = top10_2016_fiw$nudge_y, x = top10_2016_fiw$nudge_x)
             ) +
@@ -652,10 +657,11 @@ p_polity <- ggplot(aes(x = polity2, y = consumption_capita),
                formula = y ~ x, parse = TRUE, eq.with.lhs = "") +
   scale_y_continuous(labels = scales::comma) + 
   scale_x_continuous(limits=c(-10,12), breaks = c(-10,-5,0,5,10)) +
-  geom_point(data = top10_2016_polity, colour = "#6f4e37") +
-  geom_text(data = top10_2016_polity, aes(x = polity2,
-                                          label = country, hjust = hjust,
-                                          vjust = vjust), 
+  geom_point(data = top10_2016_polity, colour = "#6f4e37", inherit.aes = FALSE,
+             aes(x = polity2, y = consumption_capita)) +
+  geom_text(data = top10_2016_polity, inherit.aes = FALSE,
+            aes(x = polity2, y = consumption_capita, label = country, 
+                hjust = hjust, vjust = vjust), 
             fontface = "bold", position = position_nudge(
               y = top10_2016_polity$nudge_y, x = top10_2016_polity$nudge_x)
             ) +
