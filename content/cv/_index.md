@@ -138,9 +138,13 @@ title: CV
   <div class="cvcleared"></div>
 </div>
 
-### Speaking Appearances
+### Selected Speaking Appearances
 
 <div class="cvwrapper">
+  <div class="cvsidebar">2018</div>
+    <div class="cvcontent"><p><em>Presenting on the `nomisr` package.</em> Public Health England Data Science Day. Birmingham.</p></div>
+  <div class="cvcleared"></div>
+
   <div class="cvsidebar">2017</div>
     <div class="cvcontent"><p>Panel appearance with Melanie Wilkes and Andrew Rawson. <em>From Application to Graduation.</em> Policy UK Forum: Creating a Culture of Inclusivity for Disabled Students. London.</p></div>
   <div class="cvcleared"></div>
