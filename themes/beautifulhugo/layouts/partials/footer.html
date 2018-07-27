@@ -55,7 +55,7 @@
   {{ i18n "poweredBy" . | safeHTML }}
   {{ with .Site.Params.commit }}&nbsp;&bull;&nbsp;[<a href="{{.}}{{ getenv "GIT_COMMIT_SHA" }}">{{ getenv "GIT_COMMIT_SHA_SHORT" }}</a>]{{ end }} and further modified by <a href="https://evanodell.com">Evan Odell</a>.
 &nbsp;&bull;&nbsp;
-2015 &ndash {{ .Site.LastChange.Format "2006" }}
+2015 &ndash; {{ .Site.LastChange.Format "2006" }}
 <!--
 {{ if .Site.Title }}
 &nbsp;&bull;&nbsp;
