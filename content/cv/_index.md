@@ -98,24 +98,28 @@ title: CV
 <div class="cvwrapper">
 
   <div class="cvsidebar">2018</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>nomisr</code>: Access 'Nomis' UK Labour Market Data <a href="http://docs.evanodell.com/nomisr">http://docs.evanodell.com/nomisr</a> DOI: <a href="https://doi.org/10.5281/zenodo.1162926">10.5281/zenodo.1162926</a> <a href="https://cran.r-project.org/package=nomisr"><img src="https://www.r-pkg.org/badges/version/nomisr" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>nomisr</code>: Access 'Nomis' UK Labour Market Data <a href="https://docs.evanodell.com/nomisr">https://docs.evanodell.com/nomisr</a> DOI: <a href="https://doi.org/10.5281/zenodo.1162926">10.5281/zenodo.1162926</a> <a href="https://cran.r-project.org/package=nomisr"><img src="https://www.r-pkg.org/badges/version/nomisr" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
 
 
   <div class="cvsidebar">2018</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>fixerapi</code>: An R Client for the 'Fixer.io' Currency API <a href="http://docs.evanodell.com/fixerapi">http://docs.evanodell.com/fixerapi</a> DOI: <a href="https://doi.org/10.5281/zenodo.1214391">10.5281/zenodo.1214391</a> <a href="https://cran.r-project.org/package=fixerapi"><img src="https://www.r-pkg.org/badges/version/fixerapi" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>fixerapi</code>: An R Client for the 'Fixer.io' Currency API <a href="https://docs.evanodell.com/fixerapi">https://docs.evanodell.com/fixerapi</a> DOI: <a href="https://doi.org/10.5281/zenodo.1214391">10.5281/zenodo.1214391</a> <a href="https://cran.r-project.org/package=fixerapi"><img src="https://www.r-pkg.org/badges/version/fixerapi" alt="CRAN_Status_Badge" /></a></p></div>
+  <div class="cvcleared"></div>
+  
+    <div class="cvsidebar">2018</div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>refuge</code>: Locate Trans and Intersex-Friendly Toilets <a href="https://docs.evanodell.com/refuge">https://docs.evanodell.com/refuge</a> DOI: <a href="https://doi.org/10.5281/zenodo.1219900">10.5281/zenodo.1219900</a> <a href="https://cran.r-project.org/package=refuge"><img src="https://www.r-pkg.org/badges/version/refuge" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
 
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>parlitools</code>: Tools for Analysing UK Politics. <a href="http://docs.evanodell.com/parlitools">http://docs.evanodell.com/parlitools</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591586">10.5281/zenodo.591586</a> <a href="https://cran.r-project.org/package=parlitools"><img src="https://www.r-pkg.org/badges/version/parlitools" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>parlitools</code>: Tools for Analysing UK Politics. <a href="https://docs.evanodell.com/parlitools">https://docs.evanodell.com/parlitools</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591586">10.5281/zenodo.591586</a> <a href="https://cran.r-project.org/package=parlitools"><img src="https://www.r-pkg.org/badges/version/parlitools" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
   
   <div class="cvsidebar">2017</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>mnis</code>: Easy Downloading Capabilities for the Members’ Name Information Service. <a href="http://docs.evanodell.com/mnis">http://docs.evanodell.com/mnis</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591287">10.5281/zenodo.591287</a> <a href="https://cran.r-project.org/package=mnis"><img src="https://www.r-pkg.org/badges/version/mnis" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>mnis</code>: Easy Downloading Capabilities for the Members’ Name Information Service. <a href="https://docs.evanodell.com/mnis">https://docs.evanodell.com/mnis</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591287">10.5281/zenodo.591287</a> <a href="https://cran.r-project.org/package=mnis"><img src="https://www.r-pkg.org/badges/version/mnis" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
   
   <div class="cvsidebar">2016</div>
-    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>hansard</code>: Accessing Westminster Parliament Data. <a href="http://docs.evanodell.com/hansard">http://docs.evanodell.com/hansard</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591264">10.5281/zenodo.591264</a> <a href="https://cran.r-project.org/package=hansard"><img src="https://www.r-pkg.org/badges/version/hansard" alt="CRAN_Status_Badge" /></a></p></div>
+    <div class="cvcontent"><p><strong>Odell, E.</strong> <code>hansard</code>: Accessing Westminster Parliament Data. <a href="https://docs.evanodell.com/hansard">https://docs.evanodell.com/hansard</a> DOI: <a href="https://dx.doi.org/10.5281/zenodo.591264">10.5281/zenodo.591264</a> <a href="https://cran.r-project.org/package=hansard"><img src="https://www.r-pkg.org/badges/version/hansard" alt="CRAN_Status_Badge" /></a></p></div>
   <div class="cvcleared"></div>
 </div>
 

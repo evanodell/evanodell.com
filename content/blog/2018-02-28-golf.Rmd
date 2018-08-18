@@ -244,6 +244,8 @@ Golf course data is from the Ordnance Survey [OS Open Greenspace](https://www.or
 
 As always, code is available on [GitHub](http://github.com/evanodell/golf).
 
+_This article was republished on [CityMetric](https://www.citymetric.com) on [March 7, 2018](https://www.citymetric.com/fabric/within-2km-station-south-east-england-has-golf-courses-room-500000-homes-3736)_.
+
 ## References
 
 

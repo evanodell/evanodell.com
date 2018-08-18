@@ -1,0 +1,341 @@
+---
+title: "Visualising Disability Benefit Appeals"
+author: "Evan Odell"
+date: "18 August 2018"
+publishdate: 2018-08-18
+output:
+  blogdown::html_page
+---
+
+```{r setup, include=FALSE}
+options(scipen=999)
+
+knitr::opts_chunk$set(fig.width = 10, fig.height=8, 
+                      message=FALSE, warning=FALSE, echo=FALSE)
+```
+
+
+
+```{r tribunals, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readODS)
+library(snakecase)
+library(tidyr)
+library(stringi)
+
+#https://www.gov.uk/government/statistics/tribunals-and-gender-recognitions-certificates-statistics-quarterly-january-to-march-2018
+
+uk_tribunal <- read_ods(path = "benefits-data/tribunals-main-tables-q4-2017-18.ods",
+                        sheet = "SSCS_3", skip = 4, na = "..",
+                        col_names = FALSE)
+
+uk_tribunal <- uk_tribunal %>% 
+  rename("Financial Year" = "A",
+         "Quarter" = "B",
+         "Hearing Outcome" = "C",
+         "Total" = "D",
+         "30 hours free childcare scheme" = "E",
+         "Attendance Allowance" = "F",
+         "Bereavement Support Payment Scheme" = "G",
+         "Disability Living Allowance" = "H",
+         "Bereavement Benefit" = "I",
+         "Carer's Allowance" = "J",
+         "Child Benefit Lone Parent" = "K",
+         "Child Support Allowance" = "L",
+         "Tax Credits" = "M",
+         "Credits (Other)" = "N",
+         "Contracted Out Employment Group" = "O",
+         "Compensation Recovery Unit" = "P",
+         "Housing/Council Tax benefit " = "Q",
+         "Diffuse Mesothelioma Scheme" = "R",
+         "Disability Working Allowance" = "S",
+         "Employment Support Allowance" = "T",
+         "Health in Pregnancy Grant" = "U",
+         "Home Responsibilities Protection" = "V",
+         "Incapacity Benefit" = "W",
+         "Income Support" = "X",
+         "Industrial Death Benefit" = "Y",
+         "Industrial Injuries Disablement Benefit" = "Z",
+         "Job Seekers Allowance" = "AA",
+         "Lookalikes" = "AB", 
+         "Maternity Benefit/Allowances" = "AC",
+         "Others (Extinct/rare Benefits)" = "AD",
+         "Penalty Proceedings" = "AE", 
+         "Pension Credits" = "AF", 
+         "Personal Independence Payment" = "AG", 
+         "Retirement Pension" = "AH", 
+         "Road Traffic (NHS Charges)" = "AI", 
+         "Severe Disablement Benefit/Allowance" = "AJ", 
+         "Social Fund" = "AK", 
+         "Tax-Free Childcare Scheme" = "AL", 
+         "Universal Credit" = "AM", 
+         "Vaccine Damage Appeals" = "AN")
+
+names(uk_tribunal) <- to_snake_case(names(uk_tribunal))
+
+uk_tribunal$hearing_outcome <- stri_replace_all_fixed(
+  uk_tribunal$hearing_outcome, 
+  c("Cleared at Hearing6", "% Decision Upheld7", "% Decision In Favour8"),
+  c("Cleared", "Percent Upheld", "Percent In Favour"),
+  vectorize_all = FALSE)
+
+uk_tribunal$financial_year <- stri_replace_all_fixed(uk_tribunal$financial_year,
+                                                     c("2007/085", "2008/095"), 
+                                                     c("2007/08", "2008/09"),
+                                                     vectorize_all = TRUE)
+
+uk_tribunal <- uk_tribunal %>% 
+  mutate_all(funs(stri_replace_all_fixed(., ",", "")))
+
+#uk_tribunal <- stri_replace_all_fixed(uk_tribunal, ",", "", vectorize_all = FALSE)
+
+uk_tribunal$quarter <- stri_replace_all_fixed(uk_tribunal$quarter, "r", "",
+                                                     vectorize_all = TRUE)
+
+uk_tribunal <- uk_tribunal %>% fill(financial_year)
+uk_tribunal <- uk_tribunal %>% fill(quarter)
+
+uk_tribunal <- uk_tribunal %>% filter(!is.na(hearing_outcome))
+
+uk_tribunal[uk_tribunal == "-"] <- NA
+
+uk_tribunal$period <- paste0(uk_tribunal$financial_year, "-",
+                             uk_tribunal$quarter)
+
+uk_tribunal_q <- uk_tribunal %>% filter(!is.na(quarter))
+
+all_cases <- uk_tribunal_q %>% filter(hearing_outcome %in%
+                                        c("Cleared", "Decision in favour"))
+
+all_cases <- all_cases %>% mutate_at(vars(total:vaccine_damage_appeals),
+                                     as.numeric, na.rm=TRUE)
+
+all_cases <- all_cases %>% group_by(period, hearing_outcome) %>%
+  mutate(disability_appeals = sum(personal_independence_payment,
+           employment_support_allowance,
+           disability_living_allowance, 
+           attendance_allowance,
+           incapacity_benefit, na.rm = TRUE),
+         esa_perc = employment_support_allowance/total,
+         pip_perc = personal_independence_payment/total,
+         dla_perc = disability_living_allowance/total, 
+         aa_perc = attendance_allowance/total,
+         ib_perc = incapacity_benefit/total,
+         other_perc = (total-disability_appeals)/total,
+         other_total = total-disability_appeals)
+
+esa_per_year <- all_cases %>% group_by(financial_year) %>%
+  summarise(esa_total = sum(employment_support_allowance))
+
+esa_rate <- uk_tribunal_q %>% 
+  select(financial_year, quarter, period,
+         hearing_outcome, employment_support_allowance)
+
+esa_rate$employment_support_allowance <- gsub(
+  "%", "", esa_rate$employment_support_allowance)
+
+
+esa_rate$quarter <- as.numeric(
+  stri_replace_all_fixed(esa_rate$quarter, "Q", "")
+  )
+
+esa_per_year <- esa_rate %>% filter(
+  hearing_outcome %in% c("Cleared", "Decision in favour", "Decision upheld")
+  ) %>%
+  group_by(financial_year, hearing_outcome) %>%
+  summarise(total = sum(as.numeric(employment_support_allowance))) %>% 
+  spread(hearing_outcome, total) %>% 
+  mutate(overturn_perc = `Decision in favour`/Cleared)
+
+ esa_rate$employment_support_allowance <- as.numeric(esa_rate$employment_support_allowance)/100
+
+success <- all_cases %>% 
+  group_by(financial_year, hearing_outcome) %>%
+  summarise(total = sum(as.numeric(disability_appeals))) %>% 
+  spread(hearing_outcome, total) %>%
+  rename("decision_in_favour" = "Decision in favour") %>%
+  mutate(success_rate = decision_in_favour/Cleared)
+
+```
+
+From April 2009 to March 2018 `r formatC(sum(all_cases$total), digits = 0, format = "f", big.mark = ",")` social security and child support decisions have been appealed to an independent tribunal. These appeals are heard by Her Majesty’s Courts & Tribunals Service (HMCTS). `r formatC(sum(all_cases$total) - sum(all_cases$other_total), digits = 0, format = "f", big.mark = ",")` of those appeals have been on disability benefit decisions,  `r paste0(formatC((1-(sum(all_cases$other_total)/sum(all_cases$total)))*100, digits = 1, format = "f", big.mark = ","),"%")` of the total. Of these, `r formatC(sum(success$decision_in_favour), digits = 0, format = "f", big.mark = ",")`, or `r paste0(formatC((sum(success$decision_in_favour)/sum(success$Cleared))*100, digits = 1, format = "f", big.mark = ","), "%")`, were successful. However, the success rate on appeal has gone up over time. From April 2017 to March 2018, disabled people won 67.7% of the appeals they brought to tribunal.
+
+Since their respective introductions, Employment and Support Allowance (ESA) and Personal Independence Payment (PIP) have made up the largest proportion of appeals. In the last year, almost half of all social security appeals have been over PIP, while from 2013--2014, over two-thirds of all appeals were on ESA decisions, as the government moved everyone who had been claiming Incapacity Benefit to ESA. Many people moved onto to ESA appealed those decisions. In 2013--14, tribunals heard `r formatC(max(esa_per_year$Cleared), digits = 0, format = "f", big.mark = ",")` appeals on ESA decisions, of which `r paste0(formatC(esa_per_year$overturn_perc[which.max(esa_per_year$Cleared)]*100, digits = 1, format = "f", big.mark = ","), "%")` where successful.
+
+
+```{r caseload-perc-plot}
+library(forcats)
+case_dist <- all_cases %>% 
+  filter(hearing_outcome == "Cleared") %>% 
+  ungroup() %>%
+  select(financial_year, quarter, period, esa_perc:other_perc) %>% 
+  gather(benefit, load_perc, -financial_year,  -quarter, -period)
+
+case_dist$load_perc[is.na(case_dist$load_perc)] <- 0
+
+case_dist$quarter <- as.numeric(
+  stri_replace_all_fixed(case_dist$quarter, "Q", "")
+  )
+
+case_dist$benefit <- fct_recode(case_dist$benefit,
+               "Attendance Allowance" = "aa_perc",
+               "Disability Living Allowance" = "dla_perc",
+               "Employment and Support Allowance" = "esa_perc",
+               "Incapacity Benefit" = "ib_perc",
+               "Personal Independence Payment" = "pip_perc",
+               "Other" = "other_perc")
+
+case_dist$benefit <- factor(case_dist$benefit, 
+                            levels=c("Attendance Allowance", 
+                                     "Disability Living Allowance", 
+                                     "Employment and Support Allowance", 
+                                     "Incapacity Benefit", 
+                                     "Personal Independence Payment", 
+                                     "Other"))
+
+p_caseload_perc <- ggplot(data = case_dist, 
+                     aes(x = quarter, y = load_perc)) + 
+  geom_area(aes(fill = benefit)) + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_x_continuous(breaks = c(1,3), labels = c("Q1", "Q3")) + 
+  scale_fill_viridis_d() + 
+  facet_wrap(~financial_year, nrow = 1) + 
+  labs(title = "Caseload Distribution",
+       subtitle = "Social Security Tribunals",
+       y = "Caseload Percentage",
+       x = "Quarter", 
+       caption = "\uA9 2018 Disability Rights UK CC-BY-SA") + 
+  theme(text = element_text(size = 18), 
+        legend.position = "bottom", legend.title = element_blank()) + 
+  guides(fill = guide_legend(nrow = 3, byrow = TRUE))
+
+p_caseload_perc
+```
+
+There is a big drop in the number of appeals starting in April 2014. There appear to be two reasons for this. The first is the completion of the transition from Incapacity Benefit to ESA, and the appeals associated with that. 
+
+The second reason for the decrease is that the DWP made appealing more difficult in April 2013. Prior to April 2013, appeals were made directly to the DWP, and then heard by the Tribunal Service. Since April 2013, you have to appeal directly to the Tribunals Service, and the Tribunals Service only accepts appeals if you have asked the DWP for a mandatory reconsideration. This delays the appeals process itself, and the DWP only changes its decision in roughly one-fifth of both [ESA](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/716083/esa-wca-summary-june-2018.pdf) and [PIP](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/714950/pip-statistics-to-april-2018.pdf) mandatory reconsiderations. The introduction of mandatory reconsideration appears to have led to large a drop in the number of appeals, alongside an increase in the success rates on appeal.
+
+The drop in the number of ESA appeals combined with an increased success rate on those appeals does not necessarily mean that mandatory reconsideration is fixing mistakes made in assessment, or that the process has dissuaded "chancers" unlikely to see decisions changed. PIP was introduced at the same time as mandatory reconsiderations, but PIP appeal success rates have also gone up. And the more PIP decisions have reached tribunal, the greater the success rate.
+
+
+```{r caseload-total-plot}
+case_total <- all_cases %>% filter(hearing_outcome == "Cleared") %>%
+  ungroup() %>%
+  select(financial_year, quarter, period, personal_independence_payment,
+         employment_support_allowance, disability_living_allowance,
+         attendance_allowance, incapacity_benefit, other_total) %>% 
+  gather(benefit, case_total, -financial_year, -quarter, -period)
+
+case_total$case_total[is.na(case_total$case_total)] <- 0
+
+case_total$quarter <- as.numeric(
+  stri_replace_all_fixed(case_total$quarter, "Q", "")
+  )
+
+ case_total$benefit <- fct_recode(
+   case_total$benefit,
+   "Attendance Allowance" = "attendance_allowance",
+   "Disability Living Allowance" = "disability_living_allowance",
+   "Employment and Support Allowance" = "employment_support_allowance",
+   "Incapacity Benefit" = "incapacity_benefit",
+   "Personal Independence Payment" = "personal_independence_payment",
+   "Other" = "other_total")
+ 
+case_total$benefit <- factor(case_total$benefit, 
+                             levels=c("Attendance Allowance", 
+                                      "Disability Living Allowance", 
+                                      "Employment and Support Allowance",
+                                      "Incapacity Benefit", 
+                                      "Personal Independence Payment", 
+                                      "Other"))
+
+p_caseload_total <- ggplot(data = case_total, 
+                     aes(x=quarter, y = case_total)) + 
+  geom_col(aes(fill = benefit)) + 
+  facet_wrap(~financial_year, nrow = 1) + 
+  scale_fill_viridis_d() + 
+  scale_y_continuous(labels = scales::comma) + 
+  scale_x_continuous(breaks = c(1,3), labels = c("Q1", "Q3")) + 
+  labs(title = "Caseload Totals", 
+       subtitle = "Social Security Tribunals",
+       y = "Caseload Total",
+       x = "Quarter", 
+       caption = "\uA9 2018 Disability Rights UK CC-BY-SA") + 
+  theme(text = element_text(size = 18), legend.position = "bottom",
+        legend.title = element_blank()) + 
+  guides(fill = guide_legend(nrow = 3, byrow = TRUE))
+
+p_caseload_total
+```
+
+
+### Success on Appeal
+
+Disability benefit decisions made by the DWP are often overturned when appealed, and the success rates for both ESA and PIP appeals have increased. From April 2014 onwards, the majority of ESA decisions appealed have been decided in favour of the disabled person. In January--March of this year, disabled people have won in 70% of ESA appeals. Likewise, from October 2014 onwards, the majority of PIP appeals have been successful, and in the most recent quarter from January--March 2018, disabled people won 71% of the PIP appeals they made.
+
+The high overturn rate shows that there are massive problems with the disability benefits assessment system, that the PIP assessment process and the Work Capability Assessment (used for ESA) are fundamentally not fit for purpose. Imagine if 70% of criminal trials made the wrong decision, or if 70% of GCSE students were given grades that were too low?
+
+```{r esa-plot, message=FALSE, warning=FALSE}
+
+esa_rate2 <- esa_rate %>% filter(hearing_outcome == "Percent In Favour")
+
+p_esa <- ggplot(data = esa_rate2,
+                aes(y = employment_support_allowance, x = quarter, 
+                    fill = employment_support_allowance)) + 
+  geom_col() + 
+  scale_fill_viridis_c(option = "plasma") + 
+  scale_y_continuous(labels = scales::percent_format(accuracy = 2), 
+                     breaks= scales::pretty_breaks()) + 
+  scale_x_continuous(breaks = c(1,3), labels = c("Q1", "Q3")) + 
+  facet_wrap(~financial_year, nrow = 1) + 
+  labs(title = "Employment and Support Allowance Appeal Overturn Rates",
+       y = "Overturn Rate",
+       x = "Quarter", 
+       caption = "\uA9 2018 Disability Rights UK CC-BY-SA") + 
+  theme(text = element_text(size = 18), legend.position="none")
+
+p_esa
+```
+
+
+```{r pip-plot, message=FALSE, warning=FALSE}
+
+pip_rate <- uk_tribunal_q %>% 
+  select(financial_year, quarter, period,
+         hearing_outcome, personal_independence_payment)
+
+pip_rate2 <- pip_rate %>% filter(hearing_outcome == "Percent In Favour",
+                            !is.na(personal_independence_payment), 
+                            personal_independence_payment != "0%")
+
+pip_rate2$personal_independence_payment <- gsub(
+  "%", "", pip_rate2$personal_independence_payment)
+
+pip_rate2$personal_independence_payment <- as.numeric(pip_rate2$personal_independence_payment)/100
+
+p_pip <- ggplot(aes(y = personal_independence_payment,
+                    x = quarter, fill = personal_independence_payment), 
+              data = pip_rate2) + 
+  geom_col() + 
+  scale_fill_viridis_c(option = "plasma") + 
+  scale_y_continuous(labels = scales::percent_format(accuracy = 2), 
+                     breaks= scales::pretty_breaks()) + 
+  facet_wrap(~financial_year, nrow = 1) + 
+  labs(title = "Personal Independent Payment Appeal Overturn Rates",
+       y = "Overturn Rate",
+       x = "Quarter", 
+       caption = "\uA9 2018 Disability Rights UK CC-BY-SA") + 
+  theme(text = element_text(size = 18), legend.position="none")
+
+p_pip
+```
+
+The DWP likes to point out that only a small percentage of decisions are overturned on appeal, but this misses the point. Many disabled people who have been wrongly denied benefits don't know how to appeal, become so fed up with the system that they want nothing more to do with it, or are scared that they will lose what benefits they have been awarded. Decision letters are lengthy and confusing to read, so many disabled people might not know that their assessor made mistakes, or [even acted dishonestly](https://www.disabilitynewsservice.com/pip-investigation-200-cases-of-dishonesty-and-still-dwp-atos-and-capita-refuse-to-act/). 
+
+The disabled people who appeal decisions are those who have the time, energy and knowledge of the benefits system to do so, or are able to get support and advice to appeal. Anecdotally, in some interviews with benefit applicants I conducted earlier this year, people who appealed their decision tended to be people from professional backgrounds, who had extensive experience navigating and managing complex administrative structures. But local advice services are under strain, and Disabled Persons Organisations are financially struggling, so many disabled people simply can't get the support they need to appeal wrong decisions. Thousands more disabled people could appeal the decisions made on their PIP and ESA applications, and the success rate would stay the same, or even get higher. The introduction of mandatory reconsiderations means that disabled people are now forced to clear a second hurdle before being able to have an independent assessment of their case, and it takes a lot of persistence to keep going to appeal after two rejections. The small number of decisions being appealed are not signs of a fair system, they are the sign of a benefits system that is actively disabling.
+
+The statistics used in these graphs are all taken from table "SSCS_3" in [_Tribunals and gender recognitions certificates statistics quarterly: January to March 2018_](https://www.gov.uk/government/statistics/tribunals-and-gender-recognitions-certificates-statistics-quarterly-january-to-march-2018).
+
+*[This blog was originally written for and published by Disability Rights UK](https://disabilityrightsuk.blogspot.com/2018/08/visualising-disability-benefit-appeals.html)*
