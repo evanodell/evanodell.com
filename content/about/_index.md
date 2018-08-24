@@ -11,7 +11,7 @@ Depending on how you want to interpret those results, it could be a bit astonish
 
 At the moment I'm living London, having come to the UK from Canada in 2014 to do an MSc in Comparative Social Policy at the University of Oxford, and then pursued work in the charity sector doing impact analysis, data science and social research. I am particularly interested in disabilities, employment policy, education and healthcare, but I find all social policies and social phenomena generally fascinating. I like open data and improving ease of use, so I have a [dataset of UK parliamentary speeches with sentiment analysis](/projects/datasets/hansard-data), and have produced a few [R packages](http://docs.evanodell.com). I have a semi-frequently used [Twitter](https://twitter.com/evanodell) feed, build the odd [Shiny app](/projects/#shiny-applications), have put a bunch of projects on [GitHub](https://github.com/EvanOdell) and I'm also occasionally out in the real world doing various things.
 
-If you're interested, check out my [CV](http://evanodell.com/cv/), or [drop me an email](mailto:evanodell91@gmail.com).
+If you're interested, check out my [CV](http://evanodell.com/cv.pdf), or [drop me an email](mailto:evanodell91@gmail.com).
 
 {{< figure src="/img/evan-and-coco.png" title="I have wild hair; my girlfriend has a very cute cat" link="" >}}
 
