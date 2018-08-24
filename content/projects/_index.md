@@ -5,10 +5,11 @@ title: Projects
 body: Roboto
 ---
 
+<!-- I should do something to include packages, research, etc, in here automatically -->
+
 ## Shiny Applications
 
 ### [London Housing Bang for your Buck](/projects/housing-bang-buck/)
-
 #### 06 November 2017
 <!--
 {{< figure src="/img/ptal/bang-buck-image.png" >}}
@@ -41,8 +42,16 @@ An interactive map of all charities in the England and Wales charity commission 
 A model for exploring what impact different electoral turnout scenarios would have on the seat distribution in the 2015 General Election in England. Initially inspired by the possibility raised by Jeremy Corbyn's election as Labour Party leader that Labour would attempt to win the next election by focusing on increasing voter turnout. The first proper Shiny app I made, and no longer hosted online. To see this app, open R and run `shiny::runUrl("https://github.com/evanodell/England-TurnOut/archive/master.zip")`
 
 
-
+<!--
 ## R Packages
+
+### [`nomisr`](https://docs.evanodell.com/nomisr)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![GitHub tag](https://img.shields.io/github/tag/evanodell/nomisr.svg)](https://github.com/evanodell/nomisr)
+[![DOI](https://zenodo.org/badge/118144805.svg)](https://zenodo.org/badge/latestdoi/118144805)
+
+`nomisr` is for accessing [Nomis](https://www.nomisweb.co.uk/) data -- UK labour market statistics, census data and other population data -- with R. Currently only available on [GitHub](https://github.com/evanodell/nomisr)
 
 ### [`hansard`](http://docs.evanodell.com/hansard)
 
@@ -82,15 +91,9 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 `emisc` is a collection of miscellaneous functions I wrote that may or may not be useful, and that may or may not duplicate existing work. They include clearing byte order marks out of text data and writing R data to LaTeX line by line, rather than as a table. Currently only available on [GitHub](https://github.com/evanodell/emisc)
 
+-->
 
-### [`nomisr`](https://docs.evanodell.com/nomisr)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub tag](https://img.shields.io/github/tag/evanodell/nomisr.svg)](https://github.com/evanodell/nomisr)
-[![DOI](https://zenodo.org/badge/118144805.svg)](https://zenodo.org/badge/latestdoi/118144805)
-
-`nomisr` is for accessing [Nomis](https://www.nomisweb.co.uk/) data -- UK labour market statistics, census data and other population data -- with R. Currently only available on [GitHub](https://github.com/evanodell/nomisr)
-
+<!--
 
 ## Datasets
 
@@ -99,10 +102,8 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 <span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1183893.svg)](https://doi.org/10.5281/zenodo.1183893)
 
-
-
-The `hansard_senti_post_V250` dataset contains 2,196,175 speeches and 382,484,493 words, representing every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date, starting and finishing dates (if applicable) as an MP, and age at the time of the speech. It also includes seven different sentiment classifications for those speeches. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods. [Click here](/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
-
+The `hansard_senti_post_V251` dataset contains 2,196,175 speeches and 382,484,493 words, representing every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date, starting and finishing dates (if applicable) as an MP, and age at the time of the speech. It also includes seven different sentiment classifications for those speeches. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods. [Click here](/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
+-->
 <!--
 
 ### [Charity Commission Data of All Registered Charities in England](/projects/datasets/charity-data)
