@@ -5,6 +5,16 @@
   to = "/maps/golf-map.html"
   status = 301
   force = false
+[[redirects]]
+  from = "/cv"
+  to = "/evanodell-cv.pdf"
+  status = 301
+  force = false
+[[redirects]]
+  from = "/evanodell-cv"
+  to = "/evanodell-cv.pdf"
+  status = 301
+  force = false
 
 [context.production.environment]
   HUGO_VERSION = "0.51"
