@@ -1,0 +1,105 @@
+---
+title: "The Impossibility of Negative Splits"
+author: "Evan Odell"
+date: "28 December 2018"
+publishdate: 2018-12-28
+subtitle: ""
+output:
+  blogdown::html_page
+---
+
+The gold standard in any kind of racing, particularly running, is the negative split, covering the second half of a race faster than the first. Running a negative split takes enormous confidence and pacing ability, often requiring a runner to let their competitors go, believing that they will be able to chase them down before the end of the race. And off the track it takes a course where they second half isn't any tougher than the first. 
+
+On the 1st of December I ran my first ever organised marathon, [along the coast in Dorset](https://www.endurancelife.com/dorset). You can see an animated video my watch made below. I haven't run very many negative splits in my life, even when I did a lot more running races than I do now, but the course in Dorset was so tough that the best runners alive wouldn't have stood a chance of a negative split.
+
+`r blogdown::shortcode('vimeo', '308607244')`
+
+As you can see in  Figure \@ref(fig:altitude-plot), the second half of the course was much harder than the first half, with the climbs being both steeper and more frequent. Descents were also so steep that you had to walk down, at times it felt quicker going up than down. At the 20 km mark I was on pace for a finish time of roughly 4:20, a pretty solid finishing time for a trail marathon, particularly given how muddy the course was that day, and the fog on parts of the course so thick that I couldn't see the guy in front of me, but I could hear his shoes in the mud.
+
+```{r data-prep, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(readxl)
+library(tidyr)
+library(lubridate)
+library(hms)
+
+#content/blog/
+run <- read_excel("marathon-data/Move_2018_12_01_09_03_02_Running.xlsx", 
+     range = "wk2:wu19351")
+
+names(run) = snakecase::to_snake_case(names(run))
+
+run <- run %>% select(-x_1)  %>% 
+  slice(-1:-2) %>% 
+  mutate(local_time = gsub("T", " ", local_time)) %>%
+  mutate(local_time = as.POSIXct(local_time, format = "%Y-%m-%d %H:%M:%OS"),
+         speed_kmh = speed * 3.6) %>%
+  rename("speed_ms" = "speed") %>%
+  mutate(local_time = if_else(local_time < as.POSIXct("2018-12-01 09:03:00"),
+                          local_time + hours(12), local_time),
+         elapsed = as.numeric(local_time),
+         elapsed = elapsed - min(elapsed),
+         pace = if_else((16+2/3)/speed_ms == "Inf", 0, (16+2/3)/speed_ms),
+         cum_pace = if_else((16+2/3)/(distance /elapsed) == "Inf",
+                         0,
+                         (16+2/3)/(distance /elapsed))*60,
+         predicted = cum_pace * (max(distance)/1000))
+
+```
+
+
+
+```{r altitude-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Dorset Marathon Altitude"}
+library(ggplot2)
+library(viridis)
+
+p1 <- ggplot(data = run, aes(y = altitude, x = distance)) +
+  geom_line(aes(colour = altitude)) + 
+  scale_colour_gradientn(colors = viridis_pal(end = 0.7,
+                                              option = "magma")(173),
+                         limits=c(min(run$altitude), max(run$altitude)), 
+                         na.value = "#FDE725FF") + 
+  scale_x_continuous(labels = scales::comma) + 
+  labs(x = "Distance (Metres)",
+       y = "Altitude (Metres)",
+       #title = "Dorset Marathon Altitude",
+       caption = "\u00A9 2018 | Evan Odell | CC-BY-SA") + 
+  theme(legend.position="none")
+
+p1
+
+```
+
+
+But a 4:20 pace was not to last. With the incredibly long and steep climbs on the second half of the course, my pace dropped off considerably, finishing a little over an hour off my pace just prior to the midpoint. Figure \@ref(fig:pace-plot) shows my predicted finishing time, based on my average pace up to that point. As you can see, I just kept getting slower and slower, dragging myself to the finish line.
+
+```{r pace-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Dorset Marathon Pace"}
+
+#pred_lims <- run$cum_pace * (max(run$distance)/1000)
+
+pred_lims <- hms(c(nth(run$predicted, 40, order_by = run$predicted),
+               nth(run$predicted, -40, order_by = run$predicted)))
+
+p2 <- ggplot(data = run, aes(y = hms(predicted), x = distance)) +
+  geom_line(aes(y = as.hms(max(run$elapsed))),
+            alpha = 0.4, size = 1, colour = "blue") + 
+  geom_text(aes(y = as.hms(max(run$elapsed)), x = 20000, 
+                label = paste0("Finishing time: ",
+                               as.hms(max(run$elapsed)))),
+            vjust = -1.2) + 
+  geom_line(aes(colour = predicted), size = 1, alpha = 0.9) +
+  scale_colour_gradientn(colors = viridis_pal(end = 0.7,
+                                              option = "magma")(173),
+                         #limits=c(0, 100), 
+                         na.value = "#FDE725FF") + 
+  scale_x_continuous(labels = scales::comma) + 
+  scale_y_time(limits = pred_lims) + 
+  labs(x = "Distance (Metres)",
+       y = "Predicted Time", 
+       #title = "Dorset Marathon Pace",
+       caption = "\u00A9 2018 | Evan Odell | CC-BY-SA") + 
+  theme(legend.position="none")
+
+p2
+```
+
