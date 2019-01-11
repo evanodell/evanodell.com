@@ -1,112 +1,25 @@
 ---
 aliases: ["/datasets/hansard-data"]
-title: Hansard Speeches and Sentiment V2.5.0
+title: Hansard Speeches 1979--2018 V2.6.0
 bibliography: [references.bib]
 link-citations: true
 ---
 
 ## [Download from Zenodo](http:doi.org/10.5281/zenodo.780985)
 
-A public dataset of speeches in the Hansard, stored as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see [here](https://evanodell.com/projects/datasets/hansard-data/archive/V250). Documentation for previous versions of the _Hansard Speeches and Sentiment_ dataset can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
+A public dataset of speeches in the Hansard, stored as a CSV, and as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see [here](https://evanodell.com/projects/datasets/hansard-data/archive/V250). Documentation for previous versions of the dataset including sentiment calculations can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
 
-The `hansard_senti_post_V250` dataset contains 2,196,175 speeches and 382,484,493 words. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods.
-
-
-
-## Sentiment Classification Methods
-
-The speeches have been classified for sentiment using a total of six libraries from the R package [`lexicon`](https://cran.r-project.org/package=lexicon) by Tyler Rinker, and [one by Ludovic Rheault, Kaspar Beelen, Christopher Cochrane and Graeme Hirst](https://github.com/lrheault/emotion). All classification has used the method in Tyler Rinker's [`sentimentr`](https://cran.r-project.org/package=sentimentr) package [@rinker2017]. The libraries are:
-
-1. The [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) library, labelled `afinn`. The AFINN library was accessed through Matthew Jockers's [`syuzhet`](https://cran.r-project.org/package=syuzhet) package [@nielsen2011].
-
-2. A variant of the [syuzhet](https://cran.r-project.org/package=syuzhet) library, included in the [`lexicon`](https://cran.r-project.org/package=lexicon) package, labelled `jockers`. [@jockers2015].
-
-3. The [NRC Word-Emotion Association Lexicon](http://saifmohammad.com/WebPages/lexicons.html), labelled `nrc`. The NRC library was access through the [`lexicon`](https://cran.r-project.org/package=lexicon) package. [@mohammad2013].
-
-4. The [Opinion Mining, Sentiment Analysis and Opinion Spam Detection](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) library, labelled `huliu`. The library was access through the [`lexicon`](https://cran.r-project.org/package=lexicon) package. [@hu2004].
-
-5. A modified version of the [unnamed lexicon](https://github.com/lrheault/emotion) from [this paper](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0168843), labelled `rheault`. As the method in `sentimentr` does not use distinguish between the same word that can occupy multiple lexical categories,[^3] I used the average polarity score assigned to such words.[^4] [@rheault2016].
-
-6. A combination of the [syuzhet](https://cran.r-project.org/package=syuzhet) and [Opinion Mining, Sentiment Analysis and Opinion Spam Detection](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) libraries created by Rinker, labelled `jockers_rinker`.
-
-7. The [Augmented SenticNet 4 Polarity Table](http://sentic.net/downloads/) from [`lexicon`](https://cran.r-project.org/package=lexicon), labelled `senticnet` [@cambria2016].
+It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2018, and includes information on cabinet and shadow cabinet positions.
 
 
-## Summary Statistics
 
-I have produced [summary statistics of the `hansard_senti_post_V250`](./hansard-summary-stats-V250.xlsx) with the weighted (by speech length) and unweighted mean and standard deviation of sentiment scores, and average and total speech word counts. These are available by:
-
-- [MP](./mp-senti-mean-V250.csv)
-- [party](./party-senti-mean-V250.csv)
-- [party group](./party-group-senti-mean-V250.csv)
-- [government or opposition status](./gov-senti-mean-V250.csv)
-- [gender](./gender-senti-mean-V250.csv)
-- [month](./month-senti-mean-V250.csv)
-- [quarter](./quarter-senti-mean-V250.csv)
-- [year](./year-senti-mean-V250.csv)
-- [ministry](./ministry-senti-mean-V250.csv)[^5]
-
-Download all nine tables in one [XLSX workbook](./hansard-summary-stats-V250.xlsx). Each table contains the following variables:
-
-| Variable | Description |
-|-----------------------|---------------------------------|
-`afinn_sentiment_avg` | Average sentiment, `afinn` library |
-`afinn_sd_avg` | Average sentiment standard deviation, `afinn` library |
-`afinn_sentiment_wtd` | Average sentiment, weighted by speech length, `afinn` library |
-`afinn_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `afinn` library |
-`jockers_sentiment_avg` | Average sentiment, `jockers` library |
-`jockers_sd_avg` | Average sentiment standard deviation, `jockers` library |
-`jockers_sentiment_wtd` | Average sentiment, weighted by speech length, `jockers` library |
-`jockers_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `jockers` library |
-`nrc_sentiment_avg` | Average sentiment, `nrc` library |
-`nrc_sd_avg` | Average sentiment standard deviation, `nrc` library |
-`nrc_sentiment_wtd` | Average sentiment, weighted by speech length, `nrc` library |
-`nrc_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `nrc` library |
-`huliu_sentiment_avg` | Average sentiment, `huliu` library |
-`huliu_sd_avg` | Average sentiment standard deviation, `huliu` library |
-`huliu_sentiment_wtd` | Average sentiment, weighted by speech length, `huliu` library |
-`huliu_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `huliu` library |
-`rheault_sentiment_avg` | Average sentiment, `rheault` library |
-`rheault_sd_avg` | Average sentiment standard deviation, `rheault` library |
-`rheault_sentiment_wtd` | Average sentiment, weighted by speech length, `rheault` library |
-`rheault_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `rheault` library |
-`jockers_rinker_sentiment_avg` | Average sentiment, `jockers_rinker` library |
-`jockers_rinker_sd_avg` | Average sentiment standard deviation, `jockers_rinker` library |
-`jockers_rinker_sentiment_wtd` | Average sentiment, weighted by speech length, `jockers_rinker` library |
-`jockers_rinker_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `jockers_rinker` library |
-`senticnet_sentiment_avg` | Average sentiment, `senticnet` library |
-`senticnet_sd_avg` | Average sentiment standard deviation, `senticnet` library |
-`senticnet_sentiment_wtd` | Average sentiment, weighted by speech length, `senticnet` library |
-`senticnet_sd_wtd` | Average sentiment standard deviation, weighted by speech length, `senticnet` library |
-`tot_speeches` | Total number of speeches |
-`tot_words` | Total number of words |
-`avg_speech_length` | Average number of words per speech |
-
-## Dataset Variables
-
-The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightly different variables, as there is more information available for all post-1979 MPs, and that is included in `hansard_senti_post_V250`.
-
-### `hansard_senti_post_V250` Dataset Variables
+### Dataset Variables
 
 | Variable | Description | Data Type |
 |------------------|--------------|------------------|
  `pp_id` | ID for each speech, corresponding to the parlparse ID | character |
  `eo_id` | ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches | character |
  `speech` | The actual text of the speech | character |
- `afinn_sentiment` | The `afinn` sentiment score| numeric |
- `afinn_sd` | The standard deviation of the `afinn` score | numeric |
- `jockers_sentiment` | The `jockers` sentiment score | numeric |
- `jockers_sd` | The standard deviation of the `jockers` score | numeric |
- `nrc_sentiment` | The `nrc` sentiment score | numeric |
- `nrc_sd` | The standard deviation of the `nrc` score | numeric |
- `huliu_sentiment` | The `huliu` sentiment score | numeric |
- `huliu_sd` | The standard deviation of the `huliu` score | numeric |
- `rheault_sentiment` | The `rheault` sentiment score | numeric |
- `rheault_sd` | The standard deviation of the `rheault` score | numeric |
-  `jockers_rinker_sentiment` | The `jockers_rinker` sentiment score | numeric |
- `jockers_rinker_sd` | The standard deviation of the `jockers_rinker` score | numeric |
- `senticnet_sentiment` | The `senticnet` sentiment score | numeric |
- `senticnet_sd` | The standard deviation of the `senticnet` score | numeric |
  `word_count` | The word count of the speech | numeric |
  `speech_date` | The date the speech was made | date |
  `year` | The year the speech was made | numeric |
@@ -129,6 +42,11 @@ The `hansard_senti_post_V250` and `hansard_senti_pre_V250` datasets have slightl
  `house_start_date` | The date the MP was first elected to the House of Commons | date |
  `house_end_date` | The date the MP left the House of Commons | date |
  `ministry` | Identifier for the government at time of speech | character |
+ `speaker_office` | Empty variable | character |
+ `match` | Ignore | factor |
+ `y_since_start` | Years since first elected | numeric | 
+ `short_list` | If female Labour MP, elected through All Women Shortlist | logical | 
+ `post_name` | Cabinet or shadow cabinet role, if available | character | 
 
 ## Methodology
 
