@@ -24,12 +24,12 @@ library(lubridate)
 library(hms)
 
 #content/blog/
-run <- read_excel("marathon-data/Move_2018_12_01_09_03_02_Running.xlsx", 
-     range = "wk2:wu19351")
+run <- read_excel("marathon-data/run.xlsx", 
+     range = "wk2:ws19351")
 
 names(run) = snakecase::to_snake_case(names(run))
 
-run <- run %>% select(-x_1)  %>% 
+run <- run %>% #select(-x_1)  %>% 
   slice(-1:-2) %>% 
   mutate(local_time = gsub("T", " ", local_time)) %>%
   mutate(local_time = as.POSIXct(local_time, format = "%Y-%m-%d %H:%M:%OS"),
