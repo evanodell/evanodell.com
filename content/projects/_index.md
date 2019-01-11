@@ -93,17 +93,15 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 -->
 
-<!--
+
 
 ## Datasets
 
 ### [Hansard Speeches and Sentiment](/projects/datasets/hansard-data)
 
 <span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1183893.svg)](https://doi.org/10.5281/zenodo.1183893)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2537227.svg)](https://doi.org/10.5281/zenodo.2537227)
 
-The `hansard_senti_post_V251` dataset contains 2,196,175 speeches and 382,484,493 words, representing every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date, starting and finishing dates (if applicable) as an MP, and age at the time of the speech. It also includes seven different sentiment classifications for those speeches. It is distributed under a Creative Commons 4.0 BY-SA licence. It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2017, corrects several thousand spelling errors and includes two new sentiment classification methods. [Click here](/projects/datasets/hansard-data) for more details, or download the data from [Zenodo](https://doi.org/10.5281/zenodo.780985).
--->
 <!--
 
 ### [Charity Commission Data of All Registered Charities in England](/projects/datasets/charity-data)
