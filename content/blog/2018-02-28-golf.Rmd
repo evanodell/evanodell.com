@@ -27,7 +27,7 @@ Overall, there is some 191,085,035 m^2^ of golf course land within 2km of a trai
 If we lower the radius to 1km, there is still 41,212,837 m^2^ (10,184 acres, 4,121.3 hectares) of golf course within a single kilometre of a train station, enough space to build 123,639 low density suburban houses, or 329,704 higher density houses. Certainly not enough to solve the UK's housing issues, but it could still make a big difference.
 
 ```{r needed-packages, echo=FALSE, message=FALSE, warning=FALSE}
-#library(sf)
+library(sf)
 #library(rgdal)
 #library(sp)
 library(dplyr)
@@ -128,9 +128,14 @@ golf_ints_summary <- left_join(golf_ints_summary, uk_stations)
  
 golf_ints_summary <- golf_ints_summary[order(-golf_ints_summary$trips_2017),] 
  
- golf_ints_summary <- golf_ints_summary %>% 
+golf_ints_summary <- golf_ints_summary %>% 
+   st_difference() %>% 
    st_transform(4326) %>%
-   st_difference()
+   rename("lng" = "Longitude",
+          "lat" = "Latitude") %>%
+   lwgeom::st_make_valid() %>%
+   st_collection_extract()
+ 
  
   write_rds(golf_ints_summary, "golf_ints_summary.rds")
 ```
@@ -146,7 +151,8 @@ area_labels <- paste0(
   prettyNum(golf_ints_summary$trips_2017, big.mark = ","),
   "</br>",
   "<strong>Area given over to golf course: </strong>",
-      prettyNum(round(golf_ints_summary$area,0), big.mark = ","), " m^2 </br>",
+      prettyNum(round(as.numeric(golf_ints_summary$area), 0),
+                big.mark = ","), " m^2 </br>",
   "<strong>Percentage of area given over to golf course: </strong>",
       scales::percent(golf_ints_summary$golf_percent), "</br>") %>% 
   lapply(htmltools::HTML)
@@ -165,7 +171,7 @@ golf_map <- leaflet(golf_ints_summary, options = leafletOptions(minZoom = 8)) %>
               highlight = highlightOptions(weight = 2,
                                            color = "#1d8eff",
                                            fillColor = "#1d8eff",
-                                           dashArray = "",
+                                           dashArray = NULL,
                                            fillOpacity = 0.4,
                                            bringToFront = TRUE),
                label = area_labels)
