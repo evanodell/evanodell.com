@@ -1,8 +1,8 @@
 ---
-aliases: ["/datasets/hansard-data"]
-title: Hansard Speeches 1979--2018 V2.6.0
-bibliography: [references.bib]
-link-citations: true
+title: "Hansard Speeches 1979--2018 V2.6.0"
+bibliography: references.bib
+link-citations: yes
+aliases: /datasets/hansard-data
 ---
 
 ## [Download from Zenodo](http:doi.org/10.5281/zenodo.780985)
@@ -50,7 +50,7 @@ It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is d
 
 ## Methodology
 
-The [parlparse](https://github.com/mysociety/parlparse) project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as 'unknown'. I created a table with every possible combination of name and `speaker_id`, `person_id` and `hansard_membership_id`, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, manually checked approximate strings and manual matching/hand coding. The information in this table was then matched to the complete list of speech IDs. In the case of common names,[^6] I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.
+The [parlparse](https://github.com/mysociety/parlparse) project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as 'unknown'. I created a table with every possible combination of name and `speaker_id`, `person_id` and `hansard_membership_id`, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, manually checked approximate strings and manual matching/hand coding. The information in this table was then matched to the complete list of speech IDs. In the case of common names,[^3] I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.
 
 ### Licences and Code
 
@@ -66,20 +66,20 @@ Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the 
 
 Please cite this dataset as:
 
-Odell, Evan. (2017). "Hansard Speeches and Sentiment V2.5.0 [Dataset]." [10.5281/zenodo.1183893](https://doi.org/10.5281/zenodo.1183893).
+Odell, Evan. (2019). "Hansard Speeches V2.6.0 [Dataset]." [10.5281/zenodo.2537227](https://doi.org/10.5281/zenodo.2537227).
 
 ```
-@article{odell2018,
-  title = {Hansard {{Speeches}} and {{Sentiment V2}}.5.0 [Dataset]},
+@article{odell2019,
+  title = {Hansard {{Speeches V2}}.6.0 [Dataset]},
   url = {https://evanodell.com/projects/datasets/hansard-data/},
-  doi = {10.5281/zenodo.1183893},
-  date = {2018-02-24},
+  doi = {10.5281/zenodo.2537227},
+  date = {2019-01-11},
   keywords = {dataset},
   author = {Odell, Evan}
 }
 ```
 
-The DOI of V2.5.0 is *10.5281/zenodo.1183893*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
+The DOI of V2.6.0 is *10.5281/zenodo.2537227*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
 
 ## References
 
@@ -87,13 +87,7 @@ The DOI of V2.5.0 is *10.5281/zenodo.1183893*. The DOI for all versions is [*10.
 
 [^2]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Several members (Gillian Keegan, Laura Smith, Mike Hill) still do not have birth dates listed at all, and I could not locate exact dates for Anna McMorrin, Bob Seely, Danielle Rowley, Fiona Onasanya, Kemi Badenoch, so listed their birthday as the first of the given year or month. This will be updated in future versions of this data set. 
 
-[^3]: e.g. 'bid' can be both a noun, as in a bid submitted in response to a project tender, and a verb, as in to bid for an item at an auction
-
-[^4]: <a href="#rheault2016">Rheault <i>et al.</i> (2016)</a> have a more complex method of calculating polarity that accounts for lexical types. See their paper and the [related repository](https://github.com/lrheault/emotion) for details.
-
-[^5]: As in for each new Prime Minister and/or general election.
-
-[^6]: e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992.
+[^3]: e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992.
 
 
 
