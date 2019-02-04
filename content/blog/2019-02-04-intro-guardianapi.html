@@ -1,0 +1,139 @@
+---
+title: "Introducing `guardianapi"
+date: 2019-02-04
+subtitle: ""
+---
+
+
+
+<p>My newest R data retrieval package <a href="https://cran.r-project.org/package=guardianapi"><code>guardianapi</code></a> to arrive on CRAN contains functions to search and retrieve articles, tags and editions from the <a href="https://open-platform.theguardian.com/documentation/">Guardian open data platform</a>. I wrote this package because I was wondering why the Guardian comedy critic <a href="https://www.theguardian.com/profile/brianlogan">Brian Logan</a> never seemed to give five or one star reviews, and if this was actually the case or just the reviews of his I happened to read. I got every review from the start of 2014 to the end of 2018, across all sections,
+and selected the following sections for analysis: “Art and design”, “Film”, “Games”, “Music”, “Stage”, “Technology”, “Television &amp; radio”.</p>
+<pre class="r"><code>library(guardianapi)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+critic_search &lt;- gu_items(&quot;tone/reviews&quot;,
+                          from_date = &quot;2014-01-01&quot;, to_date = &quot;2018-12-31&quot;,
+                          lang = &quot;en&quot;
+ )
+
+#readr::write_rds(critic_search, &quot;critic_search.rds&quot;)
+
+critic_search$star_rating &lt;- as.numeric(critic_search$star_rating)
+
+critic_search$year &lt;- factor(year(critic_search$web_publication_date))
+
+
+critic_search &lt;- critic_search %&gt;%
+  filter(!is.na(star_rating), star_rating != 0, !is.na(byline), byline != &quot;&quot;,
+         section_name %in% c(&quot;Art and design&quot;, &quot;Film&quot;, &quot;Games&quot;, &quot;Music&quot;,
+                             &quot;Stage&quot;, &quot;Technology&quot;, &quot;Television &amp; radio&quot;))
+
+critic_summary_section &lt;- critic_search %&gt;%
+  group_by(section_name, star_rating) %&gt;%
+  summarise(count = n()) %&gt;%
+  mutate(perc = count/sum(count)) %&gt;%
+  ungroup()
+
+star_distro &lt;- critic_search %&gt;%
+  group_by(star_rating) %&gt;% 
+  summarise(count = n()) %&gt;% 
+  mutate(perc = count/sum(count))
+
+#created this for inline text purposes
+star1 &lt;- critic_summary_section %&gt;% filter(star_rating == 1)
+
+comp_p &lt;- ggplot(critic_summary_section) + 
+  geom_line(data = star_distro, aes(x = star_rating, y = perc),
+            size = 1.5, colour = &quot;green&quot;, alpha = 0.5) + 
+  scale_y_continuous(labels = scales::percent, 
+                     breaks = seq(from = 0.1, to = 0.5, by = 0.1)) +
+  geom_line(aes(x = star_rating, y = perc, linetype = section_name,
+                colour = section_name, group = section_name),
+            size = 1) + 
+  scale_colour_viridis_d(end = 0.9, option = &quot;inferno&quot;)  +
+  labs(x = &quot;Star Rating&quot;, y = &quot;&quot;, fill = &quot;&quot;, colour = &quot;&quot;,
+       caption = &quot;© Evan Odell | 2019 | CC-BY-SA&quot;) + 
+  theme(legend.position = &quot;bottom&quot;) + 
+  scale_linetype_manual(&quot;&quot;, values = c(1:7)) 
+
+comp_p</code></pre>
+<p><img src="/blog/2019-02-04-intro-guardianapi_files/figure-html/logan-example-1.png" width="672" /></p>
+<p>Over a third of technology reviews (35.1%) were five stars. Film critics also seemed much more likely to write very negative reviews, with one star reviews making up 6.32% of all film reviews, compared to just 2.31% of Art and design, the category with the next highest percentage of one star reviews.</p>
+<p>The <code>remove_vector</code> contains extra information sometimes included in writer bylines, which I removed.</p>
+<pre class="r"><code>library(stringi)
+remove_vector &lt;- c(&quot;, Observer film Critic&quot;, &quot;, Observer film criic&quot;,
+                   &quot; in Detroit&quot;, &quot;\r\n&quot;, &quot; in Austin&quot;, &quot; in New Orleans&quot;,
+                   &quot;,Observer film critic&quot;, &quot; in Venice&quot;, &quot; in New York&quot;,
+                   &quot; in Chicago&quot;, &quot; in Park City, Utah&quot;, &quot; in Berlin&quot;,
+                   &quot;in Las Vegas&quot;, &quot;, Obsverver film critic&quot;, &quot;in Cannes&quot;,
+                   &quot;, Observer fim critic&quot;, &quot; in Toronto&quot;, &quot; in Los Angeles&quot;,
+                   &quot; in Indio, California&quot;, &quot; Observer film critic&quot;,
+                   &quot;, from the international documentary film festival, Amsterdam&quot;,
+                   &quot; at the International Documentary film festival Amsterdam&quot;,
+                   &quot; in Millburn, New Jersey&quot;, &quot; in Hobart&quot;, 
+                   &quot; Guardian film critic&quot;, &quot; North of England editor&quot;,
+                   &quot;, Observer filim critic&quot;, &quot;Mark Kermode,&quot;)
+
+critic_search$byline &lt;- stri_replace_all_fixed(critic_search$byline, 
+                                               remove_vector, 
+                                               c(&quot;&quot;), vectorize_all = FALSE)
+
+critic_search$byline &lt;- if_else(critic_search$byline == &quot;Peter&quot;,
+                                &quot;Peter Bradshaw&quot;, critic_search$byline)
+
+critic_sum_byline &lt;- critic_search %&gt;%
+  filter(!is.na(star_rating), star_rating != 0, !is.na(byline), byline != &quot;&quot;,
+         section_name %in% c(&quot;Art and design&quot;, &quot;Film&quot;, &quot;Games&quot;, &quot;Music&quot;,
+                             &quot;Stage&quot;, &quot;Technology&quot;, &quot;Television &amp; radio&quot;)) %&gt;%
+  group_by(byline) %&gt;%
+  mutate(n = n(),
+         var = var(star_rating)) %&gt;%
+  filter(n &gt;= 100) %&gt;%
+  ungroup() %&gt;%
+  mutate(byline = trimws(byline),
+         byline = stri_replace_all_fixed(byline, &quot;  &quot;, &quot; &quot;)) %&gt;%
+  group_by(var, byline, star_rating) %&gt;%
+  summarise(count = n()) %&gt;%
+  mutate(perc = count/sum(count)) %&gt;%
+  ungroup()
+
+critic_star_means &lt;- critic_search %&gt;%
+  group_by(byline) %&gt;%
+  summarise(mean = mean(star_rating),
+            count = n()) %&gt;%
+  filter(count &gt;= 100)
+
+select_highlights &lt;- bind_rows(
+  top_n(distinct(critic_sum_byline, byline, var), n = 3, wt = var),
+  top_n(distinct(critic_sum_byline, byline, var), n = -3, wt = var),
+  top_n(critic_star_means, n = 3, wt=mean),
+  top_n(critic_star_means, n = -3, wt=mean)
+) %&gt;% select(byline) %&gt;% distinct()
+  
+critic_sum_byline$highlights &lt;- critic_sum_byline$byline %in% select_highlights$byline
+
+comp_p2 &lt;- ggplot() + 
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = &quot;Star Rating&quot;, y = &quot;&quot;, fill = &quot;&quot;) + 
+  theme(legend.position = &quot;bottom&quot;) +
+  geom_line(data = star_distro, aes(x = star_rating, y = perc),
+            size = 1.5, colour = &quot;green&quot;, alpha = 0.5) + 
+  geom_line(data = critic_sum_byline %&gt;% filter(!highlights),
+            aes(x = star_rating, y = perc,
+                group = byline), alpha = 0.2,
+            size = 1) + 
+  geom_line(data = critic_sum_byline %&gt;% filter(highlights),
+            aes(x = star_rating, y = perc, linetype = byline,
+                colour = byline, group = byline),
+            size = 1) + 
+  scale_colour_manual(values = c(viridis::magma(nrow(select_highlights),
+                                                end = 0.8))) + 
+  scale_linetype_manual(&quot;&quot;, values = c(1:nrow(select_highlights))) + 
+  labs(colour = &quot;&quot;, caption = &quot;© Evan Odell | 2019 | CC-BY-SA&quot;)
+
+comp_p2</code></pre>
+<p><img src="/blog/2019-02-04-intro-guardianapi_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>The big green line represents the distribution of all reviews published by the Guardian from 2014–2018, with the grey lines showing the individual distribution of star ratings from all critics with 100 or more reviews. The highlighted critics are the three critics with the highest and lowest variance, and the highest and lowest average star ratings. Two critics (Dave Gelly and Jonathan Romney) were in more than one category, for a total of 10 highlighted critics. Jazz critic Dave Gelly and TV critic Graeme Virtue are unusual in how often they use four star reviews, with Dave Gelly giving out four stars in 82.3% of all his reviews. Mike McCahill, on the other hand, seems to review the films no one else wants to see. His average star rating is 2.49, well below the next lowest of average of 2.86 from Jonathan Romney.</p>
+<p>For more information on the <code>guardianapi</code> package, see the <a href="https://docs.evanodell.com/guardianapi/">docs</a>, and download it from <a href="https://cran.r-project.org/package=guardianapi">CRAN</a> or <a href="https://github.com/EvanOdell/guardianapi">GitHub</a>.</p>

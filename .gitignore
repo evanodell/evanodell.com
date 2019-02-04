@@ -10,3 +10,4 @@ content/cv/*.Rmd
 content/cv/*.html
 content/cv/*.txt
 .httr-oauth
+critic_search.rds
