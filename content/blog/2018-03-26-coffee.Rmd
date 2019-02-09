@@ -689,7 +689,7 @@ plm_fixed_polity <- plm(scaled_consumption ~
 summary(plm_fixed_polity)
 ```
 
-The _Polity IV_ panel analysis includes data from 1960 (but only for the United States) to 2016. It does not show any significant relationship between coffee consumption and _Polity IV_ score.
+The _Polity IV_ panel analysis includes data from 1960 (but only for the United States) to 2016. There is a  positive relationship between coffee consumption and _Polity IV_ score.
 
 # Conclusion
 
