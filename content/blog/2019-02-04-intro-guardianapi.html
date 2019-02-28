@@ -60,7 +60,7 @@ comp_p &lt;- ggplot(critic_summary_section) +
 
 comp_p</code></pre>
 <p><img src="/blog/2019-02-04-intro-guardianapi_files/figure-html/logan-example-1.png" width="672" /></p>
-<p>Over a third of technology reviews (35.1%) were five stars. Film critics also seemed much more likely to write very negative reviews, with one star reviews making up 6.36% of all film reviews, compared to just 2.31% of Art and design, the category with the next highest percentage of one star reviews.</p>
+<p>Over a third of technology reviews (35.1%) were five stars. Film critics also seemed much more likely to write very negative reviews, with one star reviews making up 6.34% of all film reviews, compared to just 2.31% of Art and design, the category with the next highest percentage of one star reviews.</p>
 <p>The <code>remove_vector</code> contains extra information sometimes included in writer bylines, which I removed.</p>
 <pre class="r"><code>library(stringi)
 remove_vector &lt;- c(&quot;, Observer film Critic&quot;, &quot;, Observer film criic&quot;,
@@ -134,6 +134,6 @@ comp_p2 &lt;- ggplot() +
   labs(colour = &quot;&quot;, caption = &quot;© Evan Odell | 2019 | CC-BY-SA&quot;)
 
 comp_p2</code></pre>
-<p><img src="/blog/2019-02-04-intro-guardianapi_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>The big green line represents the distribution of all reviews published by the Guardian from 2014–2018, with the grey lines showing the individual distribution of star ratings from all critics with 100 or more reviews. The highlighted critics are the three critics with the highest and lowest variance, and the highest and lowest average star ratings. Two critics (Dave Gelly and Jonathan Romney) were in more than one category, for a total of 10 highlighted critics. Jazz critic Dave Gelly and TV critic Graeme Virtue are unusual in how often they use four star reviews, with Dave Gelly giving out four stars in 82.1% of all his reviews. Mike McCahill, on the other hand, seems to review the films no one else wants to see. His average star rating is 2.49, well below the next lowest of average of 2.86 from Jonathan Romney.</p>
+<p><img src="/blog/2019-02-04-intro-guardianapi_files/figure-html/comparison-chart-1.png" width="672" /></p>
+<p>The big green line represents the distribution of all reviews published by the Guardian from 2014–2018, with the grey lines showing the individual distribution of star ratings from all critics with 100 or more reviews. The highlighted critics are the three critics with the highest and lowest variance, and the highest and lowest average star ratings. Two critics (Dave Gelly and Jonathan Romney) were in more than one category, for a total of 10 highlighted critics. Jazz critic Dave Gelly and TV critic Graeme Virtue are unusual in how often they use four star reviews, with Dave Gelly giving out four stars in 82.0% of all his reviews. Mike McCahill, on the other hand, seems to review the films no one else wants to see. His average star rating is 2.49, well below the next lowest of average of 2.86 from Jonathan Romney.</p>
 <p>For more information on the <code>guardianapi</code> package, see the <a href="https://docs.evanodell.com/guardianapi/">docs</a>, and download it from <a href="https://cran.r-project.org/package=guardianapi">CRAN</a> or <a href="https://github.com/EvanOdell/guardianapi">GitHub</a>.</p>

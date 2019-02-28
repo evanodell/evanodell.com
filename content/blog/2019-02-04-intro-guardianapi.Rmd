@@ -73,7 +73,7 @@ Over a third of technology reviews (`r scales::percent(critic_summary_section$pe
 
 The `remove_vector` contains extra information sometimes included in writer bylines, which I removed.
 
-```{r}
+```{r comparison-chart}
 library(stringi)
 remove_vector <- c(", Observer film Critic", ", Observer film criic",
                    " in Detroit", "\r\n", " in Austin", " in New Orleans",
