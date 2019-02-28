@@ -1,0 +1,1127 @@
+---
+title: Potatoes in World Literature
+author: Evan Odell
+date: '2019-03-01'
+slug: potatoes-in-world-literature
+image: "/img/potato/patates.jpg"
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>Potatoes are an undeniably important vegetable, far more important to human history than say, brocolli. <a href="https://www.amazon.co.uk/History-Influence-Cambridge-Paperback-Library/dp/0521316235"><em>The History and Social Influence of the Potato</em></a> is 768 pages long, and “<a href="https://www.lrb.co.uk/v08/n09/angela-carter/potatoes-and-point">an extraordinary book, like no other, a vast compendium of curious fact and passionately recounted social history that calls to mind an unexpected but completely satisfying fusion of <em>The Anatomy of Melancholy</em> and Fernand Braudel’s <em>Capitalism and Material Life</em></a>”, according to Angela Carter. And Redcliffe Salaman’s academic history is complemented by several other books by popular historians.</p>
+<p>Given their importance, I was curious how often potatoes are mentioned in fictional writing. Food may be considered less important than themes such as love, memory or morality to the literary critic, but food is an important part of human culture, even humble foods like the potato. Potatoes and their consumption have featured in visual art, such as the below painting by Vincent Van Gogh.</p>
+{{% figure src="/img/potato/Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg" caption="The Potato Eaters by Van Gogh, 1885, via Wikipedia" %}}
+<p>I used the <a href="https://cran.r-project.org/package=gutenbergr"><code>gutenbergr</code></a> R package, modifying some of the code in order to access the volume of books I needed, and updated the metadata using the python script available in its <a href="https://githuh.com/ropensci/gutenbergr">GitHub repository</a>. I downloaded everything in English, then selected all of the books that a) are listed as fiction in the Library of Congress Subject Headings, and b) include “potato” or some variation thereof. I focused on fiction to avoid the results being skewed by cookbooks and agricultural productivity reports and to identify the extent to which the potato has crept into the literary conciousness.</p>
+<p>Most books that mention potatoes did so only once or twice, as shown in Figure <a href="#fig:potatochart">1</a>.</p>
+<div class="figure"><span id="fig:potatochart"></span>
+<img src="/blog/2019-03-01-potatoes-in-world-literature_files/figure-html/potatochart-1.png" alt="Empirical Cumulative Distribution Function of Potatoes in Fiction" width="672" />
+<p class="caption">
+Figure 1: Empirical Cumulative Distribution Function of Potatoes in Fiction
+</p>
+</div>
+<p>Just over a third (33.8%) of all English fiction books available in the Gutenberg library mention potatoes at least once.</p>
+<table>
+<caption>
+<span id="tab:potato-subjects-table">Table 1: </span>Genres with the most mentions of potatoes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Subject
+</th>
+<th style="text-align:right;">
+Number of books in genre mentioning potatos
+</th>
+<th style="text-align:right;">
+Percentage of books in genre mentioning potatoes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Juvenile fiction
+</td>
+<td style="text-align:right;">
+1,793
+</td>
+<td style="text-align:right;">
+42.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Social life and customs
+</td>
+<td style="text-align:right;">
+643
+</td>
+<td style="text-align:right;">
+38.2%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+History
+</td>
+<td style="text-align:right;">
+381
+</td>
+<td style="text-align:right;">
+24.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+England
+</td>
+<td style="text-align:right;">
+452
+</td>
+<td style="text-align:right;">
+35.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19th century
+</td>
+<td style="text-align:right;">
+395
+</td>
+<td style="text-align:right;">
+36.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Conduct of life
+</td>
+<td style="text-align:right;">
+463
+</td>
+<td style="text-align:right;">
+44.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+United States
+</td>
+<td style="text-align:right;">
+292
+</td>
+<td style="text-align:right;">
+39.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Young women
+</td>
+<td style="text-align:right;">
+202
+</td>
+<td style="text-align:right;">
+40.8%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Friendship
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+52.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Girls
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+51.5%
+</td>
+</tr>
+</tbody>
+</table>
+<p>By far the most common subject to mention potatoes is juvenile fiction, a genre that 30.4% of all books to mention potatoes fell into. Table <a href="#tab:potato-subjects-table">1</a> above contains the 10 subjects with the most mentions of potatoes, and the percentage of all fiction books in English listing that subject in the Gutenberg library to mention potatoes.</p>
+<table>
+<caption>
+<span id="tab:all-subjects-table">Table 2: </span>Most common fiction genres in Project Gutenberg
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Subject
+</th>
+<th style="text-align:right;">
+Number of books in genre
+</th>
+<th style="text-align:right;">
+Percentage of books in genre mentioning potatoes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Juvenile fiction*
+</td>
+<td style="text-align:right;">
+4,272
+</td>
+<td style="text-align:right;">
+42.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Social life and customs*
+</td>
+<td style="text-align:right;">
+1,682
+</td>
+<td style="text-align:right;">
+38.2%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Science fiction
+</td>
+<td style="text-align:right;">
+1,622
+</td>
+<td style="text-align:right;">
+8.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+History*
+</td>
+<td style="text-align:right;">
+1,548
+</td>
+<td style="text-align:right;">
+24.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+England*
+</td>
+<td style="text-align:right;">
+1,292
+</td>
+<td style="text-align:right;">
+35.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19th century*
+</td>
+<td style="text-align:right;">
+1,097
+</td>
+<td style="text-align:right;">
+36.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Conduct of life*
+</td>
+<td style="text-align:right;">
+1,045
+</td>
+<td style="text-align:right;">
+44.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+United States*
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+39.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Translations into English
+</td>
+<td style="text-align:right;">
+598
+</td>
+<td style="text-align:right;">
+27.8%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Historical fiction
+</td>
+<td style="text-align:right;">
+532
+</td>
+<td style="text-align:right;">
+25.2%
+</td>
+</tr>
+</tbody>
+</table>
+<p>The mentions of potatoes roughly reflect the total numbers of books in a given genre (Table <a href="#tab:all-subjects-table">2</a>), although some genres are more common than others. Genres marked with an asterix are also in the top ten of mentions of potatoes. As seen in Table <a href="#tab:all-subjects-table">2</a>, although science fiction is a common genre, less than 10% of science fiction books mention potatoes. Clearly writing about the near or distant future pushes concern for tubers out of the author’s mind.</p>
+<table>
+<caption>
+<span id="tab:100-plus-potatoes">Table 3: </span>Genres most likely to mention potatoes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Subject
+</th>
+<th style="text-align:right;">
+Number of books in genre
+</th>
+<th style="text-align:right;">
+Number of books in genre mentioning potatos
+</th>
+<th style="text-align:right;">
+Percentage of books in genre mentioning potatoes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Ireland
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:right;">
+73.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Farm life
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+72.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Country life
+</td>
+<td style="text-align:right;">
+166
+</td>
+<td style="text-align:right;">
+102
+</td>
+<td style="text-align:right;">
+61.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+60.7%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+City and town life
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+54.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Orphans
+</td>
+<td style="text-align:right;">
+284
+</td>
+<td style="text-align:right;">
+153
+</td>
+<td style="text-align:right;">
+53.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seafaring life
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+53.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+53.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Family
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+52.7%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Friendship
+</td>
+<td style="text-align:right;">
+409
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+52.6%
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table <a href="#tab:100-plus-potatoes">3</a> shows the 10 genres with the most mentions of potatoes, provided there are 100 or more books in each genre. Reflective of the lasting impact of the Irish Potato Famine on literature and cultural memory, books about Ireland appear the most likely to mention potatoes. Farm life and country life are the next most common, again unsurprisingly.</p>
+<p>There are 19,675 mentions of potatoes across 5,897 books, an average of 3.3 per book. The book with the most mentions of potatoes, with 86 in total, is <em>The Mary Frances Cook Book; Or, Adventures Among the Kitchen People</em> by Jane Eayre Fryer, the full text of which is available <a href="https://www.gutenberg.org/ebooks/38215">here</a>. While I excluded cookbooks, this is a story with recipes from 1912, hence the many mentions of potatoes, and the author’s description of her “book for all girls who love to help Mother.”</p>
+<p>There are far too many instances of potatoes mentioned in literature to show them all, but I have a sample of 1% of all mentions of potatoes, examples from 59 of the total 5,897 books with at least one mention of potatoes in Table <a href="#tab:data-table">4</a>. You can download all the mentions of potatoes in context, along with subject data and Gutenberg catalogue number, in <a href="/files/potato-kwic.csv">this spreadsheet</a>.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:data-table">Table 4: </span>Example potato usage
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Potato in Text
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:left;">
+Author
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+well. Oh, we’ll get along; I told mother this morning the Blessed Virgin hadn’t forgotten us yet. I’ll bet them <strong>potatoes</strong> grew an inch some nights this summer. And look what a day it is for the fair, and the preacher
+</td>
+<td style="text-align:left;font-style: italic;">
+The Calling of Dan Matthews
+</td>
+<td style="text-align:left;">
+Wright, Harold Bell
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+folding doors) was a little above the ground level, and in that the wholesome boiled and roast with damp boiled <strong>potatoes</strong> and then pie to follow, was consumed and the numerous family read and worked in the evening, and above was
+</td>
+<td style="text-align:left;font-style: italic;">
+Tono-Bungay
+</td>
+<td style="text-align:left;">
+Wells, H. G. (Herbert George)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+who had the hard, set jaw of a prize fighter was successfully eating steak, and he welcomed the incoming fried <strong>potatoes,</strong> as one greets a new instalment of a serial. It was a fat and pink and lovely Warble who at
+</td>
+<td style="text-align:left;font-style: italic;">
+Ptomaine Street: The Tale of Warble Petticoat
+</td>
+<td style="text-align:left;">
+Wells, Carolyn
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+of faces lighted up by the flares and the electric lights, the same smell of naphtha and a few fried <strong>potatoes,</strong> and of electricity. Who should be the first to greet Miss Annie on the showground but John Thomas? He had
+</td>
+<td style="text-align:left;font-style: italic;">
+England, My England
+</td>
+<td style="text-align:left;">
+Lawrence, D. H. (David Herbert)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“Good-evening, Stafford! Come to my tiny, tiny fire. I can’t give you coffee–worse luck!–but Tullius has a couple of sweet <strong>potatoes."</strong>”I can’t stay, thank you," said the other. “General Jackson is over yonder?” "Yes, by the great pine. I will
+</td>
+<td style="text-align:left;font-style: italic;">
+The Long Roll
+</td>
+<td style="text-align:left;">
+Johnston, Mary
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+all day. Me and Beany is mad. Jan. 20. father is sick becaus he et to mutch salt fish and <strong>potato</strong> and pork. he is auful cross and hit me a bat today becaus i left the door open. i gess
+</td>
+<td style="text-align:left;font-style: italic;">
+The Real Diary of a Real Boy
+</td>
+<td style="text-align:left;">
+Shute, Henry A. (Henry Augustus)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+what do you do?" persisted Chunky. “Young feller, we usually git wet,” snapped Curley Adams, his mouth so full of <strong>potatoes</strong> that they could scarcely understand him. “He means where do we sleep?” spoke up Tad. “Oh, in the usual place,”
+</td>
+<td style="text-align:left;font-style: italic;">
+The Pony Rider Boys in Texas; Or, The Veiled Riddle of the Plains
+</td>
+<td style="text-align:left;">
+Patchin, Frank Gee
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Boy rose noiselessly and blew the candle out. Instantly from the darkness without, poured a volley of cabbage heads, squashes, <strong>potatoes</strong> and biscuits. Not a word was spoken, but the charge of the light brigade was swift and terrible. The Boy
+</td>
+<td style="text-align:left;font-style: italic;">
+The Victim: A Romance of the Real Jefferson Davis
+</td>
+<td style="text-align:left;">
+Dixon, Thomas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+said the other viciously, “five years ago.” “–I’ll be a vegetarian,” finished the other. “Cheer up, Mason, and have a <strong>potato."</strong> He turned to Echo:”I know a girl in my town who’s mighty keen to see you." “Nancy Langham!” He
+</td>
+<td style="text-align:left;font-style: italic;">
+The Long Lane’s Turning
+</td>
+<td style="text-align:left;">
+Rives, Hallie Erminie
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+and rolled on the rocks at the base of the steep cliff that marked the extremity of Thirty-third Avenue. A <strong>potato</strong> sack, with the torso, was found near the rear door to the cottage, indicating that whoever had committed the deed
+</td>
+<td style="text-align:left;font-style: italic;">
+Lanagan, Amateur Detective
+</td>
+<td style="text-align:left;">
+Hurlbut, Edward H.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+"Now, just the contrary. That always shows a young fellow who’s attending to his business. If he’d seen you boil <strong>potatoes,</strong> make dumplings, beds, tea, all that, you’d have had a chance. He’d have marched up to ye before you was
+</td>
+<td style="text-align:left;font-style: italic;">
+Rhoda Fleming — Complete
+</td>
+<td style="text-align:left;">
+Meredith, George
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+half loft. The Badger’s winter stores, which indeed were visible everywhere, took up half the room–piles of apples, turnips, and <strong>potatoes,</strong> baskets full of nuts, and jars of honey; but the two little white beds on the remainder of the floor
+</td>
+<td style="text-align:left;font-style: italic;">
+The Wind in the Willows
+</td>
+<td style="text-align:left;">
+Grahame, Kenneth
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+solely for broiling venison. The men of unclassified employment who pass from May to October in raising hay, oats and <strong>potatoes</strong> to sell to the near-by lumber camps and who swing axes in the deep woods from October to May declare
+</td>
+<td style="text-align:left;font-style: italic;">
+Motor Matt’s Promise; or, The Wreck of the Hawk
+</td>
+<td style="text-align:left;">
+Matthews, Stanley R.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+the other, my dear. It is–Lablache." The older woman bent over her darning, and the needle passed, rippling, round a <strong>“potato”</strong> in the sock which was in her lap. Her eyes were studiously fixed upon the work. "Lablache–Lablache! It is always
+</td>
+<td style="text-align:left;font-style: italic;">
+The Story of the Foss River Ranch: A Tale of the Northwest
+</td>
+<td style="text-align:left;">
+Cullum, Ridgwell
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+once to get the napkins which had been overlooked, and once to persuade his sister not to put the baked <strong>potatoes</strong> in her lap. When the critical moment for the trial of strength between him and the goose arrived, he was
+</td>
+<td style="text-align:left;font-style: italic;">
+Mr. Opp
+</td>
+<td style="text-align:left;">
+Rice, Alice Caldwell Hegan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+of roast beef and plum-pudding, their jaws grow large, and their lips grow coarse, like the poor Paddies who eat <strong>potatoes."</strong> And she turned over the next five hundred years. And there they were all living up in trees, and making
+</td>
+<td style="text-align:left;font-style: italic;">
+The Water-Babies: A Fairy Tale for a Land-Baby
+</td>
+<td style="text-align:left;">
+Kingsley, Charles
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+comb and brush, needles and thread, etc. (Note 8.) For provisions we had flour, salt, sugar, bacon, dried apples, dried <strong>potatoes,</strong> rice, coffee (a little), tea, chocolate, baking-powder, condensed milk, canned butter, and half a dozen cans of beans, for short
+</td>
+<td style="text-align:left;font-style: italic;">
+Pluck on the Long Trail; Or, Boy Scouts in the Rockies
+</td>
+<td style="text-align:left;">
+Sabin, Edwin L. (Edwin Legrand)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Suddenly she screamed. A dark object, passing over the ridge with a shrill, whistling sound, had plunged into Grandfather Willing’s <strong>potato</strong> patch. Private Christy took Emmeline by the arm and led her round the corner of the house. "Nothing but a
+</td>
+<td style="text-align:left;font-style: italic;">
+Emmeline
+</td>
+<td style="text-align:left;">
+Singmaster, Elsie
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+to me like a father: surely that is enough" Then arose a self-made man He watched the dispersion of his <strong>potatoes</strong> with dismay He signed for her hand, which he kept to the end A SUPRA-LAPSARIAN Jeremiah Saunderson had remained in
+</td>
+<td style="text-align:left;font-style: italic;">
+Rabbi Saunderson
+</td>
+<td style="text-align:left;">
+Maclaren, Ian
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+into the light and joy of Paradise. But as he sat with his beef-steak before him, and ate his accustomed <strong>potato,</strong> with apparently as good a gusto as any of his neighbours, the dream departed. He told himself that under no
+</td>
+<td style="text-align:left;font-style: italic;">
+An Old Man’s Love
+</td>
+<td style="text-align:left;">
+Trollope, Anthony
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+looked after four stage-horses (driven by Mrs. Cattermole’s brother) and thirty-six sheep, cut firewood, cleared out barns, turned churns, hoed <strong>potatoes,</strong> mowed hay, fed fowls and pigs, and rocked the cradle, and, in the interval of running the circular and up-and-down
+</td>
+<td style="text-align:left;font-style: italic;">
+The Master; a Novel
+</td>
+<td style="text-align:left;">
+Zangwill, Israel
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I can’t change my habits. I must have my comforts. I wasn’t brought up on porridge, like MacWhirter, or on <strong>potatoes,</strong> like old O’Dowd. Do you expect my wife to take in soldiers’ washing, or ride after the regiment in a
+</td>
+<td style="text-align:left;font-style: italic;">
+Vanity Fair
+</td>
+<td style="text-align:left;">
+Thackeray, William Makepeace
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+upon by the others. “Hand me that knife.” “Git it yourself.” “I’ll tell maw how you air wolfing down the <strong>potatoes</strong> as fast as I can fry ’em.” “Go on, tattle-tale.” This was the repartee, mingled with the hiss of frying
+</td>
+<td style="text-align:left;font-style: italic;">
+Judith of the Plains
+</td>
+<td style="text-align:left;">
+Manning, Marie
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+now so overgrown with weeds that it “hurt his eyes,” it really did, to look that way. The daughter dug <strong>potatoes</strong> and gathered beans as they were wanted, but she had neither time nor strength to do more. Interested in a
+</td>
+<td style="text-align:left;font-style: italic;">
+Our Friend the Charlatan
+</td>
+<td style="text-align:left;">
+Gissing, George
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food for the house that we can. We’ll have plenty of good cows, plenty of fowls, vegetables, fruit; we’ll grow <strong>potatoes</strong> wherever we can put them in, and we’ll make thorough provision for storing food that will keep." “Eggs–in water glass,”
+</td>
+<td style="text-align:left;font-style: italic;">
+Captain Jim
+</td>
+<td style="text-align:left;">
+Bruce, Mary Grant
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+open one of the ball-like growths from the tree, found it contained a substance resembling a combination of melon and <strong>potato.</strong> He offered some of this to the rabbits and after an interval they ate it and seemed to like it.
+</td>
+<td style="text-align:left;font-style: italic;">
+One Against the Moon
+</td>
+<td style="text-align:left;">
+Wollheim, Donald A.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dollars per barrel; three of salt pork at sixteen dollars per barrel; two of beef at twelve dollars; six of <strong>potatoes</strong> at two dollars and fifty cents; two fifty-pound tubs of butter at thirty-five cents per pound; coffee, tea, sugar, and
+</td>
+<td style="text-align:left;font-style: italic;">
+Left on Labrador
+or, The cruise of the Schooner-yacht ‘Curlew.’ as Recorded by ‘Wash.’
+</td>
+<td style="text-align:left;">
+Stephens, C. A. (Charles Asbury)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+of all sorts, rakes, hoes, shovels and picks. There were strange pieces of machinery for cutting hay, planting corn and <strong>potatoes,</strong> and the like. In one corner was a big wheel, with a rope around it, and for a moment the
+</td>
+<td style="text-align:left;font-style: italic;">
+The Story of a Stuffed Elephant
+</td>
+<td style="text-align:left;">
+Hope, Laura Lee
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cleaner than the rest, had a comfortable fire upon the grate, and a plentiful meal, of cold meat and steaming <strong>potatoes</strong> boiled in their jackets, laid on the table. Jerry put down the bags here, and disappeared before The O’Mahony could
+</td>
+<td style="text-align:left;font-style: italic;">
+The Return of the O’Mahony: A Novel
+</td>
+<td style="text-align:left;">
+Frederic, Harold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+to Jack after his morning’s ride! There was the last of some elk meat, killed the fall before by Hugh, <strong>potatoes,</strong> canned tomatoes, and lots of good bread, and plenty of milk and cream. Joe said to Jack, as he watched
+</td>
+<td style="text-align:left;font-style: italic;">
+Jack the Young Trapper: An Eastern Boy’s Fur Hunting in the Rocky Mountains
+</td>
+<td style="text-align:left;">
+Grinnell, George Bird
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+She doesn’t get much. Her wages are about equal to those of a kitchen-maid, who can’t spell, but only peel <strong>potatoes.</strong> And the more learned she is, the more she is disliked and snubbed by her betters; and she never marries,
+</td>
+<td style="text-align:left;font-style: italic;">
+Fan : The Story of a Young Girl’s Life
+</td>
+<td style="text-align:left;">
+Hudson, W. H. (William Henry)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+reputation, or at least her prestige, had suffered. This it was that made her drop the Tredgolds "like a hot <strong>potato."</strong> She who had taken such an interest in the girls, and superintended Stella’s <em>début</em> as if she had been a
+</td>
+<td style="text-align:left;font-style: italic;">
+Old Mr. Tredgold
+</td>
+<td style="text-align:left;">
+Oliphant, Mrs. (Margaret)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+scientific management into this business," suggested Billie. "With one deft movement of the arm, I’ll help each plate to creamed <strong>potatoes,</strong> passing them along in order to Nancy, who can dish out the baked omelette. While we are doing that Mary
+</td>
+<td style="text-align:left;font-style: italic;">
+The Motor Maids at Sunrise Camp
+</td>
+<td style="text-align:left;">
+Stokes, Katherine
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+off duty. “Beans!” cried one. “I’m ashamed to look a bean in the eye.” “Beans don’t have eyes–you’re thinking of <strong>potatoes!"</strong> was a retort.”Well, give us potatoes then, but not beans, O Cookie!" "Make it a beef stew with plenty
+</td>
+<td style="text-align:left;font-style: italic;">
+The Khaki Boys Fighting to Win; or, Smashing the German Lines
+</td>
+<td style="text-align:left;">
+Bates, Gordon
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a similar burden; and half a minute later there appears old Grandmother Majauszkiene, with a big yellow bowl of smoking <strong>potatoes,</strong> nearly as big as herself. So, bit by bit, the feast takes form–there is a ham and a dish of
+</td>
+<td style="text-align:left;font-style: italic;">
+The Jungle
+</td>
+<td style="text-align:left;">
+Sinclair, Upton
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+the red-tiled, shovel-hatted Savoyard roofs throw sharp blue shadows across the glowing yellow pavement. Bompard, an old territorial, is peeling <strong>potatoes</strong> in the door frame. Coustic and Valentin, of the Chasseurs Alpins, are quarreling good-humoredly over a game of Manille, and
+</td>
+<td style="text-align:left;font-style: italic;">
+The Wasted Generation
+</td>
+<td style="text-align:left;">
+Johnson, Owen
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+to the field, milked her cows and churned her butter with her own hands, and would hoe and dig her <strong>potatoes</strong> without flinching, had there been need. But she had the carriage and bearing of a queen, and a majestic style
+</td>
+<td style="text-align:left;font-style: italic;">
+A Widow’s Tale, and Other Stories
+</td>
+<td style="text-align:left;">
+Oliphant, Mrs. (Margaret)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well of what was on the table, such as most excellent fish from the river, one of our baked hams, <strong>potatoes,</strong> sweet potatoes, pones and wheaten bread, as well as puddings of papaw, or custard apples. "And now we have a
+</td>
+<td style="text-align:left;font-style: italic;">
+The Land of Bondage: A Romance
+</td>
+<td style="text-align:left;">
+Bloundelle-Burton, John
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+even rails, enclosed, on this portion of the flats, quite fifty acres of land; and Indian corn, oats, pumpkins, peas, <strong>potatoes,</strong> flax, and several other sorts of seed, were already in the ground. The spring proved dry, and the sun of
+</td>
+<td style="text-align:left;font-style: italic;">
+Wyandotté; Or, The Hutted Knoll: A Tale
+</td>
+<td style="text-align:left;">
+Cooper, James Fenimore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+one of David’s psalms, and enjoying at intervals her pipe, a visit from her next neighbour, Nancy Nivison, or her <strong>champit-potatoes–a</strong> luxury which the west country, and that alone, has hitherto enjoyed. Two old Irish women had settled some time before
+</td>
+<td style="text-align:left;font-style: italic;">
+Wilson’s Tales of the Borders and of Scotland, Volume 18
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+do you suppose all Europe-all the world-will do when they hear of this, that you can dig up gold like <strong>potatoes?</strong> Why, they won’t be able to find ships fast enough to bring ’em here. When they do come they’ll want
+</td>
+<td style="text-align:left;font-style: italic;">
+A Colonial Reformer, Vol. 3 (of 3)
+</td>
+<td style="text-align:left;">
+Boldrewood, Rolf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+be productive of a greater variety of plants than any other country in the world. Coupled with wheat, oats, barley, <strong>potatoes,</strong> peas, and a variety of other English edibles, its products comprise many of a tropical nature, the practicability of the
+</td>
+<td style="text-align:left;font-style: italic;">
+Fern Vale; or, the Queensland Squatter. Volume 3
+</td>
+<td style="text-align:left;">
+Munro, Colin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a wasteful margin of lean round the fat, which he was not supposed to eat; he also nibbled at the <strong>potatoes,</strong> and compressed the large remnant of them into the smallest possible space on the plate; then he unobtrusively laid down
+</td>
+<td style="text-align:left;font-style: italic;">
+A Great Man: A Frolic
+</td>
+<td style="text-align:left;">
+Bennett, Arnold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+the direction of the Reservoir as soon as they felt that they had got over the effects of the beef, <strong>potatoes,</strong> and ginger-beer which a generous commissariat had doled out to them for lunch. It was a glorious day, and bathing
+</td>
+<td style="text-align:left;font-style: italic;">
+The Head of Kay’s
+</td>
+<td style="text-align:left;">
+Wodehouse, P. G. (Pelham Grenville)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+turn than ever, “that Ba’tiste is entirely right, Fred. You talked to me as though I were a sack of <strong>potatoes.</strong> I won’t go with you, and I won’t see you until you can apologize.” “There’s nothing to apologize for!” Thayer
+</td>
+<td style="text-align:left;font-style: italic;">
+The White Desert
+</td>
+<td style="text-align:left;">
+Cooper, Courtney Ryley
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sense have you lugged a moving-picture machine all the way over from America when you might have brought us some <strong>potatoes?</strong> I suppose, of course, it has something to do with your fool scheme. Well, as long as it doesn’t get
+</td>
+<td style="text-align:left;font-style: italic;">
+L.P.M. : The End of The Great War
+</td>
+<td style="text-align:left;">
+Barney, J. Stewart (John Stewart)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I can do to help you people?" inquired Jane of Mary Louise the following morning at the breakfast table. “Pare <strong>potatoes–or</strong> something?” “No, thanks, Jane,” returned her chum. "We’re getting along fine. I would like to have you pull a load
+</td>
+<td style="text-align:left;font-style: italic;">
+The Mystery of the Fires
+</td>
+<td style="text-align:left;">
+Lavell, Edith
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+there came a voice, and nothing more. The two young men dined; and George thought that, except for the fried <strong>potatoes,</strong> which flew about his plate when he tried to stick his fork into them, and a flavour of garlic, that
+</td>
+<td style="text-align:left;font-style: italic;">
+The Doctor’s Wife: A Novel
+</td>
+<td style="text-align:left;">
+Braddon, M. E. (Mary Elizabeth)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Heimweh of it at first." His German was very fluent. The priest opposite looked up from his cold veal and <strong>potato</strong> salad and smiled. It was a nice face. He explained quietly that he did not belong here, but was making
+</td>
+<td style="text-align:left;font-style: italic;">
+Three More John Silence Stories
+</td>
+<td style="text-align:left;">
+Blackwood, Algernon
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+and has come to the conclusion that Dunning did wrong, and down he came upon Dunning like a sack of <strong>potatoes</strong> the other morning, accusing him of cheating him out of two years’ rent and so forth; and then nothing would
+</td>
+<td style="text-align:left;font-style: italic;">
+Priscilla and Charybdis: A Story of Alternatives
+</td>
+<td style="text-align:left;">
+Moore, Frank Frankfort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+the garden, and at another time throwing it into the ash-bin. But the sight of his terrier digging in the <strong>potato</strong> patch for a suitable hiding place for his bone, caused him to disinter it from the first of these, and
+</td>
+<td style="text-align:left;font-style: italic;">
+The Countess of Lowndes Square, and Other Stories
+</td>
+<td style="text-align:left;">
+Benson, E. F. (Edward Frederic)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pleasure–meet so many people! Canada must be a very nice place; been thinking of going out there myself–drive oxen, grow <strong>potatoes,</strong> and that kind of thing, you know." He glanced at Grace, as though seeking her approval of such an act
+</td>
+<td style="text-align:left;font-style: italic;">
+Lorimer of the Northwest
+</td>
+<td style="text-align:left;">
+Bindloss, Harold
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+and carried them out of speaking distance. It was nearly dinner time and the men had not yet returned. The <strong>potatoes</strong> were done, the corn chowder had been taken from the fire, and the cooks and hungry campers sat on the
+</td>
+<td style="text-align:left;font-style: italic;">
+The Camp Fire Girls on Ellen’s Isle; Or, The Trail of the Seven Cedars
+</td>
+<td style="text-align:left;">
+Frey, Hildegard G.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+do our best. The nights are growing cold. We may get a freeze at any time, so–oo–" “So it’s the <strong>potatoes</strong> next.” Brand gave vent to a good-natured groan. He hated picking up potatoes. Stooping over made his back ache. But
+</td>
+<td style="text-align:left;font-style: italic;">
+Wings over England
+</td>
+<td style="text-align:left;">
+Snell, Roy J. (Roy Judson)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+horrid if you could understand." “I’m going to Paris,” I answered, beginning to feel as if I had a cold <strong>potato</strong> where my heart ought to be. “I am obliged to go, on business.” "You didn’t say anything about Paris in
+</td>
+<td style="text-align:left;font-style: italic;">
+The Powers and Maxine
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+of pitchers of iced tea here, son." Jerry gazed bug-eyed at the five pork chops and the mounds of mashed <strong>potatoes,</strong> vegetables and apple sauce heaped up on his tray. “This is lunch?” Jonas Driscoll’s blue eyes twinkled. "Just a light
+</td>
+<td style="text-align:left;font-style: italic;">
+Fire at Red Lake
+Sandy Steele Adventures #4
+</td>
+<td style="text-align:left;">
+Leckie, Robert
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thinking, for there was some truth in the jibe. It was the same simple fare daily: soup, a joint, green <strong>potatoes,</strong> vegetables and a sweet, so that Van der Welcke sometimes said: "But, Constance, how Dutch you have grown in your
+</td>
+<td style="text-align:left;font-style: italic;">
+Dr. Adriaan
+</td>
+<td style="text-align:left;">
+Couperus, Louis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+who did not contradict. It is in their patents, I think. Mr. Herapath dined with us that evening–if fish and <strong>potatoes</strong> and boiled eggs, and sour bread and pancakes, and claret and coffee can be called a dinner–but nothing I could
+</td>
+<td style="text-align:left;font-style: italic;">
+When Love Calls
+</td>
+<td style="text-align:left;">
+Weyman, Stanley John
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bacon, flour, meal, salt, baking-powder, tea, and sugar, but no coffee, a few tins of vegetables, a small sack of <strong>potatoes,</strong> and, last but not least, a canvas-covered mass of something which they decided was pemmican. Rummaging further, the precious tobacco
+</td>
+<td style="text-align:left;font-style: italic;">
+Stranded in Arcady
+</td>
+<td style="text-align:left;">
+Lynde, Francis
+</td>
+</tr>
+</tbody>
+</table>
+<p>I would also be amiss not to include my favourite mention of potatoes in an otherwise serious piece of writing, in the <em>Economic &amp; Philosophic Manuscripts of 1844</em> where a young Karl Marx emphasises that a diseased potato is the worst kind of potato:</p>
+<blockquote>
+<p><a href="https://www.marxists.org/archive/marx/works/1844/manuscripts/needs.htm">The Irishman no longer knows any need now but the need to eat, and indeed only the need to eat <em>potatoes</em> and <em>scabby potatoes</em> at that, the worst kind of potatoes.</a></p>
+</blockquote>
+<p><em>A big thank you to Jessie See for the encouragement that this ludicrous idea was actually worth doing. Code, as usual, is available on <a href="https://raw.githubusercontent.com/evanodell/evanodell.com/master/content/blog/2019-03-01-potatoes-in-world-literature.Rmd">Github</a>. Cover photo via the <a href="https://en.wikipedia.org/wiki/Potato">Wikipedia page for the potato</a>.</em></p>

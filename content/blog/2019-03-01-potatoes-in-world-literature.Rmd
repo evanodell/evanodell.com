@@ -1,0 +1,396 @@
+---
+title: Potatoes in World Literature
+author: Evan Odell
+date: '2019-03-01'
+slug: potatoes-in-world-literature
+image: "/img/potato/patates.jpg"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, tidy = FALSE, warning = FALSE,
+                      message = FALSE)
+```
+
+Potatoes are an undeniably important vegetable, far more important to human history than say, brocolli. [_The History and Social Influence of the Potato_](https://www.amazon.co.uk/History-Influence-Cambridge-Paperback-Library/dp/0521316235) is 768 pages long, and "[an extraordinary book, like no other, a vast compendium of curious fact and passionately recounted social history that calls to mind an unexpected but completely satisfying fusion of _The Anatomy of Melancholy_ and Fernand Braudel's _Capitalism and Material Life_](https://www.lrb.co.uk/v08/n09/angela-carter/potatoes-and-point)", according to Angela Carter. And Redcliffe Salaman's academic history is complemented by several other books by popular historians.
+
+Given their importance, I was curious how often potatoes are mentioned in fictional writing. Food may be considered less important than themes such as love, memory or morality to the literary critic, but food is an important part of human culture, even humble foods like the potato. Potatoes and their consumption have featured in visual art, such as the below painting by Vincent Van Gogh.
+
+`r blogdown::shortcode("figure", src = "/img/potato/Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg", caption = "The Potato Eaters by Van Gogh, 1885, via Wikipedia")`
+
+I used the [`gutenbergr`](https://cran.r-project.org/package=gutenbergr) R package, modifying some of the code in order to access the volume of books I needed, and updated the metadata using the python script available in its [GitHub repository](https://githuh.com/ropensci/gutenbergr). I downloaded everything in English, then selected all of the books that a) are listed as fiction in the Library of Congress Subject Headings, and b) include "potato" or some variation thereof. I focused on fiction to avoid the results being skewed by cookbooks and agricultural productivity reports and to identify the extent to which the potato has crept into the literary conciousness.
+
+```{r file-downloading, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+library(gutenbergr)
+library(dplyr)
+library(tibble)
+library(magrittr)
+gutenberg_id <- gutenberg_works() %>%
+    filter(!is.na(title)) %>%
+    bind_rows(tibble("gutenberg_id" = c(19786, c(51996:58930))))
+  # add in extra rows
+
+  mirror <- gutenberg_get_mirror(verbose = TRUE)
+
+  if (inherits(gutenberg_id, "data.frame")) {
+    # extract the gutenberg_id column. This is useful for working
+    # with the output of gutenberg_works()
+    gutenberg_id <- gutenberg_id[["gutenberg_id"]]
+  }
+
+  id <- as.character(gutenberg_id)
+
+  path <- id %>%
+    stringr::str_sub(1, -2) %>%
+    stringr::str_split("") %>%
+    sapply(stringr::str_c, collapse = "/")
+
+  path <- ifelse(nchar(id) == 1, "0", path)
+
+  full_url <- stringr::str_c(mirror, path, id,
+                             stringr::str_c(id, ".zip"),
+                             sep = "/")
+  names(full_url) <- id
+
+
+  read_zip_url <- function(url) {
+    f <- function(tmp) {
+      utils::download.file(url, tmp, quiet = FALSE)
+      readr::read_lines(tmp)
+    }
+    tmp <- tempfile(fileext = ".zip")
+    ret <- suppressWarnings(purrr::possibly(f, NULL)(tmp))
+    unlink(tmp)
+
+    ret
+  }
+
+  try_download <- function(url) {
+    ret <- read_zip_url(url)
+    if (!is.null(ret)) {
+      return(ret)
+    }
+    base_url <- stringr::str_replace(url, ".zip$", "")
+    for (suffix in c("-8", "-0", "-h")) {
+      new_url <- paste0(base_url, suffix, ".zip")
+      ret <- read_zip_url(new_url)
+      if (!is.null(ret)) {
+        return(ret)
+      }
+    }
+    warning("Could not download a book at ", url)
+  }
+
+
+
+  library(progress)
+  pb <- progress_bar$new(total = length(full_url),
+                         format = ":spin downloading [:bar] :percent (:current out of :total) eta: :eta\n")
+
+  for (i in 1:length(full_url)) {
+
+    if(!file.exists(paste0("temp/", names(full_url)[[i]], ".rds"))) {
+
+      ret <- full_url[[i]] %>%
+        purrr::map(try_download) %>%
+        purrr::discard(is.null) %>%
+        purrr::map_df(~tibble(text = .), .id = "gutenberg_id") %>%
+        mutate(gutenberg_id = as.integer(gutenberg_id))  %>%
+        group_by(gutenberg_id) %>%
+        do(tibble(text = gutenberg_strip(.$text))) %>%
+        ungroup()
+
+    readr::write_rds(ret, path = paste0("temp/", names(full_url)[[i]], ".rds"))
+}
+
+    pb$tick()
+
+  }
+```
+
+
+```{r potato-finding, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+library(tidytext)
+library(tidyverse)
+library(progress)
+library(quanteda)
+
+alist <- list.files(path = "temp/")
+alist <- alist %>%
+  str_subset(pattern = "[0-9]\\.rds")
+
+blist <- gsub(".rds", "", alist) ## 47621 files
+
+pb <- progress_bar$new(total = length(alist),
+                       format = ":spin processing [:bar] :percent (:current out of :total) eta: :eta\n")
+
+potato_count <- 0
+
+for (i in 1:length(alist)) {
+
+  if (!file.exists(paste0("temp/", blist[[i]], "-nopotato.rds")) &&
+      !file.exists(paste0("temp/", blist[[i]], "-potato.rds"))) {
+
+  text <- read_rds(paste0("temp/", alist[[i]]))
+
+  if (nrow(text) <= 1) {
+    file.remove(paste0("temp/", alist[[i]]))
+    message(paste0("Removed file ", alist[[i]]))
+  } else {
+
+  text$gutenberg_id <- blist[[i]]
+
+  words <- text %>%
+    unnest_tokens(word, text) %>%
+    anti_join(stop_words, by = "word") %>%
+    count(gutenberg_id, word, sort = TRUE)
+
+  suffix <- if_else(any(str_detect(words$word, "potato")),
+                    "-potato", "-nopotato")
+
+  if (suffix == "-potato") {
+    write_rds(words, path = paste0("temp/", blist[[i]], suffix, ".rds"))
+
+    potato_count <- potato_count + 1
+    emo::ji("potato")
+    potato_count
+  } else {
+    file.remove(paste0("temp/", alist[[i]]))
+  }
+
+  }
+  }
+  pb$tick()
+
+}
+
+
+library(stringi)
+
+alist <- list.files(path = "temp/")
+clist <- alist %>%
+  str_subset(pattern = "-potato.rds", negate = TRUE)
+
+pb2 <- progress_bar$new(total = length(clist),
+                        format = ":spin KWICS [:bar] :percent (:current out of :total) eta: :eta\n")
+
+kwic_list <- list()
+
+gutenberg_metadata <- read_rds("gutenberg_metadata.rds")
+
+gutenberg_subjects <- read_rds("gutenberg_subjects.rds")
+
+subjects_lcsh <- gutenberg_subjects %>% filter(subject_type == "lcsh") %>%
+  group_by(gutenberg_id) %>%
+  transmute(subject = stri_paste(subject, collapse = " -- ")) %>%
+  distinct()
+
+clist <- tibble(clist = clist, gutenberg_id = as.numeric(str_remove(clist, ".rds")))
+
+clist <- clist %>% left_join(gutenberg_metadata) %>%
+  left_join(subjects_lcsh) %>%
+  filter(str_detect(subject, "Fiction|fiction"), language == "en")
+
+for (i in 1:length(clist$clist)) {
+  text <- read_rds(paste0("temp/", clist$clist[[i]]))
+
+  text2 <- tibble(
+    gutenberg_id = gsub(".rds", "", clist$clist[[i]]),
+    text = stri_paste(text$text, collapse = " ")
+                  )
+
+  kwic_list[[i]] <- as_tibble(kwic(text2$text, "*potato*", window = 20,
+                                   what = "fastestword"))
+  
+  kwic_list[[i]]$gutenberg_id <- text2$gutenberg_id
+
+  kwic_list[[i]] <- kwic_list[[i]] %>% select(pre, keyword, post, gutenberg_id)
+  
+  pb2$tick()
+}
+
+
+kwic_list <- bind_rows(kwic_list)
+
+kwic_list <- kwic_list %>%
+  mutate(gutenberg_id = as.numeric(gutenberg_id)) %>%
+  arrange((gutenberg_id))
+
+kwic_list <- kwic_list %>%
+  left_join(gutenberg_metadata) %>%
+  left_join(subjects_lcsh) ## need the built one from the data-raw script
+
+kwic_list <- kwic_list %>%
+  filter(str_detect(subject, "Fiction|fiction"), language == "en") %>% ## reduce the sample to just be fiction
+  select(-rights, -has_text, -gutenberg_bookshelf,
+         -gutenberg_author_id, -language)
+
+write_rds(kwic_list, "potato-data/kwic_list.rds")
+```
+
+
+Most books that mention potatoes did so only once or twice, as shown in Figure \@ref(fig:potatochart).
+
+```{r potatochart, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Empirical Cumulative Distribution Function of Potatoes in Fiction"}
+library(stringi)
+library(tidyverse)
+
+kwic_list <- read_rds("potato-data/kwic_list.rds")
+
+gutenberg_metadata <- read_rds("potato-data/gutenberg_metadata.rds")
+
+gutenberg_subjects <- read_rds("potato-data/gutenberg_subjects.rds")
+
+potato_cases <- kwic_list %>%
+  filter(!is.na(gutenberg_id)) %>%
+  group_by(gutenberg_id) %>%
+  summarise(n_potato = n())
+
+potato_distribution <- ggplot(potato_cases, aes(x = n_potato)) +
+  stat_ecdf(geom = "step") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_log10(breaks = c(1, 2, 3, 5, 10, 20, 100)) +
+  labs(x = "Number of Mentions of Potatoes per Book",
+       y = "Percentage of Total Mentions",
+       caption = "English Language, Project Gutenberg data as of 2019-02-23 | © Evan Odell 2019 | CC-BY-SA")
+
+potato_distribution
+```
+
+
+```{r potato-subjects-creation, echo=FALSE, message=FALSE, warning=FALSE}
+library(scales)
+kwic_list$subject2 <- (stri_split_fixed(kwic_list$subject, " -- "))
+
+kwic_unnest <- kwic_list %>%  unnest() %>%
+  distinct(gutenberg_id, subject2, .keep_all = TRUE) %>%
+  select(gutenberg_id, subject2) %>%
+  filter(subject2 != "Fiction")
+
+kwic_count <- kwic_list %>%
+  distinct(gutenberg_id, .keep_all = TRUE)
+
+ku_summary_genre <- kwic_unnest %>%
+  group_by(subject2) %>%
+  summarise(num_books_potatoes = n()) %>%
+  arrange(desc(num_books_potatoes))
+
+subjects_lcsh <- gutenberg_subjects %>% left_join(gutenberg_metadata) %>%
+  filter(subject_type == "lcsh", language == "en",
+         str_detect(subject, "Fiction|fiction")) %>%
+  group_by(gutenberg_id) %>%
+  transmute(subject = stri_split_fixed(subject, " -- ")) %>%
+  unnest()  %>%
+  distinct(gutenberg_id, subject, .keep_all = TRUE) %>%
+  filter(subject != "Fiction") %>%
+  group_by(subject) %>%
+  summarise(num_books = n()) %>%
+  arrange(desc(num_books))
+
+subjects_lcsh_unique <- gutenberg_subjects %>%
+  left_join(gutenberg_metadata) %>%
+  filter(subject_type == "lcsh", language == "en",
+         str_detect(subject, "Fiction|fiction")) %>%
+  distinct(gutenberg_id)
+
+
+ku_summary_genre <- subjects_lcsh %>%
+  left_join(ku_summary_genre, by = c("subject" = "subject2")) %>%
+  mutate(perc_with_potatoes = num_books_potatoes/num_books)
+
+ku_summary_genre_potato10 <- ku_summary_genre %>%
+  top_n(num_books_potatoes, n = 10) %>%
+  mutate(perc_with_potatoes = percent(perc_with_potatoes))
+
+ku_summary_book <- kwic_list %>% select(-subject2) %>%
+  group_by(gutenberg_id) %>%
+  summarise(count = n()) %>% arrange(desc(count))
+
+```
+
+
+Just over a third (`r scales::percent(nrow(kwic_count)/nrow(subjects_lcsh_unique))`) of all English fiction books available in the Gutenberg library mention potatoes at least once. 
+
+
+```{r potato-subjects-table, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+ku_summary_genre_potato10 %>%
+        select(-num_books) %>%
+        mutate(num_books_potatoes = scales::comma(num_books_potatoes)) %>%
+kable(align = c("l", "r", "r"), 
+      caption = "Genres with the most mentions of potatoes",
+      col.names = c("Subject", "Number of books in genre mentioning potatos", 
+                    "Percentage of books in genre mentioning potatoes"))
+  ## ID all works with each genre
+```
+
+
+By far the most common subject to mention potatoes is juvenile fiction, a genre that `r scales::percent(top_n(ku_summary_genre_potato10, 1, num_books_potatoes)$num_books_potatoes/nrow(kwic_count))` of all books to mention potatoes fell into. Table \@ref(tab:potato-subjects-table) above contains the 10 subjects with the most mentions of potatoes, and the percentage of all fiction books in English listing that subject in the Gutenberg library to mention potatoes.
+
+```{r all-subjects-table, echo=FALSE, message=FALSE, warning=FALSE}
+ku_summary_genre10 <- ku_summary_genre %>% top_n(num_books, n = 10)
+
+ku_summary_genre10$subject <- if_else(
+  ku_summary_genre10$subject %in% ku_summary_genre_potato10$subject,
+  paste0(ku_summary_genre10$subject, "*"), ku_summary_genre10$subject)
+
+ku_summary_genre10 %>%
+        select(-num_books_potatoes) %>%
+        mutate(num_books = scales::comma(num_books),
+               perc_with_potatoes = percent(perc_with_potatoes)) %>%
+kable(align = c("l", "r", "r"), 
+      caption = "Most common fiction genres in Project Gutenberg",
+      col.names = c("Subject", "Number of books in genre", 
+                    "Percentage of books in genre mentioning potatoes"))
+```
+
+
+The mentions of potatoes roughly reflect the total numbers of books in a given genre (Table \@ref(tab:all-subjects-table)), although some genres are more common than others. Genres marked with an asterix are also in the top ten of mentions of potatoes. As seen in Table \@ref(tab:all-subjects-table), although science fiction is a common genre, less than 10% of science fiction books mention potatoes. Clearly writing about the near or distant future pushes concern for tubers out of the author's mind. 
+
+
+```{r 100-plus-potatoes, echo=FALSE, message=FALSE, warning=FALSE}
+ku_summary_genre_top <- ku_summary_genre %>% 
+  filter(num_books >= 100) %>%
+  top_n(10, perc_with_potatoes) %>% 
+  arrange(desc(perc_with_potatoes))
+
+ku_summary_genre_top %>%
+        mutate(num_books = scales::comma(num_books),
+               perc_with_potatoes = percent(perc_with_potatoes)) %>%
+kable(align = c("l", "r", "r", "r"), 
+      caption = "Genres most likely to mention potatoes",
+      col.names = c("Subject", "Number of books in genre", 
+                    "Number of books in genre mentioning potatos", 
+                    "Percentage of books in genre mentioning potatoes"))
+
+```
+
+Table \@ref(tab:100-plus-potatoes) shows the 10 genres with the most mentions of potatoes, provided there are 100 or more books in each genre. Reflective of the lasting impact of the Irish Potato Famine on literature and cultural memory, books about Ireland appear the most likely to mention potatoes. Farm life and country life are the next most common, again unsurprisingly.
+
+
+There are `r scales::comma(nrow(kwic_list))` mentions of potatoes across `r scales::comma(nrow(kwic_count))` books, an average of `r round( nrow(kwic_list)/nrow(kwic_count), 1)` per book. The book with the most mentions of potatoes, with `r top_n(ku_summary_book, 1, count)$count` in total, is _`r kwic_count$title[kwic_count$gutenberg_id == top_n(ku_summary_book, 1, count)$gutenberg_id]`_ by `r str_replace(kwic_count$author[kwic_count$gutenberg_id == top_n(ku_summary_book, 1, count)$gutenberg_id], "Fryer, ", "")` `r str_extract(kwic_count$author[kwic_count$gutenberg_id == top_n(ku_summary_book, 1, count)$gutenberg_id], ".*?,")` the full text of which is available [here](https://www.gutenberg.org/ebooks/38215). While I excluded cookbooks, this is a story with recipes from 1912, hence the many mentions of potatoes, and the author's description of her "book for all girls who love to help Mother."
+
+There are far too many instances of potatoes mentioned in literature to show them all, but I have a sample of 1% of all mentions of potatoes, examples from `r round(0.01 * nrow(kwic_count), 0)` of the total `r scales::comma(nrow(kwic_count))` books with at least one mention of potatoes in Table \@ref(tab:data-table). You can download all the mentions of potatoes in context, along with subject data and Gutenberg catalogue number, in [this spreadsheet](/files/potato-kwic.csv).
+
+```{r data-table, echo=FALSE, message=FALSE, warning=FALSE}
+
+set.seed(09)
+kwic_list %>% 
+  mutate(text = paste0(pre, " **", keyword, "** ", post)) %>%
+  distinct(gutenberg_id, .keep_all = TRUE) %>%
+  sample_frac(0.01) %>%
+  select(text, title, author) %>%
+  kable(col.names = c("Potato in Text", "Title", "Author"), 
+        caption = "Example potato usage") %>%
+  kable_styling(full_width = TRUE) %>%
+  column_spec(2, italic = TRUE)
+
+```
+
+I would also be amiss not to include my favourite mention of potatoes in an otherwise serious piece of writing, in the _Economic & Philosophic Manuscripts of 1844_ where a young Karl Marx emphasises that a diseased potato is the worst kind of potato:
+
+> [The Irishman no longer knows any need now but the need to eat, and indeed only the need to eat _potatoes_ and _scabby potatoes_ at that, the worst kind of potatoes.](https://www.marxists.org/archive/marx/works/1844/manuscripts/needs.htm)
+
+
+_A big thank you to Jessie See for the encouragement that this ludicrous idea was actually worth doing. Code, as usual, is available on [Github](https://raw.githubusercontent.com/evanodell/evanodell.com/master/content/blog/2019-03-01-potatoes-in-world-literature.Rmd). Cover photo via the [Wikipedia page for the potato](https://en.wikipedia.org/wiki/Potato)._
