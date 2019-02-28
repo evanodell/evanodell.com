@@ -1,7 +1,7 @@
 ---
 title: Potatoes in World Literature
 author: Evan Odell
-date: '2019-03-01'
+date: '2019-02-28'
 slug: potatoes-in-world-literature
 image: "/img/potato/patates.jpg"
 ---
@@ -393,4 +393,4 @@ I would also be amiss not to include my favourite mention of potatoes in an othe
 > [The Irishman no longer knows any need now but the need to eat, and indeed only the need to eat _potatoes_ and _scabby potatoes_ at that, the worst kind of potatoes.](https://www.marxists.org/archive/marx/works/1844/manuscripts/needs.htm)
 
 
-_A big thank you to Jessie See for the encouragement that this ludicrous idea was actually worth doing. Code, as usual, is available on [Github](https://raw.githubusercontent.com/evanodell/evanodell.com/master/content/blog/2019-03-01-potatoes-in-world-literature.Rmd). Cover photo via the [Wikipedia page for the potato](https://en.wikipedia.org/wiki/Potato)._
+_A big thank you to Jessie See for the encouragement that this ludicrous idea was actually worth doing. Code, as usual, is available on [Github](https://raw.githubusercontent.com/evanodell/evanodell.com/master/content/blog/2019-02-28-potatoes-in-world-literature.Rmd). Cover photo via the [Wikipedia page for the potato](https://en.wikipedia.org/wiki/Potato)._
