@@ -158,6 +158,11 @@ figcaption h4{
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+figcaption {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-style: italic;
+}
 
 .main-content {
   padding-top: 130px;
