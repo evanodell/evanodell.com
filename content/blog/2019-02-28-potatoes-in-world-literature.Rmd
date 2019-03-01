@@ -233,6 +233,7 @@ Most books that mention potatoes did so only once or twice, as shown in Figure \
 ```{r potatochart, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Empirical Cumulative Distribution Function of Potatoes in Fiction"}
 library(stringi)
 library(tidyverse)
+library(viridis)
 
 kwic_list <- read_rds("potato-data/kwic_list.rds")
 
@@ -245,10 +246,15 @@ potato_cases <- kwic_list %>%
   group_by(gutenberg_id) %>%
   summarise(n_potato = n())
 
-potato_distribution <- ggplot(potato_cases, aes(x = n_potato)) +
-  stat_ecdf(geom = "step") +
+potato_distribution <- ggplot(potato_cases, aes(x = n_potato, colour = ..y..),
+                              show.legend = FALSE) +
+  stat_ecdf(geom = "step", size = 1, alpha = 0.9) +
+  scale_colour_gradientn(colors = viridis_pal(end = 0.7,
+                                              option = "magma")(86),
+                         na.value = "#FDE725FF") + 
   scale_y_continuous(labels = scales::percent) +
   scale_x_log10(breaks = c(1, 2, 3, 5, 10, 20, 100)) +
+  theme(legend.position = "none") + 
   labs(x = "Number of Mentions of Potatoes per Book",
        y = "Percentage of Total Mentions",
        caption = "English Language, Project Gutenberg data as of 2019-02-23 | © Evan Odell 2019 | CC-BY-SA")
