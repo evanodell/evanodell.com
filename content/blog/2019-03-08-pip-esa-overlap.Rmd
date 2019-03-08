@@ -1,0 +1,225 @@
+---
+title: "The overlap between incapacity and cost-of-disability benefits"
+slug: pip-esa-overlap
+date: '2019-03-08'
+author: Evan Odell
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, tidy = FALSE, warning = FALSE,
+                      message = FALSE, fig.height = 7)
+```
+
+
+Earlier this week the DWP secretary Amber Rudd [announced a series of changes to the disability benefits system](https://www.theguardian.com/society/2019/mar/05/amber-rudd-admits-disabled-people-feel-put-on-trial-for-seeking-support), including scrapping re-assessment for pensioners and possibly combining the assessment for the two main working-age disability benefits: Employment and Support Allowance (ESA), a means-tested benefit providing financial support to unemployed disabled people, and Personal Independence Payment (PIP), a needs-tested benefit to help with the additional cost of living associated with disability. The reaction from the disability sector was [at best lukewarm](https://www.disabilitynewsservice.com/reaction-to-rudds-reforms-tinkering-crumbs-and-fears-of-a-trojan-horse-for-cuts/), with a variety of experts (including two of my collegues) concerned that the government simply doesn't understand the problems with the benefits system it has created and are mostly tinkering around the edges rather than addressing fundamental issues.
+
+One of the possible reforms is to combined PIP and ESA assessments, which use different criteria for eligibility as they serve fundamentally different purposes. The ESA assessment (the Work Capability Assessment, or WCA) has many problems, but the intention is to assess a person's ability to engage in paid work. PIP is supposed to assess the additional financial cost of having a disability or health condition. ESA eligibility is also determined in part by household income and savings, while PIP does not. However, many disabled people receive both. 
+
+The DWP StatXplore tool has benefit combinations, including the ability to compare claimants receiving PIP and Disability Living Allowance (DLA, PIP's predecessor that roughly 1.8 million people still get) to ESA and its precessor Incapacity Benefit (this combination is labelled INCAP by the DWP). Of course, off the back of Amber Rudd's speech some disabled people and activists were wondering how many many people claimed both ESA and PIP.
+
+
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '1103618769103044608')
+```
+
+So in response to the above tweet I created a graph (Figure \@ref(fig:plot1).) to show the rate of overlap between the two benefits and how it had changed from February 2013 to August 2018.
+
+
+
+```{r read-in-data, include=FALSE}
+
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+overlap_age <- read_excel("benefits-data/table_2019-03-08_09-21-02.xlsx", 
+                                          range = "B11:AA111")
+overlap_age <- overlap_age %>%
+  rename("pip" ="..3", "incap" ="..2", "age" = "..1") %>%
+  fill("incap") %>%
+  fill("age") %>%
+  filter(!is.na(`Feb-13`))
+
+names(overlap_age) <- snakecase::to_snake_case(names(overlap_age))
+
+overlap_age <- overlap_age %>%
+  gather(key = "date", value = "value", -pip, -incap, -age) 
+
+overlap_age <- overlap_age %>%
+  filter(pip != "Not PIP/DLA/AA", incap != "Not INCAP", age != "16-17")
+
+overlap_age <- overlap_age %>%
+  unite(grouped, pip, incap)
+
+overlap_age2 <- overlap_age %>% spread(key = grouped, value = value)
+
+names(overlap_age2) <- snakecase::to_snake_case(names(overlap_age2))
+
+overlap_age2 <- overlap_age2 %>%
+  mutate(pip_getting_esa = pip_dla_aa_incap/pip_dla_aa_total,
+         esa_getting_pip = pip_dla_aa_incap/total_incap) %>%
+  select(age, date, pip_getting_esa, esa_getting_pip) %>%
+  gather(key = "type", value = "perc", -age, -date) %>%
+  mutate(date = as.Date(recode(date,
+              "feb_13" = "1 Feb 2013",
+              "may_13" = "1 May 2013",
+              "aug_13" = "1 Aug 2013",
+              "nov_13" = "1 Nov 2013",
+              "feb_14" = "1 Feb 2014",
+              "may_14" = "1 May 2014",
+              "aug_14" = "1 Aug 2014",
+              "nov_14" = "1 Nov 2014",
+              "feb_15" = "1 Feb 2015",
+              "may_15" = "1 May 2015",
+              "aug_15" = "1 Aug 2015",
+              "nov_15" = "1 Nov 2015",
+              "feb_16" = "1 Feb 2016",
+              "may_16" = "1 May 2016",
+              "aug_16" = "1 Aug 2016",
+              "nov_16" = "1 Nov 2016",
+              "feb_17" = "1 Feb 2017",
+              "may_17" = "1 May 2017",
+              "aug_17" = "1 Aug 2017",
+              "nov_17" = "1 Nov 2017",
+              "feb_18" = "1 Feb 2018",
+              "may_18" = "1 May 2018",
+              "aug_18" = "1 Aug 2018"), format = "%d %b %Y"),
+         type = recode(type,
+                       "pip_getting_esa" = "Percentage of PIP/DLA/AA claimants receiving INCAP",
+                       "esa_getting_pip" = "Percentage of INCAP claimants receiving PIP/DLA/AA"))
+
+date_vector <- overlap_age2 %>%
+  filter(lubridate::month(overlap_age2$date) %in% c(2,8)) %>%
+  select(date)
+```
+
+
+```{r plot1, echo=FALSE, fig.cap="Percentage of one group of benefit recipients receiving the other type of benefit"}
+p_overlap <- ggplot(overlap_age2 %>% filter(age == "Total"),
+             aes(y = perc, x = date, colour = type, group = type)) + 
+  geom_line(size = 1) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(breaks = date_vector$date, date_labels = "%b %Y",
+               minor_breaks = overlap_age2$date) +
+  scale_colour_viridis_d(option = "inferno", end = 0.7) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom", legend.title = element_blank()) +
+  labs(x = "Quarter", y = "Percent of claimants",
+       subtitle = "5 Year Age Bands",
+       caption = "(c) Evan Odell | 2019 | CC-BY-SA") +
+  guides(colour=guide_legend(nrow=2, byrow=TRUE))
+
+p_overlap
+```
+
+This prompted discussion about why there appeared to be convergence, and changes in state pension age were mooted as one possible explanation. So here is Figure \@ref(fig:plot2), with five year age bands from 18-64.
+
+```{r plot2}
+p_overlap_age <- ggplot(overlap_age2 %>% filter(age != "Total"),
+             aes(y = perc, x = date, colour = type, group = type)) + 
+  geom_line(size = 1) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(breaks = date_vector$date, date_labels = "%b %Y",
+               minor_breaks = overlap_age2$date) +
+  scale_colour_viridis_d(option = "inferno", end = 0.7) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom", legend.title = element_blank()) +
+  labs(x = "Quarter", y = "Percent of claimants",
+       title = "Percentage of one group of benefit recipients receiving the other type of benefit",
+       subtitle = "5 Year Age Bands",
+       caption = "(c) Evan Odell | 2019 | CC-BY-SA") +
+  guides(colour=guide_legend(nrow=2, byrow=TRUE)) + 
+  facet_wrap(~age)
+
+p_overlap_age
+```
+
+
+I was also curious to see the absolute numbers of people claiming PIP/DLA/AA and/or INCAP, so created Figures \@ref(fig:plot3) and \@ref(fig:plot4) to take a look.
+
+```{r count-prep, include=FALSE}
+overlap_age_all <- overlap_age %>%
+  filter(grouped != "Total_Total") %>%
+  mutate(date = as.Date(recode(date,
+                               "feb_13" = "1 Feb 2013",
+                               "may_13" = "1 May 2013",
+                               "aug_13" = "1 Aug 2013",
+                               "nov_13" = "1 Nov 2013",
+                               "feb_14" = "1 Feb 2014",
+                               "may_14" = "1 May 2014",
+                               "aug_14" = "1 Aug 2014",
+                               "nov_14" = "1 Nov 2014",
+                               "feb_15" = "1 Feb 2015",
+                               "may_15" = "1 May 2015",
+                               "aug_15" = "1 Aug 2015",
+                               "nov_15" = "1 Nov 2015",
+                               "feb_16" = "1 Feb 2016",
+                               "may_16" = "1 May 2016",
+                               "aug_16" = "1 Aug 2016",
+                               "nov_16" = "1 Nov 2016",
+                               "feb_17" = "1 Feb 2017",
+                               "may_17" = "1 May 2017",
+                               "aug_17" = "1 Aug 2017",
+                               "nov_17" = "1 Nov 2017",
+                               "feb_18" = "1 Feb 2018",
+                               "may_18" = "1 May 2018",
+                               "aug_18" = "1 Aug 2018"), format = "%d %b %Y"))
+
+overlap_age_all2 <- overlap_age_all %>% spread(key = grouped, value = value)
+
+names(overlap_age_all2) <- snakecase::to_snake_case(names(overlap_age_all2))
+
+overlap_age_all2 <- overlap_age_all2 %>%
+  mutate(pip_dla_aa_total = pip_dla_aa_total - pip_dla_aa_incap,
+        total_incap =  total_incap - pip_dla_aa_incap) %>%
+  gather(key = "type", value = "count", -age, -date) %>%
+  mutate(type = recode(type, 
+                        "pip_dla_aa_incap" = "Claiming both types of benefits",
+                        "pip_dla_aa_total" = "Claiming PIP/DLA/AA only",
+                        "total_incap" = "Claiming INCAP only"),
+         type = factor(type, levels=c("Claiming PIP/DLA/AA only", "Claiming both types of benefits", "Claiming INCAP only")))
+```
+
+
+
+```{r plot3}
+p_overlap_count <- ggplot(data = overlap_age_all2 %>% filter(age == "Total"), 
+                           aes(x=date, y = count)) + 
+  geom_area(aes(fill= type), position = 'stack') + 
+  scale_fill_viridis_d() + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(breaks = date_vector$date, date_labels = "%b %Y",
+               minor_breaks = overlap_age2$date) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom", legend.title = element_blank()) + 
+  labs(x = "Quarter", y = "Number of claimants",
+       title = "Total of one group of benefit recipients receiving the other type of benefit",
+       subtitle = "Working Age Only",
+       caption = "(c) Evan Odell | 2019 | CC-BY-SA")
+  
+p_overlap_count
+```
+
+
+```{r plot4}
+p_overlap_count_age <- ggplot(data = overlap_age_all2 %>% filter(age != "Total"),
+                           aes(x=date, y = count)) + 
+  geom_area(aes(fill= type), position = 'stack') + 
+  scale_fill_viridis_d() + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(breaks = date_vector$date, date_labels = "%b %Y",
+               minor_breaks = overlap_age2$date) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom", legend.title = element_blank()) + 
+  labs(x = "Quarter", y = "Number of claimants",
+       title = "Total of one group of benefit recipients receiving the other type of benefit",
+       subtitle = "Five Year Age Bands",
+       caption = "(c) Evan Odell | 2019 | CC-BY-SA") + 
+  facet_wrap(~age)
+
+p_overlap_count_age
+
+```
+
