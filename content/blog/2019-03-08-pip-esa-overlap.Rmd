@@ -1,7 +1,7 @@
 ---
 title: "The overlap between incapacity and cost-of-disability benefits"
 slug: pip-esa-overlap
-date: '2019-03-08'
+date: '2019-03-09'
 author: Evan Odell
 ---
 
@@ -25,10 +25,7 @@ blogdown::shortcode('tweet', '1103618769103044608')
 
 So in response to the above tweet I created a graph (Figure \@ref(fig:plot1).) to show the rate of overlap between the two benefits and how it had changed from February 2013 to August 2018.
 
-
-
 ```{r read-in-data, include=FALSE}
-
 library(readxl)
 library(tidyr)
 library(dplyr)
@@ -45,23 +42,7 @@ overlap_age <- overlap_age %>%
 names(overlap_age) <- snakecase::to_snake_case(names(overlap_age))
 
 overlap_age <- overlap_age %>%
-  gather(key = "date", value = "value", -pip, -incap, -age) 
-
-overlap_age <- overlap_age %>%
-  filter(pip != "Not PIP/DLA/AA", incap != "Not INCAP", age != "16-17")
-
-overlap_age <- overlap_age %>%
-  unite(grouped, pip, incap)
-
-overlap_age2 <- overlap_age %>% spread(key = grouped, value = value)
-
-names(overlap_age2) <- snakecase::to_snake_case(names(overlap_age2))
-
-overlap_age2 <- overlap_age2 %>%
-  mutate(pip_getting_esa = pip_dla_aa_incap/pip_dla_aa_total,
-         esa_getting_pip = pip_dla_aa_incap/total_incap) %>%
-  select(age, date, pip_getting_esa, esa_getting_pip) %>%
-  gather(key = "type", value = "perc", -age, -date) %>%
+  gather(key = "date", value = "value", -pip, -incap, -age) %>%
   mutate(date = as.Date(recode(date,
               "feb_13" = "1 Feb 2013",
               "may_13" = "1 May 2013",
@@ -85,8 +66,24 @@ overlap_age2 <- overlap_age2 %>%
               "nov_17" = "1 Nov 2017",
               "feb_18" = "1 Feb 2018",
               "may_18" = "1 May 2018",
-              "aug_18" = "1 Aug 2018"), format = "%d %b %Y"),
-         type = recode(type,
+              "aug_18" = "1 Aug 2018"), format = "%d %b %Y"))
+
+overlap_age <- overlap_age %>%
+  filter(pip != "Not PIP/DLA/AA", incap != "Not INCAP", age != "16-17")
+
+overlap_age <- overlap_age %>%
+  unite(grouped, pip, incap)
+
+overlap_age2 <- overlap_age %>% spread(key = grouped, value = value)
+
+names(overlap_age2) <- snakecase::to_snake_case(names(overlap_age2))
+
+overlap_age2 <- overlap_age2 %>%
+  mutate(pip_getting_esa = pip_dla_aa_incap/pip_dla_aa_total,
+         esa_getting_pip = pip_dla_aa_incap/total_incap) %>%
+  select(age, date, pip_getting_esa, esa_getting_pip) %>%
+  gather(key = "type", value = "perc", -age, -date) %>%
+  mutate(type = recode(type,
                        "pip_getting_esa" = "Percentage of PIP/DLA/AA claimants receiving INCAP",
                        "esa_getting_pip" = "Percentage of INCAP claimants receiving PIP/DLA/AA"))
 
@@ -107,7 +104,6 @@ p_overlap <- ggplot(overlap_age2 %>% filter(age == "Total"),
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom", legend.title = element_blank()) +
   labs(x = "Quarter", y = "Percent of claimants",
-       subtitle = "5 Year Age Bands",
        caption = "(c) Evan Odell | 2019 | CC-BY-SA") +
   guides(colour=guide_legend(nrow=2, byrow=TRUE))
 
@@ -141,37 +137,13 @@ I was also curious to see the absolute numbers of people claiming PIP/DLA/AA and
 
 ```{r count-prep, include=FALSE}
 overlap_age_all <- overlap_age %>%
-  filter(grouped != "Total_Total") %>%
-  mutate(date = as.Date(recode(date,
-                               "feb_13" = "1 Feb 2013",
-                               "may_13" = "1 May 2013",
-                               "aug_13" = "1 Aug 2013",
-                               "nov_13" = "1 Nov 2013",
-                               "feb_14" = "1 Feb 2014",
-                               "may_14" = "1 May 2014",
-                               "aug_14" = "1 Aug 2014",
-                               "nov_14" = "1 Nov 2014",
-                               "feb_15" = "1 Feb 2015",
-                               "may_15" = "1 May 2015",
-                               "aug_15" = "1 Aug 2015",
-                               "nov_15" = "1 Nov 2015",
-                               "feb_16" = "1 Feb 2016",
-                               "may_16" = "1 May 2016",
-                               "aug_16" = "1 Aug 2016",
-                               "nov_16" = "1 Nov 2016",
-                               "feb_17" = "1 Feb 2017",
-                               "may_17" = "1 May 2017",
-                               "aug_17" = "1 Aug 2017",
-                               "nov_17" = "1 Nov 2017",
-                               "feb_18" = "1 Feb 2018",
-                               "may_18" = "1 May 2018",
-                               "aug_18" = "1 Aug 2018"), format = "%d %b %Y"))
+  filter(grouped != "Total_Total") 
 
-overlap_age_all2 <- overlap_age_all %>% spread(key = grouped, value = value)
+overlap_age_all <- overlap_age_all %>% spread(key = grouped, value = value)
 
-names(overlap_age_all2) <- snakecase::to_snake_case(names(overlap_age_all2))
+names(overlap_age_all) <- snakecase::to_snake_case(names(overlap_age_all))
 
-overlap_age_all2 <- overlap_age_all2 %>%
+overlap_age_all <- overlap_age_all %>%
   mutate(pip_dla_aa_total = pip_dla_aa_total - pip_dla_aa_incap,
         total_incap =  total_incap - pip_dla_aa_incap) %>%
   gather(key = "type", value = "count", -age, -date) %>%
@@ -179,13 +151,15 @@ overlap_age_all2 <- overlap_age_all2 %>%
                         "pip_dla_aa_incap" = "Claiming both types of benefits",
                         "pip_dla_aa_total" = "Claiming PIP/DLA/AA only",
                         "total_incap" = "Claiming INCAP only"),
-         type = factor(type, levels=c("Claiming PIP/DLA/AA only", "Claiming both types of benefits", "Claiming INCAP only")))
+         type = factor(type, levels=c("Claiming PIP/DLA/AA only",
+                                      "Claiming both types of benefits",
+                                      "Claiming INCAP only")))
 ```
 
 
 
 ```{r plot3}
-p_overlap_count <- ggplot(data = overlap_age_all2 %>% filter(age == "Total"), 
+p_overlap_count <- ggplot(data = overlap_age_all %>% filter(age == "Total"), 
                            aes(x=date, y = count)) + 
   geom_area(aes(fill= type), position = 'stack') + 
   scale_fill_viridis_d() + 
@@ -204,7 +178,7 @@ p_overlap_count
 
 
 ```{r plot4}
-p_overlap_count_age <- ggplot(data = overlap_age_all2 %>% filter(age != "Total"),
+p_overlap_count_age <- ggplot(data = overlap_age_all %>% filter(age != "Total"),
                            aes(x=date, y = count)) + 
   geom_area(aes(fill= type), position = 'stack') + 
   scale_fill_viridis_d() + 
