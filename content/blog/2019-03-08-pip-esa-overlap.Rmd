@@ -3,16 +3,19 @@ title: "The overlap between incapacity and cost-of-disability benefits"
 slug: pip-esa-overlap
 date: '2019-03-09'
 author: Evan Odell
+image: "/img/esa-overlap.png"
 ---
 
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(comment = NA, tidy = FALSE, warning = FALSE,
-                      message = FALSE, fig.height = 7)
+                      message = FALSE, echo = FALSE, fig.height = 7)
 ```
 
 
-Earlier this week the DWP secretary Amber Rudd [announced a series of changes to the disability benefits system](https://www.theguardian.com/society/2019/mar/05/amber-rudd-admits-disabled-people-feel-put-on-trial-for-seeking-support), including scrapping re-assessment for pensioners and possibly combining the assessment for the two main working-age disability benefits: Employment and Support Allowance (ESA), a means-tested benefit providing financial support to unemployed disabled people, and Personal Independence Payment (PIP), a needs-tested benefit to help with the additional cost of living associated with disability. The reaction from the disability sector was [at best lukewarm](https://www.disabilitynewsservice.com/reaction-to-rudds-reforms-tinkering-crumbs-and-fears-of-a-trojan-horse-for-cuts/), with a variety of experts (including two of my collegues) concerned that the government simply doesn't understand the problems with the benefits system it has created and are mostly tinkering around the edges rather than addressing fundamental issues.
+Earlier this week the DWP secretary Amber Rudd [announced a series of changes to the disability benefits system](https://www.theguardian.com/society/2019/mar/05/amber-rudd-admits-disabled-people-feel-put-on-trial-for-seeking-support), including scrapping re-assessment for pensioners and possibly combining the assessment for the two main working-age disability benefits: Employment and Support Allowance (ESA), a means-tested benefit providing financial support to unemployed disabled people, and Personal Independence Payment (PIP), a needs-tested benefit to help with the additional cost of living associated with disability. 
+
+The reaction from the disability sector was [at best lukewarm](https://www.disabilitynewsservice.com/reaction-to-rudds-reforms-tinkering-crumbs-and-fears-of-a-trojan-horse-for-cuts/), with a variety of experts (including two of my collegues) concerned that the government simply doesn't understand the problems with the benefits system it has created and are mostly tinkering around the edges rather than addressing fundamental issues.
 
 One of the possible reforms is to combined PIP and ESA assessments, which use different criteria for eligibility as they serve fundamentally different purposes. The ESA assessment (the Work Capability Assessment, or WCA) has many problems, but the intention is to assess a person's ability to engage in paid work. PIP is supposed to assess the additional financial cost of having a disability or health condition. ESA eligibility is also determined in part by household income and savings, while PIP does not. However, many disabled people receive both. 
 

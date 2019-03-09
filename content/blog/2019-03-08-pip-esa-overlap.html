@@ -3,11 +3,13 @@ title: "The overlap between incapacity and cost-of-disability benefits"
 slug: pip-esa-overlap
 date: '2019-03-09'
 author: Evan Odell
+image: "/img/esa-overlap.png"
 ---
 
 
 
-<p>Earlier this week the DWP secretary Amber Rudd <a href="https://www.theguardian.com/society/2019/mar/05/amber-rudd-admits-disabled-people-feel-put-on-trial-for-seeking-support">announced a series of changes to the disability benefits system</a>, including scrapping re-assessment for pensioners and possibly combining the assessment for the two main working-age disability benefits: Employment and Support Allowance (ESA), a means-tested benefit providing financial support to unemployed disabled people, and Personal Independence Payment (PIP), a needs-tested benefit to help with the additional cost of living associated with disability. The reaction from the disability sector was <a href="https://www.disabilitynewsservice.com/reaction-to-rudds-reforms-tinkering-crumbs-and-fears-of-a-trojan-horse-for-cuts/">at best lukewarm</a>, with a variety of experts (including two of my collegues) concerned that the government simply doesn’t understand the problems with the benefits system it has created and are mostly tinkering around the edges rather than addressing fundamental issues.</p>
+<p>Earlier this week the DWP secretary Amber Rudd <a href="https://www.theguardian.com/society/2019/mar/05/amber-rudd-admits-disabled-people-feel-put-on-trial-for-seeking-support">announced a series of changes to the disability benefits system</a>, including scrapping re-assessment for pensioners and possibly combining the assessment for the two main working-age disability benefits: Employment and Support Allowance (ESA), a means-tested benefit providing financial support to unemployed disabled people, and Personal Independence Payment (PIP), a needs-tested benefit to help with the additional cost of living associated with disability.</p>
+<p>The reaction from the disability sector was <a href="https://www.disabilitynewsservice.com/reaction-to-rudds-reforms-tinkering-crumbs-and-fears-of-a-trojan-horse-for-cuts/">at best lukewarm</a>, with a variety of experts (including two of my collegues) concerned that the government simply doesn’t understand the problems with the benefits system it has created and are mostly tinkering around the edges rather than addressing fundamental issues.</p>
 <p>One of the possible reforms is to combined PIP and ESA assessments, which use different criteria for eligibility as they serve fundamentally different purposes. The ESA assessment (the Work Capability Assessment, or WCA) has many problems, but the intention is to assess a person’s ability to engage in paid work. PIP is supposed to assess the additional financial cost of having a disability or health condition. ESA eligibility is also determined in part by household income and savings, while PIP does not. However, many disabled people receive both.</p>
 <p>The DWP StatXplore tool has benefit combinations, including the ability to compare claimants receiving PIP and Disability Living Allowance (DLA, PIP’s predecessor that roughly 1.8 million people still get) to ESA and its precessor Incapacity Benefit (this combination is labelled INCAP by the DWP). Of course, off the back of Amber Rudd’s speech some disabled people and activists were wondering how many many people claimed both ESA and PIP.</p>
 {{% tweet "1103618769103044608" %}}
@@ -19,55 +21,7 @@ Figure 1: Percentage of one group of benefit recipients receiving the other type
 </p>
 </div>
 <p>This prompted discussion about why there appeared to be convergence, and changes in state pension age were mooted as one possible explanation. So here is Figure <a href="#fig:plot2"><strong>??</strong></a>, with five year age bands from 18-64.</p>
-<pre class="r"><code>p_overlap_age &lt;- ggplot(overlap_age2 %&gt;% filter(age != &quot;Total&quot;),
-             aes(y = perc, x = date, colour = type, group = type)) + 
-  geom_line(size = 1) +
-  scale_y_continuous(labels = scales::percent) +
-  scale_x_date(breaks = date_vector$date, date_labels = &quot;%b %Y&quot;,
-               minor_breaks = overlap_age2$date) +
-  scale_colour_viridis_d(option = &quot;inferno&quot;, end = 0.7) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = &quot;bottom&quot;, legend.title = element_blank()) +
-  labs(x = &quot;Quarter&quot;, y = &quot;Percent of claimants&quot;,
-       title = &quot;Percentage of one group of benefit recipients receiving the other type of benefit&quot;,
-       subtitle = &quot;5 Year Age Bands&quot;,
-       caption = &quot;(c) Evan Odell | 2019 | CC-BY-SA&quot;) +
-  guides(colour=guide_legend(nrow=2, byrow=TRUE)) + 
-  facet_wrap(~age)
-
-p_overlap_age</code></pre>
 <p><img src="/blog/2019-03-08-pip-esa-overlap_files/figure-html/plot2-1.png" width="672" /></p>
 <p>I was also curious to see the absolute numbers of people claiming PIP/DLA/AA and/or INCAP, so created Figures <a href="#fig:plot3"><strong>??</strong></a> and <a href="#fig:plot4"><strong>??</strong></a> to take a look.</p>
-<pre class="r"><code>p_overlap_count &lt;- ggplot(data = overlap_age_all %&gt;% filter(age == &quot;Total&quot;), 
-                           aes(x=date, y = count)) + 
-  geom_area(aes(fill= type), position = &#39;stack&#39;) + 
-  scale_fill_viridis_d() + 
-  scale_y_continuous(labels = scales::comma) +
-  scale_x_date(breaks = date_vector$date, date_labels = &quot;%b %Y&quot;,
-               minor_breaks = overlap_age2$date) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = &quot;bottom&quot;, legend.title = element_blank()) + 
-  labs(x = &quot;Quarter&quot;, y = &quot;Number of claimants&quot;,
-       title = &quot;Total of one group of benefit recipients receiving the other type of benefit&quot;,
-       subtitle = &quot;Working Age Only&quot;,
-       caption = &quot;(c) Evan Odell | 2019 | CC-BY-SA&quot;)
-  
-p_overlap_count</code></pre>
 <p><img src="/blog/2019-03-08-pip-esa-overlap_files/figure-html/plot3-1.png" width="672" /></p>
-<pre class="r"><code>p_overlap_count_age &lt;- ggplot(data = overlap_age_all %&gt;% filter(age != &quot;Total&quot;),
-                           aes(x=date, y = count)) + 
-  geom_area(aes(fill= type), position = &#39;stack&#39;) + 
-  scale_fill_viridis_d() + 
-  scale_y_continuous(labels = scales::comma) +
-  scale_x_date(breaks = date_vector$date, date_labels = &quot;%b %Y&quot;,
-               minor_breaks = overlap_age2$date) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = &quot;bottom&quot;, legend.title = element_blank()) + 
-  labs(x = &quot;Quarter&quot;, y = &quot;Number of claimants&quot;,
-       title = &quot;Total of one group of benefit recipients receiving the other type of benefit&quot;,
-       subtitle = &quot;Five Year Age Bands&quot;,
-       caption = &quot;(c) Evan Odell | 2019 | CC-BY-SA&quot;) + 
-  facet_wrap(~age)
-
-p_overlap_count_age</code></pre>
 <p><img src="/blog/2019-03-08-pip-esa-overlap_files/figure-html/plot4-1.png" width="672" /></p>
