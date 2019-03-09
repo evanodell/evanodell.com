@@ -115,7 +115,7 @@ p_overlap
 
 This prompted discussion about why there appeared to be convergence, and changes in state pension age were mooted as one possible explanation. So here is Figure \@ref(fig:plot2), with five year age bands from 18-64.
 
-```{r plot2}
+```{r plot2, fig.cap = "Percentage of one group of benefit recipients receiving the other type of benefit with five year age bands"}
 p_overlap_age <- ggplot(overlap_age2 %>% filter(age != "Total"),
              aes(y = perc, x = date, colour = type, group = type)) + 
   geom_line(size = 1) +
@@ -126,8 +126,6 @@ p_overlap_age <- ggplot(overlap_age2 %>% filter(age != "Total"),
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom", legend.title = element_blank()) +
   labs(x = "Quarter", y = "Percent of claimants",
-       title = "Percentage of one group of benefit recipients receiving the other type of benefit",
-       subtitle = "5 Year Age Bands",
        caption = "(c) Evan Odell | 2019 | CC-BY-SA") +
   guides(colour=guide_legend(nrow=2, byrow=TRUE)) + 
   facet_wrap(~age)
@@ -161,7 +159,7 @@ overlap_age_all <- overlap_age_all %>%
 
 
 
-```{r plot3}
+```{r plot3, fig.cap = "Total of one group of benefit recipients receiving the other type of benefit"}
 p_overlap_count <- ggplot(data = overlap_age_all %>% filter(age == "Total"), 
                            aes(x=date, y = count)) + 
   geom_area(aes(fill= type), position = 'stack') + 
@@ -172,7 +170,6 @@ p_overlap_count <- ggplot(data = overlap_age_all %>% filter(age == "Total"),
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom", legend.title = element_blank()) + 
   labs(x = "Quarter", y = "Number of claimants",
-       title = "Total of one group of benefit recipients receiving the other type of benefit",
        subtitle = "Working Age Only",
        caption = "(c) Evan Odell | 2019 | CC-BY-SA")
   
@@ -180,7 +177,7 @@ p_overlap_count
 ```
 
 
-```{r plot4}
+```{r plot4, fig.cap="Total of one group of benefit recipients receiving the other type of benefit with five year age bands"}
 p_overlap_count_age <- ggplot(data = overlap_age_all %>% filter(age != "Total"),
                            aes(x=date, y = count)) + 
   geom_area(aes(fill= type), position = 'stack') + 
@@ -191,8 +188,6 @@ p_overlap_count_age <- ggplot(data = overlap_age_all %>% filter(age != "Total"),
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom", legend.title = element_blank()) + 
   labs(x = "Quarter", y = "Number of claimants",
-       title = "Total of one group of benefit recipients receiving the other type of benefit",
-       subtitle = "Five Year Age Bands",
        caption = "(c) Evan Odell | 2019 | CC-BY-SA") + 
   facet_wrap(~age)
 
