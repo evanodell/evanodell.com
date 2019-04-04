@@ -81,4 +81,4 @@ map <- leaflet(options=leafletOptions(
 map
 ```
 
-
+Full documentation on the `ukpolice` package is available [here](https://docs.evanodell.com/ukpolice/).
