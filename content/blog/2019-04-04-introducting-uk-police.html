@@ -23,7 +23,7 @@ image: "/img/stop-search.png"
 <script src="/rmarkdown-libs/leaflet-markercluster/leaflet.markercluster.layersupport.js"></script>
 
 
-<p>The <code>[ukpolice](https://cran.r-project.org/package=ukpolice)</code> R package downloads data from the UK Police public data API, the full docs of which are available at <a href="https://data.police.uk/docs/" class="uri">https://data.police.uk/docs/</a>. It is now available on <a href="https://cran.r-project.org/package=ukpolice">CRAN</a>, so can be installed with <code>install.packages("ukpolice")</code>.</p>
+<p>The <a href="https://cran.r-project.org/package=ukpolice"><code>ukpolice</code></a> R package downloads data from the UK Police public data API, the full docs of which are available at <a href="https://data.police.uk/docs/" class="uri">https://data.police.uk/docs/</a>. It is now available on <a href="https://cran.r-project.org/package=ukpolice">CRAN</a>, so can be installed with <code>install.packages("ukpolice")</code>.</p>
 <p>The API uses a ‘leaky bucket’ rate limiter, which allows for 15 requests per second with a burst of 30. This allows for 15 requests each second, but up to 30 in a single second at one go. The API does not require authentication.</p>
 <p>Data is available on police forces, crimes, policing areas and stop-and-search. All functions begin with <code>ukc_</code>.</p>
 <p>The example below queries stop and searches by the Metropolitan Police in December 2018, and plots them by police-reported ethnic group.</p>
