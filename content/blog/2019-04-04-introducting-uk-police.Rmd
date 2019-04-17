@@ -1,12 +1,13 @@
 ---
-title: Introduction to the {ukpolice} package.
+title: Introduction to the {ukpolice} package
+aliases: "/blog/2019/04/04/introduction-to-the-ukpolice-package"
 author: Evan Odell
 date: '2019-04-04'
-slug: introducting-uk-police
+slug: introduction-ukpolice
 image: "/img/stop-search.png"
 ---
 
-The `ukpolice` R package downloads data from the UK Police public data API, the full docs of which are available at https://data.police.uk/docs/. It is now available on [CRAN](https://cran.r-project.org/package=ukpolice), so can be installed with `install.packages("ukpolice")`.
+The `[ukpolice](https://cran.r-project.org/package=ukpolice)` R package downloads data from the UK Police public data API, the full docs of which are available at https://data.police.uk/docs/. It is now available on [CRAN](https://cran.r-project.org/package=ukpolice), so can be installed with `install.packages("ukpolice")`.
 
 The API uses a 'leaky bucket' rate limiter, which allows for 15 requests per second with a burst of 30. This allows for 15 requests each second, but up to 30 in a single second at one go. The API does not require authentication.
 
