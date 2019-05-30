@@ -1,5 +1,6 @@
 ---
 title: "The overlap between incapacity and cost-of-disability benefits"
+aliases: "/blog/2019/03/09/the-overlap-between-incapacity-and-cost-of-disability-benefits/"
 slug: pip-esa-overlap
 date: '2019-03-09'
 author: Evan Odell
@@ -37,7 +38,7 @@ library(ggplot2)
 overlap_age <- read_excel("benefits-data/table_2019-03-08_09-21-02.xlsx", 
                                           range = "B11:AA111")
 overlap_age <- overlap_age %>%
-  rename("pip" ="..3", "incap" ="..2", "age" = "..1") %>%
+  rename("pip" ="...3", "incap" ="...2", "age" = "...1") %>%
   fill("incap") %>%
   fill("age") %>%
   filter(!is.na(`Feb-13`))

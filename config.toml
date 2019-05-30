@@ -24,7 +24,7 @@ google_analytics = "UA-90706059-1"
 
 
 [permalinks]
-    blog = "/blog/:year/:month/:day/:title/"
+    blog = "/blog/:year/:month/:day/:slug/"
     projects = "/:slug/"
 
 #[[Params.bigimg]]
