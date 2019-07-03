@@ -561,6 +561,7 @@ footer a {
 footer .text-muted {
   color: #e8e8e8;
   font-size: 14px;
+  text-align: center;
 }
 
 .list-inline > li {
