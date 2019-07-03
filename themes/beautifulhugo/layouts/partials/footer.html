@@ -51,7 +51,7 @@
 <p>Except where otherwise indicated, the content of this site is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a></p>
 
 </div>
-<p class="credits theme-by text-muted">
+<p class="credits text-muted">
   {{ i18n "poweredBy" . | safeHTML }}
   {{ with .Site.Params.commit }}&nbsp;&bull;&nbsp;[<a href="{{.}}{{ getenv "GIT_COMMIT_SHA" }}">{{ getenv "GIT_COMMIT_SHA_SHORT" }}</a>]{{ end }} and further modified by <a href="https://evanodell.com">Evan Odell</a>.
 &nbsp;&bull;&nbsp;
