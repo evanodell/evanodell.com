@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/evanodell
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://evanodell.com
+  * I am evanodell (https://keybase.io/evanodell) on keybase.
+  * I have a public key ASC2GKCGittaIfhCGHeCsvVjDXybFnZK1KCrrDG7CKmgNwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b618a0868adb5a21f842187782b2f5630d7c9b16764ad4a0abac31bb08a9a0370a",
+      "host": "keybase.io",
+      "kid": "0120b618a0868adb5a21f842187782b2f5630d7c9b16764ad4a0abac31bb08a9a0370a",
+      "uid": "bbbfd8090845262f99d24b735ce3fd19",
+      "username": "evanodell"
+    },
+    "merkle_root": {
+      "ctime": 1568479342,
+      "hash": "1436d6be340671f723c878e8da524794876998595ea468d4d15d8ef715c5d7724d6e8ec605c329e71e55f8e993a72abb9e51ce4538d8ccc3225e574b976655e8",
+      "hash_meta": "9679b514efa72aa703dc24a7b1da652689a675833e53dd313b9fc4428d94b21e",
+      "seqno": 7330829
+    },
+    "service": {
+      "entropy": "O4HnyW/Ar0+w26kv6OvTmPug",
+      "hostname": "evanodell.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.4.2"
+  },
+  "ctime": 1568479348,
+  "expire_in": 504576000,
+  "prev": "c69ca416fdd6f02224c7d9690d13a2e792195c1b30c339acfe4c57a588da0a4f",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgthighorbWiH4Qhh3grL1Yw18mxZ2StSgq6wxuwipoDcKp3BheWxvYWTESpcCBsQgxpykFv3W8CIkx9lpDROi55IZXBswwzms/kxXpYjaCk/EINzQ17dRsseALsdxE207Nkf+hdFiX75ETATHS6kFRejKAgHCo3NpZ8RA7ikUIbhHSEWuYET8ukvhrLGxTGA2YR1KyDluudokH1botaqiOYfHNJOzgM5/ST6Xvr7wNnXq8NaAGQNPZlQcBahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIHqvP/EJ7rmFEmtH87Pb8g52J75q0Q3p0CpvEEYuK4c8o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/evanodell
+
+==================================================================
