@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Cycling vs Public Transit - Live!*
+title: Cycling vs Public Transport - Live!*
 comments: true
 slug: cycling-vs-oyster
 ---
