@@ -13,5 +13,5 @@ At the moment I'm living London, having come to the UK from Canada in 2014 to do
 
 If you're interested, check out my [CV](http://evanodell.com/EvanOdell-cv.pdf), or [drop me an email](mailto:evan@evanodell.com).
 
-{{< figure src="/img/evan-and-coco.png" title="I have wild hair; my girlfriend has a very cute cat" link="" >}}
+{{< figure src="/img/evan-and-coco.png" title="" link="" >}}
 
