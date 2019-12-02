@@ -221,7 +221,7 @@ _Regression table from a generalised linear model in R._
 
 When I posted these graphs on Twitter last week, and in response to people reporting barriers to voting because of their disability, [Neil Crowther](https://makingrightsmakesense.wordpress.com/) asked if there was anything on voter turnout amongst disabled people:
 
-{{% twitter https://twitter.com/neilmcrowther/status/928921634785906689 %}}
+{{< twitter https://twitter.com/neilmcrowther/status/928921634785906689 >}}
 
 I used turnout expectations from Wave 12 of the BES,[^1] conducted in the midst of the 2017 GE election campaign. Disabled people were less likely to report they were "very likely" to vote; people with more limiting disabilities were less likely to do so than those with less limiting disabilities.
 
