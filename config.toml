@@ -22,11 +22,6 @@ google_analytics = "UA-90706059-1"
   highlightjsTheme = "far"
   UseChroma = false
 
-
-[permalinks]
-    blog = "/blog/:year/:month/:day/:slug/"
-    projects = "/:slug/"
-
 #[[Params.bigimg]]
 #  src = "img/triangle.jpg"
 #  desc = "Triangle"
@@ -87,6 +82,8 @@ fractions = false
     name = "Blog"
     url = "/blog"
     weight = 5
-
-
-
+    
+    
+[permalinks]
+    blog = "/blog/:year/:month/:day/:slug/"
+    projects = "/:slug/"

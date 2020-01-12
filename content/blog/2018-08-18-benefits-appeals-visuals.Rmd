@@ -280,7 +280,9 @@ The high overturn rate shows that there are massive problems with the disability
 
 ```{r esa-plot, message=FALSE, warning=FALSE}
 
-esa_rate2 <- esa_rate %>% filter(hearing_outcome == "Percent In Favour")
+esa_rate2 <- esa_rate %>%
+  filter(hearing_outcome == "Percent In Favour") %>%
+  mutate(employment_support_allowance = employment_support_allowance*100)
 
 p_esa <- ggplot(data = esa_rate2,
                 aes(y = employment_support_allowance, x = quarter, 
@@ -309,12 +311,12 @@ pip_rate <- uk_tribunal_q %>%
 
 pip_rate2 <- pip_rate %>% filter(hearing_outcome == "Percent In Favour",
                             !is.na(personal_independence_payment), 
-                            personal_independence_payment != "0%")
+                            personal_independence_payment != "0")
 
 pip_rate2$personal_independence_payment <- gsub(
   "%", "", pip_rate2$personal_independence_payment)
 
-pip_rate2$personal_independence_payment <- as.numeric(pip_rate2$personal_independence_payment)/100
+pip_rate2$personal_independence_payment <- as.numeric(pip_rate2$personal_independence_payment)
 
 p_pip <- ggplot(aes(y = personal_independence_payment,
                     x = quarter, fill = personal_independence_payment), 
