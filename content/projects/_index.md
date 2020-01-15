@@ -1,5 +1,5 @@
 ---
-aliases: ["/projects/datasets/"]
+aliases: ["/projects/datasets/", "/datasets"]
 layout: page
 title: Projects
 body: Roboto
