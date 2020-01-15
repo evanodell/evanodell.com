@@ -1,5 +1,4 @@
 ---
-aliases: ["/datasets/hansard-data"]
 title: Hansard Speeches and Sentiment V2.5.0
 bibliography: [references.bib]
 link-citations: true
