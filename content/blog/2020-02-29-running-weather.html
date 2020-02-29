@@ -1,0 +1,349 @@
+---
+title: "Running speed and weather patterns"
+author: "Evan Odell"
+date: '2020-02-29'
+slug: running-weather
+categories: []
+tags: []
+subtitle: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>I run a lot in the park near my house, and I was curious what impact weather and air quality has on how fast I run. I used the <a href="https://github.com/fawda123/rStrava"><code>rStrava</code></a> package to download my runs, filtered out longer workouts, and linked them to <a href="https://www.airqualityengland.co.uk/site/exceedence?site_id=TH002">air quality data for Victoria Park</a>, using the <a href="https://cran.r-project.org/package=openair"><code>openair</code></a> package.</p>
+<p>My primary interest is in the effect of temperature and air pollution on running speed.</p>
+<pre class="r"><code>#devtools::install_github(&#39;fawda123/rStrava&#39;)
+library(rStrava)
+library(tidyverse)
+library(lubridate)
+
+app_name &lt;- &#39;&#39; # chosen by user
+app_client_id  &lt;- &#39;&#39; # an integer, assigned by Strava
+app_secret &lt;- &#39;&#39; 
+
+stoken &lt;- httr::config(token = strava_oauth(app_name, app_client_id,
+                                            app_secret,
+                                            app_scope=&quot;activity:read_all&quot;))
+
+my_acts &lt;- get_activity_list(stoken)
+
+act_data &lt;- compile_activities(my_acts) %&gt;% 
+  mutate_at(vars(contains(&quot;average&quot;), contains(&quot;distance&quot;),
+                 contains(&quot;max&quot;)), as.numeric) %&gt;% 
+  filter(round(start_latitude, 2) == 51.53 &amp;
+           round(start_longitude, 3)==-0.053,
+         distance &gt;1, distance &lt;=12) %&gt;%
+  mutate(workout_type = replace_na(workout_type, &quot;0&quot;)) %&gt;%
+  filter(workout_type != &quot;1&quot;, type != &quot;Ride&quot;) %&gt;%
+  mutate(start_date = as.POSIXct(gsub(&quot;T&quot;, &quot; &quot;, start_date)),
+         time_of_day = hms(strftime(start_date, format = &quot;%H:%M:%S&quot;)),
+          day_segment = case_when(
+            time_of_day &gt;= &quot;19H 0M 0S&quot; ~ &quot;Evening&quot;,
+            time_of_day &lt;= &quot;19H 0M 0S&quot; &amp; time_of_day &gt; &quot;9H 0M 0S&quot; ~ &quot;Daytime&quot;,
+            TRUE ~ &quot;Early Morning&quot;),
+         day_segment = factor(day_segment, 
+                              levels = c(&quot;Early Morning&quot;, &quot;Daytime&quot;, &quot;Evening&quot;)),
+         time = round_date(start_date, unit = &quot;hour&quot;)) %&gt;%
+  select(-visibility, -trainer, -photo_count, -resource_state, -timezone,
+         -map.id, -map.resource_state, -map.summary_polyline, 
+         -athlete.resource_state, -athlete.id, -commute, -comment_count,
+         -display_hide_heartrate_option, -heartrate_opt_out, -has_kudoed,
+         -flagged, -from_accepted_tag, -start_date_local, -name,
+         -private, -has_heartrate, -gear_id, -external_id, -start_latlng1,
+         -start_latlng2, -kudos_count, -manual, -upload_id_str, -upload_id,
+         -utc_offset, -total_photo_count, -type, -workout_type, -athlete_count) %&gt;% 
+  janitor::remove_empty(&quot;cols&quot;) %&gt;% 
+  as_tibble()
+
+act_data$splits &lt;- vector(&quot;list&quot;, nrow(act_data)) 
+
+
+for (i in 1:length(act_data$splits)) {
+  act_data$splits[[i]] &lt;- get_spdsplits(act_data$id[[i]], stoken)
+  
+  # remove really short splits because they can fuck with stuff
+  act_data$splits[[i]] &lt;- act_data$splits[[i]] %&gt;%
+    filter(elapsed_time &gt;= 240)
+  
+  act_data$details[[i]] &lt;- get_activity(act_data$id[[i]], stoken)
+  
+  message(&quot;Downloaded &quot;, i, &quot; of &quot;, nrow(act_data))
+}
+
+act_data &lt;- act_data %&gt;% 
+  mutate(spd = splits %&gt;% map(&quot;spd&quot;),
+         med_split = spd %&gt;% map_dbl(quantile, 0.5),
+         max_split = spd %&gt;% map_dbl(max),
+         min_split = spd %&gt;% map_dbl(min))</code></pre>
+<pre class="r"><code>library(openair)
+library(darksky)
+
+vp_monitor &lt;- importAQE(&quot;TH002&quot;, year = 2017:2020) %&gt;%
+  as_tibble() %&gt;% 
+  select(-site, -code) 
+
+vp_monitor &lt;- vp_monitor %&gt;% 
+  filter(date &gt;= (min(act_data$start_date) - days(1)),
+         date &lt;= (max(act_data$start_date) + days(1)))
+
+# Downloading weather data
+dark_sky_df &lt;- act_data$time %&gt;%
+  map(~get_forecast_for(51.53, -0.053, .x, units = &quot;si&quot;,
+                        exclude = &quot;minutely,daily,alerts,flags,currently&quot;)) %&gt;%
+  map_df(&quot;hourly&quot;) %&gt;%
+  janitor::clean_names() %&gt;%
+  as_tibble() %&gt;%
+  distinct( time, .keep_all = TRUE)</code></pre>
+<pre class="r"><code>act_data2 &lt;- act_data %&gt;%
+  inner_join(dark_sky_df) %&gt;%
+  inner_join(vp_monitor, by = c(&quot;time&quot; = &quot;date&quot;)) %&gt;%
+  mutate(rain2 = if_else(precip_intensity &gt; 0, TRUE, FALSE),
+         rain2 = replace_na(rain2, FALSE),
+         running = if_else(!is.na(distance), TRUE, FALSE),
+         time_of_day = factor(hour(time)))</code></pre>
+<p>Is there any relationship between weather and my average running speed? Aside from seeming to run faster during the day and evening than early in the morning, and somewhat slower when it is raining, there does not seem to be any relationship between external factors and running speed. Likewise, although there is a signficant relationship between air pollution and speed, it seems that I can discount it as being directly meaningful. It seems unlikely that more NOx in the air would mean I go slightly slower but more NO2 means I go slightly faster.</p>
+<pre class="r"><code>library(kableExtra)
+library(pixiedust)
+
+lm1 &lt;- lm(average_speed ~ distance + temperature + rain2 + day_segment +
+            nox + no2 + pm10,
+          data = act_data2) %&gt;%
+  broom::tidy()  %&gt;%  
+  mutate(stars = case_when(p.value &lt; 0.001 ~ &quot;***&quot;, 
+                           p.value &lt; 0.01 ~ &quot;**&quot;,
+                           p.value &lt; 0.05 ~ &quot;*&quot;, 
+                           TRUE ~ &quot;&quot;),
+         p.value = pixiedust::pval_string(p.value,  digits = 4)) %&gt;%
+  dust() %&gt;%
+  sprinkle(cols = c(&quot;estimate&quot;, &quot;std.error&quot;, &quot;statistic&quot;), round = 3) %&gt;% 
+  sprinkle(cols = &quot;term&quot;, 
+           replace = c(&quot;Intercept&quot;, &quot;Distance (KM)&quot;, &quot;Temperature&quot;,
+                       &quot;Rain&quot;, &quot;Daytime&quot;, &quot;Evening&quot;, &quot;nox&quot;, &quot;no2&quot;, &quot;pm10&quot;))
+
+knitr::kable(lm1, align = c(&quot;l&quot;, rep(&quot;r&quot;, 4), &quot;l&quot;),
+             col.names = c(&quot;Term&quot;, &quot;Estimate&quot;, &quot;Standard Error&quot;,
+                    &quot;T-statistic&quot;, &quot;P-value&quot;, &quot;&quot;)) %&gt;%
+  kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Term
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Standard Error
+</th>
+<th style="text-align:right;">
+T-statistic
+</th>
+<th style="text-align:right;">
+P-value
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+11.73
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+48.781
+</td>
+<td style="text-align:right;">
+&lt; 0.001
+</td>
+<td style="text-align:left;">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Distance (KM)
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+1.008
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Temperature
+</td>
+<td style="text-align:right;">
+0.006
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rain
+</td>
+<td style="text-align:right;">
+-0.216
+</td>
+<td style="text-align:right;">
+0.093
+</td>
+<td style="text-align:right;">
+-2.333
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Daytime
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.117
+</td>
+<td style="text-align:right;">
+2.478
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Evening
+</td>
+<td style="text-align:right;">
+0.346
+</td>
+<td style="text-align:right;">
+0.279
+</td>
+<td style="text-align:right;">
+1.241
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nox
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+-2.5
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no2
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+2.333
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pm10
+</td>
+<td style="text-align:right;">
+-0.006
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+-1.394
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>It is not surprising there is no clear linear link between temperature and running speed, as the optimal running temperature for distance running is the high single digits or low teens for most people.</p>
+<p>Taking a look at the graph below, it seems that I do go faster when it isn’t raining, on average. Additionally it seems my average pace peaks in the low-to-mid teens, which is not that surprising given it is the optimal running weather.</p>
+<pre class="r"><code>theme_set(theme_bw())
+
+p_temp_speed &lt;- ggplot(act_data2 %&gt;% filter(running, !is.na(summary)),
+                       aes(x = temperature, y = med_split, colour = rain2)) + 
+  geom_point(alpha = 0.6) + 
+  geom_smooth() +
+  # geom_errorbar(aes(ymax = max_split, ymin=min_split),
+  #               alpha = 0.6, width = 1, size = 0.8) + 
+  scale_colour_viridis_d(end=0.5, name = &quot;Raining&quot;) + 
+  labs(x = &quot;Temperature&quot;, y = &quot;Speed&quot;) + 
+  theme(legend.position=&quot;bottom&quot;)
+
+p_temp_speed</code></pre>
+<p><img src="/blog/2020-02-29-running-weather_files/figure-html/weather-speed-1.png" width="672" /></p>

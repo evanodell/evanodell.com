@@ -1,0 +1,174 @@
+---
+title: "Running speed and weather patterns"
+author: "Evan Odell"
+date: '2020-02-29'
+slug: running-weather
+categories: []
+tags: []
+subtitle: ''
+---
+
+I run a lot in the park near my house, and I was curious what impact weather and air quality has on how fast I run. I used the [`rStrava`](https://github.com/fawda123/rStrava) package to download my runs, filtered out longer workouts, and linked them to [air quality data for Victoria Park](https://www.airqualityengland.co.uk/site/exceedence?site_id=TH002), using the [`openair`](https://cran.r-project.org/package=openair) package.
+
+My primary interest is in the effect of temperature and air pollution on running speed.
+
+```{r strava-retrieval, eval=FALSE}
+#devtools::install_github('fawda123/rStrava')
+library(rStrava)
+library(tidyverse)
+library(lubridate)
+
+app_name <- '' # chosen by user
+app_client_id  <- '' # an integer, assigned by Strava
+app_secret <- '' 
+
+stoken <- httr::config(token = strava_oauth(app_name, app_client_id,
+                                            app_secret,
+                                            app_scope="activity:read_all"))
+
+my_acts <- get_activity_list(stoken)
+
+act_data <- compile_activities(my_acts) %>% 
+  mutate_at(vars(contains("average"), contains("distance"),
+                 contains("max")), as.numeric) %>% 
+  filter(round(start_latitude, 2) == 51.53 &
+           round(start_longitude, 3)==-0.053,
+         distance >1, distance <=12) %>%
+  mutate(workout_type = replace_na(workout_type, "0")) %>%
+  filter(workout_type != "1", type != "Ride") %>%
+  mutate(start_date = as.POSIXct(gsub("T", " ", start_date)),
+         time_of_day = hms(strftime(start_date, format = "%H:%M:%S")),
+          day_segment = case_when(
+            time_of_day >= "19H 0M 0S" ~ "Evening",
+            time_of_day <= "19H 0M 0S" & time_of_day > "9H 0M 0S" ~ "Daytime",
+            TRUE ~ "Early Morning"),
+         day_segment = factor(day_segment, 
+                              levels = c("Early Morning", "Daytime", "Evening")),
+         time = round_date(start_date, unit = "hour")) %>%
+  select(-visibility, -trainer, -photo_count, -resource_state, -timezone,
+         -map.id, -map.resource_state, -map.summary_polyline, 
+         -athlete.resource_state, -athlete.id, -commute, -comment_count,
+         -display_hide_heartrate_option, -heartrate_opt_out, -has_kudoed,
+         -flagged, -from_accepted_tag, -start_date_local, -name,
+         -private, -has_heartrate, -gear_id, -external_id, -start_latlng1,
+         -start_latlng2, -kudos_count, -manual, -upload_id_str, -upload_id,
+         -utc_offset, -total_photo_count, -type, -workout_type, -athlete_count) %>% 
+  janitor::remove_empty("cols") %>% 
+  as_tibble()
+
+act_data$splits <- vector("list", nrow(act_data)) 
+
+
+for (i in 1:length(act_data$splits)) {
+  act_data$splits[[i]] <- get_spdsplits(act_data$id[[i]], stoken)
+  
+  # remove really short splits because they can fuck with stuff
+  act_data$splits[[i]] <- act_data$splits[[i]] %>%
+    filter(elapsed_time >= 240)
+  
+  act_data$details[[i]] <- get_activity(act_data$id[[i]], stoken)
+  
+  message("Downloaded ", i, " of ", nrow(act_data))
+}
+
+act_data <- act_data %>% 
+  mutate(spd = splits %>% map("spd"),
+         med_split = spd %>% map_dbl(quantile, 0.5),
+         max_split = spd %>% map_dbl(max),
+         min_split = spd %>% map_dbl(min))
+
+
+```
+
+
+```{r weather-data-retrieval, eval=FALSE} 
+library(openair)
+library(darksky)
+
+vp_monitor <- importAQE("TH002", year = 2017:2020) %>%
+  as_tibble() %>% 
+  select(-site, -code) 
+
+vp_monitor <- vp_monitor %>% 
+  filter(date >= (min(act_data$start_date) - days(1)),
+         date <= (max(act_data$start_date) + days(1)))
+
+# Downloading weather data
+dark_sky_df <- act_data$time %>%
+  map(~get_forecast_for(51.53, -0.053, .x, units = "si",
+                        exclude = "minutely,daily,alerts,flags,currently")) %>%
+  map_df("hourly") %>%
+  janitor::clean_names() %>%
+  as_tibble() %>%
+  distinct( time, .keep_all = TRUE)
+```
+
+
+```{r combining-data, eval=FALSE}
+act_data2 <- act_data %>%
+  inner_join(dark_sky_df) %>%
+  inner_join(vp_monitor, by = c("time" = "date")) %>%
+  mutate(rain2 = if_else(precip_intensity > 0, TRUE, FALSE),
+         rain2 = replace_na(rain2, FALSE),
+         running = if_else(!is.na(distance), TRUE, FALSE),
+         time_of_day = factor(hour(time)))
+```
+
+
+```{r saving-data, eval=FALSE, include=FALSE}
+write_rds(act_data2, "content/blog/strava-data/act_data2.rds")
+```
+
+
+```{r loading-data, message=TRUE, warning=TRUE, include=FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+act_data2 <- read_rds("strava-data/act_data2.rds")
+```
+
+
+Is there any relationship between weather and my average running speed? Aside from seeming to run faster during the day and evening than early in the morning, and somewhat slower when it is raining, there does not seem to be any relationship between external factors and running speed. Likewise, although there is a signficant relationship between air pollution and speed, it seems that I can discount it as being directly meaningful. It seems unlikely that more NOx in the air would mean I go slightly slower but more NO2 means I go slightly faster. 
+
+```{r linear-model-1, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(pixiedust)
+
+lm1 <- lm(average_speed ~ distance + temperature + rain2 + day_segment +
+            nox + no2 + pm10,
+          data = act_data2) %>%
+  broom::tidy()  %>%  
+  mutate(stars = case_when(p.value < 0.001 ~ "***", 
+                           p.value < 0.01 ~ "**",
+                           p.value < 0.05 ~ "*", 
+                           TRUE ~ ""),
+         p.value = pixiedust::pval_string(p.value,  digits = 4)) %>%
+  dust() %>%
+  sprinkle(cols = c("estimate", "std.error", "statistic"), round = 3) %>% 
+  sprinkle(cols = "term", 
+           replace = c("Intercept", "Distance (KM)", "Temperature",
+                       "Rain", "Daytime", "Evening", "nox", "no2", "pm10"))
+
+knitr::kable(lm1, align = c("l", rep("r", 4), "l"),
+             col.names = c("Term", "Estimate", "Standard Error",
+                    "T-statistic", "P-value", "")) %>%
+  kable_styling(full_width = F)
+```
+
+It is not surprising there is no clear linear link between temperature and running speed, as the optimal running temperature for distance running is the high single digits or low teens for most people.
+
+Taking a look at the graph below, it seems that I do go faster when it isn't raining, on average. Additionally it seems my average pace peaks in the low-to-mid teens, which is not that surprising given it is the optimal running weather.
+
+```{r weather-speed, message=FALSE, warning=FALSE}
+theme_set(theme_bw())
+
+p_temp_speed <- ggplot(act_data2 %>% filter(running, !is.na(summary)),
+                       aes(x = temperature, y = med_split, colour = rain2)) + 
+  geom_point(alpha = 0.6) + 
+  geom_smooth() +
+  # geom_errorbar(aes(ymax = max_split, ymin=min_split),
+  #               alpha = 0.6, width = 1, size = 0.8) + 
+  scale_colour_viridis_d(end=0.5, name = "Raining") + 
+  labs(x = "Temperature", y = "Speed") + 
+  theme(legend.position="bottom")
+
+p_temp_speed
+```

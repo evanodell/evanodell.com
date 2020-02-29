@@ -1,6 +1,6 @@
 <section class="js-comments staticman-comments">
 
-  {{ $slug := replace .URL "/" "" }}
+  {{ $slug := replace .Permalink "/" "" }}
 
   {{ $comments := index $.Site.Data.comments $slug }}
   {{ if $comments }}
@@ -33,7 +33,7 @@
 
 
 <form class="js-form form" method="post" action="{{ .Site.Params.staticman.api}}">
-  <input type="hidden" name="options[slug]" value="{{ replace .URL "/" "" }}">
+  <input type="hidden" name="options[slug]" value="{{ replace .Permalink "/" "" }}">
   <input type="hidden" name="options[parent]" value="">
 
   {{ if .Site.Params.staticman.recaptcha }}
