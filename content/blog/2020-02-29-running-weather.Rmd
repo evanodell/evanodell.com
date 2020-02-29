@@ -12,7 +12,7 @@ I run a lot in the park near my house, and I was curious what impact weather and
 
 My primary interest is in the effect of temperature and air pollution on running speed.
 
-```{r strava-retrieval, eval=FALSE}
+```{r strava-retrieval, eval=FALSE, include=FALSE}
 #devtools::install_github('fawda123/rStrava')
 library(rStrava)
 library(tidyverse)
@@ -81,7 +81,7 @@ act_data <- act_data %>%
 ```
 
 
-```{r weather-data-retrieval, eval=FALSE} 
+```{r weather-data-retrieval, eval=FALSE, include=FALSE} 
 library(openair)
 library(darksky)
 
@@ -104,7 +104,7 @@ dark_sky_df <- act_data$time %>%
 ```
 
 
-```{r combining-data, eval=FALSE}
+```{r combining-data, eval=FALSE, include=FALSE}
 act_data2 <- act_data %>%
   inner_join(dark_sky_df) %>%
   inner_join(vp_monitor, by = c("time" = "date")) %>%
@@ -128,7 +128,7 @@ act_data2 <- read_rds("strava-data/act_data2.rds")
 
 Is there any relationship between weather and my average running speed? Aside from seeming to run faster during the day and evening than early in the morning, and somewhat slower when it is raining, there does not seem to be any relationship between external factors and running speed. Likewise, although there is a signficant relationship between air pollution and speed, it seems that I can discount it as being directly meaningful. It seems unlikely that more NOx in the air would mean I go slightly slower but more NO2 means I go slightly faster. 
 
-```{r linear-model-1, message=FALSE, warning=FALSE}
+```{r linear-model-1, message=FALSE, warning=FALSE, include=FALSE}
 library(kableExtra)
 library(pixiedust)
 
@@ -157,7 +157,7 @@ It is not surprising there is no clear linear link between temperature and runni
 
 Taking a look at the graph below, it seems that I do go faster when it isn't raining, on average. Additionally it seems my average pace peaks in the low-to-mid teens, which is not that surprising given it is the optimal running weather.
 
-```{r weather-speed, message=FALSE, warning=FALSE}
+```{r weather-speed, message=FALSE, warning=FALSE, include=FALSE}
 theme_set(theme_bw())
 
 p_temp_speed <- ggplot(act_data2 %>% filter(running, !is.na(summary)),
@@ -172,3 +172,5 @@ p_temp_speed <- ggplot(act_data2 %>% filter(running, !is.na(summary)),
 
 p_temp_speed
 ```
+
+The code used here is available on [GitHub](https://github.com/evanodell/evanodell.com/blob/master/content/blog/2020-02-29-running-weather.Rmd)
