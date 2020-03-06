@@ -19,98 +19,195 @@ What is more surprising is that even when controlling for age, university attend
 
 
 #### _Table 1 - Voting remain, by disability, controlling for age, university attendance and social class_
+
 <table>
-  <tr>
-    <th>Dependent Variable: Voted Remain</th>
-    <th style="text-align:right;">Coefficient</th>
-    <th style="text-align:right;">Standard Error</th>
-  </tr>
-  <tr>
-    <td>Disability, limited a little</td>
-    <td style="text-align:right;">-0.028<sup>\*\*</sup> </td>
-    <td style="text-align:right;">0.009</td>
-  </tr>
-  <tr>
-    <td>Disability, limited a lot</td>
-    <td style="text-align:right;">-0.077<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.012</td>
-  </tr>
-  <tr>
-    <td>Age</td>
-    <td style="text-align:right;">-0.004<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.0002</td>
-  </tr>
-  <tr>
-    <td>Any uni: Yes, I am currently enrolled in higher education</td>
-    <td style="text-align:right;">-0.002</td>
-    <td style="text-align:right;">0.015</td>
-  </tr>
-  <tr>
-    <td>Any uni: Yes, but I didn't complete higher education</td>
-    <td style="text-align:right;">-0.104<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.014</td>
-  </tr>
-  <tr>
-    <td>Any uni: No, I have never attended higher education</td>
-    <td style="text-align:right;">-0.159<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.008</td>
-  </tr>
-  <tr>
-    <td>Social grade: B</td>
-    <td style="text-align:right;">0.005</td>
-    <td style="text-align:right;">0.014</td>
-  </tr>
-  <tr>
-    <td>Social grade: C1</td>
-    <td style="text-align:right;">-0.031<sup>\*</sup></td>
-    <td style="text-align:right;">0.012</td>
-  </tr>
-  <tr>
-    <td>Social grade: C2</td>
-    <td style="text-align:right;">-0.120<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.013</td>
-  </tr>
-  <tr>
-    <td>Social grade: D</td>
-    <td style="text-align:right;">-0.107<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.015</td>
-  </tr>
-  <tr>
-    <td>Social grade: E</td>
-    <td style="text-align:right;">-0.091<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.015</td>
-  </tr>
-  <tr>
-    <td>Social grade: Refused</td>
-    <td style="text-align:right;">0.068</td>
-    <td style="text-align:right;">0.237</td>
-  </tr>
-  <tr>
-    <td>Social grade: Unknown</td>
-    <td style="text-align:right;">-0.073<sup>\*\*</sup></td>
-    <td style="text-align:right;">0.026</td>
-  </tr>
-  <tr>
-    <td>Constant</td>
-    <td style="text-align:right;">0.852<sup>\*\*\*</sup></td>
-    <td style="text-align:right;">0.016</td>
-  </tr>
-  <tr style="border-top-width: 3px; color: black;">
-    <td>Observations</td>
-    <td style="text-align:right;" colspan="2">19,240</td>
-  </tr>
-  <tr>
-    <td>Log Likelihood</td>
-    <td style="text-align:right;" colspan="2">-16,663.280</td>
-  </tr>
-  <tr>
-    <td>Akaike Inf. Crit.</td>
-    <td style="text-align:right;" colspan="2">33,354.550</td>
-  </tr>
-  <tr>
-    <td>Note:</td>
-    <td colspan="2"><sup>\*</sup>p&lt;0.05; <sup>\*\*</sup>p&lt;0.01; <sup>\*\*\*</sup>p&lt;0.001</td>
-  </tr>
+
+<tbody>
+
+<tr>
+
+<th>Dependent Variable: Voted Remain</th>
+
+<th style="text-align:right;">Coefficient</th>
+
+<th style="text-align:right;">Standard Error</th>
+
+</tr>
+
+<tr>
+
+<td>Disability, limited a little</td>
+
+<td style="text-align:right;">-0.028<sup>\*\*</sup></td>
+
+<td style="text-align:right;">0.009</td>
+
+</tr>
+
+<tr>
+
+<td>Disability, limited a lot</td>
+
+<td style="text-align:right;">-0.077<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.012</td>
+
+</tr>
+
+<tr>
+
+<td>Age</td>
+
+<td style="text-align:right;">-0.004<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.0002</td>
+
+</tr>
+
+<tr>
+
+<td>Any uni: Yes, I am currently enrolled in higher education</td>
+
+<td style="text-align:right;">-0.002</td>
+
+<td style="text-align:right;">0.015</td>
+
+</tr>
+
+<tr>
+
+<td>Any uni: Yes, but I didn't complete higher education</td>
+
+<td style="text-align:right;">-0.104<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.014</td>
+
+</tr>
+
+<tr>
+
+<td>Any uni: No, I have never attended higher education</td>
+
+<td style="text-align:right;">-0.159<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.008</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: B</td>
+
+<td style="text-align:right;">0.005</td>
+
+<td style="text-align:right;">0.014</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: C1</td>
+
+<td style="text-align:right;">-0.031<sup>\*</sup></td>
+
+<td style="text-align:right;">0.012</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: C2</td>
+
+<td style="text-align:right;">-0.120<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.013</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: D</td>
+
+<td style="text-align:right;">-0.107<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.015</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: E</td>
+
+<td style="text-align:right;">-0.091<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.015</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: Refused</td>
+
+<td style="text-align:right;">0.068</td>
+
+<td style="text-align:right;">0.237</td>
+
+</tr>
+
+<tr>
+
+<td>Social grade: Unknown</td>
+
+<td style="text-align:right;">-0.073<sup>\*\*</sup></td>
+
+<td style="text-align:right;">0.026</td>
+
+</tr>
+
+<tr>
+
+<td>Constant</td>
+
+<td style="text-align:right;">0.852<sup>\*\*\*</sup></td>
+
+<td style="text-align:right;">0.016</td>
+
+</tr>
+
+<tr style="border-top-width: 3px; color: black;">
+
+<td>Observations</td>
+
+<td style="text-align:right;" colspan="2">19,240</td>
+
+</tr>
+
+<tr>
+
+<td>Log Likelihood</td>
+
+<td style="text-align:right;" colspan="2">-16,663.280</td>
+
+</tr>
+
+<tr>
+
+<td>Akaike Inf. Crit.</td>
+
+<td style="text-align:right;" colspan="2">33,354.550</td>
+
+</tr>
+
+<tr>
+
+<td>Note:</td>
+
+<td colspan="2"><sup>\*</sup>p<0.05; <sup>\*\*</sup>p<0.01; <sup>\*\*\*</sup>p<0.001</td>
+
+</tr>
+
+</tbody>
+
 </table>
 _Regression table from a generalised linear model in R._
 
