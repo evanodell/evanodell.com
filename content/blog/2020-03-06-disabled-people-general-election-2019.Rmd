@@ -1,0 +1,154 @@
+---
+title: Disabled People's Voting Patterns in the 2019 General Election
+author: Evan Odell
+date: '2020-03-06'
+slug: "disabled-people-2019-general-election"
+categories: []
+tags: ["elections", "disability"]
+image: "/img/disabled-people-voting/plot-2-1.png"
+---
+
+
+In line with a previous [post summarising disabled people's votes in the 2016 EU Referendum and the 2017 General Election](https://evanodell.com/blog/2017/11/15/disabled-people-and-voting-trends/), I have created, using the [just released British Election Study](https://www.britishelectionstudy.com/bes-resources/british-election-study-2019-data-release-internet-panel-results-file-and-expert-survey/) wave 19 data.
+
+I'm hoping to dig into this dataset more in the coming weeks (along with everyone else interested in UK politics), and produce some more consistent comparisons with previous elections but in the meantime, here's my quick and dirty, written from a Parisian cafe analysis of how disabled people voted in the 2019 general election.
+
+```{r data-readin, eval=FALSE}
+library(haven)
+library(readr)
+library(dplyr)
+library(janitor)
+library(forcats)
+ 
+bes_19 <- read_dta("BES2019_W19_v0.1.dta")
+
+bes_19 <- bes_19 %>% as_factor() %>%
+  clean_names() %>%
+  mutate(general_election_vote = droplevels(general_election_vote),
+general_election_vote = fct_recode(general_election_vote,
+               "conservative" = "Conservative",
+               "labour" = "Labour",
+               "liberal_democrat" = "Liberal Democrat",
+               "snp" = "Scottish National Party (SNP)",
+               "plaid_cymru" = "Plaid Cymru",
+               "ukip" = "United Kingdom Independence Party (UKIP)",
+               "green" = "Green Party",
+               "other" = "Other",
+               "brexit_party" = "Brexit Party",
+               "independent" = "An independent candidate",
+               "dont_know" = "Don't know"),
+         age = as.numeric(as.character(age)),
+         country = case_when(country == 1 ~ "England", 
+                             country == 2 ~ "Scotland",
+                             country == 3 ~ "Wales"),
+         country = factor(country, levels = c("England", "Scotland", "Wales")))
+
+write_rds(bes_19, "bes_19.rds")
+
+```
+
+This time I've used a slightly more sophisticated methodology, using the `multinom()` regression function from the [`nnet`](https://cran.r-project.org/package=nnet) R package. I've also included country (England, Scotland or Wales), age, age squared, university education and National Statistics Socio-economic classification analytic classes based on Standard Occupational Classifications 2010 (SOC2010).
+
+```{r analysis, eval=FALSE}
+library(nnet)
+library(effects)
+library(tidyr)
+library(readr)
+
+bes_19 <- read_rds("bes_19.rds")
+
+multi1 <- multinom(general_election_vote ~ disability + 
+                     country + age + age^2 +
+                     any_uni + ns_sec_analytic,
+                   data = bes_19, weights = wt)
+ 
+fit_eff <- effect("disability", multi1)
+ 
+eff_df <- as_tibble(fit_eff) %>%
+  select_at(vars(-contains("logit"))) %>%
+  gather(key = "key", value = "value", -disability) %>%
+  mutate(key = gsub("(.*?\\.)prob\\.", "\\1", key)) %>%
+  separate(col = key, into = c("type", "party"), sep = "\\.") %>%
+  pivot_wider(names_from = "type", values_from = "value")
+
+eff_df <- eff_df %>% 
+  mutate(
+    party = fct_recode(party,
+                       "Conservative" = "conservative",
+                       "Labour" = "labour",
+                       "Liberal Democrat" = "liberal_democrat",
+                       "SNP" = "snp",
+                       "Plaid Cymru" = "plaid_cymru",
+                       "UKIP" = "ukip",
+                       "Green Party" =  "green" ,
+                       "Other" = "other",
+                       "Brexit Party" =  "brexit_party",
+                       "Independent" = "independent",
+                       "Don't know"=  "dont_know")
+    )
+```
+
+
+
+```{r load-data, message=FALSE, warning=FALSE, include=FALSE}
+library(readr)
+eff_df <- read_rds("bes-19-data/eff_df.rds")
+```
+
+
+This plot summarises those effects:
+
+```{r plot-1}
+library(ggplot2)
+
+theme_set(theme_bw())
+ 
+dodge <- position_dodge(width = 0.9)
+
+colours <- c(
+  "Conservative" = "#0087DC",
+  "Labour" = "#DC241F",
+  "Liberal Democrat" = "#FDBB30",
+  "Plaid Cymru" = "#008142",
+  "Independent" = "#DDDDDD",
+  "Other" = "#424242",
+  "SNP" = "#FFFF00",
+  "UKIP" = "#70147A",
+  "Brexit Party" = "#12B6CF",
+  "Green Party" = "#6AB023",
+  "Don't know" = "#7f7f7f"
+  )
+
+p1 <- ggplot(eff_df, aes(x = disability, y = prob, fill = party)) +
+  geom_col(position = dodge, alpha = 0.85) +
+  geom_errorbar(aes(ymin = L, ymax = U),
+                 position = dodge, width = 0.33) +
+  scale_fill_manual(values = colours, name = "") + 
+  scale_y_continuous(labels = scales::percent,
+                     breaks = seq(from = 0, to = 1, by = 0.1)) +
+  scale_x_discrete(labels = scales::wrap_format(13)) +
+  theme(legend.position = "bottom", axis.text.x = element_text(size = 8)) +
+  guides(fill=guide_legend(nrow=2,byrow=TRUE)) +
+  labs(x = "Disability", y = "Vote Share",
+       caption = "© Evan Odell | CC-BY-SA | 2020
+       Data from British Election Study Wave 19")
+ 
+p1
+```
+
+
+I've also created a second plot with a transformed scale to better show the voting trends for smaller and regional parties.
+
+
+```{r plot-2, message=FALSE, warning=FALSE}
+p2 <- p1 + 
+  scale_y_sqrt(labels = scales::percent,
+               breaks = c(0.01, 0.025, 0.05, seq(from = 0.1, to = 1, by = 0.1)))
+
+p2
+```
+
+
+Based on this, it seems that disabled people did disproportionately vote for the Labour party compared to the overall population, although not by a huge margin, compared to non-disabled people.
+
+Going forward I'm hoping to take a look at disabled people's values and ideological positioning, as well as apply this method to previous general elections.

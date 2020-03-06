@@ -1,0 +1,128 @@
+---
+title: Disabled People's Voting Patterns in the 2019 General Election
+author: Evan Odell
+date: '2020-03-06'
+slug: "disabled-people-2019-general-election"
+categories: []
+tags: ["elections", "disability"]
+image: "/img/disabled-people-voting/plot-2-1.png"
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>In line with a previous <a href="https://evanodell.com/blog/2017/11/15/disabled-people-and-voting-trends/">post summarising disabled people’s votes in the 2016 EU Referendum and the 2017 General Election</a>, I have created, using the <a href="https://www.britishelectionstudy.com/bes-resources/british-election-study-2019-data-release-internet-panel-results-file-and-expert-survey/">just released British Election Study</a> wave 19 data.</p>
+<p>I’m hoping to dig into this dataset more in the coming weeks (along with everyone else interested in UK politics), and produce some more consistent comparisons with previous elections but in the meantime, here’s my quick and dirty, written from a Parisian cafe analysis of how disabled people voted in the 2019 general election.</p>
+<pre class="r"><code>library(haven)
+library(readr)
+library(dplyr)
+library(janitor)
+library(forcats)
+ 
+bes_19 &lt;- read_dta(&quot;BES2019_W19_v0.1.dta&quot;)
+
+bes_19 &lt;- bes_19 %&gt;% as_factor() %&gt;%
+  clean_names() %&gt;%
+  mutate(general_election_vote = droplevels(general_election_vote),
+general_election_vote = fct_recode(general_election_vote,
+               &quot;conservative&quot; = &quot;Conservative&quot;,
+               &quot;labour&quot; = &quot;Labour&quot;,
+               &quot;liberal_democrat&quot; = &quot;Liberal Democrat&quot;,
+               &quot;snp&quot; = &quot;Scottish National Party (SNP)&quot;,
+               &quot;plaid_cymru&quot; = &quot;Plaid Cymru&quot;,
+               &quot;ukip&quot; = &quot;United Kingdom Independence Party (UKIP)&quot;,
+               &quot;green&quot; = &quot;Green Party&quot;,
+               &quot;other&quot; = &quot;Other&quot;,
+               &quot;brexit_party&quot; = &quot;Brexit Party&quot;,
+               &quot;independent&quot; = &quot;An independent candidate&quot;,
+               &quot;dont_know&quot; = &quot;Don&#39;t know&quot;),
+         age = as.numeric(as.character(age)),
+         country = case_when(country == 1 ~ &quot;England&quot;, 
+                             country == 2 ~ &quot;Scotland&quot;,
+                             country == 3 ~ &quot;Wales&quot;),
+         country = factor(country, levels = c(&quot;England&quot;, &quot;Scotland&quot;, &quot;Wales&quot;)))
+
+write_rds(bes_19, &quot;bes_19.rds&quot;)</code></pre>
+<p>This time I’ve used a slightly more sophisticated methodology, using the <code>multinom()</code> regression function from the <a href="https://cran.r-project.org/package=nnet"><code>nnet</code></a> R package. I’ve also included country (England, Scotland or Wales), age, age squared, university education and National Statistics Socio-economic classification analytic classes based on Standard Occupational Classifications 2010 (SOC2010).</p>
+<pre class="r"><code>library(nnet)
+library(effects)
+library(tidyr)
+library(readr)
+
+bes_19 &lt;- read_rds(&quot;bes_19.rds&quot;)
+
+multi1 &lt;- multinom(general_election_vote ~ disability + 
+                     country + age + age^2 +
+                     any_uni + ns_sec_analytic,
+                   data = bes_19, weights = wt)
+ 
+fit_eff &lt;- effect(&quot;disability&quot;, multi1)
+ 
+eff_df &lt;- as_tibble(fit_eff) %&gt;%
+  select_at(vars(-contains(&quot;logit&quot;))) %&gt;%
+  gather(key = &quot;key&quot;, value = &quot;value&quot;, -disability) %&gt;%
+  mutate(key = gsub(&quot;(.*?\\.)prob\\.&quot;, &quot;\\1&quot;, key)) %&gt;%
+  separate(col = key, into = c(&quot;type&quot;, &quot;party&quot;), sep = &quot;\\.&quot;) %&gt;%
+  pivot_wider(names_from = &quot;type&quot;, values_from = &quot;value&quot;)
+
+eff_df &lt;- eff_df %&gt;% 
+  mutate(
+    party = fct_recode(party,
+                       &quot;Conservative&quot; = &quot;conservative&quot;,
+                       &quot;Labour&quot; = &quot;labour&quot;,
+                       &quot;Liberal Democrat&quot; = &quot;liberal_democrat&quot;,
+                       &quot;SNP&quot; = &quot;snp&quot;,
+                       &quot;Plaid Cymru&quot; = &quot;plaid_cymru&quot;,
+                       &quot;UKIP&quot; = &quot;ukip&quot;,
+                       &quot;Green Party&quot; =  &quot;green&quot; ,
+                       &quot;Other&quot; = &quot;other&quot;,
+                       &quot;Brexit Party&quot; =  &quot;brexit_party&quot;,
+                       &quot;Independent&quot; = &quot;independent&quot;,
+                       &quot;Don&#39;t know&quot;=  &quot;dont_know&quot;)
+    )</code></pre>
+<p>This plot summarises those effects:</p>
+<pre class="r"><code>library(ggplot2)
+
+theme_set(theme_bw())
+ 
+dodge &lt;- position_dodge(width = 0.9)
+
+colours &lt;- c(
+  &quot;Conservative&quot; = &quot;#0087DC&quot;,
+  &quot;Labour&quot; = &quot;#DC241F&quot;,
+  &quot;Liberal Democrat&quot; = &quot;#FDBB30&quot;,
+  &quot;Plaid Cymru&quot; = &quot;#008142&quot;,
+  &quot;Independent&quot; = &quot;#DDDDDD&quot;,
+  &quot;Other&quot; = &quot;#424242&quot;,
+  &quot;SNP&quot; = &quot;#FFFF00&quot;,
+  &quot;UKIP&quot; = &quot;#70147A&quot;,
+  &quot;Brexit Party&quot; = &quot;#12B6CF&quot;,
+  &quot;Green Party&quot; = &quot;#6AB023&quot;,
+  &quot;Don&#39;t know&quot; = &quot;#7f7f7f&quot;
+  )
+
+p1 &lt;- ggplot(eff_df, aes(x = disability, y = prob, fill = party)) +
+  geom_col(position = dodge, alpha = 0.85) +
+  geom_errorbar(aes(ymin = L, ymax = U),
+                 position = dodge, width = 0.33) +
+  scale_fill_manual(values = colours, name = &quot;&quot;) + 
+  scale_y_continuous(labels = scales::percent,
+                     breaks = seq(from = 0, to = 1, by = 0.1)) +
+  scale_x_discrete(labels = scales::wrap_format(13)) +
+  theme(legend.position = &quot;bottom&quot;, axis.text.x = element_text(size = 8)) +
+  guides(fill=guide_legend(nrow=2,byrow=TRUE)) +
+  labs(x = &quot;Disability&quot;, y = &quot;Vote Share&quot;,
+       caption = &quot;© Evan Odell | CC-BY-SA | 2020
+       Data from British Election Study Wave 19&quot;)
+ 
+p1</code></pre>
+<p><img src="/blog/2020-03-06-disabled-people-general-election-2019_files/figure-html/plot-1-1.png" width="672" /></p>
+<p>I’ve also created a second plot with a transformed scale to better show the voting trends for smaller and regional parties.</p>
+<pre class="r"><code>p2 &lt;- p1 + 
+  scale_y_sqrt(labels = scales::percent,
+               breaks = c(0.01, 0.025, 0.05, seq(from = 0.1, to = 1, by = 0.1)))
+
+p2</code></pre>
+<p><img src="/blog/2020-03-06-disabled-people-general-election-2019_files/figure-html/plot-2-1.png" width="672" /></p>
+<p>Based on this, it seems that disabled people did disproportionately vote for the Labour party compared to the overall population, although not by a huge margin, compared to non-disabled people.</p>
+<p>Going forward I’m hoping to take a look at disabled people’s values and ideological positioning, as well as apply this method to previous general elections.</p>
