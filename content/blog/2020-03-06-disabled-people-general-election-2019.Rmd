@@ -13,7 +13,7 @@ In line with a previous [post summarising disabled people's votes in the 2016 EU
 
 I'm hoping to dig into this dataset more in the coming weeks (along with everyone else interested in UK politics), and produce some more consistent comparisons with previous elections but in the meantime, here's my quick and dirty, written from a Parisian cafe analysis of how disabled people voted in the 2019 general election.
 
-```{r data-readin, eval=FALSE}
+```{r data-readin, eval=FALSE, include=FALSE}
 library(haven)
 library(readr)
 library(dplyr)
@@ -49,7 +49,7 @@ write_rds(bes_19, "bes_19.rds")
 
 This time I've used a slightly more sophisticated methodology, using the `multinom()` regression function from the [`nnet`](https://cran.r-project.org/package=nnet) R package. I've also included country (England, Scotland or Wales), age, age squared, university education and National Statistics Socio-economic classification analytic classes based on Standard Occupational Classifications 2010 (SOC2010).
 
-```{r analysis, eval=FALSE}
+```{r analysis, eval=FALSE, include=FALSE}
 library(nnet)
 library(effects)
 library(tidyr)
@@ -98,7 +98,7 @@ eff_df <- read_rds("bes-19-data/eff_df.rds")
 
 This plot summarises those effects:
 
-```{r plot-1}
+```{r plot-1, include=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 library(ggplot2)
 
 theme_set(theme_bw())
@@ -140,7 +140,7 @@ p1
 I've also created a second plot with a transformed scale to better show the voting trends for smaller and regional parties.
 
 
-```{r plot-2, message=FALSE, warning=FALSE}
+```{r plot-2, message=FALSE, warning=FALSE, include=FALSE}
 p2 <- p1 + 
   scale_y_sqrt(labels = scales::percent,
                breaks = c(0.01, 0.025, 0.05, seq(from = 0.1, to = 1, by = 0.1)))
@@ -152,3 +152,5 @@ p2
 Based on this, it seems that disabled people did disproportionately vote for the Labour party compared to the overall population, although not by a huge margin, compared to non-disabled people.
 
 Going forward I'm hoping to take a look at disabled people's values and ideological positioning, as well as apply this method to previous general elections.
+
+My code is, as always, [available on GitHub](https://github.com/evanodell/evanodell.com/blob/master/content/blog/2020-03-06-disabled-people-general-election-2019.Rmd).
