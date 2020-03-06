@@ -15,7 +15,9 @@ image: "/img/disabled-people-voting/plot-2-1.png"
 <p>I’m hoping to dig into this dataset more in the coming weeks (along with everyone else interested in UK politics), and produce some more consistent comparisons with previous elections but in the meantime, here’s my quick and dirty, written from a Parisian cafe analysis of how disabled people voted in the 2019 general election.</p>
 <p>This time I’ve used a slightly more sophisticated methodology, using the <code>multinom()</code> regression function from the <a href="https://cran.r-project.org/package=nnet"><code>nnet</code></a> R package. I’ve also included country (England, Scotland or Wales), age, age squared, university education and National Statistics Socio-economic classification analytic classes based on Standard Occupational Classifications 2010 (SOC2010).</p>
 <p>This plot summarises those effects:</p>
+<p><img src="/blog/2020-03-06-disabled-people-general-election-2019_files/figure-html/plot-1-1.png" width="672" /></p>
 <p>I’ve also created a second plot with a transformed scale to better show the voting trends for smaller and regional parties.</p>
+<p><img src="/blog/2020-03-06-disabled-people-general-election-2019_files/figure-html/plot-2-1.png" width="672" /></p>
 <p>Based on this, it seems that disabled people did disproportionately vote for the Labour party compared to the overall population, although not by a huge margin, compared to non-disabled people.</p>
 <p>Going forward I’m hoping to take a look at disabled people’s values and ideological positioning, as well as apply this method to previous general elections.</p>
 <p>My code is, as always, <a href="https://github.com/evanodell/evanodell.com/blob/master/content/blog/2020-03-06-disabled-people-general-election-2019.Rmd">available on GitHub</a>.</p>

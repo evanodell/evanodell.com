@@ -98,7 +98,7 @@ eff_df <- read_rds("bes-19-data/eff_df.rds")
 
 This plot summarises those effects:
 
-```{r plot-1, include=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r plot-1, echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
 
 theme_set(theme_bw())
@@ -140,7 +140,7 @@ p1
 I've also created a second plot with a transformed scale to better show the voting trends for smaller and regional parties.
 
 
-```{r plot-2, message=FALSE, warning=FALSE, include=FALSE}
+```{r plot-2, echo=FALSE, message=FALSE, warning=FALSE}
 p2 <- p1 + 
   scale_y_sqrt(labels = scales::percent,
                breaks = c(0.01, 0.025, 0.05, seq(from = 0.1, to = 1, by = 0.1)))
