@@ -21,6 +21,7 @@ google_analytics = "UA-90706059-1"
   highlightjsLang = ["r", "yaml"]
   highlightjsTheme = "far"
   UseChroma = false
+  summaryLength = 50
 
 #[[Params.bigimg]]
 #  src = "img/triangle.jpg"

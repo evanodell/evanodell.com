@@ -1,0 +1,332 @@
+---
+title: "Introduction to the threesixtygiving R Package"
+author: Evan Odell
+date: '2020-05-28'
+slug: intro-threesixtygiving-package
+categories: []
+tags: []
+subtitle: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>This article describes the <code>threesixtygiving</code> <a href="https://cran.r-project.org/">R</a> package for the <a href="https://threesixtygiving.org/">360Giving</a> platform. 360Giving is a data standard for publishing information about charitable grant giving in the UK. The ability to search for and query different data is similar to the <a href="https://grantnav.threesixtygiving.org/">GrantNav</a> tool created by 360Giving. There are several advantages to using the software package instead of GrantNav:</p>
+<ol style="list-style-type: decimal">
+<li><p>It lets you retrieve 360Giving data, search and summarise that data, create charts and tables and write text using a single file. This is very useful for nerds like me – this entire article comes from a single computer file that contains both this text and the computer code used to generate all the graphs.</p></li>
+<li><p>It gives you access to the raw data provided by funders. The 360Giving standard allows for optional information that is not provided by most funders or included in GrantNav. This information can be useful to fundraising managers in some situations, as well as to researchers wanting to understand the size, scope and approaches to charitable trust giving in the UK.</p></li>
+<li><p><code>threesixtygiving</code> returns data in types and structures designed for R. I’ve done the work of mucking around with file organising and processing to ensure consistency across various file sources, such as ensuring that the dozens of possible date formats are converted to the R <code>Date</code> class.</p></li>
+</ol>
+<p>The big disadvantage is that the <code>threesixtygiving</code> package is mucher harder to use than GrantNav is. For a lot of people and use-cases <code>threesixtygiving</code> is overkill. If you’re not familiar with R and data analysis isn’t a big part of your job, you probably don’t need this package. But let me evangelise R for a bit.</p>
+<p>Say you want to know the average grant size given by each of the funders in GrantNav, and you’ve downloaded the CSV file with all their data from GrantNav (and the CSV file download completely and saved, because sometimes the internet cuts out and you lose a bunch of rows without warning and the file still opens, and it isn’t until you’re presenting your results to SMT that for some reason you have no data on what the Big Lottery has funded). Here are your steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a new worksheet.</p></li>
+<li><p>Locate the “Funding Org:Name” column.</p></li>
+<li><p>Copy and paste “Funding Org:Name” column into the new worksheet.</p></li>
+<li><p>Highlight the entire column, then click the “Remove Duplicates” button.</p></li>
+<li><p>Type the name of the <code>=AVERAGEIF</code> formula in the column next to your column of removed duplicate funding org names.</p></li>
+<li><p>Click into your old worksheet, select the “Amount Awarded” column.</p></li>
+<li><p>Realise that <code>=AVERAGEIF</code> and <code>=AVERAGEIFs</code> want data in a different order. Press escape. Click back to your new worksheet. Change <code>=AVERAGEIF</code> to <code>=AVERAGEIFs</code>.</p></li>
+<li><p>Select the “Amount Awarded” column, than the “Funding Org:Name”, then click back to you new work sheet and select the single cell in your column of removed duplicate funding org names.</p></li>
+<li><p>Double click to fill the column. Realise you have a bunch of errors because you forgot to press F4 or put dollar signs into the first two ranges in your formula.</p></li>
+<li><p>Realise that a bunch of grants are in a currency other than pounds. Waste 10 minutes weighing the pros and cons of deleting them, then realise that you have no easy way to convert those currencies to pounds. Delete those rows, hope you haven’t accidentally lost anything you wanted.</p></li>
+<li><p>Your boss asks for average grant value per year. Realise that roughly 89% of dates have time zone information encoded and Excel couldn’t figure out how to process it. Realise that this is probably the first time in history that Excel has made someone’s life difficult by <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7"><em>not</em> assuming everything is a date</a>.</p></li>
+<li><p>Take a break. Have a cup of tea. Wonder vaguely if stuff like this is the reason the UK struggles with low productivity-per-hour. Feel a twinge of envy of hunter-gatherer societies.</p></li>
+</ol>
+<p>Now, here’s how you do it in R. The bits with “#”’s in front of them are comments, they are little notes you can write to yourself so you remember what you did, or so someone else can read your code and know what you’re doing.</p>
+<pre class="r"><code>library(threesixtygiving)
+library(dplyr) ## A package used to manipulate and process data
+
+# Download all the grant data available.
+# It comes out in a list of tibbles but that&#39;s not a problem:
+grants &lt;- tsg_all_grants(timeout = 10, retries = 0) 
+
+# Get just the core data required by the 360Giving standard.
+# Convert that list of tibbles into a tidy format:
+all_data &lt;- tsg_core_data(grants) 
+
+avg_size &lt;- all_data %&gt;%
+   #This %&gt;% thing is a called a pipe. Pipes are love. Pipes are life.
+  filter(currency == &quot;GBP&quot;) %&gt;% # Filter out non-£ data
+  group_by(funding_org_name) %&gt;% # Group all the funders together
+  summarise(avg = mean(amount_awarded)) 
+# Get the average of given value for each group, like =AVERAGEIFS in Excel
+
+avg_size
+
+# # A tibble: 109 x 2
+#    funding_org_name                             avg
+#    &lt;chr&gt;                                      &lt;dbl&gt;
+#  1 A B Charitable Trust                      13714.
+#  2 Barrow Cadbury Trust                      35889.
+#  3 BBC Children in Need                      55968.
+#  4 Birmingham City Council                   32097.
+#  5 Calouste Gulbenkian Foundation, UK Branch 34352.
+#  6 Camden Giving                             18254.
+#  7 Cheshire Community Foundation              6027.
+#  8 City Bridge Trust                         81381.
+#  9 Cloudesley                                14441.
+# 10 Co-operative Group                         3238.
+# # ... with 99 more rows
+</code></pre>
+<p>Your boss comes and asks for average per year? Spot the difference:</p>
+<pre class="r"><code>
+avg_size_year &lt;- all_data %&gt;%
+  filter(currency == &quot;GBP&quot;) %&gt;% # Filter out non-£ data
+  group_by(funding_org_name, lubridate::year(award_date)) %&gt;%
+  summarise(avg = mean(amount_awarded))
+
+avg_size_year
+
+# # A tibble: 599 x 3
+# # Groups:   funding_org_name [109]
+#    funding_org_name     `lubridate::year(award_date)`    avg
+#    &lt;chr&gt;                                        &lt;dbl&gt;  &lt;dbl&gt;
+#  1 A B Charitable Trust                          2013  9407.
+#  2 A B Charitable Trust                          2014 10008.
+#  3 A B Charitable Trust                          2015 10797.
+#  4 A B Charitable Trust                          2016 13689.
+#  5 A B Charitable Trust                          2017 16110.
+#  6 A B Charitable Trust                          2018 15619.
+#  7 A B Charitable Trust                          2019 19387.
+#  8 Barrow Cadbury Trust                          2012 31920.
+#  9 Barrow Cadbury Trust                          2013 34753.
+# 10 Barrow Cadbury Trust                          2014 30378.
+# # ... with 589 more rows</code></pre>
+<p>The <code>tsg_all_grants()</code> function retrieves all the grant data. And if data isn’t available, or there is a downloading error, it will print a message warning you. No more silently failing downloads. There is even a <code>tsg_missing()</code> function, which will take the output of <code>tsg_all_grants()</code> and tell you what’s missing. Brilliant eh?</p>
+<p>Say you want to include all the grants that are in currencies other than pounds, but convert their value to pounds? In the example below I show a way to do that where I just looked up the currency conversion rates on my phone and changed the currency based on that, but you could also write some code that takes the currency code, the award date, and passes them to the <a href="https://fixer.io" class="uri">https://fixer.io</a> currency conversion service using the <a href="https://cran.r-project.org/package=fixerapi"><code>fixerapi</code></a> package, which provided you have the right account type, will convert the currency value to pound using the conversion rate on the day the grant was awarded. Pretty cool, if you’re into that sort of thing.</p>
+<div id="retrieve-all-grants" class="section level2">
+<h2>Retrieve all grants</h2>
+<p>Below are all the R packages that I’m using create the graphs and such in this article.</p>
+<pre class="r"><code>library(threesixtygiving)
+library(ggrepel)
+library(readr)
+library(purrr)
+library(dplyr)
+library(stringr)
+library(ggplot2)</code></pre>
+<p>First, I’m going to retrieve all the grant data. The <code>timeout = 8</code> means I’m having the function give up trying to retrieve data after 8 seconds for each file, and <code>retries = 1</code> means it is only going to retry failed retrievals once, then it will give up and move on to retrieve the next data set.</p>
+<pre class="r"><code>grants &lt;- tsg_all_grants(timeout = 8, retries = 1)</code></pre>
+<p>Because of my minimal timeout and retries, as well as possible other problems with how organisations configure their servers, there are some datasets missing:</p>
+<pre class="r"><code>tsg_missing(grants)
+
+# # A tibble: 7 x 14
+#   title description identifier license license_name issued modified download_url access_url data_type
+#   &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;    
+# 1 Gran~ &quot;&quot;          a001p0000~ https:~ Creative Co~ 2019-~ 2019-11~ https://jof~ https://j~ xlsx     
+# 2 Gran~ &quot;&quot;          a00240000~ https:~ Creative Co~ 2017-~ 2018-08~ https://pea~ https://p~ xlsx     
+# 3 Gran~ &quot;&quot;          a00240000~ https:~ Creative Co~ 2017-~ 2018-08~ https://pea~ https://p~ xlsx     
+# 4 Gran~ &quot;&quot;          a001p0000~ https:~ Creative Co~ 2018-~ 2019-03~ https://pea~ https://p~ xlsx     
+# 5 Gran~ &quot;&quot;          a001p0000~ https:~ Creative Co~ 2018-~ 2019-08~ https://tud~ https://t~ xlsx     
+# 6 True~ &quot;&quot;          a00240000~ https:~ Creative Co~ 2016-~ 2018-08~ http://ods.~ http://ww~ unknown  
+# 7 Wood~ &quot;&quot;          a001p0000~ https:~ Creative Co~ 2017-~ 2018-08~ http://ods.~ http://ww~ unknown  
+# # ... with 4 more variables: publisher_name &lt;chr&gt;, publisher_website &lt;chr&gt;, publisher_logo &lt;chr&gt;,
+# #   publisher_prefix &lt;chr&gt;
+</code></pre>
+<p>However, we know they are missing, and we can retry downloading just them if needed using the <code>tsg_specific_df()</code> function. But I’ll ignore them for now.</p>
+</div>
+<div id="core-data" class="section level2">
+<h2>Core data</h2>
+<p><code>tsg_all_grants</code> returns a list of tibbles, due to differences in the data provided by each funder. <code>tsg_core_data</code> returns a tibble with the 10 columns in the <a href="https://standard.threesixtygiving.org/en/latest/#">360Giving Open Standard</a>, plus the publisher prefix used to identify each funder. In the case below I have converted non-GBP currencies to GBP on the rates on 2019-11-14.</p>
+<pre class="r"><code>df &lt;- tsg_core_data(grants)
+
+df2 &lt;- df %&gt;% 
+  mutate(amount_awarded = case_when(
+    currency == &quot;USD&quot; ~ amount_awarded/1.3044, ## rate on 2020-01-17
+    currency == &quot;CAD&quot; ~ amount_awarded/1.7017, 
+    currency == &quot;CHF&quot; ~ amount_awarded/1.2630, 
+    currency == &quot;EUR&quot; ~ amount_awarded/1.1750,
+    TRUE ~ amount_awarded)) %&gt;%
+  group_by(funding_org_name) %&gt;%
+  summarise(n = n(),
+            amount_awarded = sum(amount_awarded)) %&gt;%
+  mutate(avg = amount_awarded/n)</code></pre>
+<p>Now I’ve made a bunch of graphs highlighting what you can do with</p>
+<pre class="r"><code>theme_set(theme_bw())
+
+p1 &lt;- ggplot(df2 %&gt;% top_n(20, amount_awarded) %&gt;% 
+               mutate(amount_awarded2 = amount_awarded/100000),
+             aes(x = reorder(funding_org_name, -amount_awarded2),
+                 y = amount_awarded2, fill = amount_awarded2)) + 
+  geom_col() + 
+  scale_y_sqrt(labels = scales::dollar_format(prefix = &quot;£&quot;),
+               breaks = c(1000, 5000, 10000, 25000, 50000, 75000, 100000)) + 
+  scale_x_discrete(labels = scales::wrap_format(30)) + 
+  scale_fill_viridis_c() + 
+  labs(x = &quot;Funder&quot;, y = &quot;Amount Awarded 
+       (in 100,000s, note square-root scale)&quot;,
+       title = &quot;Total Value of Grants Awarded by Twenty Largest Funders&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        legend.position = &quot;none&quot;) 
+  
+p1</code></pre>
+<p><img src="/img/threesixtygiving/total-value.png" /></p>
+<p>The plot below shows the average grant value from each funder, with the number of reported grants given by each funder.</p>
+<pre class="r"><code>p2 &lt;- ggplot(df2 %&gt;% top_n(20, amount_awarded),
+             aes(x = reorder(funding_org_name, -avg),
+                 y = avg, fill = avg)) + 
+  geom_col() + 
+  geom_label_repel(aes(label = scales::comma(n)), nudge_y = 1,
+              alpha = 0.35, size = 3.25, hjust =0.5, direction = &quot;y&quot;) + 
+  scale_y_sqrt(labels = scales::dollar_format(prefix = &quot;£&quot;)) + 
+  scale_x_discrete(labels = scales::wrap_format(25)) + 
+  scale_fill_viridis_c() + 
+  labs(x = &quot;Funder&quot;, y = &quot;Average Grant Value&quot;,
+       title = &quot;Average Grant Value&quot;,
+       subtitle = &quot;Label is the total number of grants awarded&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        legend.position = &quot;none&quot;) 
+
+p2</code></pre>
+<p><img src="/img/threesixtygiving/avg-grant-value.png" /></p>
+<pre class="r"><code>p3 &lt;- ggplot(df2, aes(x = n, y = avg, colour = amount_awarded)) + 
+  geom_point(alpha = 0.7, size = 4) + 
+  geom_text_repel(data = bind_rows(df2 %&gt;% top_n(5, avg),
+                                   df2 %&gt;% top_n(5, amount_awarded),
+                                   df2 %&gt;% top_n(5, n),
+                                   df2 %&gt;% top_n(5, -n),
+                                   df2 %&gt;% top_n(5, -amount_awarded)) %&gt;% 
+                    distinct(),
+                  mapping = aes(label = funding_org_name), colour = &quot;black&quot;,
+                  direction = &quot;both&quot;,
+                  arrow = arrow(length = unit(0.03, &quot;npc&quot;),
+                                type = &quot;open&quot;, ends = &quot;last&quot;)) + 
+  scale_colour_viridis_c() + 
+  scale_y_log10(labels = scales::dollar_format(prefix = &quot;£&quot;)) + 
+  scale_x_log10(labels = scales::comma) + 
+  labs(y = &quot;Average Grant Value&quot;, x = &quot;Number of Grants&quot;,
+       title = &quot;Average Grant Value vs Number of Grants&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;) +
+  theme(legend.position = &quot;none&quot;) 
+
+p3</code></pre>
+<p>In the the plot below I’ve highlighted funders that make very many or very few grants, and that are either very large or very small.</p>
+<p><img src="/img/threesixtygiving/grant-size-n.png" /></p>
+<div id="award-sizes" class="section level3">
+<h3>Award sizes</h3>
+<p>In the two examples below, we can see differences between the amount of money applied for and the amount awarded. Not every funder reports the amount applied for, and some report what seem like placeholder values, such as grant programmes where applicants do not need to specify the value of the grant, only what they want to do and leave the award amount up to the funder.</p>
+<pre class="r"><code>proc_df &lt;- tsg_process_data(grants) 
+
+proc_amount_df &lt;- proc_df  %&gt;% 
+  select(identifier, title, description, funding_org_name,
+         amount_awarded, amount_applied_for) %&gt;%
+  mutate_at(.vars = vars(amount_awarded, amount_applied_for), as.numeric) %&gt;% 
+  mutate(difference = amount_awarded-amount_applied_for,
+         percentage_of = amount_awarded/amount_applied_for) %&gt;% 
+  filter(!is.na(amount_applied_for), amount_applied_for &gt; 2500,
+         amount_awarded &gt; 2500,
+         percent_rank(difference) &gt;= 0.02 &amp;
+           percent_rank(difference) &lt;= 0.98) %&gt;% ## remove outliers
+  mutate(difference = round(difference))
+
+count0 &lt;- proc_amount_df %&gt;%
+  filter(difference==0) %&gt;%
+  tally()
+  
+p4 &lt;- ggplot(proc_amount_df %&gt;% filter(difference != 0),
+             aes(x = difference)) + 
+  geom_freqpoly(bins = 100) + 
+  geom_label_repel(
+    aes(x = 0, y = 4000,
+        label = paste0(scales::comma(n),
+                       &quot; applications awarded exact amount applied for&quot;)),
+    data = count0) + 
+  scale_color_viridis_c() + 
+  scale_y_continuous(labels = scales::comma) + 
+  scale_x_continuous(labels = scales::dollar_format(prefix = &quot;£&quot;),
+                     breaks = c(-20000, -10000, -5000, -2500,
+                                0, 2500, 5000, 7500)) + 
+  labs(x = &quot;Difference between Award and Application Amount&quot;,
+       y = &quot;Number of Grants&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;)
+
+p4</code></pre>
+<p><img src="/img/threesixtygiving/grant-diff-value.png" /></p>
+<pre class="r"><code>p5 &lt;- ggplot(proc_amount_df %&gt;%
+               filter(difference != 0, percentage_of != Inf),
+             aes(x = percentage_of)) + 
+  geom_freqpoly(bins = 200) + 
+  geom_label_repel(
+    aes(x = 1, y = 3000, hjust = 1,
+        label = paste0(scales::comma(n),
+                       &quot; applications awarded exact amount applied for&quot;)),
+    data = count0) + 
+  scale_color_viridis_c() + 
+  scale_y_continuous(labels = scales::comma) + 
+  scale_x_continuous(labels = scales::percent,
+                     breaks = c(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 2)) + 
+  labs(x = &quot;Award size as percentage of amount applied for&quot;,
+       y = &quot;Number of Grants&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;)
+
+p5</code></pre>
+<p><img src="/img/threesixtygiving/grant-diff-perc.png" /></p>
+</div>
+<div id="systemic-change-funders" class="section level3">
+<h3>Systemic change funders</h3>
+<p>Organisations that are focused on systemic change and policy-influencing seem to be particularly reliant on trusts and foundations for income. This may be because charitable trusts, particularly large, professionalised funders, have different criteria than members of the public donating money. The most popular type of charity for public donations is animal welfare, according to the <a href="https://www.cafonline.org/docs/default-source/about-us-publications/caf-uk-giving-2019-report-an-overview-of-charitable-giving-in-the-uk.pdf?sfvrsn=c4a29a40_4">Charities Aid Foundation</a>, likely because of the emotional connection many people feel with animals.</p>
+<p>The code below is going to get a little bit more complicated, it includes some very basic functional programming and regular expressions. If you don’t know what functional programming is, it’s basically a way of turning everything into a mathematical formula. If you don’t know what regular expressions are, count yourself lucky.</p>
+<pre class="r"><code>proc_df &lt;- tsg_process_data(grants)
+
+animal_df &lt;- proc_df %&gt;%
+  filter_at(.vars = vars(description, title, contains(&quot;primary&quot;),
+                         contains(&quot;impact&quot;), contains(&quot;category&quot;),
+                         contains(&quot;classificat&quot;)),
+            .vars_predicate = any_vars(
+              str_detect(., regex(&#39;animal&#39;, 
+                                  ignore_case=TRUE))
+              ))
+
+strat_df &lt;- proc_df %&gt;%
+  filter_at(.vars = vars(description, title, contains(&quot;primary&quot;),
+                         contains(&quot;impact&quot;), contains(&quot;category&quot;),
+                         contains(&quot;classificat&quot;)),
+            .vars_predicate = any_vars(
+              str_detect(., regex(&#39;strategy|strategic|systemic&#39;, 
+                                  ignore_case=TRUE))
+              )) </code></pre>
+<p>For example, there are 1673 donations to animal-related organisations from 23 trusts in this dataset, compared to 2897 strategic and system change grants from 75 funders. However there do not appear to be any funders focused on strategic funding and systemic change. The plot below shows the twenty funders that have allocated the greatest percentages of their overall funding to what I’ve deemed strategic issues.</p>
+<pre class="r"><code>proc_df &lt;- proc_df %&gt;%
+  mutate(
+    strategic = str_detect(description, regex(&#39;strategy|strategic|systemic&#39;, 
+                                  ignore_case=TRUE)
+              )
+  )
+
+proc_df2 &lt;- proc_df %&gt;% 
+  group_by(funding_org_name, strategic) %&gt;% 
+  summarise(total = sum(amount_awarded),
+            mean = mean(amount_awarded),
+            median= median(amount_awarded),
+            n= n()) %&gt;%
+  group_by(funding_org_name) %&gt;%
+  mutate(perc_strat = total/sum(total)) %&gt;% 
+  ungroup()
+
+twenty_strats &lt;- proc_df2 %&gt;% filter(strategic==TRUE) %&gt;% top_n(20, perc_strat)
+
+p6 &lt;- ggplot(data = twenty_strats,
+             aes(x = reorder(funding_org_name, -perc_strat), y = perc_strat,
+                 fill = perc_strat)) + 
+  geom_col(position = &quot;dodge&quot;) + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_x_discrete(labels = scales::wrap_format(25)) + 
+  scale_fill_viridis_c() + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        legend.position = &quot;none&quot;) + 
+  labs(x = &quot;Funder&quot;, y =&quot;Percentage of Total Grants&quot;,
+       title = &quot;Percentage of Total Grant Values to Strategic and Systemic Change&quot;,
+       caption = &quot;(c) Evan Odell | Disability Rights UK | 2020 | CC-BY-SA
+       Data from 360Giving&quot;)
+
+p6</code></pre>
+<p><img src="/img/threesixtygiving/strategic-funders.png" /></p>
+</div>
+</div>
