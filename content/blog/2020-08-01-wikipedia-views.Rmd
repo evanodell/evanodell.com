@@ -77,7 +77,7 @@ articles_df <- articles_df %>%
 
 First, let's look at the top 1000 page views for per day in 2020, across all access methods.
 
-```{r plot1, message=FALSE}
+```{r plot1, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(plotly)
 
@@ -107,7 +107,7 @@ p1 <- ggplot(share_df ,
   theme(axis.text.x = element_text(angle = 45, hjust=1), 
         legend.position = "bottom")
 
-p1g <- ggplotly(p1)
+p1g <- ggplotly(p1, tooltip = c("date", "perc"))
 
 p1g %>% layout(legend = list(orientation = 'h'))
 
@@ -116,7 +116,7 @@ p1g %>% layout(legend = list(orientation = 'h'))
 
 Now, lets look at the top 100 pages, excluding special pages such as the front page and template pages.
 
-```{r plot2, message=FALSE}
+```{r plot2, message=FALSE, warning=FALSE}
 share_df100 <- articles_df %>% 
   filter(type != "Special", access == "all-access") %>%
   group_by(date) %>% top_n(100, views) %>%
@@ -138,7 +138,7 @@ p2 <- ggplot(share_df100,
   theme(axis.text.x = element_text(angle = 45, hjust=1), 
         legend.position = "bottom")
 
-p2g <- ggplotly(p2)
+p2g <- ggplotly(p2, tooltip = c("date", "perc"))
 
 p2g %>% layout(legend = list(orientation = 'h'))
 
@@ -147,7 +147,7 @@ p2g %>% layout(legend = list(orientation = 'h'))
 
 However, Black Lives Matter and police brutality articles did not pull attention away from COVID-19 articles. Interest in COVID-19 peaked on `r format(top_n(share_df %>% filter(type == "COVID"), 1, views)$date, "%d %B")`, while the single biggest increase in BLM-related articles did not occur until `r format(top_n(share_df %>% filter(type == "BLM & Police"), 1, diffs)$date, "%d %B")`.
 
-```{r plot3, message=FALSE}
+```{r plot3, message=FALSE, warning=FALSE}
 
 p3 <- ggplot(share_df %>% 
                filter(access == "all-access",
@@ -164,7 +164,7 @@ p3 <- ggplot(share_df %>%
   theme(axis.text.x = element_text(angle = 45, hjust=1), 
         legend.position = "bottom")
 
-p3g <- ggplotly(p3)
+p3g <- ggplotly(p3, tooltip = c("date", "views"))
 
 p3g %>% layout(legend = list(orientation = 'h'))
 
