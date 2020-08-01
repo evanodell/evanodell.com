@@ -1,0 +1,202 @@
+---
+title: Wikipedia, Coronavirus and BLM
+author: Evan Odell
+date: '2020-08-01'
+slug: wikipedia-coronavirus-blm
+categories: []
+tags: []
+image: "/img/wiki-blm-covid.png"
+---
+
+Wikipedia is a potentially useful indicator of the topics people online are interested in. Nothing seems to drive traffic to an individual's Wikipedia entry like their death, and the top articles list is always
+
+I used the [`pageviews`](https://CRAN.R-project.org/package=pageviews) package to download statistics on the 1000 most viewed Wikipedia pages for the first seven months of 2020 (up until July 30th).
+
+I've grouped Wikipedia pages into 4 categories, based on their subject:
+
+* The COVID-19 Pandemic
+* Black Lives Matter & Police Brutality
+* Special pages such as templates
+* All other topics
+
+
+```{r downloading-data, message=FALSE}
+library(pageviews)
+library(dplyr)
+library(stringr)
+
+dates <- seq(as.Date("2020-01-01"), as.Date("2020-07-30"), by="days")
+
+articles_list <- list()
+
+for (i in seq_along(dates)) {
+  articles_list[[i]] <- top_articles(
+    platform = c("all", "desktop", "mobile-web", "mobile-app"),
+    start = dates[[i]])
+  
+  message(dates[[i]])
+}
+
+articles_df <- articles_list %>%  
+  bind_rows() %>%
+  as_tibble() %>%
+  mutate(
+    article = gsub("_", " ", article),
+    date = as.Date(date),
+    type = case_when(
+           str_detect(article, 
+                      regex('^Special\\:|^Portal\\:|^Template\\:|Main Page|special\\:search|Help:|Category:|Wikipedia$', ignore_case=TRUE)) ~ "Special",
+           str_detect(article, 
+                      regex("Coronavirus|COVID|Spanish flu|World Health|Hydroxychloroquine|Tasuku Honjo", ignore_case=TRUE)) ~ "COVID",
+           str_detect(article,
+                      regex("Breonna Taylor|Juneteenth|George Floyd|Saskatoon freezing deaths|Black Lives Matter|Antifa|^Loving|Confederate States|Racial|Autonomous Zone|Tulsa race massacre|Race and|Christopher Dorner|The Eyes of Texas|American Civil War|racial|Confederate battle flag|Ku Klux|Malcolm X|Jim Crow|Robert E. Lee|Shooting of|killings by law enforcement|Murder \\(United States law\\)|Third-degree murder|punishments|Antebellum|Central Park jogger|1992 Los Angeles riots|King assassination riots|Twin Cities|Jacob Frey|Eric Garner|Freddie Gray|National Guard|Rodney King|Minneapolis|Manslaughter|civil unrest|Sandra Bland|Agent provocateur|A.C.A.B.|Insurrection|Martial law|Minnesota|Omar Jimenez|depraved-heart murder|Martin Luther King|Soros|James Earl Ray|fascism|Attack on Reginald Denny|Posse Comitatus Act|[Second, Third] Amendment|Emmett Till|Kent State shootings|Kendrick Johnson|James Baldwin|Weather Underground|slave trade|Edward Colston|Leopold II|Raz Simone|Song of the South|Robert Milligan|Kente |Braxton Bragg|Colin Kaepernick|George Wallace|Rubber bullet|Bean bag round", ignore_case=TRUE))~ "BLM & Police",
+           TRUE ~ "Other"))
+  #%>% 
+ # filter(!(article == "United States Senate" & rank >= 2))  ## cause it's weird
+
+gf_df <- articles_df %>%
+  filter(article %in% c("Death of George Floyd", "Killing of George Floyd")) %>%
+  mutate(
+    article = recode(article,
+                     "Death of George Floyd" = "Killing of George Floyd")) %>% 
+  group_by(access, date) %>% 
+  summarise(views = sum(views)) %>%
+  mutate(project = "wikipedia", language = "en", granularity = "day",
+         article = "Killing of George Floyd", type = "BLM & Police")
+
+
+articles_df <- articles_df %>%
+  filter(!(article %in% c("Death of George Floyd",
+                          "Killing of George Floyd"))) %>%
+  bind_rows(gf_df) %>% 
+  group_by(date) %>% 
+  mutate(rank = row_number())
+
+```
+
+
+First, let's look at the top 1000 page views for per day in 2020, across all access methods.
+
+```{r plot1, message=FALSE}
+library(ggplot2)
+library(plotly)
+
+theme_set(theme_bw())
+
+share_df <- articles_df %>%
+  group_by(access, date, type) %>% 
+  summarise(views = sum(views)) %>%
+  group_by(date, access) %>% 
+  mutate(perc = views/sum(views)) %>%
+  ungroup() %>% 
+  group_by(type, access) %>%
+  mutate(diffs = views - lag(views)) %>%
+  filter(access == "all-access")
+
+
+p1 <- ggplot(share_df ,
+             aes(x = date, y = perc, fill = type, group = type)) +  
+  geom_area() + 
+  scale_fill_manual(
+    values = c("Special" = "grey", "Other" = "#21908C",
+               "COVID" = "#FDE725", "BLM & Police" = "#440154"),
+    name = "") + 
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(date_breaks = "2 weeks", date_labels = "%d %b") + 
+  labs(x = "Date", y = "Percentage of top 1000 page views") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1), 
+        legend.position = "bottom")
+
+p1g <- ggplotly(p1)
+
+p1g %>% layout(legend = list(orientation = 'h'))
+
+```
+
+
+Now, lets look at the top 100 pages, excluding special pages such as the front page and template pages.
+
+```{r plot2, message=FALSE}
+share_df100 <- articles_df %>% 
+  filter(type != "Special", access == "all-access") %>%
+  group_by(date) %>% top_n(100, views) %>%
+  group_by(date, type) %>%
+  summarise(views = sum(views)) %>% 
+  group_by(date) %>% 
+  mutate(perc = views/sum(views)) 
+
+p2 <- ggplot(share_df100,
+             aes(x = date, y = perc, fill = type, group = type)) +  
+  geom_area() + 
+  scale_fill_manual(
+    values = c("Special" = "grey", "Other" = "#21908C",
+               "COVID" = "#FDE725", "BLM & Police" = "#440154"),
+    name = "") + 
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(date_breaks = "2 weeks", date_labels = "%d %b") + 
+  labs(x = "Date", y = "Percentage of top 100 page views") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1), 
+        legend.position = "bottom")
+
+p2g <- ggplotly(p2)
+
+p2g %>% layout(legend = list(orientation = 'h'))
+
+```
+
+
+However, Black Lives Matter and police brutality articles did not pull attention away from COVID-19 articles. Interest in COVID-19 peaked on `r format(top_n(share_df %>% filter(type == "COVID"), 1, views)$date, "%d %B")`, while the single biggest increase in BLM-related articles did not occur until `r format(top_n(share_df %>% filter(type == "BLM & Police"), 1, diffs)$date, "%d %B")`.
+
+```{r plot3, message=FALSE}
+
+p3 <- ggplot(share_df %>% 
+               filter(access == "all-access",
+                      !(type %in% c("Other", "Special"))),
+             aes(x = date, y = views, colour = type, group = type)) +  
+  geom_line() + 
+  scale_colour_manual(
+    values = c("Special" = "grey", "Other" = "#21908C",
+               "COVID" = "#FDE725", "BLM & Police" = "#440154"),
+    name = "") + 
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(date_breaks = "2 weeks", date_labels = "%d %b") + 
+  labs(x = "Date", y = "Total Page Views") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1), 
+        legend.position = "bottom")
+
+p3g <- ggplotly(p3)
+
+p3g %>% layout(legend = list(orientation = 'h'))
+
+```
+
+
+The top give articles each day is also a useful indicator of what people are interested in. I've had to remove the United States Senate, which for whatever reason has a very large number of false positives, something that is [apparently unavoidable](https://meta.wikimedia.org/wiki/Pageviews_Analysis#Topviews).
+
+Wikipedia readers interested in COVID-19 kept returning to the same articles repeatedly, while only one BLM article -- [Killing of George Floyd](https://en.wikipedia.org/wiki/Killing_of_George_Floyd) -- was in the top five most visited articles over 10 or more days.
+
+
+```{r popularity-table, message=FALSE, warning=FALSE}
+share_df1 <- articles_df %>% 
+  filter(type != "Special", access == "all-access",
+         article != "United States Senate") %>%
+  group_by(date) %>%
+  top_n(5, views) %>% 
+  mutate(rank = row_number())
+
+freq <- share_df1 %>% 
+  group_by(article) %>% 
+  summarise(n=n()) %>% 
+  filter(n>=10) %>% 
+  arrange(desc(n))
+
+
+library(kableExtra)
+kable(freq, col.names = c("Article", "Days in Top 5")) %>%
+  kable_styling()
+
+```
+
+
+
+
