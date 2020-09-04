@@ -62,7 +62,7 @@ bike = bike + insurance) %>%
   ungroup()
 ```
 
-How much money can you save cycling instead of using public transport? This blog shows what I spent and what I saved while using cycling as my primary form of transport for `r format((as.numeric(max(bike_data_full$date) - min(bike_data_full$date)))+1, big.mark = ",")` days, or just shy of 3 years and 2 months. This covers from when I first bought a bike on 30 June 2016 to `r format(max(bike_data_full$date), format = "%e %B %Y")`, the day before I packed my bike away as part of my move to Berlin. I previously discussed this balance [about 8 months into my time cycling](https://evanodell.com/blog/2017/02/06/cycling-vs-oyster/), at which point I had spent almost £20 more on my bike and my pay-as-you-go Oyster card compared to a monthly Oyster pass.
+How much money can you save cycling instead of using public transport? This blog shows what I spent and what I saved while using cycling as my primary form of transport for `r format((as.numeric(max(bike_data_full$date) - min(bike_data_full$date)))+1, big.mark = ",")` days, or just shy of 4 years and 2 months. This covers from when I first bought a bike on 30 June 2016 to `r format(max(bike_data_full$date), format = "%e %B %Y")`, the day before I packed my bike away as part of my move to Berlin. I previously discussed this balance [about 8 months into my time cycling](https://evanodell.com/blog/2017/02/06/cycling-vs-oyster/), at which point I had spent almost £20 more on my bike and my pay-as-you-go Oyster card compared to a monthly Oyster pass.
 
 Over the time period covered here, I bought a fancy new bike (I wanted the stopping power of disc brakes), sold my first bike, had my new bike stolen and managed to find an identical replacement new on ebay, which my insurance thankfully (mostly) paid for.
 
@@ -358,7 +358,7 @@ label_df5 <- tibble(
 ```
 
 
-I saved a total of `r scales::dollar(tail(bd_annual$gain_loss, 1), prefix = "£")` over the course of over 3 years (Figure \@ref(fig:p5-annual)), or `r scales::dollar(tail(bd_annual$gain_loss, 1)/1516, prefix = "£")` per day, compared to an annual Travelcard. I'm not sure if I would have broken even compared to an annual Travelcard if it wasn't for the COVID-19 lockdown.
+I saved a total of `r scales::dollar(tail(bd_annual$gain_loss, 1), prefix = "£")` over the course of over 4 and-a-bit years (Figure \@ref(fig:p5-annual)), or `r scales::dollar(tail(bd_annual$gain_loss, 1)/1516, prefix = "£")` per day, compared to an annual Travelcard. I'm not sure if I would have broken even compared to an annual Travelcard if it wasn't for the COVID-19 lockdown.
 
 
 ```{r p5-annual, fig.cap="Savings/losses over time, annual travel card"}
@@ -393,7 +393,7 @@ p5_annual
 ```
 
 
-Compared to a monthly Travelcard, my savings are much greater (Figure \@ref(fig:p5-mon)). Over three plus years I saved a total of `r scales::dollar(tail(bd_mon$gain_loss, 1), prefix = "£")`, or an average of `r scales::dollar(tail(bd_mon$gain_loss, 1)/1516, prefix = "£")` per day. 
+Compared to a monthly Travelcard, my savings are much greater (Figure \@ref(fig:p5-mon)). Over four plus years I saved a total of `r scales::dollar(tail(bd_mon$gain_loss, 1), prefix = "£")`, or an average of `r scales::dollar(tail(bd_mon$gain_loss, 1)/1516, prefix = "£")` per day. 
 
 ```{r p5-mon, fig.cap="Savings/losses over time, monthly travel card"}
     
