@@ -1,0 +1,436 @@
+---
+title: "How much money can you save by riding your bike?"
+author: Evan Odell
+date: '2020-09-04'
+slug: cycling-oyster
+categories: []
+tags: []
+image: 'img/cycling/p2-annual-1.png'
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning=FALSE,
+  echo=FALSE, 
+  fig.topcaption=TRUE
+)
+```
+
+
+
+```{r data-prep, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(tidyr)
+
+bike_data_full <- read_csv("cycling-data/cycling_oyster_data.csv",
+                           col_types = cols(
+                             date = col_date(format = "%Y-%m-%d"))
+)
+
+bike_data_full <- bike_data_full %>%
+  mutate(
+mon_oyster_per_day = case_when(
+  date <= "2017-01-01" ~ 124.50/30,
+  date <= "2018-01-01" ~ 126.80/30,
+  date <= "2019-01-01" ~ 131.00/30,
+  date <= "2020-01-01" ~ 134.80/30,
+  date <= "2021-01-01" ~ 138.70/30
+  ),
+annual_oyster_per_day = case_when(
+    date <= "2017-01-01" ~ 1296/366,
+    date <= "2018-01-01" ~ 1320/365,
+    date <= "2019-01-01" ~ 1364/365,
+    date <= "2020-01-01" ~ 1404/365,
+    date <= "2021-01-01" ~ 1444/366
+  ),
+insurance = case_when(
+  date >= "2020-08-17" ~ 0,
+  date >= "2018-12-17" & substr(date, 9, 11) == "17" ~ 112/12,
+  date >= "2018-06-18" & substr(date, 9, 11) == "17" ~ 101.80/12,
+  TRUE ~ 0),
+bike = bike + insurance) %>%
+  gather(key=travelcard_type, value = travelcard_day, 
+         -date, -bike, -oyster, -fines, -insurance) %>%
+  group_by(travelcard_type) %>%
+  mutate(gain_loss = cumsum(travelcard_day) - 
+           (cumsum(bike) + cumsum(oyster)) + cumsum(fines)) %>%
+  ungroup()
+```
+
+How much money can you save cycling instead of using public transport? This blog shows what I spent and what I saved while using cycling as my primary form of transport for `r format((as.numeric(max(bike_data_full$date) - min(bike_data_full$date)))+1, big.mark = ",")` days, or just shy of 3 years and 2 months. This covers from when I first bought a bike on 30 June 2016 to `r format(max(bike_data_full$date), format = "%e %B %Y")`, the day before I packed my bike away as part of my move to Berlin. I previously discussed this balance [about 8 months into my time cycling](https://evanodell.com/blog/2017/02/06/cycling-vs-oyster/), at which point I had spent almost £20 more on my bike and my pay-as-you-go Oyster card compared to a monthly Oyster pass.
+
+Over the time period covered here, I bought a fancy new bike (I wanted the stopping power of disc brakes), sold my first bike, had my new bike stolen and managed to find an identical replacement new on ebay, which my insurance thankfully (mostly) paid for.
+
+I include all spending directly on my bike: the bike itself, accessories, spare parts, insurance, my storage locker, tools and maintenance. I also include non-bike costs that are the result of cycling, primarily clothing,[^1] but also [London Cycling Campaign membership](https://membership.lcc.org.uk/join). Travel outside zones 1 and 2 are included in both the pay-as-you-go cost and added on to my travelcard cost, as I would be paying them regardless, assuming I only ever bought a zone 1-2 travelcard. 
+
+
+```{r p1-prep, message=FALSE}
+library(zoo)
+library(broom)
+
+t_sum <- bike_data_full %>%
+  group_by(travelcard_type) %>%
+  summarise(Bike = sum(bike),
+            Oyster = sum(oyster),
+            `Hypothetical Travelcard` = sum(travelcard_day, fines)) %>%
+  mutate(Combined = Bike + Oyster) %>% 
+  gather(key = "key", value = "value", -travelcard_type) %>% 
+  distinct(key, value, .keep_all = TRUE) %>%
+  mutate(
+    key = if_else(travelcard_type=="mon_oyster_per_day", 
+                  "Hypothetical Monthly Travelcard", key),
+    key = recode(key,
+                 "Hypothetical Travelcard" = "Hypothetical Annual Travelcard"),
+    key = factor(key, levels=c("Bike", "Oyster", "Combined", 
+                               "Hypothetical Annual Travelcard",
+                               "Hypothetical Monthly Travelcard")))
+```
+
+
+The purple and blue bars in Figure \@ref(fig:p1) are total spending on my bike and related accessories and my pay-as-you-go Oyster spending, respectively. The middle bar is the combined total of bicycle and pay-as-you-go spending, and the two bars on the right are the hypothetical total spending on an annual or monthly Travelcard, combined with all travel outside zones 1 and 2.
+
+```{r p1, fig.cap="Total and combined spending"}
+library(ggplot2)
+library(ggrepel)
+theme_set(theme_bw())
+
+p1 <- ggplot(t_sum, aes(x = key, y = value, fill = key, label = value)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.5), 
+           alpha = 0.8) +
+  geom_text(aes(y = value + 0.1, 
+                label = paste0("£", format(round(value, 2),
+                                           big.mark = ",", nsmall = 2))),
+            position = position_dodge(0.9),
+            vjust = -0.25) +
+  scale_y_continuous(
+    labels = scales::dollar_format(prefix = "£"),
+    name = "Total spending from 30 June 2016 to 23 August 2020") +
+  scale_x_discrete(name = "Type of Spending",
+                   labels = scales::wrap_format(10)) +
+  scale_fill_viridis_d(option = "D") + 
+  theme(legend.position = "")
+
+p1
+```
+  
+
+
+  
+```{r p2-prep}
+bike_average <- mean(bike_data_full$bike)
+
+bike_data_full <- bike_data_full %>% 
+  mutate(bike_avg = mean(bike))
+
+bd_annual <- bike_data_full %>%
+  filter(travelcard_type == "annual_oyster_per_day")
+
+bd_mon <- bike_data_full %>%
+  filter(travelcard_type == "mon_oyster_per_day")
+    
+label_df2 <- tibble(
+      label = c(paste0("Bike Average: £",
+                       format(round(bike_average, 2), nsmall = 2)),
+                paste0("Travelcard Average: £", format(
+                  round(mean(bd_mon$travelcard_day), 2),
+                  nsmall = 2)),
+                paste0("Travelcard Average: £", format(
+                  round(mean(bd_annual$travelcard_day), 2),
+                  nsmall = 2)),
+                paste0("2020 Travelcard: £", format(
+                  round(max(bd_mon$travelcard_day), 2),
+                  nsmall = 2)),
+                paste0("2020 Travelcard: £", format(
+                  round(max(bd_annual$travelcard_day), 2),
+                  nsmall = 2))
+                ),
+      travelcard = c(NA, "mon", "annual", "mon", "annual"),
+      date = c(max(bike_data_full$date), rep(mean(bike_data_full$date), 2),
+               rep(max(bike_data_full$date), 2)),
+      value = c(bike_average, 
+                mean(bd_mon$travelcard_day),
+                mean(bd_annual$travelcard_day),
+                max(bd_mon$travelcard_day),
+                max(bd_annual$travelcard_day)),
+      hjust = c(rep(1, 5)),
+      vjust = c(1.4, rep(-0.5, 4))
+    )
+    
+bike_data2 <- bike_data_full %>% 
+  group_by(travelcard_type) %>%
+      mutate(
+        oyster = as.numeric(
+          rollmean(zoo(oyster, date), 30, fill = list(NA, NULL, NA),
+                   align = "right")
+          ),
+        bike_oyster = bike_avg + oyster) %>%
+      pivot_longer(cols = c("travelcard_day", "bike_avg"),
+                   names_to = "line_label", values_to = "line_value") %>% 
+      pivot_longer(cols = c("oyster", "bike_oyster"),
+                   names_to = "smooth_label", values_to = "smooth_value") %>%
+      mutate(smooth_label = recode(smooth_label,
+                                  "oyster" = "PAYG Oyster Spending",
+                                  "bike_oyster" = "Oyster + Bike Spending"),
+             line_label = recode(line_label,
+                                 "bike_avg" = "Bike Average",
+                                 "travelcard_day" = "Travelcard Average"))
+
+```
+  
+
+You can see in the two series plots below that since writing the blog post in February 2017 my Oyster spending has dropped off somewhat. Figure \@ref(fig:p2-annual) shows a time series of pay-as-you-go Oyster and bike spending compared to a hypothetical annual pass, while Figure \@ref(fig:p2-mon) compares the same to a monthly pass.
+
+The dark purple dashed horizontal line represents the cost-per-day of a zone 1-2 Travelcard in London over this time period. The green dashed horizontal line represents the average daily cost of my bicycle and accessories. The blue line is a rolling average of pay-as-you-go Oyster spending over the previous month, and the light green line is pay-as-you-go Oyster spending combined with average daily bike costs.
+
+```{r p2-annual, fig.cap="Time series of spending on pay-as-you-go Oyster and cycling, annual travel card"}
+
+p2_annual <- ggplot(bike_data2 %>%
+                      filter(travelcard_type == "annual_oyster_per_day"),
+                    aes(x = date)) +
+  geom_line(aes(y = line_value, col = line_label, linetype = line_label), 
+            size = 1.1) + 
+  geom_line(aes(y = smooth_value, col = smooth_label, linetype = smooth_label),
+            size = 1.1) + 
+  scale_colour_viridis_d("", direction = -1, end = 0.85, alpha = 0.8) + 
+  scale_x_date(name = "Date", 
+               breaks = seq(as.Date("2016-06-30"), 
+                            as.Date(max(bike_data2$date)) + 60,
+                            by = "3 months"),
+               date_labels = "%b %Y") +
+  scale_y_continuous(name = "30 Day Rolling Average",
+                     labels = scales::dollar_format(prefix = "£")) +
+  guides(col = guide_legend(nrow = 2, bycol = TRUE)) +
+  geom_text(aes(x = date, y = value, label = label),
+            data = label_df2 %>% filter(travelcard != "mon"| is.na(travelcard)),
+            hjust = c(1, 0.9, 1), vjust = c(1.4, -1, -1.8))  +
+  scale_linetype_manual(values = c("dashed", "solid", "solid", "dashed"), 
+                        guide = FALSE) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 30, hjust = 1)
+        )
+
+p2_annual
+```
+
+  
+
+  
+  
+```{r p2-mon, fig.cap="Time series of spending on pay-as-you-go Oyster and cycling, monthly travel card"}
+
+p2_mon <- ggplot(bike_data2 %>%
+                      filter(travelcard_type == "mon_oyster_per_day"),
+                    aes(x = date)) +
+  geom_line(aes(y = line_value, col = line_label, linetype = line_label), 
+            size = 1.1) + 
+  geom_line(aes(y = smooth_value, col = smooth_label, linetype = smooth_label),
+            size = 1.1) + 
+  scale_colour_viridis_d("", direction = -1, end = 0.85, alpha = 0.8) + 
+  scale_x_date(name = "Date", 
+               breaks = seq(as.Date("2016-06-30"), 
+                            as.Date("2020-08-23") + 60,
+                            by = "3 months"),
+               date_labels = "%b %Y") +
+  scale_y_continuous(name = "30 Day Rolling Average",
+                     labels = scales::dollar_format(prefix = "£")) +
+  guides(col = guide_legend(nrow = 2, bycol = TRUE)) +
+  geom_text(aes(x = date, y = value, label = label),
+            data = label_df2 %>%
+              filter(travelcard != "annual"| is.na(travelcard)),
+            hjust = c(1, 0.9, 1), vjust = c(1.4, -1.5, -2))  +
+  scale_linetype_manual(values = c("dashed", "solid", "solid", "dashed"), 
+                        guide = FALSE) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 30, hjust = 1)
+        )
+
+p2_mon
+```
+
+
+Figures \@ref(fig:p3) and \@ref(fig:p4) show the cumulative spending on my bike and my pay-as-you-go Oyster card, and the rolling average cost per day of bike and Oyster spending, respectively.
+  
+```{r p3, fig.cap="Cumulative spending in each category"}
+    
+bike_melt <- bike_data_full %>%
+  select(date:bike) %>%
+  gather(spend_type, value, -date) %>%
+  distinct() %>%
+  group_by(spend_type) %>%
+  arrange(date) %>%
+  mutate(spending = cumsum(value))
+    
+p3 <- ggplot(bike_melt) +
+  geom_line(aes(x = date, y = spending, col = spend_type), 
+            size = 1, alpha = 0.8) +
+  scale_y_continuous(name = "Cumulative Spending",
+                     breaks = seq(0, 5000, by = 500), 
+                     labels = scales::dollar_format(prefix = "£")) +
+  scale_x_date(name = "Date",
+               breaks = seq(as.Date("2016-06-30"), as.Date("2020-08-23") + 60,
+                            by="3 months"),
+               date_labels = "%b %Y") +
+  scale_color_viridis_d(end = 0.6, 
+                        labels = c("Bike Spending",
+                                   "Pay-as-you-go Oyster Spending"),
+                        name = "") +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 30, hjust = 1)
+      )
+    
+p3
+    
+```
+  
+
+```{r p4, fig.cap="Rolling average cost per day"}
+    
+    bike_data <- bike_data_full %>%
+      select(date:bike) %>%
+      distinct() 
+
+    bike_roll <- bike_data %>% 
+      mutate(
+        bike = cumsum(bike)/as.numeric(date - as.Date("2016-06-29")),
+        oyster = cumsum(oyster)/as.numeric(date - as.Date("2016-06-29")),
+        oyster = as.numeric(
+          rollapply(data = zoo(oyster, date), width = 30, FUN = mean,
+                   fill = list(NA, NULL, NA), align = "right", partial = 3)
+        ),
+        bike = as.numeric(
+          rollapply(data = zoo(bike, date), width = 30, FUN = mean,
+                    fill = list(NA, NULL, NA), align = "right", partial = 3)
+        )) %>% 
+      pivot_longer(cols = c(bike, oyster), 
+                   values_to = "spending", names_to = "type")
+
+p4 <- ggplot(bike_roll) +
+  geom_line(aes(x = date, y = spending, group = type, col = type),
+                size = 1.05) +
+  coord_cartesian(ylim=c(0, 5)) + 
+  scale_y_continuous(name = "30 day rolling average",
+                     labels = scales::dollar_format(prefix = "£")) +
+  scale_x_date(name = "Date",
+               breaks = seq(as.Date("2016-06-30"), as.Date("2020-08-23") + 60,
+                            by="3 months"),
+               date_labels = "%b %Y") +
+  scale_color_viridis_d(end = 0.6, alpha = 0.8, 
+                        labels = c("Bike Spending", "Oyster Spending")) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 30, hjust = 1)) + 
+  labs(col = "") 
+    
+p4
+    
+```
+  
+  
+  
+```{r p5-prep}
+label_df5 <- tibble(
+  label = c(paste0("Max savings: £", sprintf("%.2f", max(bd_annual$gain_loss))),
+            paste0("Max loss: £", sprintf("%.2f", min(bd_annual$gain_loss))),
+            "Sold old bike", "Bike stolen",
+            paste0("Max savings: £", sprintf("%.2f", max(bd_mon$gain_loss))),
+            paste0("Max loss: £", sprintf("%.2f", min(bd_mon$gain_loss))),
+            "Sold old bike", "Bike stolen"),
+  date = c(bd_annual$date[bd_annual$gain_loss == max(bd_annual$gain_loss)],
+           bd_annual$date[bd_annual$gain_loss == min(bd_annual$gain_loss)],
+           as.Date("2018-02-02"), as.Date("2018-11-28"),
+           bd_mon$date[bd_mon$gain_loss == max(bd_mon$gain_loss)],
+           bd_mon$date[bd_mon$gain_loss == min(bd_mon$gain_loss)],
+           as.Date("2018-02-02"), as.Date("2018-11-28")),
+  value = c(max(bd_annual$gain_loss), min(bd_annual$gain_loss),
+            bd_annual$gain_loss[bd_annual$date == as.Date("2018-02-02")],
+            bd_annual$gain_loss[bd_annual$date == as.Date("2018-11-28")],
+            max(bd_mon$gain_loss), min(bd_mon$gain_loss),
+            bd_mon$gain_loss[bd_mon$date == as.Date("2018-02-02")],
+            bd_mon$gain_loss[bd_mon$date == as.Date("2018-11-28")]
+            ),
+  type = c(rep("annual", 4), rep("mon", 4))
+)
+
+```
+
+
+I saved a total of `r scales::dollar(tail(bd_annual$gain_loss, 1), prefix = "£")` over the course of over 3 years (Figure \@ref(fig:p5-annual)), or `r scales::dollar(tail(bd_annual$gain_loss, 1)/1516, prefix = "£")` per day, compared to an annual Travelcard. I'm not sure if I would have broken even compared to an annual Travelcard if it wasn't for the COVID-19 lockdown.
+
+
+```{r p5-annual, fig.cap="Savings/losses over time, annual travel card"}
+    
+p5_annual <- ggplot(bike_data_full %>%
+                      filter(travelcard_type == "annual_oyster_per_day")) +
+  geom_hline(yintercept = 0, colour = "red", size = 0.5, alpha = 0.7) +
+  geom_hline(yintercept = max(bd_annual$gain_loss), colour = "seagreen3",
+             size = 0.5, alpha = 0.7) +
+  geom_line(aes(x = date, y = gain_loss), size = 1, 
+            colour = "#932667", alpha = 0.8) + 
+  geom_text_repel(aes(x = date, y = value, label = label),
+                  data = label_df5 %>% filter(type=="annual"),
+                  nudge_y = c(60, -50, -50, 170), 
+                  nudge_x = c(-360, 300, 150, 170),
+                  force = 10, direction = "both", 
+                  arrow = arrow(length = unit(0.03, "npc")),
+                  point.padding = 0.5)  +
+  scale_y_continuous(name = "Savings/Losses over Time",
+                     labels = scales::dollar_format(prefix = "£"),
+                     breaks = seq(-1200, 1500, by = 200),
+                     expand = expansion(mult = c(0.05, 0), add = c(0, 150))) +
+  scale_x_date(name = "Date",
+               breaks = seq(as.Date("2016-06-30"), as.Date("2020-08-23") + 60,
+                            by="3 months"),
+               date_labels = "%b %Y") +
+  scale_color_manual(values = c("#932667"), labels = c("Bike Spending")) +
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 30, hjust = 1))
+    
+p5_annual
+```
+
+
+Compared to a monthly Travelcard, my savings are much greater (Figure \@ref(fig:p5-mon)). Over three plus years I saved a total of `r scales::dollar(tail(bd_mon$gain_loss, 1), prefix = "£")`, or an average of `r scales::dollar(tail(bd_mon$gain_loss, 1)/1516, prefix = "£")` per day. 
+
+```{r p5-mon, fig.cap="Savings/losses over time, monthly travel card"}
+    
+p5_mon <- ggplot(bike_data_full %>%
+                      filter(travelcard_type == "mon_oyster_per_day")) +
+  geom_hline(yintercept = 0, colour = "red", size = 0.5, alpha = 0.7) +
+  geom_hline(yintercept = max(bd_mon$gain_loss), colour = "seagreen3",
+             size = 0.5, alpha = 0.7) +
+  geom_line(aes(x = date, y = gain_loss), size = 1, 
+            colour = "#932667", alpha = 0.8) + 
+  geom_text_repel(aes(x = date, y = value, label = label),
+                  data = label_df5 %>% filter(type=="mon"),
+                  nudge_y = c(60, -50, -50, 170),
+                  nudge_x = c(-360, 300, 150, 170),
+                  force = 10, direction = "both", 
+                  arrow = arrow(length = unit(0.03, "npc")),
+                  point.padding = 0.5)  +
+  scale_y_continuous(name = "Savings/Losses over Time",
+                     labels = scales::dollar_format(prefix = "£"),
+                     breaks = seq(-1200, 1500, by = 200),
+                     expand = expansion(mult = c(0.05, 0), add = c(0, 150))) +
+  scale_x_date(name = "Date",
+               breaks = seq(as.Date("2016-06-30"), as.Date("2020-08-23") + 60,
+                            by="3 months"),
+               date_labels = "%b %Y") +
+  scale_color_manual(values = c("#932667"), labels = c("Bike Spending")) +
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 30, hjust = 1))
+    
+p5_mon
+```
+
+
+There are a number of obstacles to an exact cost comparison of cycling and public transport. For example, if I went on holiday for a couple weeks, I could try to time my travelcard renewal so I'm not paying anything while not in London. There are also the intangible benefits of exercise and faster commutes from cycling, compared to the convenience and low effort required of public transport, and any purely financial comparison misses those factors. I don't know how you calculate the cost of occasionally showing up to meetings soaked with sweat or rain, and that also likely depends on the type of meeting -- working in the charity sector I got the impression people were more likely to be impressed by my commitment to sustainable transport than put off by my occasionally showing up out of breath or soaked from the rain.
+
+It is also worth noting that I had a railcard that reduced the cost of off-peak pay-as-you-go fares by 1/3rd for most of the time covered in this comparison.
+
+The code used here is available on [GitHub](https://github.com/evanodell/evanodell.com/blob/master/content/blog/2020-09-04-cycling-oyster.Rmd).
+
+
+[^1]: For instance, I have bought a couple pairs of commuter trousers for cycling and include that spending in my calculations, less £40 to represent the price of a standard pair of men's trousers, on the basis that I would have had to buy new trousers anyways.
