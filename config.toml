@@ -70,7 +70,7 @@ fractions = false
     
 [[menu.main]]
     name = "CV"
-    url = "/EvanOdell-cv.pdf"
+    url = "/cv"
     weight = 3
     
     
