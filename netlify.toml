@@ -7,7 +7,7 @@
   force = false
 [[redirects]]
   from = "/cv"
-  to = "/evanodell.github.io/cv"
+  to = "https://evanodell.github.io/cv"
   status = 301
   force = false
 
