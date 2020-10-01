@@ -6,6 +6,7 @@ comments: false
 
 Documentation for all previous versions of the Hansard Speeches and Sentiment dataset:
 
+- [Version 2.6.0](./v260), released 2019-01-20.
 
 - [Version 2.5.1](./v251), released 2018-02-24.
 

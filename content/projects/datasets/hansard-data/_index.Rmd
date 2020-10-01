@@ -1,93 +1,84 @@
 ---
-title: "Hansard Speeches 1979--2018 V2.6.0"
-bibliography: references.bib
-link-citations: yes
-aliases: ["/datasets/hansard-data", "/projects/hansard-data"]
+title: "Hansard Speeches 1979--2020 Version 3"
+aliases: ["/datasets/hansard-data", "/projects/hansard-data", "/hansard-data"]
 ---
 
-## [Download from Zenodo](http:doi.org/10.5281/zenodo.780985)
+## [Download from Zenodo](https://doi.org/10.5281/zenodo.4061741)
 
-A public dataset of speeches in the Hansard, stored as a CSV, and as a [tibble](https://cran.r-project.org/package=tibble) class in RDS files, for the [R programming language](https://cran.r-project.org/).[^1] It includes the text and sentiment classifications for every speech made in the House of Commons between the 1979 general election and the end of 2017, with information on the speaking MP, their party, gender, birth date,[^2] starting and finishing dates (if applicable) as an MP, and age at the time of the speech. For pre-1979 election data, please see [here](https://evanodell.com/projects/datasets/hansard-data/archive/V250). Documentation for previous versions of the dataset including sentiment calculations can be found [here](https://evanodell.com/projects/datasets/hansard-data/archive/)
+Version 3 is a major update of this dataset, with the following changes:
 
-It can be accessed through [Zenodo](https://zenodo.org/record/1183893), and is distributed under a Creative Commons 4.0 BY-SA license. The latest version expands coverage to the end of 2018, and includes information on cabinet and shadow cabinet positions.
+- Coverage up to the end of August 2020
+
+- More information on government, opposition and parliamentary posts.
+
+- Information on MPs constituencies.
+
+- Inclusion of topical debate headings from the Hansard record
+
+- Removal of easily accessible information like birthdays from the flat file.
+
+- Fixes to various encoding issues. 
 
 
+### File formats
+
+The data is available as a [`tibble`](https://tibble.tidyverse.org/)-format .rds file for the R programming language, and as a CSV/JSON dataset. 
+
+The CSV file does not contain the "government_posts", "opposition_posts" and "parliamentary_posts" variables, those are available in the JSON files of the same name. This is due to the data structure which is not compatible with the flat file CSVs. Some MPs have multiple posts at once, which are in list columns. Eg:
+
+```
+[
+  {
+    "mnis_id": "177",
+    "date": "2008-10-06",
+    "government_posts": [
+      {
+        "gov_post_name": "Minister of State (Department for Business, Enterprise and Regulatory Reform) (Trade, Investment and Consumer Affairs) (also Department for International Development)"
+      },
+      {
+        "gov_post_name": "Minister of State (Department for International Development)"
+      }
+    ]
+  }
+]
+```
 
 ### Dataset Variables
 
-| Variable | Description | Data Type |
-|------------------|--------------|------------------|
- `pp_id` | ID for each speech, corresponding to the parlparse ID | character |
- `eo_id` | ID number for each speech, as assigned by me, to accommodate situations where the same parlparse ID was assigned to distinct speeches | character |
- `speech` | The actual text of the speech | character |
- `word_count` | The word count of the speech | numeric |
- `speech_date` | The date the speech was made | date |
- `year` | The year the speech was made | numeric |
- `time` | The time the speech was made (not consistently available), stored as a character vector; e.g. '16:24:00' | character |
- `url` | The URL of the speech | character |
- `as_speaker` | If the speaker is the Speaker of the house | Logical |
- `speaker_id` | One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
- `person_id` | One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
- `hansard_membership_id` | One of three ID schemes used in the [`parlparse`](https://github.com/mysociety/parlparse) scraper | character |
- `mnis_id` | The ID used by the Member's Names Information Service. This ID remains constant, even if an MP changes parties, seats, etc. | character |
- `dods_id` | Dods Monitoring ID| integer |
- `pims_id` | Parliamentary Information Management Services ID |integer |
- `proper_name` | The MP's name | character |
- `party_group` | Grouping of political parties. Labour and Labour Co-op MPs are listed as 'Labour', Conservative MPs as 'Conservative', Liberal Democrats, Social Democrats and Liberals are all listed as 'Liberal Democrat', and all other MPs are listed as 'Other'. | factor |
- `party` | The political party the MP belonged to at time of speech | character |
- `government` | An indicator if the the MP is a member of the governing party (or parties), or in the opposition | factor |
- `age` | Age at time of speech | integer |
- `gender` | One of Male or Female | factor |
- `date_of_birth` | MP's date of birth | date |
- `house_start_date` | The date the MP was first elected to the House of Commons | date |
- `house_end_date` | The date the MP left the House of Commons | date |
- `ministry` | Identifier for the government at time of speech | character |
- `speaker_office` | Empty variable | character |
- `match` | Ignore | factor |
- `y_since_start` | Years since first elected | numeric | 
- `short_list` | If female Labour MP, elected through All Women Shortlist | logical | 
- `post_name` | Cabinet or shadow cabinet role, if available | character | 
-
-## Methodology
-
-The [parlparse](https://github.com/mysociety/parlparse) project provides scraped xml files of Hansard debate going back to 1936, and assigns an ID to each speaker. However, I could not find where the IDs assigned are linked to other information, such as constituencies or parties, or the MNIS ID system used by parliament. Long-serving MPs may also have dozens of these IDs assigned to them, and they are not consistently linked together. There are also substantial numbers of speeches where there is no ID assigned a speaker, and they are classified as 'unknown'. I created a table with every possible combination of name and `speaker_id`, `person_id` and `hansard_membership_id`, and matched the speakers in that table to their MNIS ID, using a mixture of exact string, manually checked approximate strings and manual matching/hand coding. The information in this table was then matched to the complete list of speech IDs. In the case of common names,[^3] I manually identified which MP was actually speaking by locating adjacent Hansard records where their full name, constituency or ministerial title was used. In a handful of cases I had to use the content of their speech and any adjacent speeches to provide further clues to an MPs identity.
-
-### Licences and Code
-
-The data used to create this dataset was taken from the [parlparse](https://github.com/mysociety/parlparse) project operated by [They Work For You](https://www.theyworkforyou.com/) and supported by [mySociety](https://www.mysociety.org/).
-
-The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"/></a>
-
-The code included in the GitHub repository used to create this dataset is licensed under an [MIT license](https://github.com/EvanOdell/hansard-speeches-and-sentiment/blob/master/LICENSE). The code used to generate this dataset is available on [Github](https://github.com/EvanOdell/hansard-data).
-
-Please [contact me](mailto:evanodell91@gmail.com) if you find any errors in the dataset. The integrity of the public Hansard record is questionable at times, and while I have improved it, the data is presented 'as is'.
-
-## Citing this dataset
-
-Please cite this dataset as:
-
-Odell, Evan. (2019). "Hansard Speeches V2.6.0 [Dataset]." [10.5281/zenodo.2537227](https://doi.org/10.5281/zenodo.2537227).
-
-```
-@article{odell2019,
-  title = {Hansard {{Speeches V2}}.6.0 [Dataset]},
-  url = {https://evanodell.com/projects/datasets/hansard-data/},
-  doi = {10.5281/zenodo.2537227},
-  date = {2019-01-11},
-  keywords = {dataset},
-  author = {Odell, Evan}
-}
-```
-
-The DOI of V2.6.0 is *10.5281/zenodo.2537227*. The DOI for all versions is [*10.5281/zenodo.780985*](https://doi.org/10.5281/zenodo.780985), and will always resolve to the latest version of the Hansard Speeches and Sentiment dataset.
-
-## References
-
-[^1]: If you would like other formats please [get in touch](mailto:evanodell91@gmail.com).
-
-[^2]: Sarah Olney (mnis_id 4591) does not have a birth date listed in the Members Names Information Service, and I have been unable to locate her date of birth elsewhere, only the year of birth. Her birthdate is, as a consequence, listed as 1977-01-01, this will be amended to the correct month and day if her biography is updated. Several members (Gillian Keegan, Laura Smith, Mike Hill) still do not have birth dates listed at all, and I could not locate exact dates for Anna McMorrin, Bob Seely, Danielle Rowley, Fiona Onasanya, Kemi Badenoch, so listed their birthday as the first of the given year or month. This will be updated in future versions of this data set. 
-
-[^3]: e.g. the two Labour MPs named John Smith who were both members of the house between 1989 and 1992.
+| Variable | Description |
+|------------------|--------------|
+"id" | The ID as assigned by mysociety
+"speech" | The text of the speech
+"display_as" | The standardised name of the MP.
+"party" | The party an MP is member of at time of speech
+"constituency" | Constituency represented by MP at time of 
+"mnis_id" | The MP's Members Name Information Service number
+"date" | Date of speech 
+"time" | Time of speech
+"colnum" | Column number in hansard record
+"speech_class" | Type of speech
+"major_heading" | Major debate heading
+"minor_heading" | Minor debate heading
+"oral_heading" | Oral debate heading
+"year" | Year of speech
+"hansard_membership_id" | ID used by mysociety
+"speakerid" | ID used by mysociety
+"person_id" | ID used by mysociety
+"speakername" | MP name as appeared in Hansard record for speech
+"url" | link to speech
+"government_posts" | Government posts held by MP (list-column)
+"opposition_posts" | Opposition posts held by MP (list-column)
+"parliamentary_posts" | Parliamentary posts held by MP (list-column)
 
 
+### Notes
 
+The data used to create this dataset was taken from the [parlparse](https://github.com/mysociety/parlparse) project by [mySociety](https://www.mysociety.org/).
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+Please contact me if you find any errors in the dataset. The integrity of the public Hansard record is questionable at times, and while I have improved it, the data is presented 'as is'.
+
+The code used to create this dataset is on [Github](https://github.com/evanodell/hansard-data3) and is available under a GPL-3.0 License.
+
+Previous documentation is available in the [archive]("/archive").
