@@ -81,4 +81,4 @@ Please contact me if you find any errors in the dataset. The integrity of the pu
 
 The code used to create this dataset is on [Github](https://github.com/evanodell/hansard-data3) and is available under a GPL-3.0 License.
 
-Previous documentation is available in the [archive]("/archive").
+Previous documentation is available in the [archive](/archive).

@@ -7,6 +7,17 @@ body: Roboto
 
 <!-- I should do something to include packages, research, etc, in here automatically -->
 
+## [R Packages](https://docs.evanodell.com)
+
+See all documentation at [docs.evanodell.com](https://docs.evanodell.com).
+
+## Datasets
+
+### [Hansard Speeches and Sentiment](/projects/datasets/hansard-data)
+
+<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2537227.svg)](https://doi.org/10.5281/zenodo.2537227)
+
 ## Shiny Applications
 
 ### [London Housing Bang for your Buck](/projects/housing-bang-buck/)
@@ -95,12 +106,7 @@ A collection of tools, datasets and maps for analysing UK politics, including a 
 
 
 
-## Datasets
 
-### [Hansard Speeches and Sentiment](/projects/datasets/hansard-data)
-
-<span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2537227.svg)](https://doi.org/10.5281/zenodo.2537227)
 
 <!--
 
