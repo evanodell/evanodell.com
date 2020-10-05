@@ -1,9 +1,13 @@
 ---
-title: "Hansard Speeches 1979--2020 Version 3"
+title: "Hansard Speeches 1979-2020 Version 3.0.1"
 aliases: ["/datasets/hansard-data", "/projects/hansard-data", "/hansard-data"]
 ---
 
-## [Download from Zenodo](https://doi.org/10.5281/zenodo.4061741)
+## [Download from Zenodo](https://doi.org/10.5281/zenodo.780985)
+
+A dataset containing every speech in the House of Commons from May 1979-July 2020.
+
+## Version 3.0.1
 
 Version 3 is a major update of this dataset, with the following changes:
 

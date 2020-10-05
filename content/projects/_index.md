@@ -15,8 +15,14 @@ See all documentation at [docs.evanodell.com](https://docs.evanodell.com).
 
 ### [Hansard Speeches and Sentiment](/projects/datasets/hansard-data)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.780985.svg)](https://doi.org/10.5281/zenodo.780985)
+
 <span class="fa-stack fa"> <i class="ai ai-open-access ai-2x"></i></span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2537227.svg)](https://doi.org/10.5281/zenodo.2537227)
+
+A dataset containing every speech in the House of Commons from May 1979-July 2020.
+
+
 
 ## Shiny Applications
 
