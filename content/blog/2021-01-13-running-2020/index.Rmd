@@ -79,6 +79,8 @@ distance <- df %>%
 ```
 
 
+## Distance goals
+
 I set an annual running goal of 2500km sometime in April, and revised it upwards several times, eventually deciding that, having hit 2750 on
 `r format.Date(distance$date[distance$cum_km>2750][1], "%d %B %Y")`, I decided to go for a nice round 3000km. Below you can see my cumulative distance relative to my goal, with the y axis showing how many kilometres I was behind (and occasionally ahead) of pace. 
 
@@ -111,6 +113,7 @@ eddington = function(kms) {
 
 British scientist and keen cyclist [Arthur Eddington](https://en.wikipedia.org/wiki/Arthur_Eddington#Eddington_number_for_cycling) developed the Eddington number for cycling distance, analogous to the h-index of scientific notations. My Eddington number for running in 2020 was `r eddington(df$distance/1000)`; i.e. I did `r eddington(df$distance/1000)` runs of at least `r eddington(df$distance/1000)`km. 
 
+## Feelings
 
 My watch has a 5 point scale for how a workout felt:
 
