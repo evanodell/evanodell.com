@@ -1,0 +1,147 @@
+---
+title: "Running in 2020"
+author: Evan Odell
+date: '2021-01-13'
+slug: "running-2020"
+categories: []
+tags: []
+subtitle: ''
+---
+
+I ran a lot in 2020. The increased free time caused by lockdowns (and the closure for several weeks of my local park in London forcing me to seek running routes further afield) changed my relationship to running. I went from doing a few 5km runs a week after work, and maybe a longer run on the weekend if I felt like it, to running 10k or more at a time, and running many more days. I pulled all my activity data from [Quantified Self](https://quantified-self.io/), and cleaned up a few issues with multisport recordings in the code chunk below:
+
+
+```{r set-up-code, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(janitor)
+library(lubridate)
+library(stringr)
+library(hms)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+
+df <- read_csv("1_7_2020-12_29_2020.csv") %>%
+  clean_names() %>%   
+  filter(date != "3/21/2020", activity_types != "Cycling")
+
+gap2 <- (sum(c(6648, 7920)*c(341, 368))/sum(c(6648, 7920))) 
+
+df <- df %>% 
+  bind_rows(tibble("date" = rep("3/21/2020", 2),
+                   "name" = c("2020-03-21T10:04:16.000Z",
+                              "2020-03-21T10:07:36.000Z"),
+                   "activity_types" = rep("Running",2),
+                   "distance" = c("190 m", ("38.49 Km")),
+                   "duration" = c("00:01:28", "04:02:58"),
+                   "ascent" = c("7 m", "543 m"),
+                   "descent" = c("0 m", "588 m"),
+                   "calories" = c("26 KCal", "3811 KCal"),
+                   "feeling" = c(NA, "Very Good"),
+                   "average_speed" = c("7.8 km/h", "9.5 km/h"),
+                   "average_pace" = c("07:43 min/km", "06:18 min/km"),
+                   "average_grade_adjusted_pace" =c("06:39 min/km",
+                                                    paste0( (gap2 %/% 60), ":",
+                                                            round(gap2 %% 60), " min/km")),
+                   "average_heart_rate" = c("158 bpm", "173 bpm"),
+                   "vo2max" = rep(56.0, 2))) %>% 
+  mutate(date = as.Date(date,format='%m/%d/%Y'),
+         name = as_datetime(name),
+         distance = case_when(
+           str_detect(distance, "Km") ~ as.numeric(str_remove_all(distance, " Km"))*1000 ,
+           str_detect(distance, "m") ~ as.numeric(str_remove_all(distance, " m")),
+           TRUE ~ as.numeric(distance)
+           ),
+         duration = case_when(
+           str_length(duration)==7 ~ paste0("00:", duration),
+           str_length(duration)==3 ~ paste0("00:00:", duration),
+           TRUE ~ duration
+         ),
+         duration = str_replace_all(duration, "m ", ":"),
+         duration = str_replace_all(duration, "h ", ":"),
+         duration = str_remove_all(duration, "s"),
+         duration = parse_hms(duration)
+         ) 
+
+distance <- df %>% 
+  select(date, distance) %>% 
+  complete(date = seq.Date(as.Date("2020-01-01"), as.Date("2020-12-31"), by="day")) %>% 
+  replace_na(list(distance = 0)) %>% 
+  group_by(date) %>% 
+  summarise(distance = sum(distance)) %>% 
+  mutate(doy = as.numeric(strftime(date, format = "%j")),
+         goal = (3000/366)*doy,
+         distance = distance/1000,
+         cum_km = cumsum(distance),
+         diff = cum_km - goal
+         )
+```
+
+
+I set an annual running goal of 2500km sometime in April, and revised it upwards several times, eventually deciding that, having hit 2750 on
+`r format.Date(distance$date[distance$cum_km>2750][1], "%d %B %Y")`, I decided to go for a nice round 3000km. Below you can see my cumulative distance relative to my goal, with the y axis showing how many kilometres I was behind (and occasionally ahead) of pace. 
+
+```{r goal-chart}
+theme_set(theme_bw())
+
+fig <- plot_ly(distance, x = ~date) 
+ 
+fig <- fig %>%
+  #add_trace(y = ~cum_km, type = "scatter", mode = 'lines', name = "Total") %>%
+  add_trace(y = ~diff, type = "scatter", mode = 'lines', name = "Goal") %>%
+  layout(legend = list(x = 0.1, y = 0.9)) %>%
+  layout(xaxis = list(title = "Date"), yaxis = list(title = "Kilometres"))
+
+fig
+
+```
+
+
+## Eddington Number
+
+```{r}
+eddington = function(kms) {
+  if(max(kms) == 0) return(0) # assuming this is reasonable
+  kms = kms[order(kms, decreasing = TRUE)]
+  tail(which(kms >= seq_along(kms)), 1)
+}
+
+```
+
+British scientist and keen cyclist [Arthur Eddington](https://en.wikipedia.org/wiki/Arthur_Eddington#Eddington_number_for_cycling) developed the Eddington number for cycling distance, analogous to the h-index of scientific notations. My Eddington number for running in 2020 was `r eddington(df$distance/1000)`; i.e. I did `r eddington(df$distance/1000)` runs of at least `r eddington(df$distance/1000)`km. 
+
+
+My watch has a 5 point scale for how a workout felt:
+
+1. Excellent 
+2. Very Good 
+3. Good
+4. Average
+5. Poor
+
+The scale itself is bizarre, with "Average" being the second lowest rating on a five point scale. Nonetheless, it is a useful measurement of how I felt on a run. The graph below shows pace (in minutes/KM), distance and how I felt, for each of the `nrow(df)` runs I did in 2020:
+
+```{r}
+feel_df <- df %>% 
+  mutate(feeling = factor(feeling,
+                             levels = c("Excellent", "Very Good", "Good",
+                                        "Average", "Poor", "NA")),
+         distance = distance/1000,
+         average_pace = hms(lubridate::ms(
+           str_remove_all(average_pace, " min/km"))
+           ))
+
+
+fig3 <- ggplot(feel_df %>% filter(distance > 1),
+               aes(x = distance, y = average_pace)) +
+  geom_point(aes(colour = feeling), size = 3, alpha = 0.7) + 
+  scale_colour_viridis_d(na.value="grey30", name = "Feeling") + 
+  labs(x = "Distance (KM)", y = "Average Pace")
+
+ggplotly(fig3)
+```
+
+
+
+
