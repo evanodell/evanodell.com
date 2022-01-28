@@ -4,10 +4,10 @@ title = "Evan Odell"
 theme = "beautifulhugo"
 metaDataFormat = "yaml"
 disqusShortname = "evanodell"
-google_analytics = "UA-90706059-1"
+google_analytics = ""
 
 [Params]
-  subtitle = "Research | Data Analysis | Campaigning"
+  subtitle = ""
   logo = "img/EvanOdell.jpg"
   favicon = "img/favicon.ico"
   dateFormat = "2006-01-01"
